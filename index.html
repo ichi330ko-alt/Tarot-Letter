@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,7 +12,7 @@
 
   <meta
     name="description"
-    content="Tarot Letterは、タロットカードを通して、今のあなたに必要な言葉を届ける場所です。今日の一枚、YES・NO、運命のダイス、有料鑑定をご用意しています。"
+    content="Tarot Letterは、タロットカードを通して、今のあなたに必要な言葉を届ける場所です。今日の一枚、YES・NO、運命のダイス、個人鑑定をご用意しています。"
   >
 
   <style>
@@ -25,7 +24,6 @@
       --brown-light: #8c7463;
       --gold: #c7a15c;
       --gold-light: #dfc58f;
-      --sage: #9ea38c;
       --turquoise: #43aeb0;
       --shadow: rgba(90, 67, 46, 0.16);
     }
@@ -71,9 +69,9 @@
       font: inherit;
     }
 
-    /* -------------------------
+    /* =========================
        ヘッダー
-    ------------------------- */
+    ========================= */
 
     .site-header {
       position: fixed;
@@ -81,11 +79,11 @@
       left: 0;
       z-index: 1000;
       width: 100%;
-      padding: 14px 18px;
+      padding: 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(251, 247, 239, 0.82);
+      background: rgba(251, 247, 239, 0.84);
       border-bottom: 1px solid rgba(199, 161, 92, 0.22);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -98,8 +96,8 @@
     }
 
     .header-logo {
-      width: 44px;
-      height: 44px;
+      width: 43px;
+      height: 43px;
       object-fit: contain;
       border-radius: 50%;
     }
@@ -163,9 +161,9 @@
       transform: rotate(-45deg);
     }
 
-    /* -------------------------
-       メニュー
-    ------------------------- */
+    /* =========================
+       ハンバーガーメニュー
+    ========================= */
 
     .menu-overlay {
       position: fixed;
@@ -174,7 +172,7 @@
       display: flex;
       align-items: flex-start;
       justify-content: flex-end;
-      padding-top: 75px;
+      padding-top: 71px;
       background: rgba(72, 55, 43, 0.24);
       opacity: 0;
       visibility: hidden;
@@ -188,12 +186,12 @@
 
     .menu-panel {
       width: min(88%, 360px);
-      height: calc(100vh - 75px);
+      height: calc(100vh - 71px);
       padding: 34px 28px;
       overflow-y: auto;
       background:
         linear-gradient(
-          rgba(255, 252, 247, 0.97),
+          rgba(255, 252, 247, 0.98),
           rgba(247, 239, 226, 0.98)
         );
       box-shadow: -12px 18px 40px rgba(78, 58, 42, 0.22);
@@ -237,85 +235,53 @@
       font-size: 18px;
     }
 
-    /* -------------------------
-       トップ
-    ------------------------- */
+    /* =========================
+       トップ画像
+    ========================= */
 
     .hero {
       position: relative;
       min-height: 100svh;
-      padding: 105px 24px 68px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
       background:
-        linear-gradient(
-          rgba(255, 250, 242, 0.24),
-          rgba(255, 250, 242, 0.48)
-        ),
-        url("images/home-top.png") center / cover no-repeat;
+        url("images/home-top.png")
+        center center / cover
+        no-repeat;
     }
 
-    .hero::before {
+    .hero::after {
       content: "";
       position: absolute;
       inset: 0;
+      pointer-events: none;
       background:
-        radial-gradient(
-          circle at center,
-          rgba(255, 255, 255, 0.12),
-          rgba(248, 239, 224, 0.38)
+        linear-gradient(
+          to bottom,
+          rgba(255, 250, 242, 0.03) 60%,
+          rgba(251, 247, 239, 0.22) 100%
         );
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 760px);
-      text-align: center;
-    }
-
-    .main-logo {
-      width: min(72vw, 430px);
-      margin: 0 auto 20px;
-      filter:
-        drop-shadow(0 8px 18px rgba(124, 92, 52, 0.12));
-    }
-
-    .hero-copy {
-      margin: 14px 0 0;
-      font-size: clamp(18px, 3.7vw, 30px);
-      font-weight: 400;
-      line-height: 1.8;
-      letter-spacing: 0.1em;
-      text-shadow: 0 2px 14px rgba(255, 255, 255, 0.96);
-    }
-
-    .hero-subcopy {
-      max-width: 570px;
-      margin: 20px auto 0;
-      font-size: clamp(13px, 2vw, 16px);
-      line-height: 2;
-      color: var(--brown-light);
-      text-shadow: 0 2px 10px #fff;
-    }
-
     .scroll-guide {
-      margin-top: 42px;
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      gap: 9px;
-      color: var(--gold);
-      font-size: 11px;
+      gap: 7px;
+      color: rgba(151, 112, 55, 0.78);
+      font-size: 10px;
       letter-spacing: 0.22em;
+      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.95);
     }
 
     .scroll-line {
       position: relative;
       width: 1px;
-      height: 46px;
+      height: 38px;
       overflow: hidden;
       background: rgba(199, 161, 92, 0.28);
     }
@@ -323,10 +289,10 @@
     .scroll-line::after {
       content: "";
       position: absolute;
-      top: -45px;
+      top: -38px;
       left: 0;
       width: 1px;
-      height: 38px;
+      height: 32px;
       background: var(--gold);
       animation: scrollLine 2s ease-in-out infinite;
     }
@@ -337,13 +303,13 @@
       }
 
       100% {
-        transform: translateY(92px);
+        transform: translateY(76px);
       }
     }
 
-    /* -------------------------
+    /* =========================
        共通セクション
-    ------------------------- */
+    ========================= */
 
     .section {
       padding: 88px 22px;
@@ -396,9 +362,21 @@
       line-height: 2.15;
     }
 
-    /* -------------------------
-       コンテンツカード
-    ------------------------- */
+    /* =========================
+       はじめに
+    ========================= */
+
+    .welcome-section {
+      background:
+        linear-gradient(
+          rgba(255, 253, 249, 0.97),
+          rgba(249, 243, 233, 0.97)
+        );
+    }
+
+    /* =========================
+       コンテンツ一覧
+    ========================= */
 
     .contents-section {
       background:
@@ -440,12 +418,12 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.58;
+      opacity: 0.6;
       transition: 0.35s ease;
     }
 
     .content-card:hover::before {
-      opacity: 0.72;
+      opacity: 0.74;
       transform: scale(1.025);
     }
 
@@ -456,7 +434,9 @@
           rgba(67, 45, 29, 0.72),
           rgba(255, 255, 255, 0.02)
         ),
-        url("images/today-bg.png") center / cover no-repeat;
+        url("images/today-bg.png")
+        center / cover
+        no-repeat;
     }
 
     .card-dice::before {
@@ -466,7 +446,9 @@
           rgba(34, 57, 56, 0.72),
           rgba(255, 255, 255, 0.02)
         ),
-        url("images/fortune-dice-bg.png") center / cover no-repeat;
+        url("images/fortune-dice-bg.png")
+        center / cover
+        no-repeat;
     }
 
     .card-yesno::before {
@@ -476,7 +458,9 @@
           rgba(54, 43, 35, 0.74),
           rgba(255, 255, 255, 0.02)
         ),
-        url("images/yesno-bg.png") center / cover no-repeat;
+        url("images/yesno-bg.png")
+        center / cover
+        no-repeat;
     }
 
     .card-profile::before {
@@ -486,14 +470,16 @@
           rgba(69, 54, 40, 0.74),
           rgba(255, 255, 255, 0.02)
         ),
-        url("images/profile-bg.png") center / cover no-repeat;
+        url("images/profile-bg.png")
+        center / cover
+        no-repeat;
     }
 
     .card-content {
       position: relative;
       z-index: 1;
       color: #fffaf3;
-      text-shadow: 0 2px 12px rgba(38, 27, 19, 0.7);
+      text-shadow: 0 2px 12px rgba(38, 27, 19, 0.76);
     }
 
     .card-icon {
@@ -532,9 +518,9 @@
       transform: translateX(5px);
     }
 
-    /* -------------------------
+    /* =========================
        鑑定案内
-    ------------------------- */
+    ========================= */
 
     .reading-section {
       position: relative;
@@ -543,7 +529,9 @@
           rgba(255, 252, 246, 0.28),
           rgba(245, 235, 218, 0.52)
         ),
-        url("images/reading-bg.png") center / cover no-repeat;
+        url("images/reading-bg.png")
+        center / cover
+        no-repeat;
     }
 
     .reading-box {
@@ -551,7 +539,7 @@
       margin: 0 auto;
       padding: clamp(42px, 7vw, 72px);
       text-align: center;
-      background: rgba(255, 252, 247, 0.84);
+      background: rgba(255, 252, 247, 0.86);
       border: 1px solid rgba(199, 161, 92, 0.36);
       border-radius: 28px;
       box-shadow: 0 22px 70px rgba(86, 62, 43, 0.18);
@@ -610,9 +598,9 @@
       box-shadow: 0 16px 36px rgba(148, 107, 50, 0.34);
     }
 
-    /* -------------------------
+    /* =========================
        姉妹サイト
-    ------------------------- */
+    ========================= */
 
     .sister-section {
       padding: 72px 22px;
@@ -635,9 +623,9 @@
       border-bottom: 1px solid rgba(199, 161, 92, 0.45);
     }
 
-    /* -------------------------
+    /* =========================
        フッター
-    ------------------------- */
+    ========================= */
 
     .site-footer {
       padding: 54px 22px 42px;
@@ -651,15 +639,9 @@
         );
     }
 
-    .footer-logo {
-      width: 92px;
-      margin: 0 auto 18px;
-      filter: brightness(1.2);
-    }
-
     .footer-name {
       margin: 0;
-      font-size: 17px;
+      font-size: 18px;
       letter-spacing: 0.14em;
     }
 
@@ -676,13 +658,13 @@
       letter-spacing: 0.12em;
     }
 
-    /* -------------------------
-       スマホ
-    ------------------------- */
+    /* =========================
+       スマートフォン
+    ========================= */
 
     @media (max-width: 720px) {
       .site-header {
-        padding: 10px 14px;
+        padding: 9px 13px;
       }
 
       .header-logo {
@@ -694,22 +676,26 @@
         font-size: 13px;
       }
 
+      .menu-button {
+        width: 43px;
+        height: 43px;
+      }
+
+      .menu-overlay {
+        padding-top: 62px;
+      }
+
+      .menu-panel {
+        height: calc(100vh - 62px);
+      }
+
       .hero {
         min-height: 100svh;
-        padding: 92px 18px 54px;
-        background-position: center;
+        background-position: center center;
       }
 
-      .main-logo {
-        width: min(82vw, 380px);
-      }
-
-      .hero-copy {
-        font-size: 19px;
-      }
-
-      .hero-subcopy {
-        font-size: 13px;
+      .scroll-guide {
+        bottom: 10px;
       }
 
       .section {
@@ -734,15 +720,8 @@
     }
 
     @media (max-width: 420px) {
-      .hero-copy br {
-        display: none;
-      }
-
-      .hero-subcopy br {
-        display: none;
-      }
-
-      .section-description br {
+      .section-description br,
+      .reading-copy br {
         display: none;
       }
 
@@ -758,13 +737,21 @@
 
   <!-- ヘッダー -->
   <header class="site-header">
-    <a class="header-brand" href="index.html" aria-label="ホームへ戻る">
+
+    <a
+      class="header-brand"
+      href="index.html"
+      aria-label="ホームへ戻る"
+    >
       <img
         class="header-logo"
         src="images/logo.png"
         alt="Tarot Letter ロゴ"
       >
-      <span class="header-name">Tarot Letter</span>
+
+      <span class="header-name">
+        Tarot Letter
+      </span>
     </a>
 
     <button
@@ -781,6 +768,7 @@
         <span></span>
       </span>
     </button>
+
   </header>
 
   <!-- ハンバーガーメニュー -->
@@ -789,10 +777,16 @@
     id="mainMenu"
     aria-hidden="true"
   >
-    <nav class="menu-panel" aria-label="メインメニュー">
-      <p class="menu-title">Menu</p>
+    <nav
+      class="menu-panel"
+      aria-label="メインメニュー"
+    >
+      <p class="menu-title">
+        Menu
+      </p>
 
       <ul class="menu-list">
+
         <li>
           <a href="index.html">
             <span class="menu-icon">⌂</span>
@@ -834,50 +828,48 @@
             Profile
           </a>
         </li>
+
       </ul>
     </nav>
   </div>
 
   <main>
 
-    <!-- トップ画像 -->
+    <!--
+      トップ画像
+
+      ロゴ・タイトル・説明文は画像内に入っているため、
+      HTMLでは重ねて表示していません。
+    -->
     <section class="hero">
-      <div class="hero-inner">
 
-        <img
-          class="main-logo"
-          src="images/logo.png"
-          alt="Tarot Letter タロットレター"
-        >
+      <a
+        class="scroll-guide"
+        href="#welcome"
+        aria-label="下へスクロール"
+      >
+        <span>SCROLL</span>
+        <span class="scroll-line"></span>
+      </a>
 
-        <h1 class="hero-copy">
-          カードが綴る、<br>
-          あなただけへの一通の手紙
-        </h1>
-
-        <p class="hero-subcopy">
-          タロットは、未来を決めつけるものではなく、<br>
-          今のあなたの心を照らすメッセージ。
-        </p>
-
-        <a class="scroll-guide" href="#welcome">
-          <span>SCROLL</span>
-          <span class="scroll-line"></span>
-        </a>
-
-      </div>
     </section>
 
     <!-- はじめに -->
-    <section class="section" id="welcome">
+    <section
+      class="section welcome-section"
+      id="welcome"
+    >
       <div class="section-inner">
 
         <div class="section-heading">
-          <span class="section-kicker">Welcome</span>
 
-          <h2 class="section-title">
+          <span class="section-kicker">
+            Welcome
+          </span>
+
+          <h1 class="section-title">
             心の声に、そっと耳を澄ます
-          </h2>
+          </h1>
 
           <div class="ornament"></div>
 
@@ -888,6 +880,7 @@
             気軽に楽しめる無料占いと、<br>
             一人ひとりにお届けする個人鑑定をご用意しています。
           </p>
+
         </div>
 
       </div>
@@ -895,10 +888,14 @@
 
     <!-- 無料コンテンツ -->
     <section class="section contents-section">
+
       <div class="section-inner">
 
         <div class="section-heading">
-          <span class="section-kicker">Free Contents</span>
+
+          <span class="section-kicker">
+            Free Contents
+          </span>
 
           <h2 class="section-title">
             カードに問いかける
@@ -909,6 +906,7 @@
           <p class="section-description">
             今のあなたに必要な言葉を、気軽に受け取ってください。
           </p>
+
         </div>
 
         <div class="content-grid">
@@ -919,7 +917,10 @@
             href="draw.html"
           >
             <div class="card-content">
-              <div class="card-icon">🃏</div>
+
+              <div class="card-icon">
+                🃏
+              </div>
 
               <h3 class="card-title">
                 今日の一枚
@@ -932,16 +933,20 @@
               <span class="card-link-text">
                 カードを受け取る
               </span>
+
             </div>
           </a>
 
-          <!-- ダイス -->
+          <!-- Fortune Dice -->
           <a
             class="content-card card-dice"
             href="dice.html"
           >
             <div class="card-content">
-              <div class="card-icon">🎲</div>
+
+              <div class="card-icon">
+                🎲
+              </div>
 
               <h3 class="card-title">
                 Fortune Dice
@@ -954,16 +959,20 @@
               <span class="card-link-text">
                 ダイスを振る
               </span>
+
             </div>
           </a>
 
-          <!-- YES NO -->
+          <!-- YES / NO -->
           <a
             class="content-card card-yesno"
             href="yesno.html"
           >
             <div class="card-content">
-              <div class="card-icon">✦</div>
+
+              <div class="card-icon">
+                ✦
+              </div>
 
               <h3 class="card-title">
                 YES / NO
@@ -976,6 +985,7 @@
               <span class="card-link-text">
                 カードに問いかける
               </span>
+
             </div>
           </a>
 
@@ -985,7 +995,10 @@
             href="profile.html"
           >
             <div class="card-content">
-              <div class="card-icon">◯</div>
+
+              <div class="card-icon">
+                ◯
+              </div>
 
               <h3 class="card-title">
                 Profile
@@ -998,20 +1011,26 @@
               <span class="card-link-text">
                 プロフィールを見る
               </span>
+
             </div>
           </a>
 
         </div>
 
       </div>
+
     </section>
 
-    <!-- 有料鑑定 -->
+    <!-- 個人鑑定 -->
     <section class="section reading-section">
+
       <div class="section-inner">
 
         <div class="reading-box">
-          <div class="reading-mark">✉</div>
+
+          <div class="reading-mark">
+            ✉
+          </div>
 
           <span class="section-kicker">
             Personal Reading
@@ -1035,16 +1054,24 @@
             class="main-button"
             href="reading.html"
           >
-            <span>鑑定について見る</span>
-            <span aria-hidden="true">→</span>
+            <span>
+              鑑定について見る
+            </span>
+
+            <span aria-hidden="true">
+              →
+            </span>
           </a>
+
         </div>
 
       </div>
+
     </section>
 
     <!-- 姉妹サイト -->
     <section class="sister-section">
+
       <p class="sister-text">
         心を整え、静かな祈りを受け取りたい日に。
       </p>
@@ -1057,18 +1084,13 @@
       >
         姉妹サイト「光の詠唱」へ
       </a>
+
     </section>
 
   </main>
 
   <!-- フッター -->
   <footer class="site-footer">
-
-    <img
-      class="footer-logo"
-      src="images/logo.png"
-      alt=""
-    >
 
     <p class="footer-name">
       Tarot Letter
@@ -1126,9 +1148,11 @@
       }
     });
 
-    document.querySelectorAll(".menu-list a").forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
+    document
+      .querySelectorAll(".menu-list a")
+      .forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
