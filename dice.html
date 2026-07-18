@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fortune Dice | Tarot Letter</title>
+<style>
+body{margin:0;font-family:serif;background:#f8f3eb;color:#5b4636;text-align:center}
+header{padding:18px;background:rgba(255,255,255,.9);position:sticky;top:0;border-bottom:1px solid #d8c39d}
+main{max-width:700px;margin:auto;padding:40px 20px}
+h1{font-weight:400;letter-spacing:.15em}
+#dice{font-size:120px;transition:transform .15s}
+button{margin-top:25px;padding:14px 28px;border:none;border-radius:999px;background:#c7a15c;color:#fff;font-size:16px;cursor:pointer}
+.card{margin-top:35px;background:#fffdf8;border:1px solid #e2d1b2;border-radius:18px;padding:28px;display:none}
+small{color:#b28d55;letter-spacing:.2em}
+footer{margin-top:60px;padding:25px;background:#5d493d;color:#fff}
+</style>
+</head>
+<body>
+<header><strong>Tarot Letter</strong></header>
+<main>
+<small>FORTUNE DICE</small>
+<h1>今日の導き</h1>
+<p>心にひとつテーマを思い浮かべ、サイコロを振ってください。</p>
 
+<div id="dice">🎲</div>
+<button onclick="roll()">サイコロを振る</button>
+
+<div class="card" id="result">
+<h2 id="title"></h2>
+<p id="message"></p>
+</div>
+</main>
+<footer>Tarot Letter</footer>
+
+<script>
+const data=[
+["行動","迷うより一歩。小さな行動が流れを変えます。"],
+["休息","今日は休むことも大切な選択です。"],
+["挑戦","少し勇気を出して新しいことに挑戦しましょう。"],
+["感謝","身近な幸せに目を向けることで運気が整います。"],
+["対話","一言伝えるだけで状況が動き始めます。"],
+["内省","静かな時間が答えを運んできます。"],
+["手放し","執着を手放すと新しい流れが入ります。"],
+["直感","最初に感じた答えを信じてください。"],
+["笑顔","笑顔が今日一番の開運アクションです。"],
+["信頼","焦らず流れを信じて進みましょう。"]
+];
+function roll(){
+ const dice=document.getElementById("dice");
+ let c=0;
+ const t=setInterval(()=>{
+   dice.style.transform=`rotate(${Math.random()*360}deg) scale(${0.9+Math.random()*0.3})`;
+   dice.textContent=["🎲","⚀","⚁","⚂","⚃","⚄","⚅"][Math.floor(Math.random()*7)];
+   c++;
+   if(c>15){
+      clearInterval(t);
+      dice.textContent="🎲";
+      dice.style.transform="rotate(0deg)";
+      const r=data[Math.floor(Math.random()*data.length)];
+      document.getElementById("title").textContent=r[0];
+      document.getElementById("message").textContent=r[1];
+      document.getElementById("result").style.display="block";
+   }
+ },90);
+}
+</script>
+</body>
+</html>
