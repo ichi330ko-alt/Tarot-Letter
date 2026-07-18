@@ -18,12 +18,12 @@
   <style>
     :root {
       --ivory: #fbf7ef;
-      --paper: rgba(255, 252, 246, 0.92);
+      --paper: rgba(255, 252, 246, 0.93);
       --brown: #5d493d;
-      --brown-light: #8c7463;
-      --gold: #c7a15c;
-      --gold-light: #e0c68f;
-      --shadow: rgba(75, 53, 36, 0.18);
+      --brown-light: #8b7464;
+      --gold: #c5a05e;
+      --gold-light: #e1c78e;
+      --shadow: rgba(91, 67, 46, 0.18);
     }
 
     * {
@@ -35,8 +35,8 @@
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
+      margin: 0;
       color: var(--brown);
       background: var(--ivory);
       font-family:
@@ -76,12 +76,13 @@
       left: 0;
       z-index: 1000;
       width: 100%;
-      padding: 10px 15px;
+      min-height: 64px;
+      padding: 9px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(251, 247, 239, 0.84);
-      border-bottom: 1px solid rgba(199, 161, 92, 0.22);
+      background: rgba(251, 247, 239, 0.86);
+      border-bottom: 1px solid rgba(197, 160, 94, 0.24);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
@@ -111,8 +112,8 @@
       display: grid;
       place-items: center;
       color: var(--brown);
-      background: rgba(255, 255, 255, 0.65);
-      border: 1px solid rgba(199, 161, 92, 0.38);
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(197, 160, 94, 0.38);
       border-radius: 50%;
       cursor: pointer;
     }
@@ -159,18 +160,17 @@
     }
 
     /* =========================
-       メニュー
+       ハンバーガーメニュー
     ========================= */
 
     .menu-overlay {
       position: fixed;
       inset: 0;
       z-index: 900;
-      padding-top: 65px;
+      padding-top: 64px;
       display: flex;
-      align-items: flex-start;
       justify-content: flex-end;
-      background: rgba(72, 55, 43, 0.25);
+      background: rgba(67, 50, 39, 0.25);
       opacity: 0;
       visibility: hidden;
       transition: 0.3s ease;
@@ -183,7 +183,7 @@
 
     .menu-panel {
       width: min(88%, 360px);
-      height: calc(100vh - 65px);
+      height: calc(100vh - 64px);
       padding: 34px 28px;
       overflow-y: auto;
       background:
@@ -215,14 +215,14 @@
     }
 
     .menu-list li {
-      border-bottom: 1px solid rgba(199, 161, 92, 0.24);
+      border-bottom: 1px solid rgba(197, 160, 94, 0.24);
     }
 
     .menu-list a {
+      padding: 17px 4px;
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 17px 4px;
       font-size: 15px;
     }
 
@@ -233,32 +233,74 @@
     }
 
     /* =========================
-       ページ全体
+       ページ背景
     ========================= */
 
-    .page {
+    .page-main {
+      position: relative;
       min-height: 100svh;
-      padding: 105px 18px 65px;
+      padding: 104px 18px 70px;
       display: flex;
       justify-content: center;
       background:
         linear-gradient(
-          rgba(255, 251, 244, 0.18),
-          rgba(255, 251, 244, 0.32)
+          rgba(255, 251, 244, 0.16),
+          rgba(250, 243, 232, 0.48)
         ),
         url("images/today-bg.png")
         center center / cover
         fixed no-repeat;
     }
 
-    .page-inner {
-      width: min(100%, 820px);
+    .page-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.1),
+          rgba(246, 236, 220, 0.16)
+        );
+      pointer-events: none;
+    }
+
+    .page-container {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 760px);
       margin: auto;
+    }
+
+    /* =========================
+       最初の画面
+    ========================= */
+
+    .intro-panel {
+      padding:
+        clamp(36px, 7vw, 68px)
+        clamp(22px, 6vw, 56px);
       text-align: center;
+      background: rgba(255, 252, 247, 0.84);
+      border: 1px solid rgba(197, 160, 94, 0.36);
+      border-radius: 28px;
+      box-shadow: 0 22px 70px var(--shadow);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      transition:
+        opacity 0.55s ease,
+        transform 0.55s ease;
+    }
+
+    .intro-panel.hide {
+      opacity: 0;
+      transform: translateY(-18px);
+      pointer-events: none;
     }
 
     .page-kicker {
-      margin: 0 0 8px;
+      display: block;
+      margin-bottom: 12px;
       color: var(--gold);
       font-size: 11px;
       letter-spacing: 0.28em;
@@ -267,15 +309,15 @@
 
     .page-title {
       margin: 0;
-      font-size: clamp(28px, 6vw, 44px);
+      font-size: clamp(27px, 6vw, 43px);
       font-weight: 400;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.13em;
     }
 
     .ornament {
-      width: 120px;
+      width: 110px;
       height: 1px;
-      margin: 22px auto;
+      margin: 24px auto;
       background:
         linear-gradient(
           to right,
@@ -285,63 +327,36 @@
         );
     }
 
-    .intro-text {
-      max-width: 600px;
+    .intro-message {
+      max-width: 540px;
       margin: 0 auto;
       color: var(--brown-light);
       font-size: 14px;
-      line-height: 2.1;
+      line-height: 2.15;
     }
 
     /* =========================
        封筒
     ========================= */
 
-    .draw-area {
-      margin-top: 38px;
-    }
-
-    .envelope-stage {
-      position: relative;
-      min-height: 360px;
+    .envelope-area {
+      width: min(280px, 75vw);
+      height: 190px;
+      margin: 34px auto 24px;
       display: grid;
       place-items: center;
+      perspective: 900px;
     }
 
     .envelope {
       position: relative;
-      width: min(82vw, 360px);
-      aspect-ratio: 1.55 / 1;
-      overflow: hidden;
-      background:
-        linear-gradient(
-          145deg,
-          #fffdf7,
-          #eee2ce
+      width: 250px;
+      max-width: 100%;
+      height: 155px;
+      filter:
+        drop-shadow(
+          0 16px 22px rgba(93, 70, 48, 0.16)
         );
-      border: 1px solid rgba(183, 139, 72, 0.48);
-      border-radius: 8px;
-      box-shadow:
-        0 24px 55px rgba(91, 64, 40, 0.2),
-        inset 0 0 30px rgba(255, 255, 255, 0.72);
-      cursor: pointer;
-      transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease,
-        opacity 0.5s ease;
-    }
-
-    .envelope:hover {
-      transform: translateY(-5px);
-      box-shadow:
-        0 30px 65px rgba(91, 64, 40, 0.25),
-        inset 0 0 30px rgba(255, 255, 255, 0.72);
-    }
-
-    .envelope.hidden {
-      opacity: 0;
-      transform: translateY(25px) scale(0.92);
-      pointer-events: none;
     }
 
     .envelope-back {
@@ -349,136 +364,227 @@
       inset: 0;
       background:
         linear-gradient(
-          30deg,
-          transparent 49.5%,
-          rgba(194, 153, 89, 0.35) 50%,
-          transparent 50.5%
-        ),
-        linear-gradient(
-          -30deg,
-          transparent 49.5%,
-          rgba(194, 153, 89, 0.35) 50%,
-          transparent 50.5%
+          145deg,
+          #fffdf8,
+          #eee1cb
         );
+      border: 1px solid rgba(187, 145, 77, 0.45);
+      border-radius: 7px;
+    }
+
+    .envelope-letter {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 14px;
+      height: 120px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      background: #fffdf8;
+      border: 1px solid rgba(197, 160, 94, 0.34);
+      border-radius: 5px;
+      font-size: 28px;
+      transform: translateY(0);
+      transition: transform 0.8s ease 0.35s;
+    }
+
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      overflow: hidden;
+      border-radius: 7px;
+    }
+
+    .envelope-front::before,
+    .envelope-front::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      width: 71%;
+      height: 100%;
+      background: #f7eddc;
+      border: 1px solid rgba(187, 145, 77, 0.3);
+    }
+
+    .envelope-front::before {
+      left: -20%;
+      transform: skewX(36deg);
+    }
+
+    .envelope-front::after {
+      right: -20%;
+      transform: skewX(-36deg);
     }
 
     .envelope-flap {
       position: absolute;
+      z-index: 4;
       top: 0;
       left: 0;
       width: 100%;
-      height: 58%;
+      height: 82px;
+      transform-origin: top;
+      transition: transform 0.75s ease;
+    }
+
+    .envelope-flap::before {
+      content: "";
+      position: absolute;
+      top: -77px;
+      left: 50%;
+      width: 176px;
+      height: 176px;
       background:
         linear-gradient(
-          150deg,
-          #f8efdf,
-          #fffdf8
+          135deg,
+          #fffaf1,
+          #eadcc3
         );
-      border-bottom: 1px solid rgba(183, 139, 72, 0.34);
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      transform-origin: top center;
-      transition: transform 0.75s ease;
+      border-right:
+        1px solid rgba(187, 145, 77, 0.38);
+      border-bottom:
+        1px solid rgba(187, 145, 77, 0.38);
+      transform:
+        translateX(-50%)
+        rotate(45deg);
+    }
+
+    .wax-seal {
+      position: absolute;
+      z-index: 5;
+      left: 50%;
+      top: 67px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: #fff6df;
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          #d3b372,
+          #a87934
+        );
+      border:
+        2px solid rgba(255, 244, 211, 0.46);
+      border-radius: 50%;
+      box-shadow:
+        0 5px 12px rgba(111, 76, 30, 0.24);
+      transform: translateX(-50%);
+      transition:
+        opacity 0.3s ease,
+        transform 0.45s ease;
     }
 
     .envelope.open .envelope-flap {
       transform: rotateX(180deg);
     }
 
-    .wax-seal {
-      position: absolute;
-      top: 49%;
-      left: 50%;
-      width: 66px;
-      height: 66px;
-      display: grid;
-      place-items: center;
-      color: #fff8e9;
-      background:
-        radial-gradient(
-          circle at 35% 30%,
-          #e2bc73,
-          #b78339 62%,
-          #8c6029
-        );
-      border: 3px double rgba(255, 239, 199, 0.66);
-      border-radius: 50%;
-      box-shadow:
-        0 8px 20px rgba(99, 62, 26, 0.28),
-        inset 0 0 10px rgba(255, 237, 194, 0.35);
-      font-size: 25px;
-      transform: translate(-50%, -50%);
-      transition:
-        opacity 0.35s ease,
-        transform 0.5s ease;
-    }
-
     .envelope.open .wax-seal {
       opacity: 0;
-      transform: translate(-50%, -50%) scale(1.35);
+      transform:
+        translateX(-50%)
+        translateY(-15px)
+        scale(0.75);
     }
 
-    .envelope-label {
-      position: absolute;
-      bottom: 22px;
-      left: 0;
-      width: 100%;
-      color: #8f745a;
-      font-size: 12px;
-      letter-spacing: 0.14em;
+    .envelope.open .envelope-letter {
+      transform: translateY(-78px);
     }
 
-    .draw-button {
-      margin-top: 28px;
+    /* =========================
+       ボタン
+    ========================= */
+
+    .main-button {
       min-width: 240px;
-      padding: 15px 30px;
+      padding: 15px 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
       color: #fffdf8;
       background:
         linear-gradient(
           135deg,
-          #b88d48,
-          #d4b471
+          #b68b49,
+          #d3b270
         );
-      border: 1px solid rgba(255, 255, 255, 0.56);
+      border:
+        1px solid rgba(255, 255, 255, 0.55);
       border-radius: 999px;
-      box-shadow: 0 13px 30px rgba(145, 101, 46, 0.27);
-      cursor: pointer;
+      box-shadow:
+        0 12px 30px rgba(148, 107, 50, 0.26);
       font-size: 14px;
       letter-spacing: 0.12em;
+      cursor: pointer;
       transition:
         transform 0.3s ease,
         box-shadow 0.3s ease;
     }
 
-    .draw-button:hover {
+    .main-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 17px 38px rgba(145, 101, 46, 0.34);
+      box-shadow:
+        0 16px 36px rgba(148, 107, 50, 0.34);
     }
 
-    .draw-button:disabled {
-      opacity: 0.65;
-      cursor: default;
+    .main-button:disabled {
+      cursor: wait;
+      opacity: 0.72;
       transform: none;
     }
 
+    .sub-button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      color: var(--brown);
+      background: rgba(255, 252, 247, 0.68);
+      border:
+        1px solid rgba(197, 160, 94, 0.46);
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .sub-button:hover {
+      background: rgba(255, 252, 247, 0.94);
+      transform: translateY(-2px);
+    }
+
     /* =========================
-       カード結果
+       結果
     ========================= */
 
-    .result {
+    .result-panel {
       display: none;
-      opacity: 0;
-      transform: translateY(25px);
+      padding:
+        clamp(34px, 7vw, 62px)
+        clamp(20px, 6vw, 54px);
+      text-align: center;
+      background: rgba(255, 252, 247, 0.9);
+      border: 1px solid rgba(197, 160, 94, 0.38);
+      border-radius: 28px;
+      box-shadow: 0 22px 70px var(--shadow);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
-    .result.show {
+    .result-panel.show {
       display: block;
-      animation: resultAppear 1s ease forwards;
+      animation: panelAppear 0.8s ease both;
     }
 
-    @keyframes resultAppear {
+    @keyframes panelAppear {
       from {
         opacity: 0;
-        transform: translateY(28px);
+        transform: translateY(24px);
       }
 
       to {
@@ -487,268 +593,231 @@
       }
     }
 
-    .result-panel {
-      width: min(100%, 710px);
-      margin: 0 auto;
-      padding: clamp(28px, 6vw, 55px);
-      background: rgba(255, 252, 246, 0.88);
-      border: 1px solid rgba(199, 161, 92, 0.38);
-      border-radius: 28px;
-      box-shadow: 0 25px 70px rgba(85, 61, 40, 0.2);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+    .result-date {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.16em;
     }
 
-    .card-display {
-      perspective: 1100px;
+    /* =========================
+       実画像カード
+    ========================= */
+
+    .tarot-card-frame {
+      width: min(290px, 72vw);
+      margin: 30px auto 26px;
+      padding: 8px;
+      background:
+        linear-gradient(
+          145deg,
+          #f9efd9,
+          #c8a765,
+          #f8edda
+        );
+      border-radius: 13px;
+      box-shadow:
+        0 24px 48px rgba(76, 55, 37, 0.28),
+        0 0 24px rgba(197, 160, 94, 0.16);
+      opacity: 0;
+      transform:
+        perspective(900px)
+        rotateY(90deg)
+        translateY(18px);
     }
 
-    .tarot-card {
-      position: relative;
-      width: min(58vw, 225px);
-      aspect-ratio: 0.58 / 1;
-      margin: 0 auto;
-      transform-style: preserve-3d;
-      transform: rotateY(180deg);
-      animation: cardTurn 1.35s ease forwards;
+    .tarot-card-frame.reveal {
+      animation:
+        cardReveal 1.05s
+        cubic-bezier(0.2, 0.8, 0.2, 1)
+        forwards;
     }
 
-    @keyframes cardTurn {
+    @keyframes cardReveal {
       0% {
         opacity: 0;
         transform:
-          translateY(35px)
-          rotateY(180deg)
-          scale(0.87);
+          perspective(900px)
+          rotateY(90deg)
+          translateY(18px)
+          scale(0.9);
       }
 
-      45% {
+      65% {
         opacity: 1;
+        transform:
+          perspective(900px)
+          rotateY(-7deg)
+          translateY(0)
+          scale(1.03);
       }
 
       100% {
         opacity: 1;
         transform:
+          perspective(900px)
+          rotateY(0)
           translateY(0)
-          rotateY(0deg)
           scale(1);
       }
     }
 
-    .card-face {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow:
-        0 18px 42px rgba(74, 50, 31, 0.28),
-        0 0 0 1px rgba(173, 128, 60, 0.45);
+    .tarot-card-image {
+      width: 100%;
+      height: auto;
+      border-radius: 7px;
+      background: #eee5d8;
     }
 
-    .card-front {
-      padding: 18px 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      color: #6e533d;
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(255, 255, 255, 0.95),
-          rgba(238, 222, 194, 0.9)
-        );
-      border: 7px solid #fbf4e7;
-      outline: 1px solid rgba(182, 135, 66, 0.64);
-      outline-offset: -12px;
+    .card-name-area {
+      margin-top: 8px;
     }
 
-    .card-back {
-      transform: rotateY(180deg);
-      background:
-        radial-gradient(
-          circle at center,
-          #f9efd8 0 13%,
-          transparent 14%
-        ),
-        repeating-radial-gradient(
-          circle at center,
-          rgba(201, 161, 91, 0.3) 0 1px,
-          transparent 2px 12px
-        ),
-        linear-gradient(
-          145deg,
-          #796a5a,
-          #a58b6e
-        );
-      border: 8px solid #f6ebd5;
-      outline: 1px solid rgba(190, 150, 78, 0.72);
-      outline-offset: -13px;
+    .card-name-jp {
+      margin: 0;
+      font-size: clamp(26px, 6vw, 35px);
+      font-weight: 400;
+      letter-spacing: 0.14em;
     }
 
-    .card-number {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-    }
-
-    .card-symbol {
-      display: grid;
-      place-items: center;
-      width: 110px;
-      height: 110px;
-      color: var(--gold);
-      border: 1px solid rgba(190, 147, 79, 0.48);
-      border-radius: 50%;
-      font-size: 62px;
-      line-height: 1;
-      box-shadow:
-        inset 0 0 25px rgba(207, 168, 98, 0.14);
-    }
-
-    .card-name-small {
-      font-size: 12px;
-      letter-spacing: 0.1em;
-    }
-
-    .result-label {
-      margin: 32px 0 0;
+    .card-name-en {
+      margin: 8px 0 0;
       color: var(--gold);
       font-size: 11px;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
-    .result-title {
-      margin: 8px 0 0;
-      font-size: clamp(27px, 6vw, 41px);
-      font-weight: 400;
-      letter-spacing: 0.13em;
+    /* =========================
+       メッセージ
+    ========================= */
+
+    .message-area {
+      max-width: 570px;
+      margin: 28px auto 0;
     }
 
-    .result-keywords {
-      margin: 15px 0 0;
-      color: #9a7b5c;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-    }
-
-    .message-box {
-      position: relative;
-      margin-top: 30px;
-      padding: 29px 25px;
-      color: #6e5847;
-      background: rgba(255, 255, 255, 0.54);
-      border-top: 1px solid rgba(199, 161, 92, 0.32);
-      border-bottom: 1px solid rgba(199, 161, 92, 0.32);
-      font-size: 15px;
-      line-height: 2.15;
-    }
-
-    .message-box::before {
-      content: "✦";
-      position: absolute;
-      top: -13px;
-      left: 50%;
-      padding: 0 12px;
+    .keyword-label {
+      margin: 0;
       color: var(--gold);
-      background: #fbf7ef;
-      transform: translateX(-50%);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
     }
 
-    .action-note {
-      margin: 25px 0 0;
-      color: var(--brown-light);
-      font-size: 13px;
-      line-height: 2;
+    .keyword-text {
+      margin: 8px 0 24px;
+      font-size: 14px;
+      letter-spacing: 0.12em;
     }
 
-    .result-buttons {
-      margin-top: 30px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .result-button {
-      min-width: 190px;
-      padding: 13px 23px;
-      color: var(--brown);
-      background: rgba(255, 252, 245, 0.76);
-      border: 1px solid rgba(188, 143, 74, 0.48);
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 13px;
+    .message-title {
+      margin: 0;
+      font-size: clamp(21px, 5vw, 29px);
+      font-weight: 400;
       letter-spacing: 0.1em;
-      transition:
-        transform 0.3s ease,
-        background 0.3s ease;
     }
 
-    .result-button:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 252, 245, 0.98);
+    .message-body {
+      margin: 24px 0 0;
+      padding: 26px 23px;
+      color: var(--brown-light);
+      background:
+        rgba(255, 250, 241, 0.72);
+      border-top:
+        1px solid rgba(197, 160, 94, 0.3);
+      border-bottom:
+        1px solid rgba(197, 160, 94, 0.3);
+      font-size: 14px;
+      line-height: 2.15;
+      text-align: left;
     }
 
-    .home-link {
-      margin-top: 30px;
-      display: inline-block;
-      color: #927453;
+    .result-signature {
+      margin: 25px 0 0;
+      color: var(--gold);
       font-size: 12px;
-      border-bottom: 1px solid rgba(146, 116, 83, 0.38);
+      letter-spacing: 0.14em;
+      text-align: right;
     }
 
     /* =========================
-       スマートフォン
+       フッター
+    ========================= */
+
+    .site-footer {
+      padding: 42px 20px;
+      text-align: center;
+      color: #f9f2e7;
+      background:
+        linear-gradient(
+          135deg,
+          #59493f,
+          #736052
+        );
+    }
+
+    .footer-name {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0.14em;
+    }
+
+    .footer-copy {
+      margin: 13px 0 0;
+      color: rgba(255, 248, 239, 0.72);
+      font-size: 11px;
+    }
+
+    /* =========================
+       スマホ
     ========================= */
 
     @media (max-width: 600px) {
-      .page {
-        min-height: 100svh;
-        padding:
-          92px
-          15px
-          48px;
-        background-attachment: scroll;
-      }
-
-      .page-title {
-        font-size: 29px;
-      }
-
-      .intro-text {
+      .header-name {
         font-size: 13px;
       }
 
-      .envelope-stage {
-        min-height: 305px;
+      .page-main {
+        padding: 88px 13px 48px;
+        background-attachment: scroll;
+      }
+
+      .intro-panel,
+      .result-panel {
+        border-radius: 22px;
+      }
+
+      .intro-message br {
+        display: none;
+      }
+
+      .envelope-area {
+        margin-top: 25px;
       }
 
       .envelope {
-        width: min(89vw, 350px);
+        width: 225px;
+        height: 140px;
       }
 
-      .result-panel {
-        padding: 34px 18px;
-        border-radius: 21px;
+      .envelope-flap::before {
+        top: -71px;
+        width: 160px;
+        height: 160px;
       }
 
-      .tarot-card {
-        width: min(62vw, 215px);
+      .wax-seal {
+        top: 60px;
       }
 
-      .message-box {
-        padding: 27px 17px;
-        font-size: 14px;
-      }
-
-      .result-buttons {
-        flex-direction: column;
-      }
-
-      .result-button {
+      .main-button {
         width: 100%;
+        min-width: 0;
+      }
+
+      .message-body {
+        padding: 23px 18px;
       }
     }
   </style>
@@ -783,7 +852,10 @@
       aria-expanded="false"
       aria-controls="mainMenu"
     >
-      <span class="menu-lines" aria-hidden="true">
+      <span
+        class="menu-lines"
+        aria-hidden="true"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -792,7 +864,7 @@
 
   </header>
 
-  <!-- ハンバーガーメニュー -->
+  <!-- メニュー -->
   <div
     class="menu-overlay"
     id="mainMenu"
@@ -854,142 +926,142 @@
     </nav>
   </div>
 
-  <main class="page">
+  <main class="page-main">
 
-    <div class="page-inner">
+    <div class="page-container">
 
-      <p class="page-kicker">
-        Today’s Tarot Letter
-      </p>
+      <!-- 最初の画面 -->
+      <section
+        class="intro-panel"
+        id="introPanel"
+      >
+        <span class="page-kicker">
+          Today’s Tarot Letter
+        </span>
 
-      <h1 class="page-title">
-        今日の一枚
-      </h1>
+        <h1 class="page-title">
+          今日の一枚
+        </h1>
 
-      <div class="ornament"></div>
+        <div class="ornament"></div>
 
-      <p class="intro-text">
-        心を静かにして、ひと呼吸。<br>
-        今日のあなたに必要な言葉を、
-        カードから受け取ってください。
-      </p>
+        <p class="intro-message">
+          心を静かにして、今日のあなたを思い浮かべてください。
+          <br>
+          カードから届く一通の手紙を、受け取ってみましょう。
+        </p>
 
-      <section class="draw-area">
+        <div class="envelope-area">
 
-        <!-- 最初に表示する封筒 -->
-        <div
-          class="envelope-stage"
-          id="envelopeStage"
-        >
           <div
             class="envelope"
             id="envelope"
-            role="button"
-            tabindex="0"
-            aria-label="今日の手紙を開く"
+            aria-hidden="true"
           >
             <div class="envelope-back"></div>
+
+            <div class="envelope-letter">
+              ✦
+            </div>
+
             <div class="envelope-flap"></div>
+
+            <div class="envelope-front"></div>
 
             <div class="wax-seal">
               ✦
             </div>
-
-            <div class="envelope-label">
-              for you
-            </div>
           </div>
+
         </div>
 
         <button
-          class="draw-button"
+          class="main-button"
           id="drawButton"
           type="button"
         >
           今日の手紙を受け取る
+          <span aria-hidden="true">→</span>
         </button>
+      </section>
 
-        <!-- カード結果 -->
+      <!-- 結果画面 -->
+      <section
+        class="result-panel"
+        id="resultPanel"
+        aria-live="polite"
+      >
+        <p
+          class="result-date"
+          id="resultDate"
+        ></p>
+
+        <span class="page-kicker">
+          Your Card
+        </span>
+
+        <h2 class="page-title">
+          今日、あなたに届いたカード
+        </h2>
+
         <div
-          class="result"
-          id="result"
-          aria-live="polite"
+          class="tarot-card-frame"
+          id="tarotCardFrame"
         >
-          <div class="result-panel">
-
-            <div class="card-display">
-
-              <div
-                class="tarot-card"
-                id="tarotCard"
-              >
-                <div class="card-face card-back"></div>
-
-                <div class="card-face card-front">
-                  <span
-                    class="card-number"
-                    id="cardNumber"
-                  ></span>
-
-                  <div
-                    class="card-symbol"
-                    id="cardSymbol"
-                  ></div>
-
-                  <span
-                    class="card-name-small"
-                    id="cardEnglish"
-                  ></span>
-                </div>
-              </div>
-
-            </div>
-
-            <p class="result-label">
-              Your Card
-            </p>
-
-            <h2
-              class="result-title"
-              id="cardTitle"
-            ></h2>
-
-            <p
-              class="result-keywords"
-              id="cardKeywords"
-            ></p>
-
-            <div
-              class="message-box"
-              id="cardMessage"
-            ></div>
-
-            <p
-              class="action-note"
-              id="cardAction"
-            ></p>
-
-            <div class="result-buttons">
-
-              <button
-                class="result-button"
-                id="redrawButton"
-                type="button"
-              >
-                もう一枚受け取る
-              </button>
-
-              <a
-                class="result-button"
-                href="index.html"
-              >
-                ホームへ戻る
-              </a>
-
-            </div>
-
-          </div>
+          <img
+            class="tarot-card-image"
+            id="tarotCardImage"
+            src=""
+            alt=""
+          >
         </div>
+
+        <div class="card-name-area">
+          <h3
+            class="card-name-jp"
+            id="cardNameJp"
+          ></h3>
+
+          <p
+            class="card-name-en"
+            id="cardNameEn"
+          ></p>
+        </div>
+
+        <div class="message-area">
+
+          <p class="keyword-label">
+            Keyword
+          </p>
+
+          <p
+            class="keyword-text"
+            id="cardKeyword"
+          ></p>
+
+          <h3
+            class="message-title"
+            id="messageTitle"
+          ></h3>
+
+          <p
+            class="message-body"
+            id="messageBody"
+          ></p>
+
+          <p class="result-signature">
+            from Tarot Letter
+          </p>
+
+        </div>
+
+        <button
+          class="sub-button"
+          id="redrawButton"
+          type="button"
+        >
+          もう一度受け取る
+        </button>
 
       </section>
 
@@ -997,396 +1069,495 @@
 
   </main>
 
+  <footer class="site-footer">
+    <p class="footer-name">
+      Tarot Letter
+    </p>
+
+    <p class="footer-copy">
+      カードが綴る、あなたへの一通の手紙。
+    </p>
+  </footer>
+
   <script>
     /* =========================
-       今日の一枚 カードデータ
-       現在は大アルカナ22枚
+       大アルカナ22枚
     ========================= */
 
     const cards = [
       {
-        number: "0",
-        title: "愚者",
-        english: "THE FOOL",
-        symbol: "✧",
-        keywords: "自由・始まり・好奇心",
+        image: "images/cards/00-TheFool.jpg",
+        nameJp: "愚者",
+        nameEn: "The Fool",
+        keyword: "自由・始まり・好奇心",
+        title: "心が向かう方へ",
         message:
-          "まだ答えが見えていなくても、心が惹かれる方向へ小さく踏み出してみましょう。すべてを理解してから進む必要はありません。今日のあなたには、少し肩の力を抜いて流れを信じることが求められています。",
-        action:
-          "今日の小さな一歩：いつもとは少し違う選択を、一つだけ楽しんでみてください。"
+          "すべてを理解してから始めなくても大丈夫です。今日のあなたには、正しさよりも心が少し軽くなる選択が似合っています。小さな好奇心を見過ごさず、新しい一歩を楽しんでみてください。"
       },
       {
-        number: "I",
-        title: "魔術師",
-        english: "THE MAGICIAN",
-        symbol: "✦",
-        keywords: "創造・意志・可能性",
+        image: "images/cards/01-TheMagician.jpg",
+        nameJp: "魔術師",
+        nameEn: "The Magician",
+        keyword: "可能性・創造・行動",
+        title: "すでに持っているものを使う",
         message:
-          "必要なものは、すでにあなたの中にあります。今は誰かの許可を待つより、自分の力を信じて動き始める時です。小さな行動であっても、意志を込めることで流れは変わっていきます。",
-        action:
-          "今日の小さな一歩：考えていることを、実際の行動に一つ移してみましょう。"
+          "必要なものは、思っている以上にあなたの手の中にあります。足りないものを探すより、今できることを一つ形にしてみましょう。行動することで、新しい可能性が目を覚まします。"
       },
       {
-        number: "II",
-        title: "女教皇",
-        english: "THE HIGH PRIESTESS",
-        symbol: "☾",
-        keywords: "直感・静寂・洞察",
+        image: "images/cards/02-TheHighPriestess.jpg",
+        nameJp: "女教皇",
+        nameEn: "The High Priestess",
+        keyword: "直感・静けさ・洞察",
+        title: "静かな声を聞く",
         message:
-          "今日は外から答えを集めるより、自分の内側に耳を澄ませてみてください。言葉にできない感覚の中に、大切な答えが隠れているかもしれません。急いで結論を出さなくても大丈夫です。",
-        action:
-          "今日の小さな一歩：静かな時間を数分つくり、最初に浮かんだ感覚を書き留めましょう。"
+          "今日は急いで結論を出すよりも、心の奥にある感覚を確かめる時間です。言葉にならない違和感も、大切な知らせかもしれません。静かな場所で、自分の気持ちに耳を澄ませてください。"
       },
       {
-        number: "III",
-        title: "女帝",
-        english: "THE EMPRESS",
-        symbol: "❀",
-        keywords: "豊かさ・受容・育む",
+        image: "images/cards/03-TheEmpress.jpg",
+        nameJp: "女帝",
+        nameEn: "The Empress",
+        keyword: "豊かさ・愛情・受容",
+        title: "受け取ることを許す",
         message:
-          "あなたが心地よく過ごすことは、決してわがままではありません。自分を満たすことで、周囲にも優しさを分けられます。今日は頑張ることより、受け取ることを意識してみてください。",
-        action:
-          "今日の小さな一歩：好きな飲み物や食事を、ゆっくり味わってください。"
+          "頑張って与えるだけでなく、今日はあなた自身も優しさを受け取ってください。休息も、喜びも、心地よさも、遠慮する必要はありません。自分を満たすことが、周囲への温かさにつながります。"
       },
       {
-        number: "IV",
-        title: "皇帝",
-        english: "THE EMPEROR",
-        symbol: "♜",
-        keywords: "安定・責任・基盤",
+        image: "images/cards/04-TheEmperor.jpg",
+        nameJp: "皇帝",
+        nameEn: "The Emperor",
+        keyword: "安定・責任・決断",
+        title: "自分の軸を確かめる",
         message:
-          "今は気持ちだけで動くより、足元を整えることが大切です。やるべきことを一つずつ整理すると、不安は少しずつ小さくなります。あなたには状況を立て直す力があります。",
-        action:
-          "今日の小さな一歩：一番優先したいことを、一つだけ決めてください。"
+          "周囲の意見に揺れそうなときほど、あなたが本当に守りたいものを思い出してください。すべてを支配する必要はありません。ただ、自分の選択に責任を持つことで、足元は安定していきます。"
       },
       {
-        number: "V",
-        title: "法王",
-        english: "THE HIEROPHANT",
-        symbol: "☩",
-        keywords: "学び・信頼・伝統",
+        image: "images/cards/05-TheHierophant.jpg",
+        nameJp: "法王",
+        nameEn: "The Hierophant",
+        keyword: "学び・信頼・助言",
+        title: "知恵を借りてもいい",
         message:
-          "一人で答えを出そうとしなくても大丈夫です。経験のある人の言葉や、これまで大切にしてきた教えがヒントになります。ただし、最後に選ぶのはあなた自身です。",
-        action:
-          "今日の小さな一歩：信頼できる人の意見に、静かに耳を傾けてみましょう。"
+          "一人で答えを出そうとしなくても大丈夫です。経験のある人の言葉や、昔から受け継がれてきた知恵の中に、今のあなたを助けるヒントがあります。信頼できる相手に心を開いてみましょう。"
       },
       {
-        number: "VI",
-        title: "恋人",
-        english: "THE LOVERS",
-        symbol: "♡",
-        keywords: "選択・調和・つながり",
+        image: "images/cards/06-TheLovers.jpg",
+        nameJp: "恋人",
+        nameEn: "The Lovers",
+        keyword: "選択・調和・つながり",
+        title: "心から選べるものを",
         message:
-          "今日は正しさだけでなく、自分の心が本当に望んでいるものを大切にしてください。人との関係においても、自分を偽らないことが深いつながりにつながります。",
-        action:
-          "今日の小さな一歩：迷った時は『どちらが心地よいか』を自分に尋ねてみましょう。"
+          "今日の選択では、損得だけではなく、心が自然にほころぶ方を大切にしてください。誰かとの関係も、自分自身との関係も、無理のない調和の中で育っていきます。"
       },
       {
-        number: "VII",
-        title: "戦車",
-        english: "THE CHARIOT",
-        symbol: "➶",
-        keywords: "前進・集中・突破",
+        image: "images/cards/07-TheChariot.jpg",
+        nameJp: "戦車",
+        nameEn: "The Chariot",
+        keyword: "前進・意志・突破",
+        title: "迷いながらでも進める",
         message:
-          "今のあなたには、前へ進む力があります。周囲の声に揺れすぎず、自分が決めた方向に意識を集中させてください。勢いだけではなく、心と行動を同じ方向へそろえることが大切です。",
-        action:
-          "今日の小さな一歩：途中で止まっていたことを、少しだけ再開してみましょう。"
+          "すべての迷いが消えるのを待たなくても、前へ進むことはできます。大切なのは、どこへ向かいたいかを見失わないこと。今日は小さくても、はっきりとした行動を一つ選んでみましょう。"
       },
       {
-        number: "VIII",
-        title: "力",
-        english: "STRENGTH",
-        symbol: "∞",
-        keywords: "勇気・忍耐・しなやかさ",
+        image: "images/cards/08-Strength.jpg",
+        nameJp: "力",
+        nameEn: "Strength",
+        keyword: "勇気・慈愛・忍耐",
+        title: "優しさは弱さではない",
         message:
-          "本当の強さは、無理に押し通すことではありません。自分の感情を否定せず、やさしく扱うことにも強さがあります。焦らず、しなやかに向き合っていきましょう。",
-        action:
-          "今日の小さな一歩：自分にかける言葉を、一つだけ優しいものに変えてください。"
+          "力で押し切るよりも、穏やかに向き合うことが状況を動かす日です。感情を否定せず、かといって感情に支配されず、丁寧に扱ってください。あなたの優しさには、静かな強さがあります。"
       },
       {
-        number: "IX",
-        title: "隠者",
-        english: "THE HERMIT",
-        symbol: "✺",
-        keywords: "内省・探求・静かな時間",
+        image: "images/cards/09-TheHermit.jpg",
+        nameJp: "隠者",
+        nameEn: "The Hermit",
+        keyword: "内省・探求・静寂",
+        title: "答えを急がなくていい",
         message:
-          "今は外へ答えを求め続けるより、一度立ち止まる時間が必要かもしれません。孤独ではなく、自分自身と再び出会うための静けさです。急がなくても、答えは少しずつ見えてきます。",
-        action:
-          "今日の小さな一歩：スマートフォンを置き、静かな時間を少しだけつくりましょう。"
+          "外の声から少し離れ、自分の心を整理する時間が必要かもしれません。立ち止まることは、遅れることではありません。あなた自身の灯りを確かめるための、大切な時間です。"
       },
       {
-        number: "X",
-        title: "運命の輪",
-        english: "WHEEL OF FORTUNE",
-        symbol: "◉",
-        keywords: "転機・循環・変化",
+        image: "images/cards/10-WheelOfFortune.jpg",
+        nameJp: "運命の輪",
+        nameEn: "Wheel of Fortune",
+        keyword: "転機・循環・好機",
+        title: "流れが変わり始めています",
         message:
-          "流れが変わり始めています。すべてを自分で動かそうとせず、訪れた機会を柔らかく受け取ってください。変化の中にいる時こそ、古い形に固執しないことが大切です。",
-        action:
-          "今日の小さな一歩：予定外の出来事の中に、良い面がないか探してみましょう。"
+          "同じ状態が永遠に続くことはありません。今まで動かなかったものにも、新しい流れが訪れようとしています。変化を恐れすぎず、目の前に現れた機会へ柔らかく手を伸ばしてみてください。"
       },
       {
-        number: "XI",
-        title: "正義",
-        english: "JUSTICE",
-        symbol: "⚖",
-        keywords: "公平・判断・誠実",
+        image: "images/cards/11-Justice.jpg",
+        nameJp: "正義",
+        nameEn: "Justice",
+        keyword: "公平・判断・誠実",
+        title: "心に正直な判断を",
         message:
-          "感情だけでも、理屈だけでもなく、両方を見ながら考えてみてください。自分にも相手にも誠実であることが、後悔の少ない選択につながります。",
-        action:
-          "今日の小さな一歩：事実と感情を分けて、紙に書き出してみましょう。"
+          "感情だけでも、理屈だけでもなく、その両方を見つめることが大切です。誰かにどう見られるかより、自分が納得できる選択かどうかを考えてみてください。誠実さが道を整えます。"
       },
       {
-        number: "XII",
-        title: "吊るされた男",
-        english: "THE HANGED MAN",
-        symbol: "◇",
-        keywords: "視点の転換・待つ・受容",
+        image: "images/cards/12-TheHangedMan.jpg",
+        nameJp: "吊るされた男",
+        nameEn: "The Hanged Man",
+        keyword: "停止・視点・受容",
+        title: "見方を変える時間",
         message:
-          "思うように動かないことにも、意味があるのかもしれません。無理に進めようとするより、別の角度から状況を眺めてみてください。今は止まっているのではなく、見方を変える時間です。",
-        action:
-          "今日の小さな一歩：いつもの考えと反対の立場から、物事を見てみましょう。"
+          "今は無理に状況を動かすよりも、違う角度から見直すことで答えが見えてきそうです。進まない時間にも意味があります。焦りを少し手放し、今だから気づけることを探してみましょう。"
       },
       {
-        number: "XIII",
-        title: "死神",
-        english: "DEATH",
-        symbol: "✣",
-        keywords: "区切り・変容・再出発",
+        image: "images/cards/13-Death.jpg",
+        nameJp: "死神",
+        nameEn: "Death",
+        keyword: "区切り・変化・再生",
+        title: "終わりは次の入口",
         message:
-          "何かが終わる時、そこには次の始まりも含まれています。もう役目を終えたものを抱え続けなくても大丈夫です。手放した空間に、新しい流れが入ってきます。",
-        action:
-          "今日の小さな一歩：もう必要のないものを、一つだけ手放してみましょう。"
+          "役目を終えたものを手放す時が来ているのかもしれません。それは失うことだけではなく、新しいものが入る場所を空けることでもあります。変化の先には、まだ見えていない始まりがあります。"
       },
       {
-        number: "XIV",
-        title: "節制",
-        english: "TEMPERANCE",
-        symbol: "♢",
-        keywords: "調和・回復・バランス",
+        image: "images/cards/14-Temperance.jpg",
+        nameJp: "節制",
+        nameEn: "Temperance",
+        keyword: "調和・回復・循環",
+        title: "ちょうどよい場所へ戻る",
         message:
-          "今日は極端に走らず、自分にちょうどよい加減を探してみてください。少しずつ整えていけば十分です。心と身体の声を両方聞きながら、無理のないペースを選びましょう。",
-        action:
-          "今日の小さな一歩：頑張る時間と休む時間を、どちらも予定に入れてください。"
+          "極端な答えを選ばなくても大丈夫です。少しずつ調整しながら、あなたにとって無理のない場所へ戻っていきましょう。今日は頑張りすぎず、心と体の声を同じくらい大切にしてください。"
       },
       {
-        number: "XV",
-        title: "悪魔",
-        english: "THE DEVIL",
-        symbol: "♧",
-        keywords: "執着・誘惑・思い込み",
+        image: "images/cards/15-TheDevil.jpg",
+        nameJp: "悪魔",
+        nameEn: "The Devil",
+        keyword: "執着・誘惑・解放",
+        title: "本当に縛っているものは何か",
         message:
-          "あなたを縛っているものが、本当に手放せないものなのか見直してみましょう。恐れや思い込みによって、自分で鎖を握り続けている可能性もあります。気づくことが、自由への第一歩です。",
-        action:
-          "今日の小さな一歩：やめたいのに続けている習慣を、一つだけ意識してみましょう。"
+          "離れられないと思っているものの中に、実は自分で握り続けているものがあるかもしれません。責める必要はありません。ただ、その関係や習慣が今のあなたを幸せにしているか、静かに確かめてみてください。"
       },
       {
-        number: "XVI",
-        title: "塔",
-        english: "THE TOWER",
-        symbol: "ϟ",
-        keywords: "崩壊・目覚め・解放",
+        image: "images/cards/16-TheTower.jpg",
+        nameJp: "塔",
+        nameEn: "The Tower",
+        keyword: "解放・真実・再構築",
+        title: "崩れたあとに見えるもの",
         message:
-          "予想外の変化があっても、それは悪いことだけを意味しません。無理に保っていた形が崩れることで、本当に必要なものが見えてくる場合があります。今は自分の安全と心を一番にしてください。",
-        action:
-          "今日の小さな一歩：予定通りでなくても、自分を責めずに立て直す時間を取りましょう。"
+          "予定外の出来事があっても、それがすべて悪い方向へ進むとは限りません。無理に保っていたものが崩れることで、本当に必要なものが見えてきます。今日は柔軟さを忘れずに。"
       },
       {
-        number: "XVII",
-        title: "星",
-        english: "THE STAR",
-        symbol: "☆",
-        keywords: "希望・癒し・導き",
+        image: "images/cards/17-TheStar.jpg",
+        nameJp: "星",
+        nameEn: "The Star",
+        keyword: "希望・癒し・導き",
+        title: "希望は静かに残っています",
         message:
-          "すぐにすべてが解決しなくても、希望の光は残っています。あなたが大切にしている願いを、簡単に諦めなくても大丈夫です。今日は少し先の未来を信じてみてください。",
-        action:
-          "今日の小さな一歩：叶えたいことを、肯定的な言葉で一つ書いてみましょう。"
+          "すぐにすべてが叶わなくても、あなたの中にある願いは消えていません。今日は未来を信じる気持ちを少しだけ選んでみてください。小さな希望が、次の道を照らしてくれます。"
       },
       {
-        number: "XVIII",
-        title: "月",
-        english: "THE MOON",
-        symbol: "☽",
-        keywords: "揺らぎ・感受性・無意識",
+        image: "images/cards/18-TheMoon.jpg",
+        nameJp: "月",
+        nameEn: "The Moon",
+        keyword: "揺らぎ・無意識・感受性",
+        title: "不安の中で決めなくていい",
         message:
-          "今日は気持ちが揺れやすく、物事がいつもより不確かに見えるかもしれません。今すぐ答えを決めなくても大丈夫です。不安と事実を分けながら、夜明けを待つように過ごしましょう。",
-        action:
-          "今日の小さな一歩：不安に感じていることを、事実と想像に分けてみてください。"
+          "今日は物事がはっきり見えにくいかもしれません。そんなときは、無理に結論を出さなくても大丈夫です。不安を事実だと思い込まず、心が落ち着くまで静かに待ってみてください。"
       },
       {
-        number: "XIX",
-        title: "太陽",
-        english: "THE SUN",
-        symbol: "☀",
-        keywords: "喜び・成功・素直さ",
+        image: "images/cards/19-TheSun.jpg",
+        nameJp: "太陽",
+        nameEn: "The Sun",
+        keyword: "喜び・成功・素直さ",
+        title: "あなたの喜びを選ぶ",
         message:
-          "あなたの明るさや素直な気持ちが、周囲にもよい影響を与えます。今日は遠慮しすぎず、嬉しいことを嬉しいと表現してみてください。小さな喜びを受け取るほど、心の光は育ちます。",
-        action:
-          "今日の小さな一歩：楽しいと思えることを、後回しにせず一つ選びましょう。"
+          "今日は遠慮せず、嬉しいと感じるものに心を向けてください。素直な笑顔や、小さな達成を大切にすることで、周囲にも明るい流れが広がります。あなたらしくいることが、何よりの力になります。"
       },
       {
-        number: "XX",
-        title: "審判",
-        english: "JUDGEMENT",
-        symbol: "♬",
-        keywords: "再生・目覚め・決断",
+        image: "images/cards/20-Judgement.jpg",
+        nameJp: "審判",
+        nameEn: "Judgement",
+        keyword: "目覚め・再起・決断",
+        title: "もう一度始められる",
         message:
-          "過去の経験が、今のあなたを呼び起こそうとしています。もう一度挑戦したいことや、心残りになっていることがあるなら、その声を無視しなくても大丈夫です。",
-        action:
-          "今日の小さな一歩：以前諦めたことを、今の自分ならどうするか考えてみましょう。"
+          "過去に諦めたことや、心の奥に残っていた願いが、もう一度あなたを呼んでいるかもしれません。以前と同じ自分ではありません。今のあなたなら、新しい形で応えることができます。"
       },
       {
-        number: "XXI",
-        title: "世界",
-        english: "THE WORLD",
-        symbol: "◎",
-        keywords: "完成・達成・統合",
+        image: "images/cards/21-TheWorld.jpg",
+        nameJp: "世界",
+        nameEn: "The World",
+        keyword: "完成・祝福・統合",
+        title: "ここまで歩いた自分を認める",
         message:
-          "これまで積み重ねてきたことが、一つの形になろうとしています。完璧ではなくても、ここまで歩いてきた自分を認めてください。一つの区切りは、新しい世界への入口でもあります。",
-        action:
-          "今日の小さな一歩：できていないことではなく、できたことを三つ数えてみましょう。"
+          "まだ足りないものを探す前に、ここまで積み重ねてきたものを見つめてください。一つの流れが実を結ぼうとしています。今日のあなたには、自分の歩みを誇り、受け取ることが似合っています。"
       }
     ];
 
     /* =========================
-       要素を取得
+       要素
     ========================= */
 
-    const envelope = document.getElementById("envelope");
-    const envelopeStage = document.getElementById("envelopeStage");
-    const drawButton = document.getElementById("drawButton");
-    const result = document.getElementById("result");
-    const redrawButton = document.getElementById("redrawButton");
+    const introPanel =
+      document.getElementById("introPanel");
 
-    const cardNumber = document.getElementById("cardNumber");
-    const cardSymbol = document.getElementById("cardSymbol");
-    const cardEnglish = document.getElementById("cardEnglish");
-    const cardTitle = document.getElementById("cardTitle");
-    const cardKeywords = document.getElementById("cardKeywords");
-    const cardMessage = document.getElementById("cardMessage");
-    const cardAction = document.getElementById("cardAction");
+    const resultPanel =
+      document.getElementById("resultPanel");
 
-    let drawing = false;
+    const drawButton =
+      document.getElementById("drawButton");
+
+    const redrawButton =
+      document.getElementById("redrawButton");
+
+    const envelope =
+      document.getElementById("envelope");
+
+    const tarotCardFrame =
+      document.getElementById("tarotCardFrame");
+
+    const tarotCardImage =
+      document.getElementById("tarotCardImage");
+
+    const resultDate =
+      document.getElementById("resultDate");
+
+    const cardNameJp =
+      document.getElementById("cardNameJp");
+
+    const cardNameEn =
+      document.getElementById("cardNameEn");
+
+    const cardKeyword =
+      document.getElementById("cardKeyword");
+
+    const messageTitle =
+      document.getElementById("messageTitle");
+
+    const messageBody =
+      document.getElementById("messageBody");
 
     /* =========================
-       カードを一枚選ぶ
+       日付
     ========================= */
 
-    function selectRandomCard() {
+    function getTodayKey() {
+      const today = new Date();
+
+      const year =
+        today.getFullYear();
+
+      const month =
+        String(
+          today.getMonth() + 1
+        ).padStart(2, "0");
+
+      const date =
+        String(
+          today.getDate()
+        ).padStart(2, "0");
+
+      return `${year}-${month}-${date}`;
+    }
+
+    function getDisplayDate() {
+      return new Intl.DateTimeFormat(
+        "ja-JP",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          weekday: "long"
+        }
+      ).format(new Date());
+    }
+
+    /* =========================
+       カード抽選
+    ========================= */
+
+    function chooseRandomCard() {
       const randomIndex =
-        Math.floor(Math.random() * cards.length);
+        Math.floor(
+          Math.random() * cards.length
+        );
 
       return cards[randomIndex];
     }
 
-    /* =========================
-       結果を表示
-    ========================= */
+    function getTodayCard() {
+      const todayKey =
+        getTodayKey();
 
-    function showCardResult(card) {
-      cardNumber.textContent = card.number;
-      cardSymbol.textContent = card.symbol;
-      cardEnglish.textContent = card.english;
-      cardTitle.textContent = card.title;
-      cardKeywords.textContent = card.keywords;
-      cardMessage.textContent = card.message;
-      cardAction.textContent = card.action;
+      const savedDate =
+        localStorage.getItem(
+          "tarotLetterTodayDate"
+        );
 
-      result.classList.remove("show");
+      const savedIndex =
+        localStorage.getItem(
+          "tarotLetterTodayCard"
+        );
 
-      void result.offsetWidth;
-
-      result.classList.add("show");
-
-      setTimeout(() => {
-        result.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }, 250);
-    }
-
-    /* =========================
-       封筒を開く
-    ========================= */
-
-    function drawCard() {
-      if (drawing) {
-        return;
-      }
-
-      drawing = true;
-
-      drawButton.disabled = true;
-      drawButton.textContent = "手紙を開いています…";
-
-      envelope.classList.add("open");
-
-      setTimeout(() => {
-        envelope.classList.add("hidden");
-      }, 650);
-
-      setTimeout(() => {
-        envelopeStage.style.display = "none";
-        drawButton.style.display = "none";
-
-        const selectedCard = selectRandomCard();
-
-        showCardResult(selectedCard);
-
-        drawing = false;
-      }, 1150);
-    }
-
-    drawButton.addEventListener("click", drawCard);
-
-    envelope.addEventListener("click", drawCard);
-
-    envelope.addEventListener("keydown", (event) => {
       if (
-        event.key === "Enter" ||
-        event.key === " "
+        savedDate === todayKey &&
+        savedIndex !== null
       ) {
-        event.preventDefault();
-        drawCard();
+        const parsedIndex =
+          Number(savedIndex);
+
+        if (
+          Number.isInteger(parsedIndex) &&
+          cards[parsedIndex]
+        ) {
+          return cards[parsedIndex];
+        }
       }
-    });
+
+      const newIndex =
+        Math.floor(
+          Math.random() * cards.length
+        );
+
+      localStorage.setItem(
+        "tarotLetterTodayDate",
+        todayKey
+      );
+
+      localStorage.setItem(
+        "tarotLetterTodayCard",
+        String(newIndex)
+      );
+
+      return cards[newIndex];
+    }
 
     /* =========================
-       もう一枚引く
+       結果表示
     ========================= */
 
-    redrawButton.addEventListener("click", () => {
-      result.classList.remove("show");
-      result.style.display = "none";
+    function setCardContent(card) {
+      resultDate.textContent =
+        getDisplayDate();
 
-      envelope.classList.remove("open", "hidden");
-      envelopeStage.style.display = "grid";
+      tarotCardImage.src =
+        card.image;
 
-      drawButton.style.display = "inline-block";
-      drawButton.disabled = false;
-      drawButton.textContent = "今日の手紙を受け取る";
+      tarotCardImage.alt =
+        `${card.nameJp} ${card.nameEn}`;
+
+      cardNameJp.textContent =
+        card.nameJp;
+
+      cardNameEn.textContent =
+        card.nameEn;
+
+      cardKeyword.textContent =
+        card.keyword;
+
+      messageTitle.textContent =
+        card.title;
+
+      messageBody.textContent =
+        card.message;
+    }
+
+    function showResult(card) {
+      setCardContent(card);
+
+      introPanel.style.display =
+        "none";
+
+      resultPanel.classList.add(
+        "show"
+      );
+
+      tarotCardFrame.classList.remove(
+        "reveal"
+      );
+
+      void tarotCardFrame.offsetWidth;
+
+      tarotCardFrame.classList.add(
+        "reveal"
+      );
 
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
+    }
 
-      setTimeout(() => {
-        result.style.display = "";
-      }, 450);
-    });
+    /* =========================
+       最初に引く
+    ========================= */
+
+    drawButton.addEventListener(
+      "click",
+      () => {
+        drawButton.disabled = true;
+
+        envelope.classList.add("open");
+
+        setTimeout(() => {
+          const selectedCard =
+            getTodayCard();
+
+          introPanel.classList.add(
+            "hide"
+          );
+
+          setTimeout(() => {
+            showResult(selectedCard);
+
+            drawButton.disabled = false;
+          }, 520);
+        }, 1200);
+      }
+    );
+
+    /* =========================
+       引き直し
+    ========================= */
+
+    redrawButton.addEventListener(
+      "click",
+      () => {
+        const selectedCard =
+          chooseRandomCard();
+
+        setCardContent(selectedCard);
+
+        tarotCardFrame.classList.remove(
+          "reveal"
+        );
+
+        void tarotCardFrame.offsetWidth;
+
+        tarotCardFrame.classList.add(
+          "reveal"
+        );
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }
+    );
 
     /* =========================
        ハンバーガーメニュー
     ========================= */
 
-    const menuButton = document.getElementById("menuButton");
-    const mainMenu = document.getElementById("mainMenu");
+    const menuButton =
+      document.getElementById(
+        "menuButton"
+      );
+
+    const mainMenu =
+      document.getElementById(
+        "mainMenu"
+      );
 
     function openMenu() {
-      menuButton.classList.add("active");
-      mainMenu.classList.add("open");
+      menuButton.classList.add(
+        "active"
+      );
+
+      mainMenu.classList.add(
+        "open"
+      );
 
       menuButton.setAttribute(
         "aria-expanded",
@@ -1403,12 +1574,19 @@
         "false"
       );
 
-      document.body.classList.add("menu-open");
+      document.body.classList.add(
+        "menu-open"
+      );
     }
 
     function closeMenu() {
-      menuButton.classList.remove("active");
-      mainMenu.classList.remove("open");
+      menuButton.classList.remove(
+        "active"
+      );
+
+      mainMenu.classList.remove(
+        "open"
+      );
 
       menuButton.setAttribute(
         "aria-expanded",
@@ -1425,37 +1603,52 @@
         "true"
       );
 
-      document.body.classList.remove("menu-open");
+      document.body.classList.remove(
+        "menu-open"
+      );
     }
 
-    menuButton.addEventListener("click", () => {
-      const isOpen =
-        mainMenu.classList.contains("open");
-
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
+    menuButton.addEventListener(
+      "click",
+      () => {
+        if (
+          mainMenu.classList.contains(
+            "open"
+          )
+        ) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
       }
-    });
+    );
 
-    mainMenu.addEventListener("click", (event) => {
-      if (event.target === mainMenu) {
-        closeMenu();
+    mainMenu.addEventListener(
+      "click",
+      (event) => {
+        if (event.target === mainMenu) {
+          closeMenu();
+        }
       }
-    });
+    );
 
     document
       .querySelectorAll(".menu-list a")
       .forEach((link) => {
-        link.addEventListener("click", closeMenu);
+        link.addEventListener(
+          "click",
+          closeMenu
+        );
       });
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeMenu();
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
       }
-    });
+    );
   </script>
 
 </body>
