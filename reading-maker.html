@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>鑑定書づくり｜Tarot Letter</title>
+<style>
+:root{--cream:#f7f0e5;--paper:#fffdf8;--brown:#5e493b;--soft:#806c5e;--gold:#c5a064;--line:rgba(197,160,100,.3);--teal:#3f8a8c;--deep:#2d6f71;--shadow:rgba(79,58,43,.15)}
+*{box-sizing:border-box}body{margin:0;color:var(--brown);background:radial-gradient(circle at 50% 0,#fffdf8,var(--cream) 55%,#eadfce);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;line-height:1.9;letter-spacing:.035em}
+button,input,select,textarea{font:inherit}.top{position:sticky;top:0;z-index:10;padding:12px 16px;background:rgba(247,240,229,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.topin{width:min(100%,1180px);margin:auto;display:flex;justify-content:space-between}.tag{font-size:11px;color:var(--deep)}
+main{width:min(100%,1180px);margin:auto;padding:38px 14px 70px}.hero{text-align:center}.hero small{color:var(--deep);letter-spacing:.22em}.hero h1{margin:6px 0;font-size:clamp(30px,6vw,46px);font-weight:400}.hero p{margin:0;color:var(--soft);font-size:14px}
+.notice{width:min(100%,820px);margin:24px auto;padding:14px 17px;background:rgba(255,253,248,.8);border:1px solid var(--line);border-radius:15px;color:var(--soft);font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}.panel{background:rgba(255,253,248,.95);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 44px var(--shadow);overflow:hidden}
+.head{padding:20px 22px;border-bottom:1px solid var(--line)}.head h2{margin:0;font-size:19px;font-weight:400}.head p{margin:4px 0 0;color:var(--soft);font-size:12px}.body{padding:22px}
+.field{margin-bottom:15px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;margin-bottom:5px;color:var(--soft);font-size:12px}
+input,select,textarea{width:100%;padding:10px 12px;color:var(--brown);background:#fff;border:1px solid rgba(197,160,100,.42);border-radius:11px;outline:none}input,select{min-height:44px}textarea{min-height:100px;resize:vertical;line-height:1.8}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(63,138,140,.1)}
+h3{margin:28px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line);font-size:16px;font-weight:400}
+.card{margin-bottom:12px;padding:14px;background:rgba(247,240,229,.65);border:1px solid rgba(197,160,100,.24);border-radius:15px}.cardtop{display:grid;grid-template-columns:42px 1fr;gap:10px}.num{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(63,138,140,.3);border-radius:50%;color:var(--deep);background:#fff}.line{display:grid;grid-template-columns:1.4fr .6fr;gap:8px}.pos{margin-bottom:8px;font-weight:600}.memo{min-height:68px;margin-top:8px;font-size:13px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.btn{padding:10px 17px;border-radius:999px;border:1px solid var(--line);font-size:13px;cursor:pointer}.primary{color:white;background:linear-gradient(135deg,var(--deep),var(--teal))}.secondary{color:var(--brown);background:#fff}.danger{color:#995c57;background:transparent}
+.output{position:sticky;top:72px}.preview{padding:28px}.preview h2{text-align:center;font-size:27px;font-weight:400;letter-spacing:.12em}.meta{text-align:center;color:var(--soft);font-size:12px}.out{min-height:760px;border:0;background:transparent;font-size:14px;line-height:2}.help,.status{text-align:center;color:var(--soft);font-size:11px}.status{min-height:22px;color:var(--deep)}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.output{position:static}}@media(max-width:620px){main{padding:28px 9px 50px}.twocol,.line{grid-template-columns:1fr}.body{padding:16px}.actions{display:grid;grid-template-columns:1fr 1fr}.btn{width:100%}}
+@media print{.top,.hero,.notice,.input,.help,.status,.outactions{display:none!important}main{padding:0}.grid{display:block}.panel{border:0;box-shadow:none}.output{position:static}.out{min-height:0}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin"><div>Tarot Letter</div><div class="tag">Sono専用・鑑定書下書き</div></div></header>
+<main>
+<section class="hero"><small>READING MAKER</small><h1>鑑定書づくり</h1><p>ケルト十字のカードを入力し、読みの骨組みを作ります。</p></section>
+<div class="notice">ここで作る文章は完成鑑定ではなく下書きです。カードを並べて感じたことや相談者の背景を加え、園子自身の言葉で仕上げてください。入力内容は外部へ送信されません。</div>
+<section class="grid">
+<div class="panel input"><div class="head"><h2>入力</h2><p>相談内容と10枚のカードを入力してください。</p></div><div class="body">
+<div class="twocol"><div class="field"><label>お名前・ニックネーム</label><input id="name" placeholder="例：Aさん"></div><div class="field"><label>鑑定日</label><input id="date" type="date"></div></div>
+<div class="field"><label>ご相談内容</label><textarea id="question" placeholder="相談内容を入力"></textarea></div>
+<div class="field"><label>相談者についての補足</label><textarea id="context" placeholder="これまでの経緯や印象に残った言葉"></textarea></div>
+<h3>ケルト十字・10枚</h3><div id="cards"></div>
+<div class="field"><label>カードを並べて感じたこと</label><textarea id="overall" placeholder="最初に目に入ったカード、流れ、違和感など"></textarea></div>
+<div class="actions"><button class="btn primary" id="generate">大筋の読みを作る</button><button class="btn secondary" id="save">入力を保存</button><button class="btn secondary" id="load">保存内容を開く</button><button class="btn danger" id="clear">全て消す</button></div>
+</div></div>
+<div class="panel output"><div class="head"><h2>鑑定書の下書き</h2><p>生成後、この文章を直接書き直せます。</p></div><div class="preview">
+<h2>Tarot Letter</h2><p class="meta" id="meta">ケルト十字リーディング</p>
+<textarea class="out" id="out" placeholder="カードを入力して「大筋の読みを作る」を押してください。"></textarea>
+<p class="help">この欄は自由に編集できます。</p>
+<div class="actions outactions"><button class="btn primary" id="copy">文章をコピー</button><button class="btn secondary" id="print">印刷・PDF保存</button></div><div class="status" id="status"></div>
+</div></div>
+</section>
+</main>
+<datalist id="tarotList"></datalist>
+<script>
+const positions=[
+["現状","今置かれている状況と相談の中心"],["障害・交差","流れを妨げるものや向き合う課題"],["顕在意識・目標","本人が意識している望みや目標"],["潜在意識・土台","心の奥にある本音や問題の根"],["過去","現在につながった過去の影響"],["近い未来","このまま進んだ時に現れやすい流れ"],["自分自身","本人の姿勢や自己認識"],["周囲・環境","他者や環境から受ける影響"],["願望と恐れ","期待と同時に恐れていること"],["最終結果","現在の流れの先にある着地点"]
+];
+const tarot={
+"愚者":["新しい始まり、自由、未知への一歩。心の赴く方向へ進む純粋な力です。","準備不足、無計画、現実から目をそらす傾向。自由を求める気持ちが落ち着かなさとして現れています。"],
+"魔術師":["意志、可能性、行動を始める力。すでに持つ能力を使い現実を動かせる状態です。","力を生かしきれない、自信不足、言葉と行動のずれ。目的を明確にする必要があります。"],
+"女教皇":["直感、静かな理解、まだ言葉にならない真実。外の答えより内側を信頼する時です。","直感を疑う、心を閉ざす、考えすぎる状態。違和感の正体を見る必要があります。"],
+"女帝":["豊かさ、愛情、育む力、受け取る喜び。安心できる環境で物事が育ちます。","与えすぎ、依存、心の余裕不足。誰かのためだけでなく自分へのいたわりも必要です。"],
+"皇帝":["安定、責任、秩序、現実的な決断。自分の立場を明確にし土台を整える力です。","支配、頑固さ、責任への重圧。力で押し切るより柔軟な見直しが必要です。"],
+"法王":["信頼、助言、伝統、常識的な選択。経験ある人の知恵や安心できる価値観が助けになります。","既存の考えへの違和感、形式への反発。周囲の正解ではなく自分なりの答えを探す時です。"],
+"恋人":["心からの選択、調和、結びつき。条件だけでなく本当に望む方向を選ぶことが鍵です。","迷い、価値観の不一致、選択への不安。周囲に合わせすぎず本音を確かめる必要があります。"],
+"戦車":["前進、意志、勝利、状況を動かす力。異なる気持ちをまとめ目的へ進む時です。","空回り、焦り、方向性の乱れ。勢いだけで進まず向かう先を再確認する必要があります。"],
+"力":["内なる強さ、忍耐、優しさによる克服。感情を丁寧に扱うことで乗り越えられます。","自信低下、感情に振り回される、無理を重ねる状態。弱さを認めることが必要です。"],
+"隠者":["内省、静かな探求、一人で考える時間。距離を置くことで自分の真実が見えてきます。","孤立、考え込みすぎ、閉じこもる状態。一人で抱えず信頼できる人との対話も必要です。"],
+"運命の輪":["転機、流れの変化、巡ってきた機会。動かなかった状況が自然に動き始めます。","停滞、タイミングのずれ、同じ流れの反復。今できる小さな修正が大切です。"],
+"正義":["公平、客観性、責任ある判断。事実を整理し誠実に選ぶ必要があります。","不公平感、偏った判断、責任回避。都合のよい見方だけになっていないか確認する時です。"],
+"吊るされた男":["一時停止、視点の転換、受け入れる時間。動かないことで新しい意味が見えてきます。","報われない我慢、停滞への苛立ち、執着。耐えること自体が目的になっていないか見直す時です。"],
+"死神":["終わりと変化、手放し、次の段階への移行。古い形を終えることで新しい流れが生まれます。","変化への抵抗、終わったものへの執着。失う怖さを認めながら少しずつ手放す時です。"],
+"節制":["調整、回復、自然なバランス。急がず異なるものを少しずつなじませることが大切です。","偏り、無理な調整、心身の乱れ。どちらかに寄りすぎていないか見直す必要があります。"],
+"悪魔":["執着、誘惑、依存、離れにくい関係。手放せないものが選択を狭めています。","束縛からの解放、依存への気づき。自由を取り戻す動きが始まっています。"],
+"塔":["突然の変化、崩壊、真実の露呈。保てなくなったものが壊れ偽りのない土台へ戻されます。","変化を避ける、内側での崩壊。大きく壊れる前に無理のある部分を認める必要があります。"],
+"星":["希望、癒やし、素直な願い、未来への光。すぐ結果が見えなくても信じられる方向が残っています。","希望を失う、自信低下、理想と現実の距離。疲れによって光が見えにくい状態です。"],
+"月":["不安、曖昧さ、無意識。事実と想像が混ざりやすく結論を急がない方がよい時です。","混乱が薄れる、隠れていたことが見える。不安の正体に気づき始めています。"],
+"太陽":["喜び、明確さ、成功、素直な自己表現。状況が分かりやすくなり前向きな力が戻ります。","喜びを受け取りきれない、期待ほどではない成果。小さな良さを見落とさないことが大切です。"],
+"審判":["目覚め、再出発、過去への答え。経験を受け入れ新しい決断をする時です。","決断の先延ばし、過去への罪悪感。自分を責めるより次にどう生かすかが大切です。"],
+"世界":["完成、統合、納得できる到達点。一つの流れがまとまり次の段階へ進めます。","未完成、あと一歩、終わりきらない課題。仕上げるべき部分が残っています。"]
+};
+const cards=document.getElementById("cards"),list=document.getElementById("tarotList"),out=document.getElementById("out"),status=document.getElementById("status");
+positions.forEach((p,i)=>{cards.insertAdjacentHTML("beforeend",`<div class="card"><div class="cardtop"><div class="num">${i+1}</div><div><input class="pos" id="pos${i}" value="${p[0]}"><div class="line"><input id="card${i}" list="tarotList" placeholder="例：法王"><select id="ori${i}"><option value="0">正位置</option><option value="1">逆位置</option></select></div><textarea class="memo" id="memo${i}" placeholder="この位置で感じたこと"></textarea></div></div></div>`)});Object.keys(tarot).forEach(n=>list.insertAdjacentHTML("beforeend",`<option value="${n}">`));
+const today=new Date(),pad=n=>String(n).padStart(2,"0");document.getElementById("date").value=`${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
+function data(){return{n:document.getElementById("name").value.trim(),d:document.getElementById("date").value,q:document.getElementById("question").value.trim(),c:document.getElementById("context").value.trim(),o:document.getElementById("overall").value.trim(),cards:positions.map((p,i)=>({pos:document.getElementById("pos"+i).value.trim()||p[0],guide:p[1],name:document.getElementById("card"+i).value.trim().replace(/逆位置|正位置|逆$/g,""),ori:+document.getElementById("ori"+i).value,memo:document.getElementById("memo"+i).value.trim()})),out:out.value}}
+function cardText(x,i){if(!x.name)return`【${i+1}. ${x.pos}】\nカードがまだ入力されていません。`;const m=tarot[x.name];return`【${i+1}. ${x.pos}｜${x.name}・${x.ori?"逆位置":"正位置"}】\n${x.guide}を表す位置です。${m?m[x.ori]:"このカードはまだ基本意味データに登録されていません。園子自身の読みを記入してください。"}${x.memo?"\n園子のメモ："+x.memo:""}`}
+function phrase(x){if(!x.name)return"";const m=tarot[x.name];return m?`${x.name}・${x.ori?"逆位置":"正位置"}が示す「${m[x.ori].split("。")[0]}」`:`${x.name}・${x.ori?"逆位置":"正位置"}`}
+document.getElementById("generate").onclick=()=>{const d=data();if(!d.cards.some(x=>x.name)){status.textContent="カードを1枚以上入力してください。";return}const p=d.cards,client=d.n||"ご相談者さま";document.getElementById("meta").textContent=`${client}｜ケルト十字リーディング`;let flow=[];if(phrase(p[0]))flow.push(`現在の中心には、${phrase(p[0])}があります。`);if(phrase(p[1]))flow.push(`その一方で、課題として${phrase(p[1])}が重なっています。`);if(phrase(p[4])&&phrase(p[5]))flow.push(`過去の${phrase(p[4])}から、近い未来の${phrase(p[5])}へ流れが移ろうとしています。`);if(phrase(p[9]))flow.push(`最終的には、${phrase(p[9])}が一つの着地点として示されています。`);const rev=p.filter(x=>x.name&&x.ori).length,maj=p.filter(x=>tarot[x.name]).length;out.value=`${client}へ
 
+このたびはTarot Letterのリーディングを受け取ってくださり、ありがとうございます。
+今回のカードは、未来を決めつけるものではなく、今の心とこれからの選択を見つめるための手紙としてお読みください。
+
+${d.q?"■ ご相談内容\n"+d.q+"\n\n":""}${d.c?"■ ご相談の背景\n"+d.c+"\n\n":""}■ 今回の大きな流れ
+${flow.join("")||"カードの流れを園子の言葉でまとめます。"}
+
+■ カード全体から見えること
+基本意味を登録している大アルカナは${maj}枚、逆位置は${rev}枚です。${rev>=5?"逆位置が多く、外側の出来事よりも迷いや疲れなど内面の滞りを丁寧に見る必要があります。":"正位置と逆位置の両方から、進める部分と見直す部分を整理していきます。"}
+
+■ 10枚のカード
+
+${p.map(cardText).join("\n\n")}${d.o?"\n\n■ カードを並べて感じたこと\n"+d.o:""}
+
+■ ここから園子が仕上げる全体メッセージ
+
+［カード同士のつながりと、相談者へ最も伝えたいことを園子の言葉で書きます。］
+
+■ これからのための小さなヒント
+
+［今すぐできること、心に留めておいてほしいことを書きます。］
+
+カードは、未来を一つに決めるものではありません。
+今の自分を知り、これから何を選ぶかを考えるための一つの光です。
+
+あなたに必要な言葉が、これからの日々をそっと照らしますように。
+
+Sono`;out.style.height="auto";out.style.height=Math.max(out.scrollHeight,760)+"px";status.textContent="大筋の読みを作りました。ここから自由に直せます。"};
+document.getElementById("save").onclick=()=>{localStorage.setItem("readingMaker",JSON.stringify(data()));status.textContent="この端末に保存しました。"};
+document.getElementById("load").onclick=()=>{const s=localStorage.getItem("readingMaker");if(!s){status.textContent="保存内容がありません。";return}const d=JSON.parse(s);document.getElementById("name").value=d.n||"";document.getElementById("date").value=d.d||"";document.getElementById("question").value=d.q||"";document.getElementById("context").value=d.c||"";document.getElementById("overall").value=d.o||"";(d.cards||[]).forEach((x,i)=>{document.getElementById("pos"+i).value=x.pos||positions[i][0];document.getElementById("card"+i).value=x.name||"";document.getElementById("ori"+i).value=x.ori||0;document.getElementById("memo"+i).value=x.memo||""});out.value=d.out||"";status.textContent="保存内容を開きました。"};
+document.getElementById("clear").onclick=()=>{if(confirm("全て消しますか？"))location.reload()};
+document.getElementById("copy").onclick=async()=>{if(!out.value)return;try{await navigator.clipboard.writeText(out.value)}catch(e){out.select();document.execCommand("copy")}status.textContent="文章をコピーしました。"};
+document.getElementById("print").onclick=()=>window.print();out.addEventListener("input",()=>{out.style.height="auto";out.style.height=Math.max(out.scrollHeight,760)+"px"});
+</script>
+</body>
+</html>
