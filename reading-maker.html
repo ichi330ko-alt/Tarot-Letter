@@ -4,30 +4,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>Reading Maker Ver.2｜Tarot Letter</title>
+<title>園子式 鑑定書メーカー Ver.3｜Tarot Letter</title>
 <style>
 :root{--cream:#f7f0e5;--paper:#fffdf8;--brown:#5e493b;--soft:#806c5e;--gold:#c5a064;--line:rgba(197,160,100,.3);--teal:#3f8a8c;--deep:#2d6f71;--shadow:rgba(79,58,43,.15)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--brown);background:radial-gradient(circle at 50% 0,#fffdf8,var(--cream) 55%,#eadfce);font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;line-height:1.9;letter-spacing:.035em}button,input,select,textarea{font:inherit}.top{position:sticky;top:0;z-index:10;padding:12px 16px;background:rgba(247,240,229,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}.topin{width:min(100%,1220px);margin:auto;display:flex;justify-content:space-between;gap:12px}.tag{font-size:11px;color:var(--deep)}main{width:min(100%,1220px);margin:auto;padding:38px 14px 70px}.hero{text-align:center}.hero small{color:var(--deep);letter-spacing:.22em}.hero h1{margin:6px 0;font-size:clamp(30px,6vw,46px);font-weight:400}.hero p{margin:0;color:var(--soft);font-size:14px}.version{display:inline-block;margin-top:12px;padding:5px 12px;color:var(--deep);background:rgba(63,138,140,.08);border:1px solid rgba(63,138,140,.22);border-radius:999px;font-size:11px}.notice{width:min(100%,860px);margin:24px auto;padding:15px 18px;background:rgba(255,253,248,.82);border:1px solid var(--line);border-radius:15px;color:var(--soft);font-size:12px}.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}.panel{background:rgba(255,253,248,.95);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 44px var(--shadow);overflow:hidden}.head{padding:20px 22px;border-bottom:1px solid var(--line)}.head h2{margin:0;font-size:19px;font-weight:400}.head p{margin:4px 0 0;color:var(--soft);font-size:12px}.body{padding:22px}.field{margin-bottom:15px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;margin-bottom:5px;color:var(--soft);font-size:12px}input,select,textarea{width:100%;padding:10px 12px;color:var(--brown);background:#fff;border:1px solid rgba(197,160,100,.42);border-radius:11px;outline:none}input,select{min-height:44px}textarea{min-height:100px;resize:vertical;line-height:1.8}input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(63,138,140,.1)}h3{margin:28px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line);font-size:16px;font-weight:400}.method{margin:0 0 18px;padding:15px;background:rgba(63,138,140,.06);border:1px solid rgba(63,138,140,.2);border-radius:14px}.method-title{margin:0 0 8px;color:var(--deep);font-size:13px}.method p{margin:0;color:var(--soft);font-size:11px}.card{margin-bottom:12px;padding:14px;background:rgba(247,240,229,.65);border:1px solid rgba(197,160,100,.24);border-radius:15px}.card.important{background:linear-gradient(135deg,rgba(63,138,140,.08),rgba(247,240,229,.72));border-color:rgba(63,138,140,.26)}.cardtop{display:grid;grid-template-columns:42px 1fr;gap:10px}.num{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(63,138,140,.3);border-radius:50%;color:var(--deep);background:#fff}.line{display:grid;grid-template-columns:1.4fr .6fr;gap:8px}.pos{margin-bottom:8px;font-weight:600}.memo{min-height:68px;margin-top:8px;font-size:13px}.card-note{margin:7px 0 0;color:var(--deep);font-size:10px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.btn{padding:10px 17px;border-radius:999px;border:1px solid var(--line);font-size:13px;cursor:pointer}.primary{color:white;background:linear-gradient(135deg,var(--deep),var(--teal))}.secondary{color:var(--brown);background:#fff}.danger{color:#995c57;background:transparent}.output{position:sticky;top:72px}.preview{padding:28px}.preview h2{text-align:center;font-size:27px;font-weight:400;letter-spacing:.12em}.meta{text-align:center;color:var(--soft);font-size:12px}.out{min-height:900px;border:0;background:transparent;font-size:14px;line-height:2}.help,.status{text-align:center;color:var(--soft);font-size:11px}.status{min-height:22px;color:var(--deep)}
+
+.workflow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+.step{padding:12px 8px;text-align:center;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.65);font-size:11px;color:var(--soft)}
+.step strong{display:block;color:var(--deep);font-size:13px}
+.report-options{margin:20px 0;padding:16px;border:1px solid rgba(63,138,140,.22);border-radius:15px;background:rgba(63,138,140,.05)}
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tone-card{padding:12px 8px;text-align:center;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
+.tone-card input{width:auto;min-height:auto;margin-right:5px}
+.tabs{display:flex;gap:6px;margin:12px 0;overflow:auto}
+.tab{white-space:nowrap;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--brown);cursor:pointer;font-size:12px}
+.tab.active{background:var(--deep);color:white;border-color:var(--deep)}
+.smallnote{margin-top:6px;color:var(--soft);font-size:10px}
+@media(max-width:620px){.workflow,.tone-grid,.option-grid{grid-template-columns:1fr}}
+
 @media(max-width:900px){.grid{grid-template-columns:1fr}.output{position:static}}@media(max-width:620px){main{padding:28px 9px 50px}.twocol,.line{grid-template-columns:1fr}.body{padding:16px}.actions{display:grid;grid-template-columns:1fr 1fr}.btn{width:100%}}@media print{.top,.hero,.notice,.input,.help,.status,.outactions{display:none!important}main{padding:0}.grid{display:block}.panel{border:0;box-shadow:none}.output{position:static}.out{min-height:0}}
 </style>
 </head>
 <body>
-<header class="top"><div class="topin"><div>Tarot Letter</div><div class="tag">Sono専用・Reading Maker Ver.2</div></div></header>
+<header class="top"><div class="topin"><div>Tarot Letter</div><div class="tag">Sono専用・鑑定書メーカー Ver.3</div></div></header>
 <main>
-<section class="hero"><small>READING STUDIO</small><h1>鑑定書づくり</h1><p>カードの意味だけでなく、園子式の関係性から読みの骨組みを作ります。</p><span class="version">Ver.2｜②→⑨・③↔④・④↔⑧・⑤→⑥→⑩</span></section>
-<div class="notice">このページは園子のリーディングを整理するための下書きツールです。生成文は断定ではなく仮説として読み、違う部分は自由に削除・修正してください。入力内容は外部へ送信されません。</div>
+<section class="hero"><small>TAROT LETTER STUDIO</small><h1>園子式 鑑定書メーカー</h1>
+<p>カードの関係性と園子の気づきを、相談者へ渡せる一通の文章へ整えます。</p>
+<span class="version">Ver.3｜分析 → 園子メモ → 鑑定書3案</span></section>
+<div class="notice">このページは園子のリーディングを鑑定書へ整えるための試作ツールです。分析と文章はすべて下書きです。園子の読みと違う部分は自由に直してください。入力内容は外部へ送信されず、このブラウザ内だけで処理されます。</div>
 <section class="grid">
 <div class="panel input"><div class="head"><h2>入力</h2><p>相談内容と10枚のカードを入力してください。</p></div><div class="body">
-<div class="method"><p class="method-title">今回組み込んだ園子式の見方</p><p>②を未来へ介入する鍵として⑨との対応を見る。③と④から頭と心の差を、④と⑧から内面と環境の噛み合わせを見る。⑤・⑥・⑩は過去から着地点までの時間の流れとして読む。</p></div>
+<div class="workflow">
+      <div class="step"><strong>STEP 1</strong>カードを整理</div>
+      <div class="step"><strong>STEP 2</strong>園子の読みを補足</div>
+      <div class="step"><strong>STEP 3</strong>鑑定書を選ぶ</div>
+    </div>
+    <div class="method"><p class="method-title">園子式の見方</p><p>②を未来へ介入する鍵として⑨との対応を見る。③と④から頭と心の差を、④と⑧から内面と環境の噛み合わせを見る。⑤・⑥・⑩は過去から着地点までの時間の流れとして読む。</p></div>
 <div class="twocol"><div class="field"><label>お名前・ニックネーム</label><input id="name" placeholder="例：Aさん"></div><div class="field"><label>鑑定日</label><input id="date" type="date"></div></div>
 <div class="field"><label>ご相談内容</label><textarea id="question" placeholder="相談内容を入力"></textarea></div>
 <div class="field"><label>相談者についての補足</label><textarea id="context" placeholder="これまでの経緯や印象に残った言葉"></textarea></div>
+<div class="option-grid">
+  <div class="field">
+    <label>相談者との距離</label>
+    <select id="relation">
+      <option value="known">よく知っている人</option>
+      <option value="somewhat">ある程度知っている人</option>
+      <option value="unknown">ほとんど知らない人</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>伝え方の強さ</label>
+    <select id="directness">
+      <option value="soft">断定を避け、可能性として伝える</option>
+      <option value="middle">柔らかいが、要点は明確に伝える</option>
+      <option value="clear">必要な部分ははっきり伝える</option>
+    </select>
+  </div>
+</div>
+
 <h3>ケルト十字・10枚</h3><div id="cards"></div>
 <div class="field"><label>カードを並べて感じたこと</label><textarea id="overall" placeholder="最初に目に入ったカード、違和感、全体から感じたこと"></textarea></div>
-<div class="field"><label>園子が現時点で感じる中心テーマ</label><textarea id="themeMemo" placeholder="例：この人に足りないのは、助けてくれる手。"></textarea></div>
-<div class="actions"><button class="btn primary" id="generate">園子式で大筋を作る</button><button class="btn secondary" id="save">入力を保存</button><button class="btn secondary" id="load">保存内容を開く</button><button class="btn danger" id="clear">全て消す</button></div>
+<h3>鑑定書へ入れたい園子の読み</h3>
+<div class="field">
+  <label>今回の中心テーマ</label>
+  <textarea id="themeMemo" placeholder="例：この人に足りないのは、助けてくれる手。"></textarea>
+</div>
+<div class="field">
+  <label>カードだけでは分からない背景・相手について知っていること</label>
+  <textarea id="knownMemo" placeholder="例：本人の仕事ぶりは信頼されているが、会社全体の方向性には不安がある。"></textarea>
+</div>
+<div class="field">
+  <label>相談者へ最も伝えたいこと</label>
+  <textarea id="messageMemo" placeholder="例：会社任せにせず、自分の立ち位置と今後の選択肢を考えておく必要がある。"></textarea>
+</div>
+<div class="field">
+  <label>現実にできる小さな一手</label>
+  <textarea id="actionMemo" placeholder="例：会社の今後について、役割や方向性を具体的な言葉で話し合う。"></textarea>
+</div>
+
+<div class="report-options">
+  <label>最初に表示する鑑定書の文体</label>
+  <div class="tone-grid">
+    <label class="tone-card"><input type="radio" name="tone" value="warm" checked>温かく柔らかい</label>
+    <label class="tone-card"><input type="radio" name="tone" value="clear">客観的に整理</label>
+    <label class="tone-card"><input type="radio" name="tone" value="push">背中を押す</label>
+  </div>
+  <p class="smallnote">生成後は3案をタブで切り替えて比較できます。</p>
+</div>
+<div class="actions"><button class="btn primary" id="generate">鑑定書を3案作る</button><button class="btn secondary" id="save">入力を保存</button><button class="btn secondary" id="load">保存内容を開く</button><button class="btn danger" id="clear">全て消す</button></div>
 </div></div>
-<div class="panel output"><div class="head"><h2>鑑定書の下書き</h2><p>生成後、この文章を直接書き直せます。</p></div><div class="preview"><h2>Tarot Letter</h2><p class="meta" id="meta">ケルト十字リーディング</p><textarea class="out" id="out" placeholder="カードを入力して「園子式で大筋を作る」を押してください。"></textarea><p class="help">関係性の読みもすべて下書きです。園子の感覚と違う部分は自由に消してください。</p><div class="actions outactions"><button class="btn primary" id="copy">文章をコピー</button><button class="btn secondary" id="print">印刷・PDF保存</button></div><div class="status" id="status"></div></div></div>
+<div class="panel output"><div class="head"><h2>鑑定書プレビュー</h2><p>3つの文体から選び、本文を直接書き直せます。</p></div><div class="preview"><h2>Tarot Letter</h2><p class="meta" id="meta">園子式 ケルト十字リーディング</p><div class="tabs" id="tabs"><button class="tab active" data-tone="warm">温かく柔らかい</button><button class="tab" data-tone="clear">客観的に整理</button><button class="tab" data-tone="push">背中を押す</button></div><textarea class="out" id="out" placeholder="カードを入力して「鑑定書を3案作る」を押してください。"></textarea><p class="help">3案は同じ読みを異なる伝え方に整えたものです。園子の言葉へ自由に直してください。</p><div class="actions outactions"><button class="btn primary" id="copy">文章をコピー</button><button class="btn secondary" id="print">印刷・PDF保存</button></div><div class="status" id="status"></div></div></div>
 </section></main><datalist id="tarotList"></datalist>
 <script>
 const positions=[["現状","今置かれている状況と相談の中心"],["障害・交差","表面上の障害であると同時に、未来を動かすための助言"],["顕在意識・目標","本人が頭で意識している望みや完成図"],["潜在意識・土台","心の奥にある本音や、行動を支える土台"],["過去","現在につながった過去の影響"],["近い未来","今の流れを続けた場合に現れやすい展開"],["自分自身","本人の姿勢や、自分をどう扱っているか"],["周囲・環境","本人を取り巻く人や、現実的な支援・妨げ"],["願望と恐れ","心が引き寄せやすく、現実になり得る可能性"],["最終結果","現在の流れを続けた先にある着地点"]];
@@ -59,20 +126,95 @@ const cardsBox=document.getElementById("cards"),list=document.getElementById("ta
 positions.forEach((p,i)=>{const important=[1,2,3,4,5,7,8,9].includes(i)?" important":"";let note="";if(i===1)note="最重要：⑨の未来を変えるための鍵";if(i===2)note="④と合わせて、頭と心の差を見る";if(i===3)note="③・⑧と合わせて、土台と環境を見る";if(i===7)note="④と合わせて、本人を支えられる環境かを見る";if(i===8)note="②と対応させ、近づき得る未来として読む";cardsBox.insertAdjacentHTML("beforeend",`<div class="card${important}"><div class="cardtop"><div class="num">${i+1}</div><div><input class="pos" id="pos${i}" value="${p[0]}"><div class="line"><input id="card${i}" list="tarotList" placeholder="例：法王"><select id="ori${i}"><option value="0">正位置</option><option value="1">逆位置</option></select></div>${note?`<p class="card-note">${note}</p>`:""}<textarea class="memo" id="memo${i}" placeholder="この位置で園子が感じたこと"></textarea></div></div></div>`)});Object.keys(tarot).forEach(n=>list.insertAdjacentHTML("beforeend",`<option value="${n}">`));
 const today=new Date(),pad=n=>String(n).padStart(2,"0");document.getElementById("date").value=`${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
 const clean=v=>v.trim().replace(/逆位置|正位置|逆$/g,"");
-function getData(){return{n:document.getElementById("name").value.trim(),d:document.getElementById("date").value,q:document.getElementById("question").value.trim(),c:document.getElementById("context").value.trim(),o:document.getElementById("overall").value.trim(),t:document.getElementById("themeMemo").value.trim(),cards:positions.map((p,i)=>({pos:document.getElementById("pos"+i).value.trim()||p[0],guide:p[1],name:clean(document.getElementById("card"+i).value),ori:+document.getElementById("ori"+i).value,memo:document.getElementById("memo"+i).value.trim()})),out:out.value}}
+function getData(){return{n:document.getElementById("name").value.trim(),d:document.getElementById("date").value,q:document.getElementById("question").value.trim(),c:document.getElementById("context").value.trim(),o:document.getElementById("overall").value.trim(),t:document.getElementById("themeMemo").value.trim(),known:document.getElementById("knownMemo").value.trim(),msg:document.getElementById("messageMemo").value.trim(),act:document.getElementById("actionMemo").value.trim(),relation:document.getElementById("relation").value,directness:document.getElementById("directness").value,tone:(document.querySelector('input[name="tone"]:checked')||{}).value||"warm",reports:reports,cards:positions.map((p,i)=>({pos:document.getElementById("pos"+i).value.trim()||p[0],guide:p[1],name:clean(document.getElementById("card"+i).value),ori:+document.getElementById("ori"+i).value,memo:document.getElementById("memo"+i).value.trim()})),out:out.value}}
 const info=c=>tarot[c.name]||null,orientation=c=>c.ori?"逆位置":"正位置",label=c=>c.name?`${c.name}・${orientation(c)}`:"未入力";
 function meaning(c){const m=info(c);return !c.name?"":m?(c.ori?m.rev:m.up):"このカードはまだ基本意味データに登録されていません。"}function short(c){return meaning(c).split("。")[0]}function action(c){const m=info(c);return m?(c.ori?m.revAction:m.upAction):""}function oppositeAction(c){const m=info(c);return m?(c.ori?m.upAction:m.revAction):""}
 function cardText(c,i){if(!c.name)return`【${i+1}. ${c.pos}】\nカードがまだ入力されていません。`;return`【${i+1}. ${c.pos}｜${label(c)}】\n${c.guide}を表す位置です。${meaning(c)}${c.memo?"\n園子のメモ："+c.memo:""}`}
-function relation29(p){const k=p[1],f=p[8];if(!k.name||!f.name)return"②または⑨が未入力のため、対応関係はまだ作成できません。";return`⑨の${label(f)}は、「${short(f)}」という状態へ近づく可能性を示しています。\nこれを変えたい場合、中心となる鍵は②の${label(k)}です。\n\nまず、出た向きのまま活かすなら、\n「${action(k)||label(k)+"を現実的な行動へ置き換える"}」\nという一手が考えられます。\n\nさらに、園子式にあえて反対向きの考え方を借りるなら、\n「${oppositeAction(k)||"反対側の性質も検討する"}」\nという方法も突破口になります。\n\n②は単なる障害ではなく、⑨の可能性へそのまま進まないための介入点として読むことができます。`}
+function relation29(p){const k=p[1],f=p[8];if(!k.name||!f.name)return"②または⑨が未入力のため、対応関係はまだ作成できません。";return`⑨の${label(f)}は、「${short(f)}」という状態へ近づく可能性を示しています。\nこの可能性へ近づく、または望ましくない表れ方を避けるための鍵が、②の${label(k)}です。\n\nまず、出た向きのまま活かすなら、\n「${action(k)||label(k)+"を現実的な行動へ置き換える"}」\nという一手が考えられます。\n\nさらに、園子式にあえて反対向きの考え方を借りるなら、\n「${oppositeAction(k)||"反対側の性質も検討する"}」\nという方法も突破口になります。\n\n②は単なる障害ではなく、⑨の可能性の表れ方を変えるための介入点として読むことができます。`}
 function relation34(p){const a=p[2],b=p[3];if(!a.name||!b.name)return"③または④が未入力のため、頭と心の比較はまだ作成できません。";const shared=info(a)&&info(b)?info(a).themes.filter(x=>info(b).themes.includes(x)):[];const bridge=shared.length?`二枚には「${shared.join("・")}」という共通テーマもあり、方向そのものは完全に離れていないようです。`:"二枚の性質には差があり、頭で描いている完成図と、実際に心を動かしている力が十分に結びついていない可能性があります。";return`顕在意識の${label(a)}は、「${short(a)}」を意識しています。\n一方、潜在意識の${label(b)}には、「${short(b)}」が流れています。\n\n${bridge}\nそのため、考えている構想だけでなく、なぜそれをしたいのか、何をまだ具体化できていないのかを、もう一段深く落とし込む必要がありそうです。`}
 function relation48(p){const a=p[3],b=p[7];if(!a.name||!b.name)return"④または⑧が未入力のため、内面と環境の比較はまだ作成できません。";const difficult=info(b)&&(b.ori===1||info(b).themes.some(x=>["束縛","依存","孤立","偏り","抵抗"].includes(x)));return`潜在意識の${label(a)}には、「${short(a)}」があります。\nそれに対して周囲・環境の${label(b)}は、「${short(b)}」を示しています。\n\n${difficult?"本人の内面だけで押し切ろうとすると負担が集中しやすく、環境の整理、役割分担、相談相手など、外側から支える手が必要になる可能性があります。":"環境側には活用できる力もあるため、本人の内面だけで進めず、周囲の協力や現実的な仕組みへ結びつけることが大切です。"}`}
 function timeline(p){const a=p[4],b=p[5],c=p[9];if(!a.name||!b.name||!c.name)return"⑤・⑥・⑩のいずれかが未入力のため、時間の流れはまだ作成できません。";return`過去の${label(a)}が示す「${short(a)}」を背景に、\n近い未来では${label(b)}の「${short(b)}」へ流れが移ろうとしています。\nそのまま進んだ場合、最終結果の${label(c)}が示す「${short(c)}」へ着地する可能性があります。\n\n⑤・⑥・⑩に似た重さや停滞が重なる場合は、同じ問題が形を変えながら続いている可能性があります。反対に、⑥で大きな変化が起きても⑩が動きにくいカードなら、出来事だけが変わり、本人の選択や環境が追いつかない可能性も見ておく必要があります。`}
 function hypothesis(p,t){let lines=[];if(t)lines.push(`園子が現時点で感じている中心は、「${t}」です。`);const rev=p.filter(x=>x.name&&x.ori).length;const env=info(p[7])&&(p[7].ori===1||info(p[7]).themes.some(x=>["束縛","依存","孤立","偏り","抵抗"].includes(x)));if(env)lines.push("特に④の内面と⑧の環境を合わせると、本人の努力だけでは解決しにくく、外側の支援や仕組みを整える必要がある可能性があります。");lines.push(rev>=5?"逆位置が多いため、出来事そのものよりも、迷い、疲労、抵抗、抱え込みなど、内側で流れを止めているものを丁寧に見る必要があります。":"動かせる要素も残っているため、②の助言を具体的な行動へ変えることで、⑨や⑩の表れ方が変わる余地があります。");lines.push("これは断定ではなく、園子が最終的な読みを組み立てるための仮説です。");return lines.join("\n")}
 function bigFlow(p){let x=[];if(p[0].name)x.push(`現在の中心には、${label(p[0])}が示す「${short(p[0])}」があります。`);if(p[1].name)x.push(`未来を動かす鍵として、②の${label(p[1])}が置かれています。`);if(p[2].name&&p[3].name)x.push(`表面上の意識は${label(p[2])}ですが、心の土台には${label(p[3])}があります。`);if(p[7].name)x.push(`周囲の状況には、${label(p[7])}の影響が見えます。`);if(p[8].name)x.push(`このまま心が引き寄せやすい可能性として、⑨の${label(p[8])}が示されています。`);if(p[9].name)x.push(`現在の流れの着地点には、${label(p[9])}があります。`);return x.join("")}
-document.getElementById("generate").onclick=()=>{const d=getData(),p=d.cards;if(!p.some(x=>x.name)){status.textContent="カードを1枚以上入力してください。";return}const client=d.n||"ご相談者さま",rev=p.filter(x=>x.name&&x.ori).length,maj=p.filter(x=>info(x)).length;document.getElementById("meta").textContent=`${client}｜ケルト十字リーディング`;out.value=`${client}へ\n\nこのたびはTarot Letterのリーディングを受け取ってくださり、ありがとうございます。\n今回のカードは、未来を決めつけるものではなく、今の心とこれからの選択を見つめるための手紙としてお読みください。\n\n${d.q?"■ ご相談内容\n"+d.q+"\n\n":""}${d.c?"■ ご相談の背景\n"+d.c+"\n\n":""}■ 今回の大きな流れ\n${bigFlow(p)||"カードの流れを園子の言葉でまとめます。"}\n\n■ 園子式・関係性から読む\n\n【②→⑨｜未来を変える鍵】\n${relation29(p)}\n\n【③↔④｜頭で描くことと、心の土台】\n${relation34(p)}\n\n【④↔⑧｜本人の内面と、周囲の環境】\n${relation48(p)}\n\n【⑤→⑥→⑩｜過去から着地点まで】\n${timeline(p)}\n\n■ 今回の中心仮説\n${hypothesis(p,d.t)}\n\n■ カード全体から見えること\n基本意味を登録している大アルカナは${maj}枚、逆位置は${rev}枚です。\n${rev>=5?"逆位置が多く、外側の出来事よりも、迷いや疲れなど内面の滞りを丁寧に見る必要があります。":"正位置と逆位置の両方から、進める部分と見直す部分を整理していきます。"}\n\n■ 10枚のカード\n\n${p.map(cardText).join("\n\n")}${d.o?"\n\n■ カードを並べて感じたこと\n"+d.o:""}\n\n■ ここから園子が仕上げる全体メッセージ\n\n［関係性の下書きを参考にしながら、相談者へ最も伝えたいことを園子の言葉で書きます。］\n\n■ これからのための小さな一手\n\n［②のカードをどう使えば⑨や⑩の流れを変えられるか、現実にできる行動へ落とし込みます。］\n\nカードは、未来を一つに決めるものではありません。\n今の自分を知り、これから何を選ぶかを考えるための一つの光です。\n\nあなたに必要な言葉が、これからの日々をそっと照らしますように。\n\nSono`;out.style.height="auto";out.style.height=Math.max(out.scrollHeight,900)+"px";status.textContent="園子式の関係性を含む大筋を作りました。"};
-document.getElementById("save").onclick=()=>{localStorage.setItem("readingMakerV2",JSON.stringify(getData()));status.textContent="この端末に保存しました。"};
-document.getElementById("load").onclick=()=>{const s=localStorage.getItem("readingMakerV2")||localStorage.getItem("readingMaker");if(!s){status.textContent="保存内容がありません。";return}try{const d=JSON.parse(s);document.getElementById("name").value=d.n||"";document.getElementById("date").value=d.d||"";document.getElementById("question").value=d.q||"";document.getElementById("context").value=d.c||"";document.getElementById("overall").value=d.o||"";document.getElementById("themeMemo").value=d.t||"";(d.cards||[]).forEach((x,i)=>{if(i>=10)return;document.getElementById("pos"+i).value=x.pos||positions[i][0];document.getElementById("card"+i).value=x.name||"";document.getElementById("ori"+i).value=+x.ori||0;document.getElementById("memo"+i).value=x.memo||""});out.value=d.out||"";out.style.height="auto";out.style.height=Math.max(out.scrollHeight,900)+"px";status.textContent="保存内容を開きました。"}catch(e){status.textContent="保存内容を読み込めませんでした。"}};
-document.getElementById("clear").onclick=()=>{if(confirm("入力と下書きを全て消しますか？")){location.reload()}};document.getElementById("copy").onclick=async()=>{if(!out.value){status.textContent="コピーする文章がありません。";return}try{await navigator.clipboard.writeText(out.value)}catch(e){out.select();document.execCommand("copy")}status.textContent="文章をコピーしました。"};document.getElementById("print").onclick=()=>window.print();out.addEventListener("input",()=>{out.style.height="auto";out.style.height=Math.max(out.scrollHeight,900)+"px"});
+
+function soften(text,directness){
+  if(!text)return "";
+  if(directness==="clear")return text;
+  if(directness==="middle")return text.replace(/です。/g,"と考えられます。");
+  return text.replace(/です。/g,"ように感じられます。").replace(/必要があります。/g,"必要があるのかもしれません。");
+}
+function relationPhrase(relation){
+  if(relation==="known")return "これまでのお話や、私が知っている状況も重ねながら";
+  if(relation==="somewhat")return "伺っている背景も重ねながら";
+  return "カードから受け取れる範囲を大切にしながら";
+}
+function coreSummary(d,p){
+  const pieces=[];
+  if(p[0].name)pieces.push(`現在には${label(p[0])}があり、${short(p[0])}という感覚が中心にあります`);
+  if(p[1].name&&p[8].name)pieces.push(`②の${label(p[1])}が、⑨の${label(p[8])}の表れ方を変える鍵になっています`);
+  if(p[3].name&&p[7].name)pieces.push(`心の土台にある${label(p[3])}と、周囲の${label(p[7])}の間には、見過ごせない差があります`);
+  if(p[4].name&&p[5].name&&p[9].name)pieces.push(`流れは${label(p[4])}から${label(p[5])}を経て、${label(p[9])}へ向かっています`);
+  return pieces.join("。")+"。";
+}
+function memoParagraph(d){
+  const arr=[];
+  if(d.t)arr.push(`今回の中心として私が感じたのは、「${d.t}」ということです。`);
+  if(d.known)arr.push(`${relationPhrase(d.relation)}、${d.known}`);
+  if(d.msg)arr.push(`そのうえで、最もお伝えしたいのは、${d.msg}`);
+  return arr.join("\n\n");
+}
+function cardFlowParagraph(p){
+  if(!p[4].name||!p[5].name||!p[9].name)return "";
+  return `過去の${label(p[4])}には、${short(p[4])}という勢いがありました。そこから近い未来の${label(p[5])}へ移るため、今はただ前へ進むよりも、いったん立ち止まり、まだ言葉になっていないことを見つめる時間へ入っているように見えます。その先にある${label(p[9])}は、今までの形をそのまま保つというより、何かを終わらせ、次の段階へ移る可能性を示しています。`;
+}
+function adviceParagraph(d,p,tone){
+  const base=d.act || (p[1].name?action(p[1]):"今の状況を具体的な言葉にし、話し合えるところから始める");
+  if(tone==="warm")return `今すぐすべての答えを出す必要はありません。まずは「${base}」という小さな一手からで十分です。そこから、今見えていない選択肢が少しずつ形になっていくでしょう。`;
+  if(tone==="clear")return `現実的な一手は、「${base}」です。考えるだけで終わらせず、誰が・何を・いつまでに行うのかまで具体化することが、流れを変えるために重要です。`;
+  return `今、流れを変えるために必要なのは、「${base}」を実際に始めることです。待つだけではなく、自分たちの意思を言葉と行動に変えることで、⑨や⑩の未来は別の形を取り始めます。`;
+}
+function opening(d,tone){
+  const who=d.n||"ご相談者さま";
+  if(tone==="warm")return `${who}へ\n\n今回のカードを見て、まず感じたのは、「先が見えない不安の中にも、流れを変えるための糸口は残されている」ということでした。`;
+  if(tone==="clear")return `${who}へ\n\n今回のケルト十字からは、現在の問題、内面と環境のずれ、そして今後の転換点が比較的はっきりと示されています。`;
+  return `${who}へ\n\n今回のカードは、「今までと同じやり方のままではなく、ここで流れを変える必要がある」と伝えています。`;
+}
+function closing(tone){
+  if(tone==="warm")return `カードは未来を固定するものではありません。今の状況を知り、より納得できる方向を選ぶための灯りです。\n\n焦らず、けれど大切な違和感を置き去りにせず、これからの一歩を選んでください。\n\nSono`;
+  if(tone==="clear")return `今回の結果は、未来を断定するものではありません。現在の流れを続けた場合の可能性と、そこへ介入するための要点を整理したものです。\n\n状況を言葉にし、役割と選択肢を現実的に確認することが、今後の判断材料になるでしょう。\n\nSono`;
+  return `未来は、今の選択によって変わります。カードが示した転換点を恐れるのではなく、自分たちが望む形へ変えていくための機会として受け取ってください。\n\nSono`;
+}
+function makeReport(d,p,tone){
+  const analysis29=relation29(p).split("\n\n")[0];
+  const analysis34=relation34(p).split("\n\n")[0];
+  const analysis48=relation48(p).split("\n\n")[0];
+  const bodyTone=tone==="warm"
+    ? "カード全体を一つの物語として見ると"
+    : tone==="clear" ? "カードの配置を整理すると" : "カードが最も強く示しているのは";
+  const sections=[
+    opening(d,tone),
+    d.q?`■ ご相談について\n${d.q}`:"",
+    `${bodyTone}、${soften(coreSummary(d,p),d.directness)}`,
+    `■ 今回の中心\n${memoParagraph(d) || hypothesis(p,d.t)}`,
+    `■ 未来を動かす鍵\n${soften(analysis29,d.directness)}`,
+    `■ 心の中と周囲の状況\n${soften(analysis34,d.directness)}\n\n${soften(analysis48,d.directness)}`,
+    `■ これまでと、これからの流れ\n${cardFlowParagraph(p) || timeline(p)}`,
+    `■ これからのための一手\n${adviceParagraph(d,p,tone)}`,
+    closing(tone)
+  ].filter(Boolean);
+  return sections.join("\n\n");
+}
+function showTone(tone){
+  if(!reports[tone])return;
+  out.value=reports[tone];
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tone===tone));
+  out.style.height="auto";out.style.height=Math.max(out.scrollHeight,900)+"px";
+}
+
+document.getElementById("generate").onclick=()=>{const d=getData(),p=d.cards;if(!p.some(x=>x.name)){status.textContent="カードを1枚以上入力してください。";return}const client=d.n||"ご相談者さま";document.getElementById("meta").textContent=`${client}｜園子式 ケルト十字リーディング`;reports={warm:makeReport(d,p,"warm"),clear:makeReport(d,p,"clear"),push:makeReport(d,p,"push")};showTone(d.tone);status.textContent="3つの鑑定書案を作りました。タブで読み比べられます。"};
+document.getElementById("save").onclick=()=>{const active=document.querySelector(".tab.active");if(active)reports[active.dataset.tone]=out.value;localStorage.setItem("readingMakerV3",JSON.stringify(getData()));status.textContent="この端末に保存しました。"};
+document.getElementById("load").onclick=()=>{const s=localStorage.getItem("readingMakerV3")||localStorage.getItem("readingMakerV2")||localStorage.getItem("readingMaker");if(!s){status.textContent="保存内容がありません。";return}try{const d=JSON.parse(s);document.getElementById("name").value=d.n||"";document.getElementById("date").value=d.d||"";document.getElementById("question").value=d.q||"";document.getElementById("context").value=d.c||"";document.getElementById("overall").value=d.o||"";document.getElementById("themeMemo").value=d.t||"";document.getElementById("knownMemo").value=d.known||"";document.getElementById("messageMemo").value=d.msg||"";document.getElementById("actionMemo").value=d.act||"";document.getElementById("relation").value=d.relation||"known";document.getElementById("directness").value=d.directness||"soft";reports=d.reports||{warm:"",clear:"",push:""};const toneRadio=document.querySelector(`input[name="tone"][value="${d.tone||"warm"}"]`);if(toneRadio)toneRadio.checked=true;(d.cards||[]).forEach((x,i)=>{if(i>=10)return;document.getElementById("pos"+i).value=x.pos||positions[i][0];document.getElementById("card"+i).value=x.name||"";document.getElementById("ori"+i).value=+x.ori||0;document.getElementById("memo"+i).value=x.memo||""});out.value=d.out||reports[d.tone||"warm"]||"";out.style.height="auto";out.style.height=Math.max(out.scrollHeight,900)+"px";status.textContent="保存内容を開きました。"}catch(e){status.textContent="保存内容を読み込めませんでした。"}};
+document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{if(out.value&&document.querySelector(".tab.active")){const active=document.querySelector(".tab.active").dataset.tone;reports[active]=out.value}showTone(btn.dataset.tone)}));document.getElementById("clear").onclick=()=>{if(confirm("入力と下書きを全て消しますか？")){location.reload()}};document.getElementById("copy").onclick=async()=>{if(!out.value){status.textContent="コピーする文章がありません。";return}try{await navigator.clipboard.writeText(out.value)}catch(e){out.select();document.execCommand("copy")}status.textContent="文章をコピーしました。"};document.getElementById("print").onclick=()=>window.print();out.addEventListener("input",()=>{const active=document.querySelector(".tab.active");if(active)reports[active.dataset.tone]=out.value;out.style.height="auto";out.style.height=Math.max(out.scrollHeight,900)+"px"});
 </script>
 </body>
 </html>
