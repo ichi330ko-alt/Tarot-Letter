@@ -2,385 +2,73 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>園子式 鑑定書メーカー Ver.3</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>園子式 鑑定書メーカー Ver.3 改善版</title>
 <style>
-:root{
-  --bg:#f7f1e7; --paper:#fffdf8; --ink:#3f372f; --soft:#7d7166;
-  --line:#dfd3c3; --accent:#765f76; --accent2:#a98772; --shadow:0 12px 35px rgba(70,55,45,.10);
-}
-*{box-sizing:border-box}
-body{margin:0;background:linear-gradient(180deg,#f4eee5,#faf7f0);color:var(--ink);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;line-height:1.8}
-.wrap{width:min(1080px,94%);margin:28px auto 80px}
-.hero{text-align:center;padding:30px 18px}
-.hero small{letter-spacing:.24em;color:var(--accent2)}
-.hero h1{margin:8px 0 4px;font-size:clamp(26px,5vw,42px);font-weight:500}
-.hero p{margin:0;color:var(--soft)}
-.version{display:inline-block;margin-top:12px;padding:5px 13px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--accent)}
-.workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 18px}
-.step{background:rgba(255,255,255,.64);border:1px solid var(--line);border-radius:14px;padding:11px;text-align:center;font-size:12px;color:var(--soft)}
-.step b{display:block;color:var(--accent)}
-.panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:clamp(18px,4vw,34px);margin-bottom:18px}
-.panel h2{font-size:21px;font-weight:500;margin:0 0 4px}
-.panel .lead{margin:0 0 20px;color:var(--soft);font-size:13px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-label{display:block;font-size:13px;margin-bottom:6px}
-input,select,textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 12px;color:var(--ink);font:inherit;font-size:14px}
-textarea{min-height:96px;resize:vertical}
-input:focus,select:focus,textarea:focus{outline:2px solid rgba(118,95,118,.18);border-color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.cardrow{display:grid;grid-template-columns:54px 1fr 110px;gap:8px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:9px;background:#fff}
-.pos{font-size:12px;color:var(--soft);text-align:center}
-.pos b{font-size:18px;color:var(--accent)}
-.memo-title{margin:24px 0 8px;font-size:15px;color:var(--accent)}
-.tonebox{border:1px solid var(--line);border-radius:15px;padding:14px;background:#fbf7f2}
-.tones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.tone{border:1px solid var(--line);border-radius:12px;padding:10px;background:white;text-align:center;font-size:12px;cursor:pointer}
-.tone input{width:auto;margin-right:5px}
-.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
-button{border:0;border-radius:999px;padding:11px 19px;font:inherit;cursor:pointer}
-.primary{background:var(--accent);color:#fff}
-.secondary{background:#eee6dc;color:var(--ink)}
-.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
-.status{margin-top:10px;min-height:1.5em;color:var(--accent);font-size:13px}
-details{border:1px solid var(--line);border-radius:14px;padding:10px 14px;background:#fff}
-summary{cursor:pointer;color:var(--accent)}
-.analysisbox{white-space:pre-wrap;font-size:13px;color:#5e554d;margin-top:10px}
-.tabs{display:flex;gap:7px;overflow:auto;margin:16px 0 10px}
-.tab{background:#fff;border:1px solid var(--line);white-space:nowrap}
-.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.reportmeta{text-align:center;color:var(--soft);font-size:12px}
-#report{min-height:900px;background:#fffefb;line-height:2;padding:22px}
-.note{font-size:11px;color:var(--soft);margin-top:8px}
-footer{text-align:center;color:var(--soft);font-size:11px;margin-top:24px}
-@media(max-width:800px){
-  .workflow{grid-template-columns:repeat(2,1fr)}
-  .grid2,.cards,.tones{grid-template-columns:1fr}
-  .cardrow{grid-template-columns:50px 1fr 95px}
-}
-@media print{
-  body{background:#fff}
-  .hero,.workflow,.input-area,.tabs,.actions,.note,footer,details,.status{display:none!important}
-  .wrap{width:100%;margin:0}
-  .panel{box-shadow:none;border:0;padding:0}
-  #report{border:0;min-height:0;padding:18mm;white-space:pre-wrap}
-}
+:root{--bg:#f7f1e7;--paper:#fffdf8;--ink:#40382f;--soft:#7d7166;--line:#dfd3c3;--accent:#765f76;--help:#eef1f6}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(#f4eee5,#faf7f0);color:var(--ink);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;line-height:1.8}.wrap{width:min(1100px,94%);margin:25px auto 70px}.hero{text-align:center;padding:28px 15px}.hero small{letter-spacing:.22em;color:#a98772}.hero h1{margin:7px 0;font-size:clamp(26px,5vw,42px);font-weight:500}.hero p,.lead,.note{color:var(--soft)}.version{display:inline-block;padding:4px 12px;border:1px solid var(--line);border-radius:999px;font-size:12px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:18px}.step,.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px}.step{text-align:center;padding:10px;font-size:12px;color:var(--soft)}.step b{display:block;color:var(--accent)}.panel{padding:clamp(18px,4vw,32px);margin-bottom:18px;box-shadow:0 12px 35px rgba(70,55,45,.08)}h2{font-size:21px;font-weight:500;margin:0 0 4px}h3{font-size:16px;color:var(--accent);font-weight:500}.lead{font-size:13px;margin:0 0 18px}.grid2,.cards,.twostage{display:grid;grid-template-columns:1fr 1fr;gap:13px}label{display:block;font-size:13px;margin-bottom:5px}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;padding:10px 12px;font:inherit;color:var(--ink)}textarea{min-height:95px;resize:vertical}.cards{gap:11px}.cardbox{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}.cardrow{display:grid;grid-template-columns:60px 1fr 105px;gap:7px;align-items:center;padding:9px}.pos{text-align:center;font-size:11px;color:var(--soft);line-height:1.35}.pos b{font-size:18px;color:var(--accent)}.meaning{display:none;border-top:1px dashed var(--line);padding:11px 13px;background:#fffaf4;font-size:13px}.meaning.show{display:block}.mt{font-size:11px;color:var(--accent)}.hints{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.hint{font-size:11px;padding:2px 8px;border-radius:999px;background:#eee6ef;color:#65536a}.help{margin-top:16px;padding:15px;border:1px solid #d5dae5;border-radius:15px;background:var(--help)}.helpout,.analysis{white-space:pre-wrap;font-size:13px;background:#fff;border:1px solid #dfe3eb;border-radius:11px;padding:13px;margin-top:10px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}button{border:0;border-radius:999px;padding:10px 17px;font:inherit;cursor:pointer}.primary{background:var(--accent);color:#fff}.secondary{background:#eee6dc}.helpbtn{background:#657188;color:#fff}.ghost{background:#fff;border:1px solid var(--line)}.status{min-height:1.4em;margin-top:8px;font-size:13px;color:var(--accent)}.tonebox{margin-top:16px;padding:13px;border:1px solid var(--line);border-radius:14px;background:#fbf7f2}.tones{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.tone{padding:8px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:center}.tone input{width:auto}.stage{padding:15px;border:1px solid var(--line);border-radius:14px;background:#fff}.stage textarea{min-height:480px;line-height:2}.prompt{min-height:310px!important;font-size:12px;background:#fafafa}.notice{margin-bottom:18px;padding:11px 13px;border-left:3px solid #a98772;background:#fbf6ef;font-size:12px;color:var(--soft)}details{border:1px solid var(--line);border-radius:13px;padding:10px 13px;background:#fff}summary{cursor:pointer;color:var(--accent)}footer{text-align:center;color:var(--soft);font-size:11px}.note{font-size:11px}
+@media(max-width:850px){.flow{grid-template-columns:repeat(2,1fr)}.grid2,.cards,.twostage,.tones{grid-template-columns:1fr}.cardrow{grid-template-columns:52px 1fr 94px}.stage textarea{min-height:350px}}
+@media print{.hero,.flow,.inputarea,.draft,.promptstage,.actions,.note,footer,.status{display:none!important}body{background:#fff}.wrap{width:100%;margin:0}.panel{border:0;box-shadow:none;padding:0}#finalReport{border:0;min-height:0;padding:18mm}}
 </style>
 </head>
-<body>
-<div class="wrap">
-  <header class="hero">
-    <small>TAROT LETTER STUDIO</small>
-    <h1>園子式 鑑定書メーカー</h1>
-    <p>カード同士の関係と園子の読みを、相談者へ渡せる文章へ。</p>
-    <span class="version">Ver.3｜園子式ケルト十字</span>
-  </header>
-
-  <div class="workflow">
-    <div class="step"><b>STEP 1</b>相談内容</div>
-    <div class="step"><b>STEP 2</b>カード入力</div>
-    <div class="step"><b>STEP 3</b>園子メモ</div>
-    <div class="step"><b>STEP 4</b>鑑定書作成</div>
-  </div>
-
-  <main class="input-area">
-    <section class="panel">
-      <h2>1．基本情報</h2>
-      <p class="lead">鑑定書の宛名と、今回の相談内容を入力します。</p>
-      <div class="grid2">
-        <div><label for="client">相談者名</label><input id="client" placeholder="例：Nさま"></div>
-        <div><label for="date">鑑定日</label><input id="date" type="date"></div>
-      </div>
-      <div style="margin-top:14px"><label for="question">相談内容</label><textarea id="question" placeholder="例：夫の会社は今後どうなっていくのか。私たちは何を意識すればよいか。"></textarea></div>
-      <div style="margin-top:14px"><label for="background">相談者から聞いている背景</label><textarea id="background" placeholder="相談に至った経緯、現在の状況、印象に残った言葉など"></textarea></div>
-      <div class="grid2" style="margin-top:14px">
-        <div><label for="relation">相談者との距離</label><select id="relation"><option value="close">よく知っている</option><option value="some">ある程度知っている</option><option value="unknown">ほとんど知らない</option></select></div>
-        <div><label for="directness">伝え方</label><select id="directness"><option value="soft">可能性として柔らかく伝える</option><option value="balanced">柔らかいが要点は明確に</option><option value="clear">必要なことははっきり伝える</option></select></div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>2．ケルト十字</h2>
-      <p class="lead">園子式では、②を「未来の表れ方を変える鍵」として読みます。</p>
-      <div class="cards" id="cards"></div>
-    </section>
-
-    <section class="panel">
-      <h2>3．園子メモ</h2>
-      <p class="lead">カードの意味ではなく、園子が実際に感じたことを入れる場所です。</p>
-      <div><label for="overall">カード全体から受けた第一印象</label><textarea id="overall" placeholder="例：終わりというより、体制を変えなければならない転換期。"></textarea></div>
-      <div style="margin-top:14px"><label for="theme">今回の中心テーマ</label><textarea id="theme" placeholder="例：会社の信用と、個人の信用を分けて考える必要がある。"></textarea></div>
-      <div style="margin-top:14px"><label for="known">カードだけでは分からない、園子が知っている背景</label><textarea id="known" placeholder="例：仕事は夫個人の信頼で来ており、社長への信頼には不安がある。"></textarea></div>
-      <div style="margin-top:14px"><label for="message">相談者へ一番伝えたいこと</label><textarea id="message" placeholder="例：会社に任せきりにせず、自分たちの今後を具体的に考えておくこと。"></textarea></div>
-      <div style="margin-top:14px"><label for="action">現実にできる小さな一手</label><textarea id="action" placeholder="例：会社の今後と夫の役割について、具体的な話し合いをする。"></textarea></div>
-      <div style="margin-top:14px"><label for="privateMemo">自分だけのメモ（鑑定書には入りません）</label><textarea id="privateMemo"></textarea></div>
-
-      <div class="tonebox" style="margin-top:18px">
-        <label>最初に表示する文章</label>
-        <div class="tones">
-          <label class="tone"><input type="radio" name="tone" value="warm" checked>温かく柔らかい</label>
-          <label class="tone"><input type="radio" name="tone" value="objective">客観的に整理</label>
-          <label class="tone"><input type="radio" name="tone" value="encourage">背中を押す</label>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button class="primary" id="generate">鑑定書を3案作る</button>
-        <button class="secondary" id="save">入力内容を保存</button>
-        <button class="ghost" id="load">保存内容を呼び出す</button>
-        <button class="ghost" id="clear">すべて消す</button>
-      </div>
-      <div class="status" id="status"></div>
-    </section>
-
-    <section class="panel">
-      <details>
-        <summary>園子式の関係性分析を見る</summary>
-        <div class="analysisbox" id="analysis">カードを入力して「鑑定書を3案作る」を押すと表示されます。</div>
-      </details>
-    </section>
-  </main>
-
-  <section class="panel">
-    <h2 style="text-align:center">鑑定書プレビュー</h2>
-    <div class="reportmeta" id="reportMeta">園子式ケルト十字リーディング</div>
-    <div class="tabs">
-      <button class="tab active" data-tone="warm">温かく柔らかい</button>
-      <button class="tab" data-tone="objective">客観的に整理</button>
-      <button class="tab" data-tone="encourage">背中を押す</button>
-    </div>
-    <textarea id="report" placeholder="ここに鑑定書が表示されます。生成後、そのまま編集できます。"></textarea>
-    <div class="actions">
-      <button class="primary" id="copy">文章をコピー</button>
-      <button class="secondary" id="print">PDF・印刷</button>
-    </div>
-    <p class="note">この試作版は外部AIへ送信せず、ブラウザ内で文章を組み立てます。生成文は下書きとして、園子の言葉へ直してください。</p>
-  </section>
-
-  <footer>Tarot Letter｜Sono</footer>
-</div>
-
+<body><div class="wrap">
+<header class="hero"><small>TAROT LETTER STUDIO</small><h1>園子式 鑑定書メーカー</h1><p>園子が読み、AIが整理し、園子の言葉を完成版へ。</p><span class="version">Ver.3 改善版｜カード辞典＋読みのヘルプ＋二段階編集</span></header>
+<div class="flow"><div class="step"><b>STEP 1</b>相談内容</div><div class="step"><b>STEP 2</b>カードと意味</div><div class="step"><b>STEP 3</b>読みのヘルプ</div><div class="step"><b>STEP 4</b>園子下書き</div><div class="step"><b>STEP 5</b>完成版</div></div>
+<div class="notice">カードを選ぶと一般的な意味と発想ヒントが表示されます。「AIならどう読む？」は答えを決めるものではなく、読みに迷った時の候補を出すヘルプです。</div>
+<main class="inputarea">
+<section class="panel"><h2>1．基本情報</h2><p class="lead">相談者へ伝える内容と、鑑定の背景を入力します。</p><div class="grid2"><div><label>相談者名</label><input id="client" placeholder="例：Nさま"></div><div><label>鑑定日</label><input id="date" type="date"></div></div><div style="margin-top:13px"><label>相談内容</label><textarea id="question"></textarea></div><div style="margin-top:13px"><label>相談者から聞いている背景</label><textarea id="background"></textarea></div><div class="grid2" style="margin-top:13px"><div><label>相談者との距離</label><select id="relation"><option value="close">よく知っている</option><option value="some">ある程度知っている</option><option value="unknown">ほとんど知らない</option></select></div><div><label>伝え方</label><select id="directness"><option value="soft">可能性として柔らかく</option><option value="balanced" selected>柔らかいが要点は明確に</option><option value="clear">必要なことははっきり</option></select></div></div></section>
+<section class="panel"><h2>2．ケルト十字とカードの意味</h2><p class="lead">カードを選ぶと、園子向けの一般的な意味と発想ヒントが表示されます。</p><div class="cards" id="cards"></div><div class="help"><h3>💡 読みに迷った時のヘルプ</h3><p class="lead">カード同士の関係から、読みの候補を複数出します。</p><div class="actions"><button class="helpbtn" id="aiHelp">AIならどう読む？</button><button class="ghost" id="copyHelp">ヘルプをコピー</button></div><div class="helpout" id="helpResult">カードを入力してボタンを押してください。</div></div></section>
+<section class="panel"><h2>3．園子メモ</h2><p class="lead">ここが鑑定書の軸です。箇条書きや話し言葉のままで構いません。</p><label>カード全体から受けた第一印象</label><textarea id="overall"></textarea><div style="margin-top:13px"><label>今回の中心テーマ</label><textarea id="theme"></textarea></div><div style="margin-top:13px"><label>カードだけでは分からない、園子が知っている背景</label><textarea id="known"></textarea></div><div style="margin-top:13px"><label>相談者へ一番伝えたいこと</label><textarea id="message"></textarea></div><div style="margin-top:13px"><label>現実にできる小さな一手</label><textarea id="action"></textarea></div><div style="margin-top:13px"><label>鑑定書に入れたい補足</label><textarea id="extra"></textarea></div><div style="margin-top:13px"><label>自分だけのメモ（鑑定書には入りません）</label><textarea id="privateMemo"></textarea></div><div class="tonebox"><label>文章の雰囲気</label><div class="tones"><label class="tone"><input type="radio" name="tone" value="warm" checked>温かく柔らかい</label><label class="tone"><input type="radio" name="tone" value="objective">客観的に整理</label><label class="tone"><input type="radio" name="tone" value="encourage">背中を押す</label></div></div><div class="actions"><button class="primary" id="makeDraft">園子の文章を軸に下書きを作る</button><button class="secondary" id="save">保存</button><button class="ghost" id="load">呼び出す</button><button class="ghost" id="clear">すべて消す</button></div><div class="status" id="status"></div></section>
+<section class="panel"><details><summary>園子式の関係性分析を見る</summary><div class="analysis" id="analysis">カードを入力すると表示されます。</div></details></section>
+</main>
+<section class="panel draft"><h2 style="text-align:center">4．園子の文章を軸にした鑑定書</h2><p class="lead" style="text-align:center">内容を変えず、園子メモを鑑定書の順番へ並べます。</p><textarea id="sonoDraft" style="min-height:650px;line-height:2"></textarea><div class="actions"><button class="primary" id="makePrompt">AI仕上げ用の文章を作る</button><button class="ghost" id="copyDraft">下書きをコピー</button></div></section>
+<section class="panel promptstage"><h2 style="text-align:center">5．AI編集者で完成版へ</h2><p class="lead" style="text-align:center">静的HTMLだけでは外部AIへ自動送信できないため、左の文章をChatGPTへ貼り付け、返ってきた完成文を右へ貼ります。</p><div class="twostage"><div class="stage"><h3>AIへ渡す文章</h3><textarea id="aiPrompt" class="prompt"></textarea><div class="actions"><button class="helpbtn" id="copyPrompt">AI用文章をコピー</button></div></div><div class="stage"><h3>相談者へ渡す完成版</h3><textarea id="finalReport"></textarea><div class="actions"><button class="primary" id="copyFinal">完成版をコピー</button><button class="secondary" id="print">PDF・印刷</button></div></div></div><p class="note">冒頭の「今回出たカード」では全カードを伝え、本文ではカード名を必要以上に繰り返さない設計です。</p></section>
+<footer>Tarot Letter｜Sono</footer></div>
 <script>
 "use strict";
-
-const positions=[
-  ["①","現在"],["②","未来を動かす鍵"],["③","顕在意識"],["④","潜在意識・土台"],["⑤","過去"],
-  ["⑥","近い未来"],["⑦","本人の立場"],["⑧","周囲・環境"],["⑨","心が向かう未来"],["⑩","最終的な流れ"]
-];
-
+const positions=[["①","現在"],["②","未来を動かす鍵"],["③","顕在意識"],["④","潜在意識・土台"],["⑤","過去"],["⑥","近い未来"],["⑦","本人の立場"],["⑧","周囲・環境"],["⑨","心が向かう未来"],["⑩","最終的な流れ"]];
 const tarot={
-"愚者":{u:"自由、新しい一歩、未知への信頼",r:"無計画、迷走、現実から離れる",a:"小さく試し、戻れる余白を残す"},
-"魔術師":{u:"始まり、才能、意志を形にする",r:"準備不足、力を使い切れない、言葉と行動の不一致",a:"持っている資源を確認し、一つを実行に移す"},
-"女教皇":{u:"静かな洞察、直感、見極め",r:"閉じこもる、考えすぎ、感情を隠す",a:"急いで結論を出さず、本音を言葉にする"},
-"女帝":{u:"豊かさ、受容、育てる力",r:"甘やかし、停滞、与えすぎ",a:"守ることと育てることの違いを見直す"},
-"皇帝":{u:"責任、秩序、安定した基盤",r:"支配、硬直、責任の偏り",a:"役割と責任の境界を明確にする"},
-"法王":{u:"信頼、教え、共通の価値観",r:"古い常識、形式への依存、価値観の不一致",a:"何を基準にするかを話し合う"},
-"恋人":{u:"選択、調和、心からの同意",r:"迷い、不一致、選べない状態",a:"誰かに合わせる前に、自分の本心を確認する"},
-"戦車":{u:"前進、突破、意志の力",r:"暴走、空回り、方向性のずれ",a:"速度よりも進む方向をそろえる"},
-"力":{u:"自制、忍耐、穏やかな強さ",r:"自信の低下、感情に振り回される、消耗",a:"力で押さえず、扱える範囲へ小さくする"},
-"隠者":{u:"内省、探求、静かな答え",r:"孤立、閉塞、考え込みすぎ",a:"一人で抱えず、信頼できる相手へ話す"},
-"運命の輪":{u:"転機、流れの変化、巡り合わせ",r:"停滞、同じことの繰り返し、タイミングのずれ",a:"変化の兆しを見逃さず、柔軟に動く"},
-"正義":{u:"公平、判断、原因と結果",r:"不公平、偏り、責任逃れ",a:"感情と事実を分け、条件を整理する"},
-"吊るされた男":{u:"視点の転換、待つ意味、受容",r:"徒労、動けない、我慢の長期化",a:"我慢を続ける理由が今も必要か見直す"},
-"死神":{u:"終わり、切り替え、再生の前段階",r:"手放せない、変化への抵抗、長引く停滞",a:"終えるものと残すものを分ける"},
-"節制":{u:"調整、対話、適切な配分",r:"不均衡、混乱、すれ違い",a:"極端を避け、話し合いながら配分を整える"},
-"悪魔":{u:"執着、依存、見て見ぬふり",r:"束縛からの解放、問題の自覚、距離を取る",a:"断ち切れない理由を具体的に見つめる"},
-"塔":{u:"崩壊、衝撃、偽りが壊れる",r:"変化の先延ばし、内側の崩れ、危機回避",a:"小さな違和感の段階で手を打つ"},
-"星":{u:"希望、回復、未来への信頼",r:"失望、自信喪失、理想が見えない",a:"遠い理想より、回復の兆しを一つ探す"},
-"月":{u:"不安、曖昧さ、見えないもの",r:"混乱が晴れる、真相が見える、恐れの正体",a:"想像と事実を分け、確認できることから確かめる"},
-"太陽":{u:"喜び、明確さ、成功と生命力",r:"一時的な陰り、過信、喜びを受け取れない",a:"成果を共有し、無理のない形で継続する"},
-"審判":{u:"再起、呼び覚まし、決断の時",r:"決断回避、過去への執着、呼びかけを無視する",a:"過去の経験を踏まえ、今度こそ選び直す"},
-"世界":{u:"完成、統合、一区切り",r:"未完成、あと一歩、終わらせられない",a:"足りない一つを確認し、区切りをつける"}
+"愚者":{u:"自由、新しい一歩、未知への信頼",r:"無計画、迷走、現実から離れる",h:["始める","試す","自由","未経験","無邪気"],a:"小さく試し、戻れる余白を残す"},
+"魔術師":{u:"始まり、才能、意志を形にする",r:"準備不足、力を使い切れない、言行不一致",h:["言葉","技術","主体性","実行","交渉"],a:"持っているものを確認し、一つ実行する"},
+"女教皇":{u:"静かな洞察、直感、見極め",r:"閉じこもる、考えすぎ、感情を隠す",h:["秘密","沈黙","観察","知性","距離"],a:"急いで結論を出さず、本音を言葉にする"},
+"女帝":{u:"豊かさ、受容、育てる力",r:"甘やかし、停滞、与えすぎ",h:["母性","家庭","妊娠","実り","関係を育てる"],a:"守ることと育てることの違いを見直す"},
+"皇帝":{u:"責任、秩序、安定した基盤",r:"支配、硬直、責任の偏り",h:["父性","権限","会社","制度","役割"],a:"役割と責任の境界を明確にする"},
+"法王":{u:"信頼、教え、共通の価値観",r:"古い常識、形式への依存、価値観の不一致",h:["結婚制度","組織","助言者","伝統","常識"],a:"何を基準にするか話し合う"},
+"恋人":{u:"選択、調和、心からの同意",r:"迷い、不一致、選べない状態",h:["夫婦","恋愛","価値観","本心","信頼"],a:"誰かに合わせる前に、自分の本心を確認する"},
+"戦車":{u:"前進、突破、意志の力",r:"暴走、空回り、方向性のずれ",h:["移動","勝負","勢い","主導権","目標"],a:"速度より進む方向をそろえる"},
+"力":{u:"自制、忍耐、穏やかな強さ",r:"自信低下、感情に振り回される、消耗",h:["受容","感情を扱う","粘り強さ","信頼","本能"],a:"力で押さえず、扱える範囲へ小さくする"},
+"隠者":{u:"内省、探求、静かな答え",r:"孤立、閉塞、考え込みすぎ",h:["一人の時間","距離","専門性","答えを探す","慎重"],a:"一人で抱えず、信頼できる相手へ話す"},
+"運命の輪":{u:"転機、流れの変化、巡り合わせ",r:"停滞、同じことの繰り返し、タイミングのずれ",h:["好機","周期","偶然","環境変化","流れ"],a:"変化の兆しを見逃さず柔軟に動く"},
+"正義":{u:"公平、判断、原因と結果",r:"不公平、偏り、責任逃れ",h:["契約","法律","判断","釣り合い","事実"],a:"感情と事実を分け、条件を整理する"},
+"吊るされた男":{u:"視点の転換、待つ意味、受容",r:"徒労、動けない、我慢の長期化",h:["保留","自己犠牲","別の見方","待機","手放す"],a:"我慢を続ける理由が今も必要か見直す"},
+"死神":{u:"終わり、切り替え、再生の前段階",r:"手放せない、変化への抵抗、長引く停滞",h:["区切り","断捨離","転職","離別","再生"],a:"終えるものと残すものを分ける"},
+"節制":{u:"調整、対話、適切な配分",r:"不均衡、混乱、すれ違い",h:["仲介","生活リズム","意思疎通","適量","歩み寄り"],a:"極端を避け、話し合いながら配分を整える"},
+"悪魔":{u:"執着、依存、見て見ぬふり",r:"束縛からの解放、問題の自覚、距離を取る",h:["お金","欲望","支配関係","習慣","離れられない"],a:"断ち切れない理由を具体的に見つめる"},
+"塔":{u:"崩壊、衝撃、偽りが壊れる",r:"変化の先延ばし、内側の崩れ、危機回避",h:["突然の発覚","限界","価値観の崩壊","建て直し","危機"],a:"小さな違和感の段階で手を打つ"},
+"星":{u:"希望、回復、未来への信頼",r:"失望、自信喪失、理想が見えない",h:["癒やし","長期的希望","素直さ","理想","回復"],a:"遠い理想より、回復の兆しを一つ探す"},
+"月":{u:"不安、曖昧さ、見えないもの",r:"混乱が晴れる、真相が見える、恐れの正体",h:["思い込み","秘密","曖昧な関係","直感","不透明"],a:"想像と事実を分け、確認できることから確かめる"},
+"太陽":{u:"喜び、明確さ、成功と生命力",r:"一時的な陰り、過信、喜びを受け取れない",h:["子ども","公になる","健康","祝福","成果"],a:"成果を共有し、無理のない形で続ける"},
+"審判":{u:"再起、呼び覚まし、決断の時",r:"決断回避、過去への執着、呼びかけを無視",h:["復縁","再挑戦","知らせ","目覚め","清算"],a:"過去を踏まえ、今度こそ選び直す"},
+"世界":{u:"完成、統合、一区切り",r:"未完成、あと一歩、終わらせられない",h:["達成","完結","全体像","卒業","次の段階"],a:"足りない一つを確認し、区切りをつける"}
 };
-
-const cardNames=["",...Object.keys(tarot)];
-const cardsRoot=document.getElementById("cards");
-positions.forEach((p,i)=>{
-  const row=document.createElement("div"); row.className="cardrow";
-  row.innerHTML=`<div class="pos"><b>${p[0]}</b><br>${p[1]}</div>
-  <select id="card${i}">${cardNames.map(n=>`<option value="${n}">${n||"カードを選択"}</option>`).join("")}</select>
-  <select id="dir${i}"><option value="u">正位置</option><option value="r">逆位置</option></select>`;
-  cardsRoot.appendChild(row);
-});
-
-const $=id=>document.getElementById(id);
-const reportEl=$("report");
-let reports={warm:"",objective:"",encourage:""};
-let activeTone="warm";
-
-function getCards(){
-  return positions.map((p,i)=>({num:p[0],pos:p[1],name:$(`card${i}`).value,dir:$(`dir${i}`).value}));
-}
-function meaning(c){if(!c.name)return "未入力"; return tarot[c.name][c.dir];}
-function label(c){return c.name ? `${c.name}${c.dir==="r"?"（逆位置）":"（正位置）"}` : "未入力のカード";}
-function action(c){return c.name ? tarot[c.name].a : "状況を言葉にし、確認できることから始める";}
-function formData(){
-  return{
-    client:$("client").value.trim(),date:$("date").value,question:$("question").value.trim(),
-    background:$("background").value.trim(),relation:$("relation").value,directness:$("directness").value,
-    overall:$("overall").value.trim(),theme:$("theme").value.trim(),known:$("known").value.trim(),
-    message:$("message").value.trim(),action:$("action").value.trim(),privateMemo:$("privateMemo").value.trim(),
-    cards:getCards(),tone:(document.querySelector('input[name="tone"]:checked')||{}).value||"warm"
-  };
-}
-function joinNonEmpty(items,sep="\n\n"){return items.filter(Boolean).join(sep)}
-function soften(text,mode){
-  if(!text)return "";
-  if(mode==="clear")return text;
-  if(mode==="balanced")return text.replace(/と考えられます。/g,"と見ることができます。");
-  return text.replace(/です。/g,"ように感じられます。").replace(/必要です。/g,"必要なのかもしれません。");
-}
-function relation29(c){
-  const k=c[1],f=c[8];
-  if(!k.name&&!f.name)return "";
-  if(!k.name)return `⑨には${label(f)}が出ています。${meaning(f)}という未来の感情が示されています。`;
-  if(!f.name)return `②の${label(k)}は、未来の表れ方を変える鍵です。具体的には「${action(k)}」ことが重要になります。`;
-  return `⑨の${label(f)}は、「${meaning(f)}」という可能性を示します。これは確定した未来ではありません。その表れ方を変える鍵が②の${label(k)}です。②が促しているのは、「${action(k)}」ことです。`;
-}
-function relation34(c){
-  const conscious=c[2],sub=c[3];
-  if(!conscious.name&&!sub.name)return "";
-  return `表面で意識している③の${label(conscious)}は「${meaning(conscious)}」。一方、心の土台にある④の${label(sub)}は「${meaning(sub)}」です。${conscious.name&&sub.name?"表面上の考えと、内側で本当に求めていることの間に差がないかを見る必要があります。":""}`;
-}
-function relation48(c){
-  const sub=c[3],env=c[7];
-  if(!sub.name&&!env.name)return "";
-  return `内側の土台である④の${label(sub)}に対し、周囲の環境には⑧の${label(env)}が出ています。環境側には「${meaning(env)}」があり、本人の内面だけでは解決できない要素も含まれています。`;
-}
-function timeline(c){
-  const p=c[4],n=c[5],e=c[9];
-  if(!p.name&&!n.name&&!e.name)return "";
-  return `時間の流れは、⑤${label(p)}「${meaning(p)}」から、⑥${label(n)}「${meaning(n)}」を経て、⑩${label(e)}「${meaning(e)}」へ向かっています。これは、現在の流れをそのまま続けた場合に起こりやすい展開です。`;
-}
-function stancePhrase(r){
-  return r==="close"?"これまで知っているご様子も重ねて見ると":r==="some"?"伺っている背景も重ねて見ると":"カードから受け取れる範囲で見ると";
-}
-function analysisText(d){
-  return joinNonEmpty([
-    "【② ⇔ ⑨　未来を動かす鍵】\n"+relation29(d.cards),
-    "【③ ⇔ ④　意識と心の土台】\n"+relation34(d.cards),
-    "【④ ⇔ ⑧　内面と環境】\n"+relation48(d.cards),
-    "【⑤ → ⑥ → ⑩　時間の流れ】\n"+timeline(d.cards)
-  ]);
-}
-function intro(d,tone){
-  const name=d.client||"ご相談者さま";
-  if(tone==="warm")return `${name}へ\n\n今回のカードを開いて、まず感じたのは、今の不安の中にも流れを変えるための糸口が残されているということでした。`;
-  if(tone==="objective")return `${name}へ\n\n今回のケルト十字には、現在の問題、内面と環境のずれ、そして今後の転換点が比較的はっきりと表れています。`;
-  return `${name}へ\n\n今回のカードは、今までと同じ流れをただ待つのではなく、ここで未来の形を変える必要があると伝えています。`;
-}
-function central(d){
-  const c=d.cards;
-  const current=c[0].name?`現在を示す①は${label(c[0])}です。「${meaning(c[0])}」という状態が、今回の相談の中心にあります。`:"";
-  const memo=d.overall?`カード全体から私が受け取った第一印象は、「${d.overall}」というものでした。`:"";
-  const theme=d.theme?`その中でも、今回の中心テーマは「${d.theme}」だと感じています。`:"";
-  return joinNonEmpty([current,memo,theme],"");
-}
-function sonoInsight(d){
-  const parts=[];
-  if(d.background)parts.push(`ご相談の背景として、${d.background}`);
-  if(d.known)parts.push(`${stancePhrase(d.relation)}、${d.known}`);
-  if(d.message)parts.push(`そのうえで、今回もっともお伝えしたいのは、${d.message}`);
-  return joinNonEmpty(parts);
-}
-function nextStep(d,tone){
-  const k=d.cards[1];
-  const step=d.action||action(k);
-  if(tone==="warm")return `今すぐすべての答えを出さなくても大丈夫です。まずは「${step}」という小さな一歩からで十分です。その一歩が、今はまだ見えていない選択肢を少しずつ形にしていくでしょう。`;
-  if(tone==="objective")return `現実的な一手は、「${step}」です。考えるだけで終わらせず、誰が、何を、いつまでに行うのかまで具体化することで、流れへの介入が可能になります。`;
-  return `流れを変えるために、今必要なのは「${step}」を実際に始めることです。待つだけではなく、意思を言葉と行動に変えることで、⑨と⑩の未来は別の形を取り始めます。`;
-}
-function closing(tone){
-  if(tone==="warm")return `カードは未来を固定するものではありません。今の状況を知り、より納得できる方向を選ぶための灯りです。\n\n焦らず、けれど大切な違和感を置き去りにせず、これからの一歩を選んでください。\n\nSono`;
-  if(tone==="objective")return `今回の結果は未来を断定するものではなく、現在の流れを続けた場合の可能性と、そこへ介入するための要点を整理したものです。\n\n状況を言葉にし、役割と選択肢を現実的に確認することが、今後の判断材料になるでしょう。\n\nSono`;
-  return `未来は、今の選択によって変わります。カードが示した転換点を恐れるのではなく、望む方向へ流れを変える機会として受け取ってください。\n\nSono`;
-}
-function makeReport(d,tone){
-  const sections=[
-    intro(d,tone),
-    d.date?`鑑定日：${d.date}`:"",
-    d.question?`■ ご相談内容\n${d.question}`:"",
-    `■ カード全体から見えること\n${soften(central(d),d.directness)}`,
-    sonoInsight(d)?`■ 今回、私が感じたこと\n${soften(sonoInsight(d),d.directness)}`:"",
-    `■ 未来を動かす鍵\n${soften(relation29(d.cards),d.directness)}`,
-    `■ 心の中と周囲の状況\n${soften(joinNonEmpty([relation34(d.cards),relation48(d.cards)]),d.directness)}`,
-    `■ これまでと、これからの流れ\n${soften(timeline(d.cards),d.directness)}`,
-    `■ これからのための一手\n${nextStep(d,tone)}`,
-    closing(tone)
-  ];
-  return joinNonEmpty(sections);
-}
-function showTone(tone){
-  activeTone=tone;
-  reportEl.value=reports[tone]||"";
-  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tone===tone));
-  reportEl.style.height="auto";
-  reportEl.style.height=Math.max(reportEl.scrollHeight,900)+"px";
-}
-$("generate").addEventListener("click",()=>{
-  const d=formData();
-  if(!d.cards.some(c=>c.name)){
-    $("status").textContent="カードを1枚以上選んでください。";
-    return;
-  }
-  reports={
-    warm:makeReport(d,"warm"),
-    objective:makeReport(d,"objective"),
-    encourage:makeReport(d,"encourage")
-  };
-  $("analysis").textContent=analysisText(d);
-  $("reportMeta").textContent=`${d.client||"ご相談者さま"}｜園子式ケルト十字リーディング`;
-  showTone(d.tone);
-  $("status").textContent="鑑定書を3案作りました。下のタブで読み比べられます。";
-  document.querySelector(".panel:last-of-type").scrollIntoView({behavior:"smooth"});
-});
-document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{
-  reports[activeTone]=reportEl.value;
-  showTone(btn.dataset.tone);
-}));
-reportEl.addEventListener("input",()=>{
-  reports[activeTone]=reportEl.value;
-  reportEl.style.height="auto"; reportEl.style.height=reportEl.scrollHeight+"px";
-});
-$("save").addEventListener("click",()=>{
-  reports[activeTone]=reportEl.value;
-  localStorage.setItem("sonokoReportMakerV3",JSON.stringify({...formData(),reports,activeTone}));
-  $("status").textContent="この端末のブラウザに保存しました。";
-});
-$("load").addEventListener("click",()=>{
-  const raw=localStorage.getItem("sonokoReportMakerV3");
-  if(!raw){$("status").textContent="保存データがありません。";return}
-  try{
-    const d=JSON.parse(raw);
-    ["client","date","question","background","overall","theme","known","message","action","privateMemo"].forEach(id=>$(id).value=d[id]||"");
-    $("relation").value=d.relation||"close"; $("directness").value=d.directness||"soft";
-    (d.cards||[]).forEach((c,i)=>{if($(`card${i}`)){$(`card${i}`).value=c.name||"";$(`dir${i}`).value=c.dir||"u";}});
-    reports=d.reports||{warm:"",objective:"",encourage:""};
-    activeTone=d.activeTone||d.tone||"warm";
-    const radio=document.querySelector(`input[name="tone"][value="${d.tone||"warm"}"]`); if(radio)radio.checked=true;
-    $("analysis").textContent=analysisText(formData());
-    showTone(activeTone);
-    $("status").textContent="保存内容を呼び出しました。";
-  }catch(e){$("status").textContent="保存データを読み込めませんでした。";}
-});
-$("clear").addEventListener("click",()=>{
-  if(!confirm("入力内容と表示中の鑑定書をすべて消しますか？"))return;
-  document.querySelectorAll("input,textarea").forEach(el=>{if(el.type!=="radio")el.value="";});
-  document.querySelectorAll(".cardrow select:first-of-type").forEach(el=>el.value="");
-  document.querySelectorAll(".cardrow select:last-of-type").forEach(el=>el.value="u");
-  $("relation").value="close";$("directness").value="soft";
-  document.querySelector('input[name="tone"][value="warm"]').checked=true;
-  reports={warm:"",objective:"",encourage:""};showTone("warm");
-  $("analysis").textContent="カードを入力して「鑑定書を3案作る」を押すと表示されます。";
-  $("status").textContent="入力内容を消しました。";
-});
-$("copy").addEventListener("click",async()=>{
-  if(!reportEl.value){return}
-  try{await navigator.clipboard.writeText(reportEl.value);$("status").textContent="鑑定書をコピーしました。";}
-  catch(e){reportEl.select();document.execCommand("copy");$("status").textContent="鑑定書をコピーしました。";}
-});
-$("print").addEventListener("click",()=>window.print());
-$("date").value=new Date().toISOString().slice(0,10);
-</script>
-</body>
-</html>
+const $=id=>document.getElementById(id),names=["",...Object.keys(tarot)],root=$("cards");
+positions.forEach((p,i)=>{const b=document.createElement("div");b.className="cardbox";b.innerHTML=`<div class="cardrow"><div class="pos"><b>${p[0]}</b><br>${p[1]}</div><select id="card${i}">${names.map(n=>`<option value="${n}">${n||"カードを選択"}</option>`).join("")}</select><select id="dir${i}"><option value="u">正位置</option><option value="r">逆位置</option></select></div><div class="meaning" id="meaning${i}"><div class="mt">一般的な意味</div><div id="meaningText${i}"></div><div class="mt" style="margin-top:7px">発想ヒント</div><div class="hints" id="hints${i}"></div></div>`;root.appendChild(b);$(`card${i}`).onchange=()=>updateMeaning(i);$(`dir${i}`).onchange=()=>updateMeaning(i)});
+function updateMeaning(i){const n=$(`card${i}`).value,d=$(`dir${i}`).value,m=$(`meaning${i}`);if(!n){m.classList.remove("show");return}$(`meaningText${i}`).textContent=tarot[n][d];$(`hints${i}`).innerHTML=tarot[n].h.map(x=>`<span class="hint">${x}</span>`).join("");m.classList.add("show");updateAnalysis()}
+function cards(){return positions.map((p,i)=>({num:p[0],pos:p[1],name:$(`card${i}`).value,dir:$(`dir${i}`).value}))}function label(c){return c.name?`${c.name}（${c.dir==="r"?"逆位置":"正位置"}）`:"未入力"}function meaning(c){return c.name?tarot[c.name][c.dir]:"未入力"}function action(c){return c.name?tarot[c.name].a:"状況を整理し、確認できることから始める"}function val(id){return ($(id).value||"").trim()}function join(a,s="\n\n"){return a.filter(x=>x&&String(x).trim()).join(s)}
+function data(){return{client:val("client"),date:$("date").value,question:val("question"),background:val("background"),relation:$("relation").value,directness:$("directness").value,overall:val("overall"),theme:val("theme"),known:val("known"),message:val("message"),action:val("action"),extra:val("extra"),privateMemo:val("privateMemo"),cards:cards(),tone:(document.querySelector('input[name="tone"]:checked')||{}).value||"warm",sonoDraft:$("sonoDraft").value,aiPrompt:$("aiPrompt").value,finalReport:$("finalReport").value}}
+function r29(c){const k=c[1],f=c[8];if(!k.name&&!f.name)return"";if(!k.name)return`⑨「${label(f)}」には、${meaning(f)}という未来の気配があります。`;if(!f.name)return`②「${label(k)}」は未来を変える鍵です。「${action(k)}」という方向が考えられます。`;return`⑨「${label(f)}」が示す「${meaning(f)}」という流れに対し、②「${label(k)}」が介入の鍵です。「${action(k)}」という読みができます。`}
+function r34(c){const a=c[2],b=c[3];if(!a.name&&!b.name)return"";return`③の顕在意識は「${label(a)}：${meaning(a)}」。④の潜在意識・土台は「${label(b)}：${meaning(b)}」。表面の考えと内側の望みの差を確認します。`}
+function r48(c){const a=c[3],b=c[7];if(!a.name&&!b.name)return"";return`④の内面は「${label(a)}」、⑧の環境は「${label(b)}」。本人の気持ちだけでなく、周囲や相手側の事情も含めて読みます。`}
+function timeline(c){const a=c[4],b=c[5],d=c[9];if(!a.name&&!b.name&&!d.name)return"";return`⑤「${label(a)}」から⑥「${label(b)}」を経て、⑩「${label(d)}」へ向かう流れです。⑩は確定未来ではなく、現在のまま進んだ場合の着地点として見ます。`}
+function analysisText(d){return join([r29(d.cards)&&`【② ↔ ⑨　未来を動かす鍵】\n${r29(d.cards)}`,r34(d.cards)&&`【③ ↔ ④　意識と心の土台】\n${r34(d.cards)}`,r48(d.cards)&&`【④ ↔ ⑧　内面と環境】\n${r48(d.cards)}`,timeline(d.cards)&&`【⑤ → ⑥ → ⑩　時間の流れ】\n${timeline(d.cards)}`])}function updateAnalysis(){$("analysis").textContent=analysisText(data())||"カードを入力すると表示されます。"}
+function helpText(d){const c=d.cards,o=[];if(c[0].name)o.push(`■ 現在の中心\n${label(c[0])}からは「${meaning(c[0])}」が相談の中心にあると考えられます。`);if(c[1].name||c[8].name)o.push(`■ ②と⑨の読み候補\n${r29(c)}\n\n候補A：②を未来へ進む助言として読む。\n候補B：⑨が厳しい時、②を未来を和らげる介入策として読む。\n候補C：②の反対側の性質も借り、極端になっていないか見る。`);if(c[2].name||c[3].name)o.push(`■ 頭と心のずれ\n${r34(c)}\n\n口にしている希望と、本心や恐れが一致していない可能性。両方が同時にあると考えます。`);if(c[3].name||c[7].name)o.push(`■ 本人と環境\n${r48(c)}\n\n本人だけが変われば解決するのか、相手・家族・会社など環境側の調整も必要かを分けます。`);if(c[4].name||c[5].name||c[9].name)o.push(`■ 時間の流れ\n${timeline(c)}\n\n⑥は途中の出来事だけでなく、⑩へ向かう過程や停滞としても見られます。`);o.push("※これは読みの候補です。園子が最初に受けた印象と相談者の背景を優先してください。");return join(o)}
+$("aiHelp").onclick=()=>{const d=data();$("helpResult").textContent=d.cards.some(c=>c.name)?helpText(d):"カードを1枚以上入力してください。";updateAnalysis()};
+function cardList(c){return c.filter(x=>x.name).map(x=>`${x.num} ${x.pos}：${label(x)}`).join("\n")}function intro(t,n){return t==="objective"?`${n}へ\n\n今回のご相談について、カードが示した現在、心の内側、周囲の状況、今後の流れを順にお伝えします。`:t==="encourage"?`${n}へ\n\n今回のカードには、これからの選択によって流れを変えていける可能性が表れていました。`:`${n}へ\n\n今回のご相談についてカードを開き、今のお気持ちとこれからの流れを丁寧に見ていきました。`}
+function draft(d){const c=d.cards,n=d.client||"ご相談者さま",cur=c[0].name?`現在には${label(c[0])}が出ています。「${meaning(c[0])}」という意味があります。`:"",memo=join([d.overall&&`カード全体を見て最初に感じたのは、${d.overall}`,d.theme&&`今回の中心には、${d.theme}というテーマがあるように思います。`,d.known&&`これまで伺っていることも踏まえると、${d.known}`,d.message&&`今回一番お伝えしたいのは、${d.message}`,d.extra]);return join([intro(d.tone,n),d.date&&`鑑定日：${d.date}`,d.question&&`■ ご相談内容\n${d.question}`,`■ 今回出たカード\n${cardList(c)}`,`■ 鑑定結果\n${join([cur,memo])}`,r29(c)&&`■ 未来を動かす鍵\n${r29(c)}`,join([r34(c),r48(c)])&&`■ 心の内側と周囲の状況\n${join([r34(c),r48(c)])}`,timeline(c)&&`■ これまでと、これからの流れ\n${timeline(c)}`,`■ これからのために\nまず現実にできる一歩として、${d.action||action(c[1])}`,`カードは未来を固定するものではありません。今の流れを知り、これからの選択を考えるための手がかりです。\n\nSono`])}
+$("makeDraft").onclick=()=>{const d=data();if(!d.cards.some(c=>c.name)){$("status").textContent="カードを1枚以上入力してください。";return}$("sonoDraft").value=draft(d);$("finalReport").value=$("sonoDraft").value;updateAnalysis();$("status").textContent="園子メモを軸に下書きを作りました。";document.querySelector(".draft").scrollIntoView({behavior:"smooth"})};
+function prompt(d){const tone={warm:"温かく柔らかい",objective:"落ち着いて客観的",encourage:"前向きに背中を押す"}[d.tone],direct={soft:"柔らかく断定を避ける",balanced:"柔らかさを保ちつつ要点は曖昧にしない",clear:"必要な内容ははっきり伝える"}[d.directness];return`あなたはタロット鑑定書の編集者です。\n以下の下書きを、相談者へそのまま渡せる完成版へ整えてください。\n\n【最重要ルール】\n・読みと結論はSonoのものです。新しい占断や事実を足さないでください。\n・Sonoの視点と少し率直な温度感を残してください。\n・「今回出たカード」には全カード名と正逆を残してください。\n・本文ではカード名を必要以上に繰り返さず、解釈を中心にしてください。\n・位置やカード名が意味を伝える箇所では自然に記載してください。\n・重複をまとめ、段落順と接続を自然にしてください。\n・未来を確定として断言しないでください。\n・雰囲気は「${tone}」、伝え方は「${direct}」。\n・見出しを使い、読み返しやすい一通の鑑定書にしてください。\n・完成本文だけを出力してください。編集理由は不要です。\n\n【相談内容】\n${d.question||"未入力"}\n\n【相談者の背景】\n${d.background||"未入力"}\n\n【園子式の関係性メモ】\n${analysisText(d)||"未入力"}\n\n【Sonoが作った鑑定書下書き】\n${$("sonoDraft").value||"未入力"}`}
+$("makePrompt").onclick=()=>{const d=data();if(!$("sonoDraft").value.trim()){$("status").textContent="先に園子の下書きを作ってください。";return}$("aiPrompt").value=prompt(d);$("status").textContent="AIへ渡す文章を作りました。";document.querySelector(".promptstage").scrollIntoView({behavior:"smooth"})};
+async function copy(t,m){if(!t.trim())return;try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove()}$("status").textContent=m}$("copyHelp").onclick=()=>copy($("helpResult").textContent,"ヘルプをコピーしました。");$("copyDraft").onclick=()=>copy($("sonoDraft").value,"下書きをコピーしました。");$("copyPrompt").onclick=()=>copy($("aiPrompt").value,"AI用文章をコピーしました。");$("copyFinal").onclick=()=>copy($("finalReport").value,"完成版をコピーしました。");$("print").onclick=()=>window.print();
+$("save").onclick=()=>{localStorage.setItem("sonokoV3Improved",JSON.stringify(data()));$("status").textContent="このブラウザに保存しました。"};$("load").onclick=()=>{const r=localStorage.getItem("sonokoV3Improved");if(!r){$("status").textContent="保存データがありません。";return}try{const d=JSON.parse(r);["client","date","question","background","overall","theme","known","message","action","extra","privateMemo","sonoDraft","aiPrompt","finalReport"].forEach(id=>$(id).value=d[id]||"");$("relation").value=d.relation||"close";$("directness").value=d.directness||"balanced";(d.cards||[]).forEach((c,i)=>{$(`card${i}`).value=c.name||"";$(`dir${i}`).value=c.dir||"u";updateMeaning(i)});const q=document.querySelector(`input[name="tone"][value="${d.tone||"warm"}"]`);if(q)q.checked=true;updateAnalysis();$("status").textContent="保存内容を呼び出しました。"}catch(e){$("status").textContent="読み込めませんでした。"}};
+$("clear").onclick=()=>{if(!confirm("すべて消しますか？"))return;document.querySelectorAll("input,textarea").forEach(e=>{if(e.type!=="radio")e.value=""});positions.forEach((_,i)=>{$(`card${i}`).value="";$(`dir${i}`).value="u";$(`meaning${i}`).classList.remove("show")});$("relation").value="close";$("directness").value="balanced";document.querySelector('input[name="tone"][value="warm"]').checked=true;$("helpResult").textContent="カードを入力してボタンを押してください。";$("analysis").textContent="カードを入力すると表示されます。";$("date").value=new Date().toISOString().slice(0,10);$("status").textContent="消去しました。"};$("date").value=new Date().toISOString().slice(0,10);
+</script></body></html>
