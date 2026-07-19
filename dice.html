@@ -25,7 +25,12 @@
 <div class="menu-overlay" id="mainMenu" aria-hidden="true"><nav class="menu-panel" aria-label="メインメニュー"><p class="menu-title">Menu</p><ul class="menu-list"><li><a href="index.html"><span class="menu-icon">⌂</span>ホーム</a></li><li><a href="draw.html"><span class="menu-icon">🃏</span>今日の一枚</a></li><li><a href="dice.html"><span class="menu-icon">🎲</span>Fortune Dice</a></li><li><a href="yesno.html"><span class="menu-icon">✦</span>YES / NO</a></li><li><a href="profile.html"><span class="menu-icon">◯</span>Profile</a></li></ul></nav></div>
 <main class="page-main"><div class="page-container">
 <section class="intro"><span class="page-kicker">Astro Dice</span><h1 class="page-title">Fortune Dice</h1><div class="ornament"></div><p class="intro-text">心の中で、今知りたいことを一つ思い浮かべてください。<br>3つのアストロダイスが、テーマを映し出します。</p></section>
-<section class="dice-panel"><div class="video-frame"><video class="dice-video" id="diceVideo" src="videos/fortune-dice-roll.mp4" preload="auto" playsinline muted></video><div class="video-cover" id="videoCover"><span class="cover-text">心の中で質問を思い浮かべてください</span></div></div><button class="main-button" id="rollButton" type="button">ダイスを振る</button></section>
+<section class="dice-panel"><div class="video-frame"><video class="dice-video" id="diceVideo" src="fortune-dice-roll.mp4" preload="auto" playsinline muted></video><div class="video-cover" id="videoCover"><span class="cover-text">心の中で質問を思い浮かべてください</span></div></div>
+<p id="videoError" style="display:none;margin:18px auto 0;text-align:center;color:#856f60;font-size:13px;line-height:1.8;">
+動画を読み込めませんでした。<br>
+「fortune-dice-roll.mp4」が dice.html と同じ場所にあるか確認してください。
+</p>
+<button class="main-button" id="rollButton" type="button">ダイスを振る</button></section>
 <section class="result-section" id="resultSection" aria-live="polite"><h2 class="result-heading">今回の出目</h2><div class="result-grid">
 <article class="result-card"><div class="result-symbol" id="houseSymbol"></div><h3 class="result-name" id="houseName"></h3><p class="result-keywords" id="houseKeywords"></p></article>
 <article class="result-card"><div class="result-symbol" id="signSymbol"></div><h3 class="result-name" id="signName"></h3><p class="result-keywords" id="signKeywords"></p></article>
@@ -44,7 +49,19 @@ const $=id=>document.getElementById(id),video=$("diceVideo"),cover=$("videoCover
 const random=a=>a[Math.floor(Math.random()*a.length)];
 function showResult(){const h=random(houses),s=random(signs),p=random(planets);$("houseSymbol").textContent=h.symbol;$("houseName").textContent=h.name;$("houseKeywords").textContent=h.keywords;$("signSymbol").textContent=s.symbol;$("signName").textContent=s.name;$("signKeywords").textContent=s.keywords;$("planetSymbol").textContent=p.symbol;$("planetName").textContent=p.name;$("planetKeywords").textContent=p.keywords;$("messageText").textContent=h.phrase+"、"+s.style+"が大切になりそうです。\n\n"+p.action+"。";result.classList.remove("show");void result.offsetWidth;result.classList.add("show");roll.disabled=false;retry.disabled=false;setTimeout(()=>result.scrollIntoView({behavior:"smooth",block:"start"}),100)}
 function rollDice(){roll.disabled=true;retry.disabled=true;result.classList.remove("show");cover.classList.add("hidden");video.pause();video.currentTime=0;const promise=video.play();if(promise)promise.catch(showResult)}
-video.addEventListener("ended",showResult);roll.addEventListener("click",rollDice);retry.addEventListener("click",rollDice);
+video.addEventListener("ended",showResult);
+video.addEventListener("error",()=>{
+  $("videoError").style.display="block";
+  roll.disabled=false;
+});
+roll.addEventListener("click",()=>{
+  $("videoError").style.display="none";
+  rollDice();
+});
+retry.addEventListener("click",()=>{
+  $("videoError").style.display="none";
+  rollDice();
+});
 const menuButton=$("menuButton"),mainMenu=$("mainMenu");function closeMenu(){menuButton.classList.remove("active");mainMenu.classList.remove("open");menuButton.setAttribute("aria-expanded","false");mainMenu.setAttribute("aria-hidden","true");document.body.classList.remove("menu-open")}menuButton.addEventListener("click",()=>{const open=mainMenu.classList.toggle("open");menuButton.classList.toggle("active",open);menuButton.setAttribute("aria-expanded",String(open));mainMenu.setAttribute("aria-hidden",String(!open));document.body.classList.toggle("menu-open",open)});mainMenu.addEventListener("click",e=>{if(e.target===mainMenu)closeMenu()});document.querySelectorAll(".menu-list a").forEach(a=>a.addEventListener("click",closeMenu));document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
 </script>
 </body>
