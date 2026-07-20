@@ -1,1 +1,1621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Tarot Letter サンプル｜創作鑑定事例</title>
+
+  <meta
+    name="description"
+    content="Tarot Letterでお届けする個人鑑定書のサンプルです。掲載内容は創作による鑑定事例です。"
+  >
+
+  <style>
+    :root {
+      --ivory: #fbf7ef;
+      --ivory-deep: #f1e8da;
+      --paper: #fffdf9;
+      --brown: #5d493d;
+      --brown-light: #8c7463;
+      --navy: #263f62;
+      --gold: #c7a15c;
+      --gold-light: #dfc58f;
+      --line: rgba(199, 161, 92, 0.3);
+      --shadow: rgba(73, 55, 42, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--brown);
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(255, 255, 255, 0.98),
+          rgba(248, 241, 231, 0.95) 54%,
+          rgba(239, 229, 214, 0.96) 100%
+        );
+      font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+      line-height: 1.9;
+      letter-spacing: 0.05em;
+    }
+
+    body.menu-open,
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* =========================
+       ヘッダー
+    ========================= */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      min-height: 64px;
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(251, 247, 239, 0.88);
+      border-bottom: 1px solid rgba(199, 161, 92, 0.22);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .header-name {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+    }
+
+    .menu-button {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: var(--brown);
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(199, 161, 92, 0.38);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .menu-lines {
+      position: relative;
+      width: 20px;
+      height: 14px;
+    }
+
+    .menu-lines span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transition:
+        top 0.3s ease,
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    .menu-lines span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-lines span:nth-child(2) {
+      top: 6px;
+    }
+
+    .menu-lines span:nth-child(3) {
+      top: 12px;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(1) {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+
+    .menu-button.active .menu-lines span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(3) {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    /* =========================
+       ハンバーガーメニュー
+    ========================= */
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      padding-top: 64px;
+      display: flex;
+      justify-content: flex-end;
+      background: rgba(72, 55, 43, 0.24);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+    }
+
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-panel {
+      width: min(88%, 360px);
+      height: calc(100vh - 64px);
+      padding: 34px 28px;
+      overflow-y: auto;
+      background: rgba(255, 252, 246, 0.98);
+      box-shadow: -12px 0 32px rgba(75, 55, 42, 0.16);
+      transform: translateX(30px);
+      transition: transform 0.3s ease;
+    }
+
+    .menu-overlay.open .menu-panel {
+      transform: translateX(0);
+    }
+
+    .menu-title {
+      margin: 0 0 25px;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .menu-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu-list li {
+      border-bottom: 1px solid rgba(199, 161, 92, 0.2);
+    }
+
+    .menu-list a {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    .menu-icon {
+      width: 24px;
+      color: var(--gold);
+      text-align: center;
+    }
+
+    /* =========================
+       ページ全体
+    ========================= */
+
+    .page-main {
+      padding: 118px 18px 80px;
+    }
+
+    .page-container {
+      width: min(100%, 1040px);
+      margin: 0 auto;
+    }
+
+    /* =========================
+       導入
+    ========================= */
+
+    .page-intro {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .page-kicker {
+      display: block;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      margin: 14px 0 0;
+      color: var(--navy);
+      font-size: clamp(28px, 5vw, 45px);
+      font-weight: 400;
+      letter-spacing: 0.13em;
+    }
+
+    .ornament {
+      width: 106px;
+      height: 16px;
+      margin: 21px auto 0;
+      position: relative;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 42px;
+      height: 1px;
+      background: var(--gold-light);
+    }
+
+    .ornament::before {
+      left: 0;
+    }
+
+    .ornament::after {
+      right: 0;
+    }
+
+    .ornament span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: var(--gold);
+      font-size: 16px;
+      line-height: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    .intro-text {
+      margin: 25px auto 0;
+      color: var(--brown-light);
+      font-size: 14px;
+      line-height: 2.15;
+    }
+
+    .sample-notice {
+      margin: 23px auto 0;
+      padding: 13px 20px;
+      display: inline-block;
+      color: #806b5d;
+      background: rgba(255, 252, 247, 0.68);
+      border: 1px solid rgba(199, 161, 92, 0.28);
+      border-radius: 999px;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       重なった4ページ
+    ========================= */
+
+    .sample-preview-section {
+      margin-top: 64px;
+      text-align: center;
+    }
+
+    .sample-stack-wrap {
+      width: min(100%, 610px);
+      margin: 0 auto;
+      padding: 38px 0 70px;
+      overflow: visible;
+    }
+
+    .sample-stack {
+      position: relative;
+      width: min(54vw, 292px);
+      aspect-ratio: 1024 / 1456;
+      margin: 0 auto;
+      cursor: pointer;
+      filter: drop-shadow(0 22px 22px rgba(74, 55, 42, 0.13));
+    }
+
+    .stack-page {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: var(--paper);
+      border-radius: 3px;
+      box-shadow:
+        0 12px 28px rgba(64, 48, 37, 0.18),
+        0 2px 5px rgba(64, 48, 37, 0.12);
+      transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
+      transform-origin: 50% 90%;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .stack-page:nth-child(1) {
+      z-index: 4;
+      transform: translate(0, 0) rotate(-1deg);
+    }
+
+    .stack-page:nth-child(2) {
+      z-index: 3;
+      transform: translate(-33px, 9px) rotate(-7deg);
+    }
+
+    .stack-page:nth-child(3) {
+      z-index: 2;
+      transform: translate(34px, 10px) rotate(7deg);
+    }
+
+    .stack-page:nth-child(4) {
+      z-index: 1;
+      transform: translate(3px, 22px) rotate(1deg);
+    }
+
+    .sample-stack:hover .stack-page:nth-child(1) {
+      transform: translate(0, -10px) rotate(-1deg);
+    }
+
+    .sample-stack:hover .stack-page:nth-child(2) {
+      transform: translate(-53px, 5px) rotate(-9deg);
+    }
+
+    .sample-stack:hover .stack-page:nth-child(3) {
+      transform: translate(54px, 5px) rotate(9deg);
+    }
+
+    .sample-stack:hover .stack-page:nth-child(4) {
+      transform: translate(3px, 31px) rotate(1deg);
+    }
+
+    .preview-guide {
+      margin: 4px 0 0;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+    }
+
+    .preview-title {
+      margin: 11px 0 0;
+      color: var(--navy);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+    }
+
+    .preview-text {
+      max-width: 540px;
+      margin: 15px auto 0;
+      color: var(--brown-light);
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .view-button {
+      margin-top: 26px;
+      padding: 14px 29px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      color: #fffaf1;
+      background:
+        linear-gradient(
+          135deg,
+          #344d70,
+          #263d5d
+        );
+      border: 1px solid rgba(199, 161, 92, 0.54);
+      border-radius: 999px;
+      box-shadow: 0 9px 22px rgba(38, 61, 93, 0.2);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .view-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 13px 26px rgba(38, 61, 93, 0.25);
+    }
+
+    /* =========================
+       4ページを順番に表示
+    ========================= */
+
+    .sample-pages-section {
+      margin-top: 83px;
+    }
+
+    .section-heading {
+      text-align: center;
+    }
+
+    .section-kicker {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 11px 0 0;
+      color: var(--navy);
+      font-size: clamp(23px, 4vw, 33px);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+    }
+
+    .sample-pages {
+      width: min(100%, 780px);
+      margin: 45px auto 0;
+      display: grid;
+      gap: 42px;
+    }
+
+    .sample-page-card {
+      margin: 0;
+      position: relative;
+    }
+
+    .sample-page-number {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .sample-image-button {
+      width: min(100%, 560px);
+      margin: 0 auto;
+      padding: 0;
+      display: block;
+      background: transparent;
+      border: 0;
+      cursor: zoom-in;
+    }
+
+    .sample-full-image {
+      width: 100%;
+      border-radius: 3px;
+      box-shadow:
+        0 22px 50px rgba(77, 57, 42, 0.16),
+        0 2px 5px rgba(77, 57, 42, 0.1);
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .sample-image-button:hover .sample-full-image {
+      transform: translateY(-3px);
+      box-shadow:
+        0 27px 58px rgba(77, 57, 42, 0.2),
+        0 3px 7px rgba(77, 57, 42, 0.12);
+    }
+
+    /* =========================
+       最後の案内
+    ========================= */
+
+    .closing-section {
+      margin-top: 82px;
+      padding: 47px 28px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 253, 248, 0.94),
+          rgba(247, 238, 225, 0.92)
+        );
+      border: 1px solid rgba(199, 161, 92, 0.28);
+      border-radius: 26px;
+      box-shadow: 0 18px 45px rgba(78, 57, 41, 0.09);
+    }
+
+    .closing-section::before,
+    .closing-section::after {
+      content: "✦";
+      position: absolute;
+      color: rgba(199, 161, 92, 0.36);
+      font-size: 30px;
+    }
+
+    .closing-section::before {
+      top: 17px;
+      left: 27px;
+    }
+
+    .closing-section::after {
+      right: 27px;
+      bottom: 17px;
+    }
+
+    .closing-mark {
+      color: var(--gold);
+      font-size: 27px;
+    }
+
+    .closing-title {
+      margin: 12px 0 0;
+      color: var(--navy);
+      font-size: 23px;
+      font-weight: 400;
+      letter-spacing: 0.11em;
+    }
+
+    .closing-text {
+      max-width: 580px;
+      margin: 18px auto 0;
+      color: var(--brown-light);
+      font-size: 13px;
+      line-height: 2.1;
+    }
+
+    .button-row {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 13px;
+    }
+
+    .main-button,
+    .sub-button {
+      min-width: 220px;
+      min-height: 51px;
+      padding: 13px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.09em;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .main-button {
+      color: #fffaf1;
+      background:
+        linear-gradient(
+          135deg,
+          #344d70,
+          #263d5d
+        );
+      border: 1px solid rgba(199, 161, 92, 0.5);
+      box-shadow: 0 9px 22px rgba(38, 61, 93, 0.18);
+    }
+
+    .sub-button {
+      color: var(--brown);
+      background: rgba(255, 253, 248, 0.8);
+      border: 1px solid rgba(199, 161, 92, 0.43);
+    }
+
+    .main-button:hover,
+    .sub-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       画像拡大画面
+    ========================= */
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      padding: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(33, 31, 32, 0.9);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+    }
+
+    .image-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-inner {
+      width: min(100%, 900px);
+      height: min(92vh, 1000px);
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .modal-image {
+      max-width: 100%;
+      max-height: 88vh;
+      object-fit: contain;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 2010;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: rgba(34, 34, 35, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 50%;
+      font-size: 25px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .modal-nav {
+      position: fixed;
+      top: 50%;
+      z-index: 2010;
+      width: 48px;
+      height: 60px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: rgba(34, 34, 35, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      font-size: 25px;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .modal-prev {
+      left: 13px;
+    }
+
+    .modal-next {
+      right: 13px;
+    }
+
+    .modal-counter {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      z-index: 2010;
+      padding: 7px 14px;
+      color: #fff;
+      background: rgba(34, 34, 35, 0.62);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      transform: translateX(-50%);
+    }
+
+    /* =========================
+       フッター
+    ========================= */
+
+    .site-footer {
+      padding: 43px 20px;
+      text-align: center;
+      color: #f9f2e7;
+      background:
+        linear-gradient(
+          135deg,
+          #59493f,
+          #736052
+        );
+    }
+
+    .footer-name {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0.14em;
+    }
+
+    .footer-copy {
+      margin: 12px 0 0;
+      color: rgba(255, 248, 239, 0.72);
+      font-size: 11px;
+    }
+
+    .copyright {
+      margin: 15px 0 0;
+      color: rgba(255, 248, 239, 0.45);
+      font-size: 9px;
+      letter-spacing: 0.09em;
+    }
+
+    /* =========================
+       スマートフォン
+    ========================= */
+
+    @media (max-width: 680px) {
+      .site-header {
+        min-height: 62px;
+        padding: 9px 13px;
+      }
+
+      .header-logo {
+        width: 39px;
+        height: 39px;
+      }
+
+      .header-name {
+        font-size: 13px;
+      }
+
+      .menu-button {
+        width: 43px;
+        height: 43px;
+      }
+
+      .menu-overlay {
+        padding-top: 62px;
+      }
+
+      .menu-panel {
+        height: calc(100vh - 62px);
+      }
+
+      .page-main {
+        padding: 96px 13px 60px;
+      }
+
+      .intro-text br {
+        display: none;
+      }
+
+      .sample-notice {
+        display: block;
+        border-radius: 17px;
+      }
+
+      .sample-preview-section {
+        margin-top: 48px;
+      }
+
+      .sample-stack-wrap {
+        padding: 30px 0 56px;
+      }
+
+      .sample-stack {
+        width: min(57vw, 225px);
+      }
+
+      .stack-page:nth-child(2) {
+        transform: translate(-24px, 8px) rotate(-7deg);
+      }
+
+      .stack-page:nth-child(3) {
+        transform: translate(24px, 8px) rotate(7deg);
+      }
+
+      .sample-stack:hover .stack-page:nth-child(2) {
+        transform: translate(-34px, 5px) rotate(-8deg);
+      }
+
+      .sample-stack:hover .stack-page:nth-child(3) {
+        transform: translate(34px, 5px) rotate(8deg);
+      }
+
+      .sample-pages-section {
+        margin-top: 64px;
+      }
+
+      .sample-pages {
+        margin-top: 33px;
+        gap: 31px;
+      }
+
+      .closing-section {
+        margin-top: 62px;
+        padding: 39px 20px;
+        border-radius: 22px;
+      }
+
+      .button-row {
+        display: grid;
+      }
+
+      .main-button,
+      .sub-button {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .modal-nav {
+        top: auto;
+        bottom: 15px;
+        width: 43px;
+        height: 43px;
+        transform: none;
+      }
+
+      .modal-prev {
+        left: 18px;
+      }
+
+      .modal-next {
+        right: 18px;
+      }
+
+      .modal-counter {
+        bottom: 18px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .page-title {
+        font-size: 27px;
+      }
+
+      .preview-title {
+        font-size: 18px;
+      }
+
+      .sample-stack {
+        width: 59vw;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ヘッダー -->
+  <header class="site-header">
+
+    <a
+      class="header-brand"
+      href="index.html"
+      aria-label="ホームへ戻る"
+    >
+      <img
+        class="header-logo"
+        src="images/logo.png"
+        alt="Tarot Letter ロゴ"
+      >
+
+      <span class="header-name">
+        Tarot Letter
+      </span>
+    </a>
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="メニューを開く"
+      aria-expanded="false"
+      aria-controls="mainMenu"
+    >
+      <span class="menu-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+  </header>
+
+  <!-- ハンバーガーメニュー -->
+  <div
+    class="menu-overlay"
+    id="mainMenu"
+    aria-hidden="true"
+  >
+    <nav
+      class="menu-panel"
+      aria-label="メインメニュー"
+    >
+      <p class="menu-title">
+        Menu
+      </p>
+
+      <ul class="menu-list">
+
+        <li>
+          <a href="index.html">
+            <span class="menu-icon">⌂</span>
+            ホーム
+          </a>
+        </li>
+
+        <li>
+          <a href="draw.html">
+            <span class="menu-icon">🃏</span>
+            今日の一枚
+          </a>
+        </li>
+
+        <li>
+          <a href="dice.html">
+            <span class="menu-icon">🎲</span>
+            Fortune Dice
+          </a>
+        </li>
+
+        <li>
+          <a href="yesno.html">
+            <span class="menu-icon">✦</span>
+            YES / NO
+          </a>
+        </li>
+
+        <li>
+          <a href="reading.html">
+            <span class="menu-icon">✉</span>
+            個人鑑定
+          </a>
+        </li>
+
+        <li>
+          <a href="profile.html">
+            <span class="menu-icon">◯</span>
+            Profile
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+
+  <main class="page-main">
+
+    <div class="page-container">
+
+      <!-- ページ説明 -->
+      <section class="page-intro">
+
+        <span class="page-kicker">
+          Sample Reading
+        </span>
+
+        <h1 class="page-title">
+          Tarot Letter サンプル
+        </h1>
+
+        <div class="ornament" aria-hidden="true">
+          <span>✦</span>
+        </div>
+
+        <p class="intro-text">
+          Tarot Letterがどのような形で届くのか、<br>
+          実際の雰囲気をご覧いただけるよう、<br>
+          サンプル鑑定書をご用意しました。
+        </p>
+
+        <p class="sample-notice">
+          掲載している内容は、創作による鑑定事例です。<br>
+          実際のご相談内容や鑑定結果ではありません。
+        </p>
+
+      </section>
+
+      <!-- 重なったサンプル -->
+      <section class="sample-preview-section">
+
+        <div class="sample-stack-wrap">
+
+          <div
+            class="sample-stack"
+            id="sampleStack"
+            role="button"
+            tabindex="0"
+            aria-label="サンプル鑑定書を開く"
+          >
+
+            <img
+              class="stack-page"
+              src="images/sample-cover.png"
+              alt="Tarot Letter サンプル 表紙"
+            >
+
+            <img
+              class="stack-page"
+              src="images/sample-cards.png"
+              alt=""
+              aria-hidden="true"
+            >
+
+            <img
+              class="stack-page"
+              src="images/sample-reading.png"
+              alt=""
+              aria-hidden="true"
+            >
+
+            <img
+              class="stack-page"
+              src="images/sample-gift.png"
+              alt=""
+              aria-hidden="true"
+            >
+
+          </div>
+
+        </div>
+
+        <p class="preview-guide">
+          TAP TO OPEN
+        </p>
+
+        <h2 class="preview-title">
+          サンプル鑑定書（創作事例）
+        </h2>
+
+        <p class="preview-text">
+          表紙から最後の「今回の小さな贈り物」まで、
+          実際にお届けするTarot Letterの雰囲気をご覧いただけます。
+        </p>
+
+        <button
+          class="view-button"
+          id="openSampleButton"
+          type="button"
+        >
+          <span>サンプルを大きく見る</span>
+          <span aria-hidden="true">→</span>
+        </button>
+
+      </section>
+
+      <!-- ページを順番に掲載 -->
+      <section
+        class="sample-pages-section"
+        id="samplePages"
+      >
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            Pages
+          </span>
+
+          <h2 class="section-title">
+            Tarot Letterの内容
+          </h2>
+
+          <div class="ornament" aria-hidden="true">
+            <span>✦</span>
+          </div>
+
+        </div>
+
+        <div class="sample-pages">
+
+          <figure class="sample-page-card">
+
+            <figcaption class="sample-page-number">
+              Page 01 ― Cover
+            </figcaption>
+
+            <button
+              class="sample-image-button"
+              type="button"
+              data-index="0"
+              aria-label="表紙を拡大して見る"
+            >
+              <img
+                class="sample-full-image"
+                src="images/sample-cover.png"
+                alt="Tarot Letter サンプル 表紙"
+                loading="lazy"
+              >
+            </button>
+
+          </figure>
+
+          <figure class="sample-page-card">
+
+            <figcaption class="sample-page-number">
+              Page 02 ― Cards
+            </figcaption>
+
+            <button
+              class="sample-image-button"
+              type="button"
+              data-index="1"
+              aria-label="今回出たカードのページを拡大して見る"
+            >
+              <img
+                class="sample-full-image"
+                src="images/sample-cards.png"
+                alt="Tarot Letter サンプル 今回出たカード"
+                loading="lazy"
+              >
+            </button>
+
+          </figure>
+
+          <figure class="sample-page-card">
+
+            <figcaption class="sample-page-number">
+              Page 03 ― Reading
+            </figcaption>
+
+            <button
+              class="sample-image-button"
+              type="button"
+              data-index="2"
+              aria-label="鑑定結果のページを拡大して見る"
+            >
+              <img
+                class="sample-full-image"
+                src="images/sample-reading.png"
+                alt="Tarot Letter サンプル 鑑定結果"
+                loading="lazy"
+              >
+            </button>
+
+          </figure>
+
+          <figure class="sample-page-card">
+
+            <figcaption class="sample-page-number">
+              Page 04 ― Small Gift
+            </figcaption>
+
+            <button
+              class="sample-image-button"
+              type="button"
+              data-index="3"
+              aria-label="今回の小さな贈り物のページを拡大して見る"
+            >
+              <img
+                class="sample-full-image"
+                src="images/sample-gift.png"
+                alt="Tarot Letter サンプル 今回の小さな贈り物"
+                loading="lazy"
+              >
+            </button>
+
+          </figure>
+
+        </div>
+
+      </section>
+
+      <!-- 最後の案内 -->
+      <section class="closing-section">
+
+        <div class="closing-mark" aria-hidden="true">
+          ✉
+        </div>
+
+        <h2 class="closing-title">
+          あなただけのTarot Letter
+        </h2>
+
+        <p class="closing-text">
+          Tarot Letterは、一通一通、
+          ご相談内容に合わせてお作りする個人鑑定書です。
+          <br><br>
+          鑑定内容に応じて、
+          文章量やページ数は異なる場合があります。
+        </p>
+
+        <div class="button-row">
+
+          <a
+            class="sub-button"
+            href="reading.html"
+          >
+            <span>個人鑑定について</span>
+            <span aria-hidden="true">←</span>
+          </a>
+
+          <a
+            class="main-button"
+            href="reading-request.html"
+          >
+            <span>Tarot Letterを申し込む</span>
+            <span aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+
+    <p class="footer-name">
+      Tarot Letter
+    </p>
+
+    <p class="footer-copy">
+      カードが綴る、あなたへの一通の手紙。
+    </p>
+
+    <p class="copyright">
+      © 2026 Tarot Letter
+    </p>
+
+  </footer>
+
+  <!-- 画像拡大 -->
+  <div
+    class="image-modal"
+    id="imageModal"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Tarot Letter サンプル画像"
+  >
+
+    <button
+      class="modal-close"
+      id="modalClose"
+      type="button"
+      aria-label="拡大画像を閉じる"
+    >
+      ×
+    </button>
+
+    <button
+      class="modal-nav modal-prev"
+      id="modalPrev"
+      type="button"
+      aria-label="前のページを見る"
+    >
+      ‹
+    </button>
+
+    <div class="modal-inner">
+
+      <img
+        class="modal-image"
+        id="modalImage"
+        src=""
+        alt=""
+      >
+
+    </div>
+
+    <button
+      class="modal-nav modal-next"
+      id="modalNext"
+      type="button"
+      aria-label="次のページを見る"
+    >
+      ›
+    </button>
+
+    <div
+      class="modal-counter"
+      id="modalCounter"
+      aria-live="polite"
+    >
+      1 / 4
+    </div>
+
+  </div>
+
+  <script>
+    /* =========================
+       ハンバーガーメニュー
+    ========================= */
+
+    const menuButton = document.getElementById("menuButton");
+    const mainMenu = document.getElementById("mainMenu");
+
+    function openMenu() {
+      menuButton.classList.add("active");
+      mainMenu.classList.add("open");
+
+      menuButton.setAttribute("aria-expanded", "true");
+      menuButton.setAttribute("aria-label", "メニューを閉じる");
+      mainMenu.setAttribute("aria-hidden", "false");
+
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMenu() {
+      menuButton.classList.remove("active");
+      mainMenu.classList.remove("open");
+
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "メニューを開く");
+      mainMenu.setAttribute("aria-hidden", "true");
+
+      document.body.classList.remove("menu-open");
+    }
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = mainMenu.classList.contains("open");
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mainMenu.addEventListener("click", (event) => {
+      if (event.target === mainMenu) {
+        closeMenu();
+      }
+    });
+
+    document
+      .querySelectorAll(".menu-list a")
+      .forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+    /* =========================
+       サンプル画像
+    ========================= */
+
+    const sampleImages = [
+      {
+        src: "images/sample-cover.png",
+        alt: "Tarot Letter サンプル 表紙"
+      },
+      {
+        src: "images/sample-cards.png",
+        alt: "Tarot Letter サンプル 今回出たカード"
+      },
+      {
+        src: "images/sample-reading.png",
+        alt: "Tarot Letter サンプル 鑑定結果"
+      },
+      {
+        src: "images/sample-gift.png",
+        alt: "Tarot Letter サンプル 今回の小さな贈り物"
+      }
+    ];
+
+    const sampleStack =
+      document.getElementById("sampleStack");
+
+    const openSampleButton =
+      document.getElementById("openSampleButton");
+
+    const imageModal =
+      document.getElementById("imageModal");
+
+    const modalImage =
+      document.getElementById("modalImage");
+
+    const modalClose =
+      document.getElementById("modalClose");
+
+    const modalPrev =
+      document.getElementById("modalPrev");
+
+    const modalNext =
+      document.getElementById("modalNext");
+
+    const modalCounter =
+      document.getElementById("modalCounter");
+
+    const sampleImageButtons =
+      document.querySelectorAll(".sample-image-button");
+
+    let currentImageIndex = 0;
+
+    function showModalImage(index) {
+      currentImageIndex =
+        (index + sampleImages.length) % sampleImages.length;
+
+      const selectedImage =
+        sampleImages[currentImageIndex];
+
+      modalImage.src = selectedImage.src;
+      modalImage.alt = selectedImage.alt;
+
+      modalCounter.textContent =
+        `${currentImageIndex + 1} / ${sampleImages.length}`;
+    }
+
+    function openImageModal(index = 0) {
+      showModalImage(index);
+
+      imageModal.classList.add("open");
+      imageModal.setAttribute("aria-hidden", "false");
+
+      document.body.classList.add("modal-open");
+
+      modalClose.focus();
+    }
+
+    function closeImageModal() {
+      imageModal.classList.remove("open");
+      imageModal.setAttribute("aria-hidden", "true");
+
+      document.body.classList.remove("modal-open");
+    }
+
+    function showPreviousImage() {
+      showModalImage(currentImageIndex - 1);
+    }
+
+    function showNextImage() {
+      showModalImage(currentImageIndex + 1);
+    }
+
+    sampleStack.addEventListener("click", () => {
+      openImageModal(0);
+    });
+
+    sampleStack.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Enter" ||
+        event.key === " "
+      ) {
+        event.preventDefault();
+        openImageModal(0);
+      }
+    });
+
+    openSampleButton.addEventListener("click", () => {
+      openImageModal(0);
+    });
+
+    sampleImageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const index =
+          Number(button.dataset.index);
+
+        openImageModal(index);
+      });
+    });
+
+    modalClose.addEventListener(
+      "click",
+      closeImageModal
+    );
+
+    modalPrev.addEventListener(
+      "click",
+      showPreviousImage
+    );
+
+    modalNext.addEventListener(
+      "click",
+      showNextImage
+    );
+
+    imageModal.addEventListener("click", (event) => {
+      if (
+        event.target === imageModal ||
+        event.target.classList.contains("modal-inner")
+      ) {
+        closeImageModal();
+      }
+    });
+
+    /* =========================
+       キーボード操作
+    ========================= */
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+        closeImageModal();
+      }
+
+      if (imageModal.classList.contains("open")) {
+        if (event.key === "ArrowLeft") {
+          showPreviousImage();
+        }
+
+        if (event.key === "ArrowRight") {
+          showNextImage();
+        }
+      }
+    });
+
+    /* =========================
+       スマホのスワイプ操作
+    ========================= */
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    imageModal.addEventListener(
+      "touchstart",
+      (event) => {
+        touchStartX =
+          event.changedTouches[0].screenX;
+      },
+      {
+        passive: true
+      }
+    );
+
+    imageModal.addEventListener(
+      "touchend",
+      (event) => {
+        touchEndX =
+          event.changedTouches[0].screenX;
+
+        const swipeDistance =
+          touchEndX - touchStartX;
+
+        if (Math.abs(swipeDistance) < 45) {
+          return;
+        }
+
+        if (swipeDistance > 0) {
+          showPreviousImage();
+        } else {
+          showNextImage();
+        }
+      },
+      {
+        passive: true
+      }
+    );
+  </script>
+
+</body>
+</html>
