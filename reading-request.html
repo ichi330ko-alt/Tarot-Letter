@@ -351,54 +351,6 @@
       transform: translate(-50%, -50%);
     }
 
-    .main-button,
-    .sub-button {
-      min-height: 53px;
-      padding: 13px 27px;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-
-      border-radius: 999px;
-
-      font-size: 13px;
-      letter-spacing: 0.1em;
-
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-    }
-
-    .main-button {
-      color: #fffaf0;
-
-      background:
-        linear-gradient(
-          135deg,
-          #344d70,
-          #263c5a
-        );
-
-      border: 1px solid rgba(197, 161, 93, 0.56);
-
-      box-shadow:
-        0 10px 24px rgba(35, 58, 89, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.11);
-    }
-
-    .sub-button {
-      color: var(--brown);
-      background: rgba(255, 253, 248, 0.83);
-      border: 1px solid rgba(197, 161, 93, 0.47);
-    }
-
-    .main-button:hover,
-    .sub-button:hover {
-      transform: translateY(-2px);
-    }
-
     /* ========================================
        ファーストビュー
     ======================================== */
@@ -853,7 +805,7 @@
     ======================================== */
 
     .notice-section {
-      padding: 88px 0;
+      padding: 88px 0 96px;
     }
 
     .notice-box {
@@ -898,68 +850,6 @@
 
       color: var(--gold);
       font-size: 10px;
-    }
-
-    /* ========================================
-       戻る案内
-    ======================================== */
-
-    .back-section {
-      padding: 73px 17px 82px;
-
-      color: #fffaf0;
-
-      background:
-        radial-gradient(
-          circle at 50% 15%,
-          #334c6e,
-          #243a59 45%,
-          #17283f 100%
-        );
-
-      text-align: center;
-    }
-
-    .back-title {
-      margin: 0;
-
-      color: #fffaf0;
-      font-size: clamp(22px, 4vw, 31px);
-      font-weight: 400;
-      line-height: 1.7;
-      letter-spacing: 0.12em;
-    }
-
-    .back-text {
-      max-width: 560px;
-      margin: 22px auto 0;
-
-      color: rgba(255, 250, 241, 0.75);
-      font-size: 13px;
-      line-height: 2.1;
-    }
-
-    .back-buttons {
-      margin-top: 29px;
-
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 13px;
-    }
-
-    .back-primary {
-      color: var(--navy-dark);
-      background: #fffaf0;
-
-      border: 1px solid rgba(223, 201, 149, 0.85);
-      box-shadow: 0 11px 27px rgba(0, 0, 0, 0.19);
-    }
-
-    .back-secondary {
-      color: #fffaf0;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(223, 201, 149, 0.42);
     }
 
     /* ========================================
@@ -1110,18 +1000,6 @@
       .items-list,
       .notice-box {
         padding: 24px 20px;
-      }
-
-      .back-section {
-        padding: 67px 17px 72px;
-      }
-
-      .back-buttons {
-        display: grid;
-      }
-
-      .back-buttons a {
-        width: min(100%, 340px);
       }
     }
 
@@ -1359,8 +1237,8 @@
             </h3>
 
             <p class="guide-text">
-              内容とお支払い方法をご確認いただいた後、
-              正式な受付となります。
+              内容とお支払い方法をご確認いただき、
+              お支払いの確認後に正式受付となります。
             </p>
 
           </article>
@@ -1416,7 +1294,7 @@
           </span>
 
           <h2 class="section-title">
-            お申し込み内容を送る
+            お申し込みフォーム
           </h2>
 
           <div class="ornament" aria-hidden="true">
@@ -1426,7 +1304,8 @@
           <p class="form-intro">
             下記のフォームに必要事項をご記入ください。
             <br>
-            「必須」と表示されていない項目は、書ける範囲で大丈夫です。
+            ご入力後、フォーム下部の「送信」ボタンを押すと、
+            お申し込み内容が送信されます。
           </p>
 
         </div>
@@ -1604,49 +1483,6 @@
             </li>
 
           </ul>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- 戻る案内 -->
-    <section class="back-section">
-
-      <div class="page-container">
-
-        <h2 class="back-title">
-          もう一度内容を確認してから、<br>
-          お申し込みいただけます
-        </h2>
-
-        <div class="ornament" aria-hidden="true">
-          <span>✦</span>
-        </div>
-
-        <p class="back-text">
-          鑑定内容や料金を確認したい方は個人鑑定ページへ。
-          <br>
-          実際の鑑定書をご覧になりたい方は、
-          サンプルページへお戻りください。
-        </p>
-
-        <div class="back-buttons">
-
-          <a
-            class="main-button back-primary"
-            href="reading.html"
-          >
-            個人鑑定ページへ戻る
-          </a>
-
-          <a
-            class="sub-button back-secondary"
-            href="reading-sample.html"
-          >
-            サンプル鑑定書を見る
-          </a>
 
         </div>
 
