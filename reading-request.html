@@ -1,1 +1,1780 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Tarot Letter お申し込み｜Sono</title>
+
+  <meta
+    name="description"
+    content="Tarot Letter個人鑑定のお申し込みページです。ご相談内容を確認後、Sonoよりメールでご案内します。"
+  >
+
+  <style>
+    :root {
+      --navy: #243a59;
+      --navy-dark: #17283f;
+      --navy-deep: #101c2e;
+
+      --ivory: #fbf7ef;
+      --ivory-dark: #f1e7d8;
+      --paper: #fffdf8;
+
+      --brown: #58483e;
+      --brown-light: #806d60;
+
+      --gold: #c5a15d;
+      --gold-light: #dfc995;
+
+      --line: rgba(197, 161, 93, 0.3);
+      --shadow: rgba(55, 41, 31, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      color: var(--brown);
+
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(255, 255, 255, 0.98),
+          rgba(251, 247, 239, 0.97) 40%,
+          rgba(239, 230, 216, 0.97) 100%
+        );
+
+      font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+      line-height: 1.9;
+      letter-spacing: 0.05em;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ========================================
+       ヘッダー
+    ======================================== */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+
+      width: 100%;
+      min-height: 64px;
+      padding: 9px 14px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: rgba(251, 247, 239, 0.91);
+      border-bottom: 1px solid rgba(197, 161, 93, 0.22);
+
+      backdrop-filter: blur(13px);
+      -webkit-backdrop-filter: blur(13px);
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .header-name {
+      color: var(--brown);
+      font-size: 14px;
+      letter-spacing: 0.14em;
+    }
+
+    .menu-button {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--brown);
+      background: rgba(255, 255, 255, 0.55);
+
+      border: 1px solid rgba(197, 161, 93, 0.4);
+      border-radius: 50%;
+
+      cursor: pointer;
+    }
+
+    .menu-lines {
+      position: relative;
+      width: 20px;
+      height: 14px;
+    }
+
+    .menu-lines span {
+      position: absolute;
+      left: 0;
+
+      width: 100%;
+      height: 1px;
+
+      background: currentColor;
+
+      transition:
+        top 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .menu-lines span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-lines span:nth-child(2) {
+      top: 6px;
+    }
+
+    .menu-lines span:nth-child(3) {
+      top: 12px;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(1) {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+
+    .menu-button.active .menu-lines span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(3) {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    /* ========================================
+       ハンバーガーメニュー
+    ======================================== */
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+
+      padding-top: 64px;
+
+      display: flex;
+      justify-content: flex-end;
+
+      background: rgba(38, 29, 23, 0.28);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+    }
+
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-panel {
+      width: min(88%, 360px);
+      height: calc(100vh - 64px);
+      padding: 34px 27px;
+
+      overflow-y: auto;
+
+      background: rgba(255, 252, 246, 0.99);
+      box-shadow: -14px 0 35px rgba(65, 48, 36, 0.18);
+
+      transform: translateX(35px);
+      transition: transform 0.3s ease;
+    }
+
+    .menu-overlay.open .menu-panel {
+      transform: translateX(0);
+    }
+
+    .menu-title {
+      margin: 0 0 24px;
+
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.27em;
+      text-transform: uppercase;
+    }
+
+    .menu-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu-list li {
+      border-bottom: 1px solid rgba(197, 161, 93, 0.21);
+    }
+
+    .menu-list a {
+      min-height: 58px;
+
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    .menu-icon {
+      width: 25px;
+      color: var(--gold);
+      text-align: center;
+    }
+
+    /* ========================================
+       共通
+    ======================================== */
+
+    .page-main {
+      padding-top: 64px;
+    }
+
+    .page-container {
+      width: min(100%, 1040px);
+      margin: 0 auto;
+      padding-left: 17px;
+      padding-right: 17px;
+    }
+
+    .section-kicker {
+      display: block;
+
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 11px 0 0;
+
+      color: var(--navy);
+      font-size: clamp(24px, 4vw, 33px);
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: 0.11em;
+    }
+
+    .ornament {
+      position: relative;
+
+      width: 108px;
+      height: 17px;
+      margin: 21px auto 0;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+
+      position: absolute;
+      top: 50%;
+
+      width: 42px;
+      height: 1px;
+
+      background: var(--gold-light);
+    }
+
+    .ornament::before {
+      left: 0;
+    }
+
+    .ornament::after {
+      right: 0;
+    }
+
+    .ornament span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      color: var(--gold);
+      font-size: 16px;
+      line-height: 1;
+
+      transform: translate(-50%, -50%);
+    }
+
+    .main-button,
+    .sub-button {
+      min-height: 53px;
+      padding: 13px 27px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+
+      border-radius: 999px;
+
+      font-size: 13px;
+      letter-spacing: 0.1em;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .main-button {
+      color: #fffaf0;
+
+      background:
+        linear-gradient(
+          135deg,
+          #344d70,
+          #263c5a
+        );
+
+      border: 1px solid rgba(197, 161, 93, 0.56);
+
+      box-shadow:
+        0 10px 24px rgba(35, 58, 89, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.11);
+    }
+
+    .sub-button {
+      color: var(--brown);
+      background: rgba(255, 253, 248, 0.83);
+      border: 1px solid rgba(197, 161, 93, 0.47);
+    }
+
+    .main-button:hover,
+    .sub-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ========================================
+       ファーストビュー
+    ======================================== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 555px;
+      padding: 96px 20px 78px;
+
+      display: grid;
+      place-items: center;
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(255, 255, 255, 0.94),
+          rgba(251, 247, 239, 0.93) 43%,
+          rgba(239, 228, 210, 0.97) 100%
+        );
+
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+      top: 47%;
+      left: 50%;
+
+      width: min(94vw, 620px);
+      height: min(94vw, 620px);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(223, 201, 149, 0.22) 0%,
+          rgba(223, 201, 149, 0.08) 40%,
+          rgba(223, 201, 149, 0) 72%
+        );
+
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero::after {
+      content: "✦";
+
+      position: absolute;
+      top: 105px;
+      right: 10%;
+
+      color: rgba(197, 161, 93, 0.29);
+      font-size: 29px;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+
+      width: min(100%, 720px);
+    }
+
+    .hero-kicker {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.31em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 17px 0 0;
+
+      color: var(--navy);
+      font-size: clamp(34px, 7vw, 55px);
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: 0.13em;
+    }
+
+    .hero-subtitle {
+      margin: 18px 0 0;
+
+      color: var(--brown);
+      font-size: clamp(17px, 3vw, 22px);
+      line-height: 1.9;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-text {
+      max-width: 610px;
+      margin: 25px auto 0;
+
+      color: var(--brown-light);
+      font-size: 14px;
+      line-height: 2.15;
+    }
+
+    .hero-note {
+      max-width: 570px;
+      margin: 28px auto 0;
+      padding: 17px 20px;
+
+      color: var(--brown-light);
+      background: rgba(255, 253, 248, 0.68);
+
+      border: 1px solid rgba(197, 161, 93, 0.27);
+      border-radius: 17px;
+
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    /* ========================================
+       お申し込みの流れ
+    ======================================== */
+
+    .guide-section {
+      padding: 88px 0 82px;
+    }
+
+    .section-heading {
+      text-align: center;
+    }
+
+    .guide-grid {
+      max-width: 900px;
+      margin: 48px auto 0;
+
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .guide-card {
+      position: relative;
+
+      padding: 33px 22px 29px;
+
+      background: rgba(255, 253, 248, 0.86);
+
+      border: 1px solid rgba(197, 161, 93, 0.29);
+      border-radius: 23px;
+
+      box-shadow: 0 14px 34px rgba(75, 54, 39, 0.08);
+
+      text-align: center;
+    }
+
+    .guide-number {
+      width: 47px;
+      height: 47px;
+      margin: 0 auto;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--gold);
+      background: rgba(197, 161, 93, 0.08);
+
+      border: 1px solid rgba(197, 161, 93, 0.31);
+      border-radius: 50%;
+
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .guide-title {
+      margin: 18px 0 0;
+
+      color: var(--navy);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+
+    .guide-text {
+      margin: 12px 0 0;
+
+      color: var(--brown-light);
+      font-size: 12px;
+      line-height: 1.95;
+    }
+
+    /* ========================================
+       安心案内
+    ======================================== */
+
+    .message-section {
+      padding: 80px 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(239, 231, 218, 0.58),
+          rgba(250, 246, 238, 0.75)
+        );
+    }
+
+    .message-box {
+      max-width: 790px;
+      margin: 0 auto;
+      padding: 49px 42px;
+
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 253, 248, 0.96),
+          rgba(246, 237, 223, 0.92)
+        );
+
+      border: 1px solid rgba(197, 161, 93, 0.3);
+      border-radius: 28px;
+
+      box-shadow: 0 18px 45px rgba(77, 57, 42, 0.09);
+
+      text-align: center;
+    }
+
+    .message-box::before,
+    .message-box::after {
+      content: "✦";
+
+      position: absolute;
+
+      color: rgba(197, 161, 93, 0.34);
+      font-size: 26px;
+    }
+
+    .message-box::before {
+      top: 20px;
+      left: 25px;
+    }
+
+    .message-box::after {
+      right: 25px;
+      bottom: 20px;
+    }
+
+    .message-title {
+      margin: 0;
+
+      color: var(--navy);
+      font-size: clamp(21px, 4vw, 29px);
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: 0.1em;
+    }
+
+    .message-text {
+      max-width: 620px;
+      margin: 23px auto 0;
+
+      color: var(--brown-light);
+      font-size: 13px;
+      line-height: 2.2;
+    }
+
+    /* ========================================
+       Googleフォーム
+    ======================================== */
+
+    .form-section {
+      padding: 92px 0 96px;
+    }
+
+    .form-heading {
+      text-align: center;
+    }
+
+    .form-intro {
+      max-width: 650px;
+      margin: 24px auto 0;
+
+      color: var(--brown-light);
+      font-size: 13px;
+      line-height: 2.1;
+      text-align: center;
+    }
+
+    .form-shell {
+      max-width: 850px;
+      margin: 47px auto 0;
+      padding: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 253, 248, 0.96),
+          rgba(246, 238, 225, 0.93)
+        );
+
+      border: 1px solid rgba(197, 161, 93, 0.34);
+      border-radius: 28px;
+
+      box-shadow:
+        0 22px 52px rgba(67, 49, 36, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .form-frame-wrap {
+      overflow: hidden;
+
+      background: #ffffff;
+
+      border: 1px solid rgba(197, 161, 93, 0.19);
+      border-radius: 18px;
+    }
+
+    .google-form {
+      width: 100%;
+      min-height: 1550px;
+
+      display: block;
+
+      border: 0;
+      background: #ffffff;
+    }
+
+    .form-help {
+      max-width: 740px;
+      margin: 21px auto 0;
+      padding: 18px 20px;
+
+      color: var(--brown-light);
+      background: rgba(255, 253, 248, 0.73);
+
+      border: 1px solid rgba(197, 161, 93, 0.23);
+      border-radius: 16px;
+
+      font-size: 11px;
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    /* ========================================
+       フォーム未設定時の表示
+    ======================================== */
+
+    .form-placeholder {
+      min-height: 520px;
+      padding: 55px 28px;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(255, 255, 255, 1),
+          rgba(250, 246, 238, 0.96)
+        );
+
+      text-align: center;
+    }
+
+    .form-placeholder-inner {
+      max-width: 530px;
+    }
+
+    .placeholder-mark {
+      color: var(--gold);
+      font-size: 31px;
+    }
+
+    .placeholder-title {
+      margin: 18px 0 0;
+
+      color: var(--navy);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.11em;
+    }
+
+    .placeholder-text {
+      margin: 19px 0 0;
+
+      color: var(--brown-light);
+      font-size: 13px;
+      line-height: 2.1;
+    }
+
+    /* ========================================
+       入力内容の案内
+    ======================================== */
+
+    .items-section {
+      padding: 84px 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(239, 231, 218, 0.57),
+          rgba(250, 246, 238, 0.76)
+        );
+    }
+
+    .items-list {
+      max-width: 760px;
+      margin: 45px auto 0;
+      padding: 30px 31px;
+
+      background: rgba(255, 253, 248, 0.84);
+
+      border: 1px solid rgba(197, 161, 93, 0.28);
+      border-radius: 23px;
+
+      box-shadow: 0 14px 34px rgba(75, 54, 39, 0.07);
+    }
+
+    .items-list p {
+      position: relative;
+
+      margin: 0;
+      padding: 16px 0 16px 31px;
+
+      color: var(--brown-light);
+      font-size: 13px;
+      line-height: 1.9;
+
+      border-bottom: 1px solid rgba(197, 161, 93, 0.18);
+    }
+
+    .items-list p:last-child {
+      border-bottom: 0;
+    }
+
+    .items-list p::before {
+      content: "✦";
+
+      position: absolute;
+      top: 17px;
+      left: 3px;
+
+      color: var(--gold);
+      font-size: 10px;
+    }
+
+    .items-list strong {
+      color: var(--navy);
+      font-weight: 400;
+    }
+
+    /* ========================================
+       注意事項
+    ======================================== */
+
+    .notice-section {
+      padding: 88px 0;
+    }
+
+    .notice-box {
+      max-width: 760px;
+      margin: 45px auto 0;
+      padding: 34px 32px;
+
+      background: rgba(255, 253, 248, 0.73);
+
+      border: 1px solid rgba(197, 161, 93, 0.28);
+      border-radius: 23px;
+    }
+
+    .notice-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .notice-list li {
+      position: relative;
+
+      padding: 16px 0 16px 28px;
+
+      color: var(--brown-light);
+      font-size: 12px;
+      line-height: 1.95;
+
+      border-bottom: 1px solid rgba(197, 161, 93, 0.18);
+    }
+
+    .notice-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .notice-list li::before {
+      content: "✦";
+
+      position: absolute;
+      top: 17px;
+      left: 2px;
+
+      color: var(--gold);
+      font-size: 10px;
+    }
+
+    /* ========================================
+       戻る案内
+    ======================================== */
+
+    .back-section {
+      padding: 73px 17px 82px;
+
+      color: #fffaf0;
+
+      background:
+        radial-gradient(
+          circle at 50% 15%,
+          #334c6e,
+          #243a59 45%,
+          #17283f 100%
+        );
+
+      text-align: center;
+    }
+
+    .back-title {
+      margin: 0;
+
+      color: #fffaf0;
+      font-size: clamp(22px, 4vw, 31px);
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: 0.12em;
+    }
+
+    .back-text {
+      max-width: 560px;
+      margin: 22px auto 0;
+
+      color: rgba(255, 250, 241, 0.75);
+      font-size: 13px;
+      line-height: 2.1;
+    }
+
+    .back-buttons {
+      margin-top: 29px;
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 13px;
+    }
+
+    .back-primary {
+      color: var(--navy-dark);
+      background: #fffaf0;
+
+      border: 1px solid rgba(223, 201, 149, 0.85);
+      box-shadow: 0 11px 27px rgba(0, 0, 0, 0.19);
+    }
+
+    .back-secondary {
+      color: #fffaf0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(223, 201, 149, 0.42);
+    }
+
+    /* ========================================
+       フッター
+    ======================================== */
+
+    .site-footer {
+      padding: 43px 20px;
+
+      color: #faf3e8;
+
+      background:
+        linear-gradient(
+          135deg,
+          #58483e,
+          #706052
+        );
+
+      text-align: center;
+    }
+
+    .footer-name {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0.15em;
+    }
+
+    .footer-copy {
+      margin: 11px 0 0;
+
+      color: rgba(255, 248, 239, 0.72);
+      font-size: 11px;
+    }
+
+    .copyright {
+      margin: 15px 0 0;
+
+      color: rgba(255, 248, 239, 0.43);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ========================================
+       スマートフォン
+    ======================================== */
+
+    @media (max-width: 760px) {
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .guide-card {
+        padding: 27px 23px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .site-header {
+        min-height: 62px;
+        padding: 9px 13px;
+      }
+
+      .header-logo {
+        width: 39px;
+        height: 39px;
+      }
+
+      .header-name {
+        font-size: 13px;
+      }
+
+      .menu-button {
+        width: 43px;
+        height: 43px;
+      }
+
+      .menu-overlay {
+        padding-top: 62px;
+      }
+
+      .menu-panel {
+        height: calc(100vh - 62px);
+      }
+
+      .page-main {
+        padding-top: 62px;
+      }
+
+      .hero {
+        min-height: 540px;
+        padding: 82px 17px 67px;
+      }
+
+      .hero::after {
+        top: 80px;
+        right: 8%;
+        font-size: 23px;
+      }
+
+      .hero-title {
+        font-size: 35px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+
+      .hero-text br {
+        display: none;
+      }
+
+      .guide-section,
+      .form-section,
+      .notice-section {
+        padding: 69px 0;
+      }
+
+      .message-section,
+      .items-section {
+        padding: 66px 0;
+      }
+
+      .message-box {
+        padding: 41px 22px;
+        border-radius: 23px;
+      }
+
+      .form-shell {
+        margin-top: 38px;
+        padding: 10px;
+
+        border-radius: 20px;
+      }
+
+      .form-frame-wrap {
+        border-radius: 13px;
+      }
+
+      .google-form {
+        min-height: 1750px;
+      }
+
+      .form-placeholder {
+        min-height: 470px;
+        padding: 45px 20px;
+      }
+
+      .items-list,
+      .notice-box {
+        padding: 24px 20px;
+      }
+
+      .back-section {
+        padding: 67px 17px 72px;
+      }
+
+      .back-buttons {
+        display: grid;
+      }
+
+      .back-buttons a {
+        width: min(100%, 340px);
+      }
+    }
+
+    @media (max-width: 390px) {
+      .hero-title {
+        font-size: 32px;
+      }
+
+      .section-title {
+        font-size: 23px;
+      }
+
+      .message-title {
+        font-size: 21px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ヘッダー -->
+  <header class="site-header">
+
+    <a
+      class="header-brand"
+      href="index.html"
+      aria-label="Tarot Letter ホームへ戻る"
+    >
+      <img
+        class="header-logo"
+        src="images/logo.png"
+        alt="Tarot Letter ロゴ"
+      >
+
+      <span class="header-name">
+        Tarot Letter
+      </span>
+    </a>
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="メニューを開く"
+      aria-expanded="false"
+      aria-controls="mainMenu"
+    >
+      <span class="menu-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+  </header>
+
+  <!-- ハンバーガーメニュー -->
+  <div
+    class="menu-overlay"
+    id="mainMenu"
+    aria-hidden="true"
+  >
+    <nav
+      class="menu-panel"
+      aria-label="メインメニュー"
+    >
+      <p class="menu-title">
+        Menu
+      </p>
+
+      <ul class="menu-list">
+
+        <li>
+          <a href="index.html">
+            <span class="menu-icon">⌂</span>
+            ホーム
+          </a>
+        </li>
+
+        <li>
+          <a href="draw.html">
+            <span class="menu-icon">🃏</span>
+            今日の一枚
+          </a>
+        </li>
+
+        <li>
+          <a href="yesno.html">
+            <span class="menu-icon">✦</span>
+            YES / NO
+          </a>
+        </li>
+
+        <li>
+          <a href="dice.html">
+            <span class="menu-icon">🎲</span>
+            Fortune DICE
+          </a>
+        </li>
+
+        <li>
+          <a href="reading.html">
+            <span class="menu-icon">✉</span>
+            個人鑑定
+          </a>
+        </li>
+
+        <li>
+          <a href="personal.html">
+            <span class="menu-icon">◯</span>
+            Profile
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+
+  <main class="page-main">
+
+    <!-- ファーストビュー -->
+    <section class="hero">
+
+      <div class="hero-inner">
+
+        <span class="hero-kicker">
+          Reading Request
+        </span>
+
+        <h1 class="hero-title">
+          Tarot Letter<br>
+          お申し込み
+        </h1>
+
+        <p class="hero-subtitle">
+          あなたの言葉を、<br>
+          書ける範囲でお聞かせください。
+        </p>
+
+        <div class="ornament" aria-hidden="true">
+          <span>✦</span>
+        </div>
+
+        <p class="hero-text">
+          うまくまとめようとしなくても大丈夫です。<br>
+          今気になっていることや、心にあることを、<br>
+          あなたの言葉で自由にお書きください。
+        </p>
+
+        <p class="hero-note">
+          ご相談内容を確認後、Sonoよりメールでご案内します。<br>
+          フォームを送信した時点では、鑑定の受付およびお支払いは確定しません。
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- 申し込み後の流れ -->
+    <section class="guide-section">
+
+      <div class="page-container">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            After Your Request
+          </span>
+
+          <h2 class="section-title">
+            フォーム送信後の流れ
+          </h2>
+
+          <div class="ornament" aria-hidden="true">
+            <span>✦</span>
+          </div>
+
+        </div>
+
+        <div class="guide-grid">
+
+          <article class="guide-card">
+
+            <div class="guide-number">
+              01
+            </div>
+
+            <h3 class="guide-title">
+              内容を確認します
+            </h3>
+
+            <p class="guide-text">
+              Sonoがご相談内容と
+              お申し込み事項を確認します。
+            </p>
+
+          </article>
+
+          <article class="guide-card">
+
+            <div class="guide-number">
+              02
+            </div>
+
+            <h3 class="guide-title">
+              メールをお送りします
+            </h3>
+
+            <p class="guide-text">
+              鑑定をお受けできるかどうかと、
+              今後のご案内をメールでお送りします。
+            </p>
+
+          </article>
+
+          <article class="guide-card">
+
+            <div class="guide-number">
+              03
+            </div>
+
+            <h3 class="guide-title">
+              受付確定
+            </h3>
+
+            <p class="guide-text">
+              内容とお支払い方法をご確認いただいた後、
+              正式な受付となります。
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- 安心案内 -->
+    <section class="message-section">
+
+      <div class="page-container">
+
+        <div class="message-box">
+
+          <h2 class="message-title">
+            まだ言葉になっていない気持ちも、<br>
+            そのままで大丈夫です
+          </h2>
+
+          <div class="ornament" aria-hidden="true">
+            <span>✦</span>
+          </div>
+
+          <p class="message-text">
+            ご相談内容は、きれいな文章にまとめる必要はありません。
+            <br><br>
+            「どうしたらよいか分からない」
+            「何が苦しいのか、自分でも整理できていない」
+            という状態でも大丈夫です。
+            <br><br>
+            書いていただいた言葉を手がかりに、
+            カードを通して今の状況を丁寧に読み解いていきます。
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Googleフォーム -->
+    <section class="form-section" id="request-form">
+
+      <div class="page-container">
+
+        <div class="form-heading">
+
+          <span class="section-kicker">
+            Application Form
+          </span>
+
+          <h2 class="section-title">
+            お申し込み内容を送る
+          </h2>
+
+          <div class="ornament" aria-hidden="true">
+            <span>✦</span>
+          </div>
+
+          <p class="form-intro">
+            下記のフォームに必要事項をご記入ください。
+            <br>
+            「必須」と表示されていない項目は、書ける範囲で大丈夫です。
+          </p>
+
+        </div>
+
+        <div class="form-shell">
+
+          <div class="form-frame-wrap">
+
+            <!--
+              Googleフォームを作成したあと、
+              GOOGLE_FORM_EMBED_URL_HERE の部分を
+              Googleフォームの埋め込みURLに変更してください。
+            -->
+
+            <iframe
+              id="googleForm"
+              class="google-form"
+              src="GOOGLE_FORM_EMBED_URL_HERE"
+              title="Tarot Letter お申し込みフォーム"
+              loading="lazy"
+            >
+              読み込んでいます…
+            </iframe>
+
+            <!-- Googleフォーム未設定時に表示されます -->
+            <div
+              class="form-placeholder"
+              id="formPlaceholder"
+            >
+
+              <div class="form-placeholder-inner">
+
+                <div class="placeholder-mark">
+                  ✦
+                </div>
+
+                <h3 class="placeholder-title">
+                  お申し込みフォーム準備中
+                </h3>
+
+                <p class="placeholder-text">
+                  現在、Tarot Letterのお申し込みフォームを
+                  準備しています。
+                  <br><br>
+                  フォームの公開まで、
+                  今しばらくお待ちください。
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="form-help">
+          送信後、自動返信メールが届かない場合は、
+          入力したメールアドレスや迷惑メールフォルダをご確認ください。
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- 入力内容の目安 -->
+    <section class="items-section">
+
+      <div class="page-container">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            Form Contents
+          </span>
+
+          <h2 class="section-title">
+            フォームでお聞きすること
+          </h2>
+
+          <div class="ornament" aria-hidden="true">
+            <span>✦</span>
+          </div>
+
+        </div>
+
+        <div class="items-list">
+
+          <p>
+            <strong>お名前・ニックネーム</strong><br>
+            本名でなくても構いません。
+          </p>
+
+          <p>
+            <strong>メールアドレス</strong><br>
+            ご案内と鑑定書を受け取れるアドレスをご記入ください。
+          </p>
+
+          <p>
+            <strong>Tarot Letter内で呼ばれたいお名前</strong><br>
+            鑑定書の文章内でお呼びするお名前です。
+          </p>
+
+          <p>
+            <strong>ご相談のテーマ</strong><br>
+            恋愛・人間関係、家族、仕事、自分自身、今後の方向性などからお選びください。
+          </p>
+
+          <p>
+            <strong>ご相談内容</strong><br>
+            今気になっていることや、これまでの経緯を自由にお書きください。
+          </p>
+
+          <p>
+            <strong>特にカードに尋ねたいこと</strong><br>
+            はっきりした質問がある場合のみ、ご記入ください。
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- 注意事項 -->
+    <section class="notice-section">
+
+      <div class="page-container">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            Before Sending
+          </span>
+
+          <h2 class="section-title">
+            送信前にご確認ください
+          </h2>
+
+          <div class="ornament" aria-hidden="true">
+            <span>✦</span>
+          </div>
+
+        </div>
+
+        <div class="notice-box">
+
+          <ul class="notice-list">
+
+            <li>
+              フォーム送信の時点では、鑑定の受付およびお支払いは確定しません。
+            </li>
+
+            <li>
+              ご相談内容を確認後、Sonoよりメールでご連絡します。
+            </li>
+
+            <li>
+              鑑定は未来や結果を必ず保証するものではありません。
+            </li>
+
+            <li>
+              医療・法律・投資・生死・犯罪に関する内容は、
+              お受けできない場合があります。
+            </li>
+
+            <li>
+              第三者の気持ちを断定することや、
+              他者を操作することを目的としたご相談には対応できません。
+            </li>
+
+            <li>
+              お送りいただいた個人情報やご相談内容は、
+              鑑定とご連絡以外の目的には使用しません。
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- 戻る案内 -->
+    <section class="back-section">
+
+      <div class="page-container">
+
+        <h2 class="back-title">
+          もう一度内容を確認してから、<br>
+          お申し込みいただけます
+        </h2>
+
+        <div class="ornament" aria-hidden="true">
+          <span>✦</span>
+        </div>
+
+        <p class="back-text">
+          鑑定内容や料金を確認したい方は個人鑑定ページへ。
+          <br>
+          実際の鑑定書をご覧になりたい方は、
+          サンプルページへお戻りください。
+        </p>
+
+        <div class="back-buttons">
+
+          <a
+            class="main-button back-primary"
+            href="reading.html"
+          >
+            個人鑑定ページへ戻る
+          </a>
+
+          <a
+            class="sub-button back-secondary"
+            href="reading-sample.html"
+          >
+            サンプル鑑定書を見る
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+
+    <p class="footer-name">
+      Tarot Letter
+    </p>
+
+    <p class="footer-copy">
+      カードが綴る、あなたへの一通の手紙。
+    </p>
+
+    <p class="copyright">
+      © 2026 Tarot Letter
+    </p>
+
+  </footer>
+
+  <script>
+    /* ========================================
+       ハンバーガーメニュー
+    ======================================== */
+
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const mainMenu =
+      document.getElementById("mainMenu");
+
+    function openMenu() {
+      menuButton.classList.add("active");
+      mainMenu.classList.add("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを閉じる"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMenu() {
+      menuButton.classList.remove("active");
+      mainMenu.classList.remove("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを開く"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove("menu-open");
+    }
+
+    menuButton.addEventListener("click", () => {
+      if (mainMenu.classList.contains("open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mainMenu.addEventListener("click", (event) => {
+      if (event.target === mainMenu) {
+        closeMenu();
+      }
+    });
+
+    document
+      .querySelectorAll(".menu-list a")
+      .forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+
+    /* ========================================
+       Googleフォーム未設定時の表示
+    ======================================== */
+
+    const googleForm =
+      document.getElementById("googleForm");
+
+    const formPlaceholder =
+      document.getElementById("formPlaceholder");
+
+    const formSource =
+      googleForm.getAttribute("src");
+
+    if (
+      !formSource ||
+      formSource.includes("GOOGLE_FORM_EMBED_URL_HERE")
+    ) {
+      googleForm.style.display = "none";
+      formPlaceholder.style.display = "flex";
+    }
+  </script>
+
+</body>
+</html>
