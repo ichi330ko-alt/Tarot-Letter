@@ -3,96 +3,919 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Profile｜Tarot Letter</title>
-  <meta name="description" content="Tarot Letterを作ったSonoのプロフィールと、この場所に込めた想い。">
+
+  <meta
+    name="description"
+    content="Tarot Letterを作ったSonoのプロフィールと、この場所に込めた想い。"
+  >
+
   <style>
-    :root{--cream:#f8f2e8;--paper:#fffdf8;--brown:#5f4b3e;--soft:#856f60;--gold:#c8a66a;--line:rgba(200,166,106,.35);--shadow:rgba(83,62,44,.16);--teal:#428f91;--teal-deep:#2e7174}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--brown);background:radial-gradient(circle at 50% 0,#fffdf8 0,var(--cream) 52%,#efe5d7 100%);font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;line-height:2;letter-spacing:.05em}body.menu-open{overflow:hidden}a{color:inherit;text-decoration:none}button{font:inherit}img{display:block;max-width:100%}
-    .site-header{position:fixed;top:0;left:0;z-index:1000;width:100%;min-height:64px;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;background:rgba(248,242,232,.9);border-bottom:1px solid rgba(200,166,106,.22);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-    .header-brand{display:flex;align-items:center;gap:10px}.header-logo{width:42px;height:42px;object-fit:contain;border-radius:50%}.header-name{font-size:14px;letter-spacing:.12em}.menu-button{width:44px;height:44px;padding:0;display:grid;place-items:center;color:var(--brown);background:rgba(255,255,255,.58);border:1px solid rgba(200,166,106,.38);border-radius:50%;cursor:pointer}.menu-lines{position:relative;width:20px;height:14px}.menu-lines span{position:absolute;left:0;width:100%;height:1px;background:currentColor;transition:.3s ease}.menu-lines span:nth-child(1){top:0}.menu-lines span:nth-child(2){top:6px}.menu-lines span:nth-child(3){top:12px}.menu-button.active .menu-lines span:nth-child(1){top:6px;transform:rotate(45deg)}.menu-button.active .menu-lines span:nth-child(2){opacity:0}.menu-button.active .menu-lines span:nth-child(3){top:6px;transform:rotate(-45deg)}
-    .menu-overlay{position:fixed;inset:0;z-index:900;padding-top:64px;display:flex;justify-content:flex-end;background:rgba(72,55,43,.24);opacity:0;visibility:hidden;transition:.3s ease}.menu-overlay.open{opacity:1;visibility:visible}.menu-panel{width:min(88%,360px);height:calc(100vh - 64px);padding:34px 28px;overflow-y:auto;background:linear-gradient(rgba(255,253,248,.99),rgba(246,238,225,.99));box-shadow:-12px 18px 40px rgba(78,58,42,.22);transform:translateX(105%);transition:.35s ease}.menu-overlay.open .menu-panel{transform:translateX(0)}.menu-title{margin:0 0 24px;color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase}.menu-list{margin:0;padding:0;list-style:none}.menu-list li{border-bottom:1px solid rgba(200,166,106,.24)}.menu-list a{padding:17px 4px;display:flex;align-items:center;gap:12px;font-size:15px}.menu-icon{width:27px;text-align:center;font-size:18px}
-    .page-main{min-height:100vh;padding:98px 16px 70px}.page-container{width:min(100%,820px);margin:0 auto}.intro{text-align:center}.page-kicker{display:block;color:var(--teal);font-size:11px;letter-spacing:.26em;text-transform:uppercase}.page-title{margin:8px 0 0;font-size:clamp(36px,8vw,56px);font-weight:400;letter-spacing:.11em}.ornament{width:110px;height:1px;margin:22px auto;background:linear-gradient(to right,transparent,var(--gold),transparent)}.intro-text{margin:0;color:var(--soft);font-size:14px}
-    .profile-card{margin-top:34px;padding:clamp(34px,7vw,58px) clamp(22px,7vw,64px);background:rgba(255,253,248,.95);border:1px solid var(--line);border-radius:28px;box-shadow:0 20px 55px var(--shadow)}.profile-mark{width:64px;height:64px;margin:0 auto 28px;display:grid;place-items:center;color:var(--teal-deep);background:radial-gradient(circle,rgba(255,255,255,.96),rgba(239,228,209,.76));border:1px solid rgba(200,166,106,.46);border-radius:50%;font-size:24px;box-shadow:0 10px 28px rgba(83,62,44,.11)}.profile-text{max-width:650px;margin:0 auto;font-size:15px;line-height:2.25}.profile-text p{margin:0 0 1.7em}.profile-text p:last-child{margin-bottom:0}.profile-text strong{color:var(--teal-deep);font-weight:600}.core-phrase{margin:2.3em 0;padding:24px 20px;text-align:center;color:var(--teal-deep);background:rgba(248,240,227,.74);border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:17px;line-height:2}.signature{margin-top:34px;text-align:right;color:var(--soft);font-size:16px;letter-spacing:.12em}.next-link{margin-top:30px;text-align:center}.next-button{width:min(100%,300px);margin:0 auto;padding:15px 28px;display:inline-flex;align-items:center;justify-content:center;color:#fffdf8;background:linear-gradient(135deg,var(--teal-deep),var(--teal));border:1px solid rgba(255,255,255,.48);border-radius:999px;box-shadow:0 12px 30px rgba(46,113,116,.24);font-size:14px;letter-spacing:.12em;transition:transform .25s ease,box-shadow .25s ease}.next-button:hover{transform:translateY(-2px);box-shadow:0 15px 34px rgba(46,113,116,.31)}
-    .site-footer{padding:42px 20px;text-align:center;color:#f8f0e5;background:linear-gradient(135deg,#5d4c41,#756052)}.footer-name{margin:0;font-size:17px;letter-spacing:.14em}.footer-copy{margin:12px 0 0;color:rgba(255,248,239,.72);font-size:11px}
-    @media(max-width:680px){.page-main{padding:88px 12px 50px}.profile-card{border-radius:22px}.profile-text{font-size:14px;line-height:2.2}.core-phrase{font-size:16px}}
+    :root {
+      --cream: #f8f2e8;
+      --paper: #fffdf8;
+      --brown: #5f4b3e;
+      --soft: #856f60;
+      --gold: #c8a66a;
+      --line: rgba(200, 166, 106, 0.35);
+      --shadow: rgba(83, 62, 44, 0.16);
+      --teal: #428f91;
+      --teal-deep: #2e7174;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--brown);
+      background:
+        radial-gradient(
+          circle at 50% 0,
+          #fffdf8 0,
+          var(--cream) 52%,
+          #efe5d7 100%
+        );
+      font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+      line-height: 2;
+      letter-spacing: 0.05em;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* =========================
+       ヘッダー
+    ========================= */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      min-height: 64px;
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(248, 242, 232, 0.9);
+      border-bottom: 1px solid rgba(200, 166, 106, 0.22);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .header-name {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+    }
+
+    /* =========================
+       ハンバーガーメニュー
+    ========================= */
+
+    .menu-button {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: var(--brown);
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(200, 166, 106, 0.38);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .menu-lines {
+      position: relative;
+      width: 20px;
+      height: 14px;
+    }
+
+    .menu-lines span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transition: 0.3s ease;
+    }
+
+    .menu-lines span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-lines span:nth-child(2) {
+      top: 6px;
+    }
+
+    .menu-lines span:nth-child(3) {
+      top: 12px;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(1) {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+
+    .menu-button.active .menu-lines span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(3) {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      padding-top: 64px;
+      display: flex;
+      justify-content: flex-end;
+      background: rgba(72, 55, 43, 0.24);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s ease;
+    }
+
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-panel {
+      width: min(88%, 360px);
+      height: calc(100vh - 64px);
+      padding: 34px 28px;
+      overflow-y: auto;
+      background:
+        linear-gradient(
+          rgba(255, 253, 248, 0.99),
+          rgba(246, 238, 225, 0.99)
+        );
+      box-shadow: -12px 18px 40px rgba(78, 58, 42, 0.22);
+      transform: translateX(105%);
+      transition: 0.35s ease;
+    }
+
+    .menu-overlay.open .menu-panel {
+      transform: translateX(0);
+    }
+
+    .menu-title {
+      margin: 0 0 24px;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .menu-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu-list li {
+      border-bottom: 1px solid rgba(200, 166, 106, 0.24);
+    }
+
+    .menu-list a {
+      padding: 17px 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+    }
+
+    .menu-icon {
+      width: 27px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    /* =========================
+       メイン
+    ========================= */
+
+    .page-main {
+      min-height: 100vh;
+      padding: 98px 16px 70px;
+    }
+
+    .page-container {
+      width: min(100%, 820px);
+      margin: 0 auto;
+    }
+
+    .intro {
+      text-align: center;
+    }
+
+    .page-kicker {
+      display: block;
+      color: var(--teal);
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      margin: 8px 0 0;
+      font-size: clamp(36px, 8vw, 56px);
+      font-weight: 400;
+      letter-spacing: 0.11em;
+    }
+
+    .ornament {
+      width: 110px;
+      height: 1px;
+      margin: 22px auto;
+      background:
+        linear-gradient(
+          to right,
+          transparent,
+          var(--gold),
+          transparent
+        );
+    }
+
+    .intro-text {
+      margin: 0;
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    /* =========================
+       プロフィール本文
+    ========================= */
+
+    .profile-card {
+      margin-top: 34px;
+      padding:
+        clamp(34px, 7vw, 58px)
+        clamp(22px, 7vw, 64px);
+      background: rgba(255, 253, 248, 0.95);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: 0 20px 55px var(--shadow);
+    }
+
+    .profile-mark {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 28px;
+      display: grid;
+      place-items: center;
+      color: var(--teal-deep);
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.96),
+          rgba(239, 228, 209, 0.76)
+        );
+      border: 1px solid rgba(200, 166, 106, 0.46);
+      border-radius: 50%;
+      font-size: 24px;
+      box-shadow: 0 10px 28px rgba(83, 62, 44, 0.11);
+    }
+
+    .profile-text {
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 15px;
+      line-height: 2.25;
+    }
+
+    .profile-text p {
+      margin: 0 0 1.7em;
+    }
+
+    .profile-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .profile-text strong {
+      color: var(--teal-deep);
+      font-weight: 600;
+    }
+
+    .core-phrase {
+      margin: 2.3em 0;
+      padding: 24px 20px;
+      text-align: center;
+      color: var(--teal-deep);
+      background: rgba(248, 240, 227, 0.74);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-size: 17px;
+      line-height: 2;
+    }
+
+    .signature {
+      margin-top: 34px;
+      text-align: right;
+      color: var(--soft);
+      font-size: 16px;
+      letter-spacing: 0.12em;
+    }
+
+    /* =========================
+       X紹介欄
+    ========================= */
+
+    .social-section {
+      max-width: 650px;
+      margin: 46px auto 0;
+      padding: 34px 24px;
+      text-align: center;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(248, 240, 227, 0.72),
+          rgba(255, 253, 248, 0.92)
+        );
+      border: 1px solid var(--line);
+      border-radius: 22px;
+    }
+
+    .social-symbol {
+      width: 46px;
+      height: 46px;
+      margin: 0 auto 14px;
+      display: grid;
+      place-items: center;
+      color: var(--teal-deep);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(200, 166, 106, 0.42);
+      border-radius: 50%;
+      font-family: Arial, sans-serif;
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    .social-kicker {
+      margin: 0;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .social-title {
+      margin: 7px 0 12px;
+      color: var(--teal-deep);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+    }
+
+    .social-text {
+      margin: 0;
+      color: var(--soft);
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .social-account {
+      margin: 15px 0 0;
+      color: var(--brown);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .x-button {
+      width: min(100%, 280px);
+      margin: 22px auto 0;
+      padding: 14px 25px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      color: #fffdf8;
+      background:
+        linear-gradient(
+          135deg,
+          var(--teal-deep),
+          var(--teal)
+        );
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(46, 113, 116, 0.24);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .x-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 34px rgba(46, 113, 116, 0.31);
+    }
+
+    .x-button-mark {
+      font-size: 16px;
+    }
+
+    /* =========================
+       次のページへのボタン
+    ========================= */
+
+    .next-link {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .next-button {
+      width: min(100%, 300px);
+      margin: 0 auto;
+      padding: 15px 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fffdf8;
+      background:
+        linear-gradient(
+          135deg,
+          var(--teal-deep),
+          var(--teal)
+        );
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(46, 113, 116, 0.24);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .next-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 34px rgba(46, 113, 116, 0.31);
+    }
+
+    /* =========================
+       フッター
+    ========================= */
+
+    .site-footer {
+      padding: 42px 20px;
+      text-align: center;
+      color: #f8f0e5;
+      background:
+        linear-gradient(
+          135deg,
+          #5d4c41,
+          #756052
+        );
+    }
+
+    .footer-name {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0.14em;
+    }
+
+    .footer-copy {
+      margin: 12px 0 0;
+      color: rgba(255, 248, 239, 0.72);
+      font-size: 11px;
+    }
+
+    /* =========================
+       スマートフォン
+    ========================= */
+
+    @media (max-width: 680px) {
+      .page-main {
+        padding: 88px 12px 50px;
+      }
+
+      .profile-card {
+        border-radius: 22px;
+      }
+
+      .profile-text {
+        font-size: 14px;
+        line-height: 2.2;
+      }
+
+      .core-phrase {
+        font-size: 16px;
+      }
+
+      .social-section {
+        margin-top: 38px;
+        padding: 30px 18px;
+        border-radius: 20px;
+      }
+
+      .social-title {
+        font-size: 18px;
+      }
+
+      .social-text {
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
+
 <body>
+
   <header class="site-header">
-    <a class="header-brand" href="index.html" aria-label="ホームへ戻る">
-      <img class="header-logo" src="images/logo.png" alt="Tarot Letter ロゴ">
-      <span class="header-name">Tarot Letter</span>
+
+    <a
+      class="header-brand"
+      href="index.html"
+      aria-label="ホームへ戻る"
+    >
+      <img
+        class="header-logo"
+        src="images/logo.png"
+        alt="Tarot Letter ロゴ"
+      >
+
+      <span class="header-name">
+        Tarot Letter
+      </span>
     </a>
-    <button class="menu-button" id="menuButton" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mainMenu">
-      <span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="メニューを開く"
+      aria-expanded="false"
+      aria-controls="mainMenu"
+    >
+      <span class="menu-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
     </button>
+
   </header>
 
-  <div class="menu-overlay" id="mainMenu" aria-hidden="true">
-    <nav class="menu-panel" aria-label="メインメニュー">
-      <p class="menu-title">Menu</p>
+  <div
+    class="menu-overlay"
+    id="mainMenu"
+    aria-hidden="true"
+  >
+
+    <nav
+      class="menu-panel"
+      aria-label="メインメニュー"
+    >
+
+      <p class="menu-title">
+        Menu
+      </p>
+
       <ul class="menu-list">
-        <li><a href="index.html"><span class="menu-icon">⌂</span>ホーム</a></li>
-        <li><a href="draw.html"><span class="menu-icon">🃏</span>今日の一枚</a></li>
-        <li><a href="dice.html"><span class="menu-icon">🎲</span>Fortune Dice</a></li>
-        <li><a href="yesno.html"><span class="menu-icon">✦</span>YES / NO</a></li>
-        <li><a href="profile.html"><span class="menu-icon">◯</span>Profile</a></li>
+
+        <li>
+          <a href="index.html">
+            <span class="menu-icon">⌂</span>
+            ホーム
+          </a>
+        </li>
+
+        <li>
+          <a href="draw.html">
+            <span class="menu-icon">🃏</span>
+            今日の一枚
+          </a>
+        </li>
+
+        <li>
+          <a href="dice.html">
+            <span class="menu-icon">🎲</span>
+            Fortune Dice
+          </a>
+        </li>
+
+        <li>
+          <a href="yesno.html">
+            <span class="menu-icon">✦</span>
+            YES / NO
+          </a>
+        </li>
+
+        <li>
+          <a href="profile.html">
+            <span class="menu-icon">◯</span>
+            Profile
+          </a>
+        </li>
+
       </ul>
+
     </nav>
+
   </div>
 
   <main class="page-main">
+
     <div class="page-container">
+
       <section class="intro">
-        <span class="page-kicker">About</span>
-        <h1 class="page-title">Profile</h1>
+
+        <span class="page-kicker">
+          About
+        </span>
+
+        <h1 class="page-title">
+          Profile
+        </h1>
+
         <div class="ornament"></div>
-        <p class="intro-text">Tarot Letterを作った理由について</p>
+
+        <p class="intro-text">
+          Tarot Letterを作った理由について
+        </p>
+
       </section>
 
       <article class="profile-card">
-        <div class="profile-mark" aria-hidden="true">✦</div>
-        <div class="profile-text">
-          <p>はじめまして、Sonoです。</p>
-          <p>私が占いに興味を持ったきっかけは、カラー占いでした。</p>
-          <p>当時、悩んでいたことを、まるで心の中を見透かされたように言葉にされた瞬間があります。</p>
-          <p>問題そのものが解決したわけではありません。<br>それでも、「わかってもらえた」と感じたことで、不思議なくらい心が軽くなったことを今でも覚えています。</p>
 
-          <div class="core-phrase">人は、答えだけではなく、<br>理解されることで救われることがある。</div>
-
-          <p>時を経て、今度は私自身がカードを読む側になりました。</p>
-          <p>カードが映し出す心を、一つひとつ言葉にしながら感じるのは、未来を当てること以上に、「今の自分を知ること」の大切さです。</p>
-          <p>占いというと、「未来を当てるもの」という印象を持つ方も多いかもしれません。</p>
-          <p>でも私は、未来へ続く答えも、その人らしさも、すでに心の中にあると思っています。</p>
-          <p>ただ、自分では気づけなかったり、言葉にできなかったりするだけ。</p>
-          <p>Tarot Letterでは、一枚一枚のカードを<strong>「あなたへの一通の手紙」</strong>としてお届けします。</p>
-          <p>そこには、今のあなたに必要な気づきや、自分でもまだ言葉にできていなかった心の声が、そっと綴られているかもしれません。</p>
-          <p>この場所が、あなた自身と向き合う小さなきっかけになりますように。</p>
-          <p>そして、一人ひとりに必要なメッセージが届きますように。</p>
-          <p class="signature">Sono</p>
+        <div
+          class="profile-mark"
+          aria-hidden="true"
+        >
+          ✦
         </div>
+
+        <div class="profile-text">
+
+          <p>
+            はじめまして、Sonoです。
+          </p>
+
+          <p>
+            私が占いに興味を持ったきっかけは、カラー占いでした。
+          </p>
+
+          <p>
+            当時、悩んでいたことを、まるで心の中を見透かされたように言葉にされた瞬間があります。
+          </p>
+
+          <p>
+            問題そのものが解決したわけではありません。<br>
+            それでも、「わかってもらえた」と感じたことで、不思議なくらい心が軽くなったことを今でも覚えています。
+          </p>
+
+          <div class="core-phrase">
+            人は、答えだけではなく、<br>
+            理解されることで救われることがある。
+          </div>
+
+          <p>
+            時を経て、今度は私自身がカードを読む側になりました。
+          </p>
+
+          <p>
+            カードが映し出す心を、一つひとつ言葉にしながら感じるのは、未来を当てること以上に、「今の自分を知ること」の大切さです。
+          </p>
+
+          <p>
+            占いというと、「未来を当てるもの」という印象を持つ方も多いかもしれません。
+          </p>
+
+          <p>
+            でも私は、未来へ続く答えも、その人らしさも、すでに心の中にあると思っています。
+          </p>
+
+          <p>
+            ただ、自分では気づけなかったり、言葉にできなかったりするだけ。
+          </p>
+
+          <p>
+            Tarot Letterでは、一枚一枚のカードを
+            <strong>「あなたへの一通の手紙」</strong>
+            としてお届けします。
+          </p>
+
+          <p>
+            そこには、今のあなたに必要な気づきや、自分でもまだ言葉にできていなかった心の声が、そっと綴られているかもしれません。
+          </p>
+
+          <p>
+            この場所が、あなた自身と向き合う小さなきっかけになりますように。
+          </p>
+
+          <p>
+            そして、一人ひとりに必要なメッセージが届きますように。
+          </p>
+
+          <p class="signature">
+            Sono
+          </p>
+
+        </div>
+
+        <section
+          class="social-section"
+          aria-labelledby="socialTitle"
+        >
+
+          <div
+            class="social-symbol"
+            aria-hidden="true"
+          >
+            𝕏
+          </div>
+
+          <p class="social-kicker">
+            Follow me
+          </p>
+
+          <h2
+            class="social-title"
+            id="socialTitle"
+          >
+            Xでも発信しています
+          </h2>
+
+          <p class="social-text">
+            Tarot Letterの日々のことや、<br>
+            今日の一枚、小さな気づきを<br>
+            Xでお届けしています。
+          </p>
+
+          <p class="social-account">
+            @TarotLetterSono
+          </p>
+
+          <a
+            class="x-button"
+            href="https://x.com/TarotLetterSono"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="SonoのXを新しいタブで開く"
+          >
+            <span
+              class="x-button-mark"
+              aria-hidden="true"
+            >
+              𝕏
+            </span>
+
+            Xで見る
+          </a>
+
+        </section>
+
       </article>
 
       <div class="next-link">
-        <a class="next-button" href="draw.html">今日の一枚を引く</a>
+
+        <a
+          class="next-button"
+          href="draw.html"
+        >
+          今日の一枚を引く
+        </a>
+
       </div>
+
     </div>
+
   </main>
 
   <footer class="site-footer">
-    <p class="footer-name">Tarot Letter</p>
-    <p class="footer-copy">カードが綴る、あなたへの一通の手紙。</p>
+
+    <p class="footer-name">
+      Tarot Letter
+    </p>
+
+    <p class="footer-copy">
+      カードが綴る、あなたへの一通の手紙。
+    </p>
+
   </footer>
 
   <script>
-    const menuButton=document.getElementById("menuButton");
-    const mainMenu=document.getElementById("mainMenu");
-    function openMenu(){menuButton.classList.add("active");mainMenu.classList.add("open");menuButton.setAttribute("aria-expanded","true");menuButton.setAttribute("aria-label","メニューを閉じる");mainMenu.setAttribute("aria-hidden","false");document.body.classList.add("menu-open")}
-    function closeMenu(){menuButton.classList.remove("active");mainMenu.classList.remove("open");menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","メニューを開く");mainMenu.setAttribute("aria-hidden","true");document.body.classList.remove("menu-open")}
-    menuButton.addEventListener("click",()=>{mainMenu.classList.contains("open")?closeMenu():openMenu()});
-    mainMenu.addEventListener("click",event=>{if(event.target===mainMenu)closeMenu()});
-    document.querySelectorAll(".menu-list a").forEach(link=>link.addEventListener("click",closeMenu));
-    document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu()});
+    const menuButton = document.getElementById("menuButton");
+    const mainMenu = document.getElementById("mainMenu");
+
+    function openMenu() {
+      menuButton.classList.add("active");
+      mainMenu.classList.add("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを閉じる"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMenu() {
+      menuButton.classList.remove("active");
+      mainMenu.classList.remove("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを開く"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove("menu-open");
+    }
+
+    menuButton.addEventListener("click", () => {
+      if (mainMenu.classList.contains("open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mainMenu.addEventListener("click", (event) => {
+      if (event.target === mainMenu) {
+        closeMenu();
+      }
+    });
+
+    document
+      .querySelectorAll(".menu-list a")
+      .forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
   </script>
+
 </body>
 </html>
