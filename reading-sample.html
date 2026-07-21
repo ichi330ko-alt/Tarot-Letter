@@ -8,25 +8,31 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Tarot Letter サンプル｜創作鑑定事例</title>
+  <title>Tarot Letter サンプル｜Sono</title>
 
   <meta
     name="description"
-    content="Tarot Letterでお届けする個人鑑定書のサンプルです。掲載内容は創作による鑑定事例です。"
+    content="Tarot Letterでお届けする個人鑑定書の創作サンプルです。"
   >
 
   <style>
     :root {
+      --navy: #243a59;
+      --navy-dark: #17283f;
+      --navy-deep: #101c2e;
+
       --ivory: #fbf7ef;
-      --ivory-deep: #f1e8da;
-      --paper: #fffdf9;
-      --brown: #5d493d;
-      --brown-light: #8c7463;
-      --navy: #263f62;
-      --gold: #c7a15c;
-      --gold-light: #dfc58f;
-      --line: rgba(199, 161, 92, 0.3);
-      --shadow: rgba(73, 55, 42, 0.2);
+      --ivory-dark: #f2e9da;
+      --paper: #fffdf8;
+
+      --brown: #58483e;
+      --brown-light: #806d60;
+
+      --gold: #c5a15d;
+      --gold-light: #dfc995;
+
+      --line: rgba(197, 161, 93, 0.32);
+      --shadow: rgba(49, 38, 29, 0.18);
     }
 
     * {
@@ -43,10 +49,10 @@
       color: var(--brown);
       background:
         radial-gradient(
-          circle at 50% 0%,
+          circle at 50% -10%,
           rgba(255, 255, 255, 0.98),
-          rgba(248, 241, 231, 0.95) 54%,
-          rgba(239, 229, 214, 0.96) 100%
+          rgba(251, 247, 239, 0.96) 42%,
+          rgba(240, 231, 216, 0.96) 100%
         );
       font-family:
         "Noto Serif JP",
@@ -58,7 +64,7 @@
     }
 
     body.menu-open,
-    body.modal-open {
+    body.reader-open {
       overflow: hidden;
     }
 
@@ -76,25 +82,29 @@
       max-width: 100%;
     }
 
-    /* =========================
+    /* ========================================
        ヘッダー
-    ========================= */
+    ======================================== */
 
     .site-header {
       position: fixed;
       top: 0;
       left: 0;
       z-index: 1000;
+
       width: 100%;
       min-height: 64px;
       padding: 9px 14px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(251, 247, 239, 0.88);
-      border-bottom: 1px solid rgba(199, 161, 92, 0.22);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+
+      background: rgba(251, 247, 239, 0.9);
+      border-bottom: 1px solid rgba(197, 161, 93, 0.22);
+
+      backdrop-filter: blur(13px);
+      -webkit-backdrop-filter: blur(13px);
     }
 
     .header-brand {
@@ -111,20 +121,25 @@
     }
 
     .header-name {
+      color: var(--brown);
       font-size: 14px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
     }
 
     .menu-button {
       width: 44px;
       height: 44px;
       padding: 0;
+
       display: grid;
       place-items: center;
+
       color: var(--brown);
-      background: rgba(255, 255, 255, 0.58);
-      border: 1px solid rgba(199, 161, 92, 0.38);
+      background: rgba(255, 255, 255, 0.55);
+
+      border: 1px solid rgba(197, 161, 93, 0.4);
       border-radius: 50%;
+
       cursor: pointer;
     }
 
@@ -137,13 +152,16 @@
     .menu-lines span {
       position: absolute;
       left: 0;
+
       width: 100%;
       height: 1px;
+
       background: currentColor;
+
       transition:
         top 0.3s ease,
-        transform 0.3s ease,
-        opacity 0.3s ease;
+        opacity 0.3s ease,
+        transform 0.3s ease;
     }
 
     .menu-lines span:nth-child(1) {
@@ -172,20 +190,25 @@
       transform: rotate(-45deg);
     }
 
-    /* =========================
+    /* ========================================
        ハンバーガーメニュー
-    ========================= */
+    ======================================== */
 
     .menu-overlay {
       position: fixed;
       inset: 0;
       z-index: 900;
+
       padding-top: 64px;
+
       display: flex;
       justify-content: flex-end;
-      background: rgba(72, 55, 43, 0.24);
+
+      background: rgba(38, 29, 23, 0.28);
+
       opacity: 0;
       visibility: hidden;
+
       transition:
         opacity 0.3s ease,
         visibility 0.3s ease;
@@ -199,11 +222,14 @@
     .menu-panel {
       width: min(88%, 360px);
       height: calc(100vh - 64px);
-      padding: 34px 28px;
+      padding: 34px 27px;
+
       overflow-y: auto;
-      background: rgba(255, 252, 246, 0.98);
-      box-shadow: -12px 0 32px rgba(75, 55, 42, 0.16);
-      transform: translateX(30px);
+
+      background: rgba(255, 252, 246, 0.99);
+      box-shadow: -14px 0 35px rgba(65, 48, 36, 0.18);
+
+      transform: translateX(35px);
       transition: transform 0.3s ease;
     }
 
@@ -212,10 +238,11 @@
     }
 
     .menu-title {
-      margin: 0 0 25px;
+      margin: 0 0 24px;
+
       color: var(--gold);
-      font-size: 12px;
-      letter-spacing: 0.24em;
+      font-size: 11px;
+      letter-spacing: 0.27em;
       text-transform: uppercase;
     }
 
@@ -226,30 +253,32 @@
     }
 
     .menu-list li {
-      border-bottom: 1px solid rgba(199, 161, 92, 0.2);
+      border-bottom: 1px solid rgba(197, 161, 93, 0.21);
     }
 
     .menu-list a {
       min-height: 58px;
+
       display: flex;
       align-items: center;
       gap: 14px;
+
       font-size: 14px;
       letter-spacing: 0.08em;
     }
 
     .menu-icon {
-      width: 24px;
+      width: 25px;
       color: var(--gold);
       text-align: center;
     }
 
-    /* =========================
-       ページ全体
-    ========================= */
+    /* ========================================
+       ページ本体
+    ======================================== */
 
     .page-main {
-      padding: 118px 18px 80px;
+      padding: 118px 17px 78px;
     }
 
     .page-container {
@@ -257,9 +286,9 @@
       margin: 0 auto;
     }
 
-    /* =========================
-       導入
-    ========================= */
+    /* ========================================
+       タイトル
+    ======================================== */
 
     .page-intro {
       max-width: 720px;
@@ -269,34 +298,40 @@
 
     .page-kicker {
       display: block;
+
       color: var(--gold);
       font-size: 11px;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.29em;
       text-transform: uppercase;
     }
 
     .page-title {
-      margin: 14px 0 0;
+      margin: 13px 0 0;
+
       color: var(--navy);
-      font-size: clamp(28px, 5vw, 45px);
+      font-size: clamp(29px, 5vw, 45px);
       font-weight: 400;
       letter-spacing: 0.13em;
     }
 
     .ornament {
-      width: 106px;
-      height: 16px;
-      margin: 21px auto 0;
       position: relative;
+
+      width: 108px;
+      height: 17px;
+      margin: 21px auto 0;
     }
 
     .ornament::before,
     .ornament::after {
       content: "";
+
       position: absolute;
       top: 50%;
+
       width: 42px;
       height: 1px;
+
       background: var(--gold-light);
     }
 
@@ -312,484 +347,620 @@
       position: absolute;
       top: 50%;
       left: 50%;
+
       color: var(--gold);
       font-size: 16px;
       line-height: 1;
+
       transform: translate(-50%, -50%);
     }
 
     .intro-text {
-      margin: 25px auto 0;
+      margin: 24px auto 0;
+
       color: var(--brown-light);
       font-size: 14px;
       line-height: 2.15;
     }
 
-    .sample-notice {
-      margin: 23px auto 0;
-      padding: 13px 20px;
-      display: inline-block;
-      color: #806b5d;
-      background: rgba(255, 252, 247, 0.68);
-      border: 1px solid rgba(199, 161, 92, 0.28);
-      border-radius: 999px;
+    .sample-note {
+      max-width: 570px;
+      margin: 22px auto 0;
+      padding: 14px 20px;
+
+      color: #806d5f;
+      background: rgba(255, 253, 248, 0.72);
+
+      border: 1px solid rgba(197, 161, 93, 0.3);
+      border-radius: 18px;
+
       font-size: 11px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    /* =========================
-       重なった4ページ
-    ========================= */
+    /* ========================================
+       重なったサンプル
+    ======================================== */
 
-    .sample-preview-section {
-      margin-top: 64px;
+    .sample-area {
+      margin-top: 62px;
       text-align: center;
     }
 
-    .sample-stack-wrap {
-      width: min(100%, 610px);
+    .stack-light {
+      position: relative;
+
+      width: min(100%, 650px);
       margin: 0 auto;
-      padding: 38px 0 70px;
-      overflow: visible;
+      padding: 36px 0 70px;
+    }
+
+    .stack-light::before {
+      content: "";
+
+      position: absolute;
+      top: 43%;
+      left: 50%;
+
+      width: min(88vw, 520px);
+      height: min(88vw, 520px);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(227, 204, 153, 0.28) 0%,
+          rgba(227, 204, 153, 0.12) 38%,
+          rgba(227, 204, 153, 0) 70%
+        );
+
+      pointer-events: none;
+      transform: translate(-50%, -50%);
     }
 
     .sample-stack {
       position: relative;
-      width: min(54vw, 292px);
+
+      width: min(54vw, 290px);
       aspect-ratio: 1024 / 1456;
       margin: 0 auto;
-      cursor: pointer;
-      filter: drop-shadow(0 22px 22px rgba(74, 55, 42, 0.13));
     }
 
-    .stack-page {
+    .stack-card {
       position: absolute;
       inset: 0;
+
+      width: 100%;
+      height: 100%;
+      padding: 0;
+
+      background: transparent;
+      border: 0;
+
+      cursor: pointer;
+
+      transform-origin: 50% 92%;
+      transition:
+        transform 0.38s ease,
+        filter 0.38s ease;
+    }
+
+    .stack-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+
       background: var(--paper);
       border-radius: 3px;
+
       box-shadow:
-        0 12px 28px rgba(64, 48, 37, 0.18),
-        0 2px 5px rgba(64, 48, 37, 0.12);
-      transition:
-        transform 0.45s ease,
-        filter 0.45s ease;
-      transform-origin: 50% 90%;
+        0 18px 38px rgba(59, 43, 32, 0.2),
+        0 3px 8px rgba(59, 43, 32, 0.11);
+
       user-select: none;
       -webkit-user-drag: none;
     }
 
-    .stack-page:nth-child(1) {
+    .stack-card:nth-child(1) {
       z-index: 4;
       transform: translate(0, 0) rotate(-1deg);
     }
 
-    .stack-page:nth-child(2) {
+    .stack-card:nth-child(2) {
       z-index: 3;
-      transform: translate(-33px, 9px) rotate(-7deg);
+      transform: translate(-35px, 12px) rotate(-7deg);
     }
 
-    .stack-page:nth-child(3) {
+    .stack-card:nth-child(3) {
       z-index: 2;
-      transform: translate(34px, 10px) rotate(7deg);
+      transform: translate(36px, 13px) rotate(7deg);
     }
 
-    .stack-page:nth-child(4) {
+    .stack-card:nth-child(4) {
       z-index: 1;
-      transform: translate(3px, 22px) rotate(1deg);
+      transform: translate(3px, 27px) rotate(1.5deg);
     }
 
-    .sample-stack:hover .stack-page:nth-child(1) {
+    .sample-stack:hover .stack-card:nth-child(1) {
       transform: translate(0, -10px) rotate(-1deg);
     }
 
-    .sample-stack:hover .stack-page:nth-child(2) {
-      transform: translate(-53px, 5px) rotate(-9deg);
+    .sample-stack:hover .stack-card:nth-child(2) {
+      transform: translate(-52px, 8px) rotate(-9deg);
     }
 
-    .sample-stack:hover .stack-page:nth-child(3) {
-      transform: translate(54px, 5px) rotate(9deg);
+    .sample-stack:hover .stack-card:nth-child(3) {
+      transform: translate(53px, 8px) rotate(9deg);
     }
 
-    .sample-stack:hover .stack-page:nth-child(4) {
-      transform: translate(3px, 31px) rotate(1deg);
+    .sample-stack:hover .stack-card:nth-child(4) {
+      transform: translate(3px, 35px) rotate(1.5deg);
     }
 
-    .preview-guide {
-      margin: 4px 0 0;
+    .tap-guide {
+      margin: 3px 0 0;
+
       color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 0.14em;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
 
-    .preview-title {
+    .sample-heading {
       margin: 11px 0 0;
+
       color: var(--navy);
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 400;
       letter-spacing: 0.12em;
     }
 
-    .preview-text {
-      max-width: 540px;
-      margin: 15px auto 0;
+    .sample-description {
+      max-width: 570px;
+      margin: 16px auto 0;
+
       color: var(--brown-light);
       font-size: 13px;
-      line-height: 2;
+      line-height: 2.05;
     }
 
-    .view-button {
-      margin-top: 26px;
-      padding: 14px 29px;
+    .read-button {
+      min-width: 245px;
+      min-height: 53px;
+      margin-top: 27px;
+      padding: 13px 27px;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 13px;
-      color: #fffaf1;
+
+      color: #fffaf0;
       background:
         linear-gradient(
           135deg,
           #344d70,
-          #263d5d
+          #263c5a
         );
-      border: 1px solid rgba(199, 161, 92, 0.54);
+
+      border: 1px solid rgba(197, 161, 93, 0.56);
       border-radius: 999px;
-      box-shadow: 0 9px 22px rgba(38, 61, 93, 0.2);
+
+      box-shadow:
+        0 10px 24px rgba(35, 58, 89, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.11);
+
       font-size: 13px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.11em;
+
       cursor: pointer;
+
       transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
     }
 
-    .view-button:hover {
+    .read-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 13px 26px rgba(38, 61, 93, 0.25);
-    }
-
-    /* =========================
-       4ページを順番に表示
-    ========================= */
-
-    .sample-pages-section {
-      margin-top: 83px;
-    }
-
-    .section-heading {
-      text-align: center;
-    }
-
-    .section-kicker {
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      margin: 11px 0 0;
-      color: var(--navy);
-      font-size: clamp(23px, 4vw, 33px);
-      font-weight: 400;
-      letter-spacing: 0.12em;
-    }
-
-    .sample-pages {
-      width: min(100%, 780px);
-      margin: 45px auto 0;
-      display: grid;
-      gap: 42px;
-    }
-
-    .sample-page-card {
-      margin: 0;
-      position: relative;
-    }
-
-    .sample-page-number {
-      margin: 0 0 12px;
-      color: var(--gold);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    .sample-image-button {
-      width: min(100%, 560px);
-      margin: 0 auto;
-      padding: 0;
-      display: block;
-      background: transparent;
-      border: 0;
-      cursor: zoom-in;
-    }
-
-    .sample-full-image {
-      width: 100%;
-      border-radius: 3px;
       box-shadow:
-        0 22px 50px rgba(77, 57, 42, 0.16),
-        0 2px 5px rgba(77, 57, 42, 0.1);
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+        0 14px 28px rgba(35, 58, 89, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.11);
     }
 
-    .sample-image-button:hover .sample-full-image {
-      transform: translateY(-3px);
-      box-shadow:
-        0 27px 58px rgba(77, 57, 42, 0.2),
-        0 3px 7px rgba(77, 57, 42, 0.12);
-    }
+    /* ========================================
+       Tarot Letterについて
+    ======================================== */
 
-    /* =========================
-       最後の案内
-    ========================= */
+    .about-section {
+      max-width: 760px;
+      margin: 88px auto 0;
+      padding: 49px 34px;
 
-    .closing-section {
-      margin-top: 82px;
-      padding: 47px 28px;
       position: relative;
       overflow: hidden;
+
       text-align: center;
+
       background:
         linear-gradient(
           145deg,
-          rgba(255, 253, 248, 0.94),
-          rgba(247, 238, 225, 0.92)
+          rgba(255, 253, 248, 0.96),
+          rgba(246, 237, 223, 0.92)
         );
-      border: 1px solid rgba(199, 161, 92, 0.28);
-      border-radius: 26px;
-      box-shadow: 0 18px 45px rgba(78, 57, 41, 0.09);
+
+      border: 1px solid rgba(197, 161, 93, 0.3);
+      border-radius: 28px;
+
+      box-shadow: 0 20px 50px rgba(77, 57, 42, 0.1);
     }
 
-    .closing-section::before,
-    .closing-section::after {
+    .about-section::before,
+    .about-section::after {
       content: "✦";
+
       position: absolute;
-      color: rgba(199, 161, 92, 0.36);
-      font-size: 30px;
+
+      color: rgba(197, 161, 93, 0.38);
+      font-size: 29px;
     }
 
-    .closing-section::before {
-      top: 17px;
+    .about-section::before {
+      top: 18px;
       left: 27px;
     }
 
-    .closing-section::after {
+    .about-section::after {
       right: 27px;
-      bottom: 17px;
+      bottom: 18px;
     }
 
-    .closing-mark {
+    .about-kicker {
       color: var(--gold);
-      font-size: 27px;
+      font-size: 10px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
     }
 
-    .closing-title {
+    .about-title {
       margin: 12px 0 0;
+
       color: var(--navy);
-      font-size: 23px;
+      font-size: 24px;
       font-weight: 400;
       letter-spacing: 0.11em;
     }
 
-    .closing-text {
-      max-width: 580px;
-      margin: 18px auto 0;
+    .about-text {
+      max-width: 590px;
+      margin: 20px auto 0;
+
       color: var(--brown-light);
       font-size: 13px;
-      line-height: 2.1;
+      line-height: 2.2;
     }
 
     .button-row {
-      margin-top: 28px;
+      margin-top: 29px;
+
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 13px;
     }
 
-    .main-button,
-    .sub-button {
+    .sub-button,
+    .main-button {
       min-width: 220px;
-      min-height: 51px;
-      padding: 13px 24px;
+      min-height: 52px;
+      padding: 13px 25px;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 11px;
+
       border-radius: 999px;
+
       font-size: 13px;
       letter-spacing: 0.09em;
+
       transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
     }
 
+    .sub-button {
+      color: var(--brown);
+      background: rgba(255, 253, 248, 0.83);
+      border: 1px solid rgba(197, 161, 93, 0.47);
+    }
+
     .main-button {
-      color: #fffaf1;
+      color: #fffaf0;
       background:
         linear-gradient(
           135deg,
           #344d70,
-          #263d5d
+          #263c5a
         );
-      border: 1px solid rgba(199, 161, 92, 0.5);
-      box-shadow: 0 9px 22px rgba(38, 61, 93, 0.18);
+
+      border: 1px solid rgba(197, 161, 93, 0.53);
+      box-shadow: 0 9px 22px rgba(35, 58, 89, 0.18);
     }
 
-    .sub-button {
-      color: var(--brown);
-      background: rgba(255, 253, 248, 0.8);
-      border: 1px solid rgba(199, 161, 92, 0.43);
-    }
-
-    .main-button:hover,
-    .sub-button:hover {
+    .sub-button:hover,
+    .main-button:hover {
       transform: translateY(-2px);
     }
 
-    /* =========================
-       画像拡大画面
-    ========================= */
+    /* ========================================
+       ページビューア
+    ======================================== */
 
-    .image-modal {
+    .reader {
       position: fixed;
       inset: 0;
       z-index: 2000;
-      padding: 18px;
-      display: grid;
-      place-items: center;
-      background: rgba(33, 31, 32, 0.9);
+
+      display: flex;
+      flex-direction: column;
+
+      color: #fff;
+      background:
+        radial-gradient(
+          circle at 50% 43%,
+          #263d5e 0%,
+          #172a43 45%,
+          #0e1a2b 100%
+        );
+
       opacity: 0;
       visibility: hidden;
+
       transition:
-        opacity 0.25s ease,
-        visibility 0.25s ease;
+        opacity 0.28s ease,
+        visibility 0.28s ease;
     }
 
-    .image-modal.open {
+    .reader.open {
       opacity: 1;
       visibility: visible;
     }
 
-    .modal-inner {
-      width: min(100%, 900px);
-      height: min(92vh, 1000px);
-      position: relative;
-      display: grid;
-      place-items: center;
+    .reader-top {
+      min-height: 67px;
+      padding: 10px 15px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      border-bottom: 1px solid rgba(223, 201, 149, 0.2);
     }
 
-    .modal-image {
-      max-width: 100%;
-      max-height: 88vh;
-      object-fit: contain;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+    .reader-title {
+      margin: 0;
+
+      color: rgba(255, 250, 241, 0.9);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
     }
 
-    .modal-close {
-      position: fixed;
-      top: 18px;
-      right: 18px;
-      z-index: 2010;
-      width: 48px;
-      height: 48px;
+    .reader-close {
+      width: 45px;
+      height: 45px;
       padding: 0;
+
       display: grid;
       place-items: center;
-      color: #fff;
-      background: rgba(34, 34, 35, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.35);
+
+      color: #fffaf0;
+      background: rgba(255, 255, 255, 0.07);
+
+      border: 1px solid rgba(223, 201, 149, 0.38);
       border-radius: 50%;
+
       font-size: 25px;
       line-height: 1;
+
       cursor: pointer;
     }
 
-    .modal-nav {
-      position: fixed;
+    .reader-stage {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 16px 72px 13px;
+      overflow: hidden;
+    }
+
+    .reader-glow {
+      position: absolute;
       top: 50%;
-      z-index: 2010;
-      width: 48px;
-      height: 60px;
+      left: 50%;
+
+      width: min(78vw, 660px);
+      height: min(78vw, 660px);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(223, 201, 149, 0.18),
+          rgba(223, 201, 149, 0.06) 42%,
+          rgba(223, 201, 149, 0) 72%
+        );
+
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    .reader-page {
+      position: relative;
+      z-index: 2;
+
+      max-width: 100%;
+      max-height: calc(100vh - 145px);
+
+      object-fit: contain;
+
+      border-radius: 2px;
+
+      box-shadow:
+        0 28px 68px rgba(0, 0, 0, 0.43),
+        0 3px 12px rgba(0, 0, 0, 0.28);
+
+      opacity: 1;
+      transform: translateX(0) scale(1);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.25s ease;
+    }
+
+    .reader-page.change-next {
+      opacity: 0;
+      transform: translateX(-24px) scale(0.99);
+    }
+
+    .reader-page.change-prev {
+      opacity: 0;
+      transform: translateX(24px) scale(0.99);
+    }
+
+    .reader-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 10;
+
+      width: 49px;
+      height: 66px;
       padding: 0;
+
       display: grid;
       place-items: center;
-      color: #fff;
-      background: rgba(34, 34, 35, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+
+      color: #fffaf0;
+      background: rgba(255, 255, 255, 0.06);
+
+      border: 1px solid rgba(223, 201, 149, 0.32);
       border-radius: 999px;
-      font-size: 25px;
+
+      font-size: 30px;
+
       cursor: pointer;
       transform: translateY(-50%);
+
+      transition:
+        background 0.2s ease,
+        opacity 0.2s ease;
     }
 
-    .modal-prev {
-      left: 13px;
+    .reader-arrow:hover {
+      background: rgba(255, 255, 255, 0.12);
     }
 
-    .modal-next {
-      right: 13px;
+    .reader-prev {
+      left: 17px;
     }
 
-    .modal-counter {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      z-index: 2010;
-      padding: 7px 14px;
-      color: #fff;
-      background: rgba(34, 34, 35, 0.62);
-      border-radius: 999px;
+    .reader-next {
+      right: 17px;
+    }
+
+    .reader-bottom {
+      min-height: 61px;
+      padding: 7px 18px 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 17px;
+    }
+
+    .page-counter {
+      min-width: 60px;
+
+      color: rgba(255, 250, 241, 0.78);
       font-size: 11px;
-      letter-spacing: 0.12em;
-      transform: translateX(-50%);
+      letter-spacing: 0.15em;
+      text-align: center;
     }
 
-    /* =========================
+    .page-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .page-dot {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+
+      background: rgba(255, 255, 255, 0.25);
+      border: 0;
+      border-radius: 50%;
+
+      cursor: pointer;
+
+      transition:
+        background 0.22s ease,
+        transform 0.22s ease;
+    }
+
+    .page-dot.active {
+      background: var(--gold-light);
+      transform: scale(1.35);
+    }
+
+    /* ========================================
        フッター
-    ========================= */
+    ======================================== */
 
     .site-footer {
       padding: 43px 20px;
-      text-align: center;
-      color: #f9f2e7;
+
+      color: #faf3e8;
       background:
         linear-gradient(
           135deg,
-          #59493f,
-          #736052
+          #58483e,
+          #706052
         );
+
+      text-align: center;
     }
 
     .footer-name {
       margin: 0;
       font-size: 17px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.15em;
     }
 
     .footer-copy {
-      margin: 12px 0 0;
+      margin: 11px 0 0;
+
       color: rgba(255, 248, 239, 0.72);
       font-size: 11px;
     }
 
     .copyright {
       margin: 15px 0 0;
-      color: rgba(255, 248, 239, 0.45);
+
+      color: rgba(255, 248, 239, 0.43);
       font-size: 9px;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.1em;
     }
 
-    /* =========================
+    /* ========================================
        スマートフォン
-    ========================= */
+    ======================================== */
 
     @media (max-width: 680px) {
       .site-header {
@@ -827,96 +998,148 @@
         display: none;
       }
 
-      .sample-notice {
-        display: block;
-        border-radius: 17px;
-      }
-
-      .sample-preview-section {
+      .sample-area {
         margin-top: 48px;
       }
 
-      .sample-stack-wrap {
-        padding: 30px 0 56px;
+      .stack-light {
+        padding: 28px 0 57px;
       }
 
       .sample-stack {
-        width: min(57vw, 225px);
+        width: min(59vw, 226px);
       }
 
-      .stack-page:nth-child(2) {
-        transform: translate(-24px, 8px) rotate(-7deg);
+      .stack-card:nth-child(2) {
+        transform: translate(-24px, 9px) rotate(-7deg);
       }
 
-      .stack-page:nth-child(3) {
-        transform: translate(24px, 8px) rotate(7deg);
+      .stack-card:nth-child(3) {
+        transform: translate(25px, 9px) rotate(7deg);
       }
 
-      .sample-stack:hover .stack-page:nth-child(2) {
-        transform: translate(-34px, 5px) rotate(-8deg);
+      .stack-card:nth-child(4) {
+        transform: translate(2px, 20px) rotate(1.5deg);
       }
 
-      .sample-stack:hover .stack-page:nth-child(3) {
-        transform: translate(34px, 5px) rotate(8deg);
+      .sample-stack:hover .stack-card:nth-child(1) {
+        transform: translate(0, 0) rotate(-1deg);
       }
 
-      .sample-pages-section {
-        margin-top: 64px;
+      .sample-stack:hover .stack-card:nth-child(2) {
+        transform: translate(-24px, 9px) rotate(-7deg);
       }
 
-      .sample-pages {
-        margin-top: 33px;
-        gap: 31px;
+      .sample-stack:hover .stack-card:nth-child(3) {
+        transform: translate(25px, 9px) rotate(7deg);
       }
 
-      .closing-section {
-        margin-top: 62px;
-        padding: 39px 20px;
-        border-radius: 22px;
+      .sample-stack:hover .stack-card:nth-child(4) {
+        transform: translate(2px, 20px) rotate(1.5deg);
+      }
+
+      .sample-heading {
+        font-size: 19px;
+      }
+
+      .read-button {
+        width: min(100%, 310px);
+      }
+
+      .about-section {
+        margin-top: 68px;
+        padding: 40px 20px;
+        border-radius: 23px;
+      }
+
+      .about-title {
+        font-size: 21px;
       }
 
       .button-row {
         display: grid;
       }
 
-      .main-button,
-      .sub-button {
+      .sub-button,
+      .main-button {
         width: 100%;
         min-width: 0;
       }
 
-      .modal-nav {
+      .reader-top {
+        min-height: 60px;
+      }
+
+      .reader-stage {
+        padding: 9px 10px 67px;
+      }
+
+      .reader-page {
+        max-height: calc(100vh - 153px);
+        max-width: calc(100vw - 24px);
+      }
+
+      .reader-arrow {
         top: auto;
-        bottom: 15px;
+        bottom: 11px;
+
         width: 43px;
         height: 43px;
+
+        font-size: 25px;
+
         transform: none;
       }
 
-      .modal-prev {
-        left: 18px;
+      .reader-prev {
+        left: 17px;
       }
 
-      .modal-next {
-        right: 18px;
+      .reader-next {
+        right: 17px;
       }
 
-      .modal-counter {
-        bottom: 18px;
+      .reader-bottom {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        z-index: 9;
+
+        min-height: 45px;
+        padding: 0;
+
+        flex-direction: column;
+        gap: 5px;
+
+        transform: translateX(-50%);
+      }
+
+      .page-counter {
+        font-size: 10px;
       }
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 390px) {
       .page-title {
         font-size: 27px;
       }
 
-      .preview-title {
-        font-size: 18px;
+      .sample-stack {
+        width: 61vw;
       }
 
-      .sample-stack {
-        width: 59vw;
+      .sample-description {
+        font-size: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
       }
     }
   </style>
@@ -930,7 +1153,7 @@
     <a
       class="header-brand"
       href="index.html"
-      aria-label="ホームへ戻る"
+      aria-label="Tarot Letter ホームへ戻る"
     >
       <img
         class="header-logo"
@@ -991,16 +1214,16 @@
         </li>
 
         <li>
-          <a href="dice.html">
-            <span class="menu-icon">🎲</span>
-            Fortune Dice
+          <a href="yesno.html">
+            <span class="menu-icon">✦</span>
+            YES / NO
           </a>
         </li>
 
         <li>
-          <a href="yesno.html">
-            <span class="menu-icon">✦</span>
-            YES / NO
+          <a href="dice.html">
+            <span class="menu-icon">🎲</span>
+            Fortune DICE
           </a>
         </li>
 
@@ -1012,7 +1235,7 @@
         </li>
 
         <li>
-          <a href="profile.html">
+          <a href="personal.html">
             <span class="menu-icon">◯</span>
             Profile
           </a>
@@ -1026,7 +1249,7 @@
 
     <div class="page-container">
 
-      <!-- ページ説明 -->
+      <!-- ページタイトル -->
       <section class="page-intro">
 
         <span class="page-kicker">
@@ -1047,214 +1270,127 @@
           サンプル鑑定書をご用意しました。
         </p>
 
-        <p class="sample-notice">
-          掲載している内容は、創作による鑑定事例です。<br>
+        <p class="sample-note">
+          掲載している内容は、創作によるサンプルです。<br>
           実際のご相談内容や鑑定結果ではありません。
         </p>
 
       </section>
 
-      <!-- 重なったサンプル -->
-      <section class="sample-preview-section">
+      <!-- 重なった4ページ -->
+      <section class="sample-area">
 
-        <div class="sample-stack-wrap">
+        <div class="stack-light">
 
           <div
             class="sample-stack"
-            id="sampleStack"
-            role="button"
-            tabindex="0"
-            aria-label="サンプル鑑定書を開く"
+            aria-label="Tarot Letterのサンプルページ"
           >
 
-            <img
-              class="stack-page"
-              src="images/sample-cover.png"
-              alt="Tarot Letter サンプル 表紙"
+            <!-- 表紙 -->
+            <button
+              class="stack-card"
+              type="button"
+              data-page="0"
+              aria-label="表紙からサンプルを開く"
             >
+              <img
+                src="images/sample-cover.png"
+                alt="Tarot Letter サンプル表紙"
+              >
+            </button>
 
-            <img
-              class="stack-page"
-              src="images/sample-cards.png"
-              alt=""
-              aria-hidden="true"
+            <!-- 今回出たカード -->
+            <button
+              class="stack-card"
+              type="button"
+              data-page="1"
+              aria-label="今回出たカードのページを開く"
             >
+              <img
+                src="images/sample-card.png"
+                alt="Tarot Letter 今回出たカード"
+              >
+            </button>
 
-            <img
-              class="stack-page"
-              src="images/sample-reading.png"
-              alt=""
-              aria-hidden="true"
+            <!-- 鑑定結果 -->
+            <button
+              class="stack-card"
+              type="button"
+              data-page="2"
+              aria-label="鑑定結果のページを開く"
             >
+              <img
+                src="images/sample-reading.png"
+                alt="Tarot Letter 鑑定結果"
+              >
+            </button>
 
-            <img
-              class="stack-page"
-              src="images/sample-gift.png"
-              alt=""
-              aria-hidden="true"
+            <!-- 小さな贈り物 -->
+            <button
+              class="stack-card"
+              type="button"
+              data-page="3"
+              aria-label="今回の小さな贈り物のページを開く"
             >
+              <img
+                src="images/sample-gift.png"
+                alt="Tarot Letter 今回の小さな贈り物"
+              >
+            </button>
 
           </div>
 
         </div>
 
-        <p class="preview-guide">
-          TAP TO OPEN
+        <p class="tap-guide">
+          Tap to Read
         </p>
 
-        <h2 class="preview-title">
-          サンプル鑑定書（創作事例）
+        <h2 class="sample-heading">
+          サンプル鑑定書を読む
         </h2>
 
-        <p class="preview-text">
-          表紙から最後の「今回の小さな贈り物」まで、
-          実際にお届けするTarot Letterの雰囲気をご覧いただけます。
+        <p class="sample-description">
+          表紙から最後のページまで、左右の矢印またはスワイプで
+          一冊のTarot Letterを読むようにご覧いただけます。
         </p>
 
         <button
-          class="view-button"
-          id="openSampleButton"
+          class="read-button"
+          id="readButton"
           type="button"
         >
-          <span>サンプルを大きく見る</span>
+          <span>Tarot Letterを開く</span>
           <span aria-hidden="true">→</span>
         </button>
 
       </section>
 
-      <!-- ページを順番に掲載 -->
-      <section
-        class="sample-pages-section"
-        id="samplePages"
-      >
+      <!-- Tarot Letterについて -->
+      <section class="about-section">
 
-        <div class="section-heading">
+        <span class="about-kicker">
+          About Tarot Letter
+        </span>
 
-          <span class="section-kicker">
-            Pages
-          </span>
-
-          <h2 class="section-title">
-            Tarot Letterの内容
-          </h2>
-
-          <div class="ornament" aria-hidden="true">
-            <span>✦</span>
-          </div>
-
-        </div>
-
-        <div class="sample-pages">
-
-          <figure class="sample-page-card">
-
-            <figcaption class="sample-page-number">
-              Page 01 ― Cover
-            </figcaption>
-
-            <button
-              class="sample-image-button"
-              type="button"
-              data-index="0"
-              aria-label="表紙を拡大して見る"
-            >
-              <img
-                class="sample-full-image"
-                src="images/sample-cover.png"
-                alt="Tarot Letter サンプル 表紙"
-                loading="lazy"
-              >
-            </button>
-
-          </figure>
-
-          <figure class="sample-page-card">
-
-            <figcaption class="sample-page-number">
-              Page 02 ― Cards
-            </figcaption>
-
-            <button
-              class="sample-image-button"
-              type="button"
-              data-index="1"
-              aria-label="今回出たカードのページを拡大して見る"
-            >
-              <img
-                class="sample-full-image"
-                src="images/sample-cards.png"
-                alt="Tarot Letter サンプル 今回出たカード"
-                loading="lazy"
-              >
-            </button>
-
-          </figure>
-
-          <figure class="sample-page-card">
-
-            <figcaption class="sample-page-number">
-              Page 03 ― Reading
-            </figcaption>
-
-            <button
-              class="sample-image-button"
-              type="button"
-              data-index="2"
-              aria-label="鑑定結果のページを拡大して見る"
-            >
-              <img
-                class="sample-full-image"
-                src="images/sample-reading.png"
-                alt="Tarot Letter サンプル 鑑定結果"
-                loading="lazy"
-              >
-            </button>
-
-          </figure>
-
-          <figure class="sample-page-card">
-
-            <figcaption class="sample-page-number">
-              Page 04 ― Small Gift
-            </figcaption>
-
-            <button
-              class="sample-image-button"
-              type="button"
-              data-index="3"
-              aria-label="今回の小さな贈り物のページを拡大して見る"
-            >
-              <img
-                class="sample-full-image"
-                src="images/sample-gift.png"
-                alt="Tarot Letter サンプル 今回の小さな贈り物"
-                loading="lazy"
-              >
-            </button>
-
-          </figure>
-
-        </div>
-
-      </section>
-
-      <!-- 最後の案内 -->
-      <section class="closing-section">
-
-        <div class="closing-mark" aria-hidden="true">
-          ✉
-        </div>
-
-        <h2 class="closing-title">
-          あなただけのTarot Letter
+        <h2 class="about-title">
+          あなたのための一通の手紙
         </h2>
 
-        <p class="closing-text">
+        <div class="ornament" aria-hidden="true">
+          <span>✦</span>
+        </div>
+
+        <p class="about-text">
           Tarot Letterは、一通一通、
-          ご相談内容に合わせてお作りする個人鑑定書です。
+          ご相談内容に合わせて文章を紡ぎます。
           <br><br>
-          鑑定内容に応じて、
-          文章量やページ数は異なる場合があります。
+          そのため、鑑定内容やページ数、
+          文章量はお一人ずつ異なります。
+          <br><br>
+          カードから受け取った言葉を、
+          あなただけの一通の手紙としてお届けします。
         </p>
 
         <div class="button-row">
@@ -1264,7 +1400,6 @@
             href="reading.html"
           >
             <span>個人鑑定について</span>
-            <span aria-hidden="true">←</span>
           </a>
 
           <a
@@ -1300,79 +1435,119 @@
 
   </footer>
 
-  <!-- 画像拡大 -->
+  <!-- ページビューア -->
   <div
-    class="image-modal"
-    id="imageModal"
-    aria-hidden="true"
+    class="reader"
+    id="reader"
     role="dialog"
     aria-modal="true"
-    aria-label="Tarot Letter サンプル画像"
+    aria-hidden="true"
+    aria-label="Tarot Letter サンプル鑑定書"
   >
 
-    <button
-      class="modal-close"
-      id="modalClose"
-      type="button"
-      aria-label="拡大画像を閉じる"
-    >
-      ×
-    </button>
+    <div class="reader-top">
 
-    <button
-      class="modal-nav modal-prev"
-      id="modalPrev"
-      type="button"
-      aria-label="前のページを見る"
-    >
-      ‹
-    </button>
+      <p class="reader-title">
+        Tarot Letter ― Sample
+      </p>
 
-    <div class="modal-inner">
-
-      <img
-        class="modal-image"
-        id="modalImage"
-        src=""
-        alt=""
+      <button
+        class="reader-close"
+        id="readerClose"
+        type="button"
+        aria-label="サンプルを閉じる"
       >
+        ×
+      </button>
 
     </div>
 
-    <button
-      class="modal-nav modal-next"
-      id="modalNext"
-      type="button"
-      aria-label="次のページを見る"
-    >
-      ›
-    </button>
-
     <div
-      class="modal-counter"
-      id="modalCounter"
-      aria-live="polite"
+      class="reader-stage"
+      id="readerStage"
     >
-      1 / 4
+
+      <div
+        class="reader-glow"
+        aria-hidden="true"
+      ></div>
+
+      <button
+        class="reader-arrow reader-prev"
+        id="readerPrev"
+        type="button"
+        aria-label="前のページへ"
+      >
+        ‹
+      </button>
+
+      <img
+        class="reader-page"
+        id="readerPage"
+        src="images/sample-cover.png"
+        alt="Tarot Letter サンプル表紙"
+      >
+
+      <button
+        class="reader-arrow reader-next"
+        id="readerNext"
+        type="button"
+        aria-label="次のページへ"
+      >
+        ›
+      </button>
+
+      <div class="reader-bottom">
+
+        <div
+          class="page-dots"
+          id="pageDots"
+          aria-label="ページ選択"
+        ></div>
+
+        <div
+          class="page-counter"
+          id="pageCounter"
+          aria-live="polite"
+        >
+          1 / 4
+        </div>
+
+      </div>
+
     </div>
 
   </div>
 
   <script>
-    /* =========================
+    /* ========================================
        ハンバーガーメニュー
-    ========================= */
+    ======================================== */
 
-    const menuButton = document.getElementById("menuButton");
-    const mainMenu = document.getElementById("mainMenu");
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const mainMenu =
+      document.getElementById("mainMenu");
 
     function openMenu() {
       menuButton.classList.add("active");
       mainMenu.classList.add("open");
 
-      menuButton.setAttribute("aria-expanded", "true");
-      menuButton.setAttribute("aria-label", "メニューを閉じる");
-      mainMenu.setAttribute("aria-hidden", "false");
+      menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを閉じる"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
 
       document.body.classList.add("menu-open");
     }
@@ -1381,17 +1556,26 @@
       menuButton.classList.remove("active");
       mainMenu.classList.remove("open");
 
-      menuButton.setAttribute("aria-expanded", "false");
-      menuButton.setAttribute("aria-label", "メニューを開く");
-      mainMenu.setAttribute("aria-hidden", "true");
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを開く"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
 
       document.body.classList.remove("menu-open");
     }
 
     menuButton.addEventListener("click", () => {
-      const isOpen = mainMenu.classList.contains("open");
-
-      if (isOpen) {
+      if (mainMenu.classList.contains("open")) {
         closeMenu();
       } else {
         openMenu();
@@ -1410,211 +1594,315 @@
         link.addEventListener("click", closeMenu);
       });
 
-    /* =========================
-       サンプル画像
-    ========================= */
+    /* ========================================
+       サンプルページの情報
+    ======================================== */
 
-    const sampleImages = [
+    const pages = [
       {
         src: "images/sample-cover.png",
-        alt: "Tarot Letter サンプル 表紙"
+        alt: "Tarot Letter サンプル表紙"
       },
       {
-        src: "images/sample-cards.png",
-        alt: "Tarot Letter サンプル 今回出たカード"
+        src: "images/sample-card.png",
+        alt: "Tarot Letter 今回出たカード"
       },
       {
         src: "images/sample-reading.png",
-        alt: "Tarot Letter サンプル 鑑定結果"
+        alt: "Tarot Letter 鑑定結果"
       },
       {
         src: "images/sample-gift.png",
-        alt: "Tarot Letter サンプル 今回の小さな贈り物"
+        alt: "Tarot Letter 今回の小さな贈り物"
       }
     ];
 
-    const sampleStack =
-      document.getElementById("sampleStack");
+    const reader =
+      document.getElementById("reader");
 
-    const openSampleButton =
-      document.getElementById("openSampleButton");
+    const readerPage =
+      document.getElementById("readerPage");
 
-    const imageModal =
-      document.getElementById("imageModal");
+    const readerClose =
+      document.getElementById("readerClose");
 
-    const modalImage =
-      document.getElementById("modalImage");
+    const readerPrev =
+      document.getElementById("readerPrev");
 
-    const modalClose =
-      document.getElementById("modalClose");
+    const readerNext =
+      document.getElementById("readerNext");
 
-    const modalPrev =
-      document.getElementById("modalPrev");
+    const pageCounter =
+      document.getElementById("pageCounter");
 
-    const modalNext =
-      document.getElementById("modalNext");
+    const pageDots =
+      document.getElementById("pageDots");
 
-    const modalCounter =
-      document.getElementById("modalCounter");
+    const readButton =
+      document.getElementById("readButton");
 
-    const sampleImageButtons =
-      document.querySelectorAll(".sample-image-button");
+    const stackCards =
+      document.querySelectorAll(".stack-card");
 
-    let currentImageIndex = 0;
+    let currentPage = 0;
+    let isChanging = false;
 
-    function showModalImage(index) {
-      currentImageIndex =
-        (index + sampleImages.length) % sampleImages.length;
+    /* ========================================
+       ページ下部の丸印を作成
+    ======================================== */
 
-      const selectedImage =
-        sampleImages[currentImageIndex];
+    pages.forEach((page, index) => {
+      const dot = document.createElement("button");
 
-      modalImage.src = selectedImage.src;
-      modalImage.alt = selectedImage.alt;
+      dot.className = "page-dot";
+      dot.type = "button";
 
-      modalCounter.textContent =
-        `${currentImageIndex + 1} / ${sampleImages.length}`;
-    }
+      dot.setAttribute(
+        "aria-label",
+        `${index + 1}ページ目を表示`
+      );
 
-    function openImageModal(index = 0) {
-      showModalImage(index);
+      dot.addEventListener("click", () => {
+        showPage(index);
+      });
 
-      imageModal.classList.add("open");
-      imageModal.setAttribute("aria-hidden", "false");
-
-      document.body.classList.add("modal-open");
-
-      modalClose.focus();
-    }
-
-    function closeImageModal() {
-      imageModal.classList.remove("open");
-      imageModal.setAttribute("aria-hidden", "true");
-
-      document.body.classList.remove("modal-open");
-    }
-
-    function showPreviousImage() {
-      showModalImage(currentImageIndex - 1);
-    }
-
-    function showNextImage() {
-      showModalImage(currentImageIndex + 1);
-    }
-
-    sampleStack.addEventListener("click", () => {
-      openImageModal(0);
+      pageDots.appendChild(dot);
     });
 
-    sampleStack.addEventListener("keydown", (event) => {
-      if (
-        event.key === "Enter" ||
-        event.key === " "
-      ) {
-        event.preventDefault();
-        openImageModal(0);
+    const dots =
+      document.querySelectorAll(".page-dot");
+
+    /* ========================================
+       ページを表示
+    ======================================== */
+
+    function updateReader() {
+      const selectedPage = pages[currentPage];
+
+      readerPage.src = selectedPage.src;
+      readerPage.alt = selectedPage.alt;
+
+      pageCounter.textContent =
+        `${currentPage + 1} / ${pages.length}`;
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle(
+          "active",
+          index === currentPage
+        );
+      });
+
+      readerPrev.style.opacity =
+        currentPage === 0 ? "0.35" : "1";
+
+      readerNext.style.opacity =
+        currentPage === pages.length - 1
+          ? "0.35"
+          : "1";
+    }
+
+    function showPage(index, direction = null) {
+      if (isChanging) {
+        return;
       }
+
+      const nextIndex =
+        Math.max(
+          0,
+          Math.min(index, pages.length - 1)
+        );
+
+      if (nextIndex === currentPage) {
+        updateReader();
+        return;
+      }
+
+      isChanging = true;
+
+      if (!direction) {
+        direction =
+          nextIndex > currentPage
+            ? "next"
+            : "prev";
+      }
+
+      readerPage.classList.add(
+        direction === "next"
+          ? "change-next"
+          : "change-prev"
+      );
+
+      window.setTimeout(() => {
+        currentPage = nextIndex;
+        updateReader();
+
+        readerPage.classList.remove(
+          "change-next",
+          "change-prev"
+        );
+
+        isChanging = false;
+      }, 210);
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        showPage(currentPage + 1, "next");
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 0) {
+        showPage(currentPage - 1, "prev");
+      }
+    }
+
+    /* ========================================
+       ビューアを開閉
+    ======================================== */
+
+    function openReader(startPage = 0) {
+      currentPage =
+        Math.max(
+          0,
+          Math.min(startPage, pages.length - 1)
+        );
+
+      updateReader();
+
+      reader.classList.add("open");
+
+      reader.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add("reader-open");
+
+      readerClose.focus();
+    }
+
+    function closeReader() {
+      reader.classList.remove("open");
+
+      reader.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove("reader-open");
+    }
+
+    readButton.addEventListener("click", () => {
+      openReader(0);
     });
 
-    openSampleButton.addEventListener("click", () => {
-      openImageModal(0);
-    });
+    stackCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const pageNumber =
+          Number(card.dataset.page);
 
-    sampleImageButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const index =
-          Number(button.dataset.index);
-
-        openImageModal(index);
+        openReader(pageNumber);
       });
     });
 
-    modalClose.addEventListener(
+    readerClose.addEventListener(
       "click",
-      closeImageModal
+      closeReader
     );
 
-    modalPrev.addEventListener(
+    readerPrev.addEventListener(
       "click",
-      showPreviousImage
+      previousPage
     );
 
-    modalNext.addEventListener(
+    readerNext.addEventListener(
       "click",
-      showNextImage
+      nextPage
     );
 
-    imageModal.addEventListener("click", (event) => {
-      if (
-        event.target === imageModal ||
-        event.target.classList.contains("modal-inner")
-      ) {
-        closeImageModal();
-      }
-    });
-
-    /* =========================
+    /* ========================================
        キーボード操作
-    ========================= */
+    ======================================== */
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeMenu();
-        closeImageModal();
+        closeReader();
       }
 
-      if (imageModal.classList.contains("open")) {
-        if (event.key === "ArrowLeft") {
-          showPreviousImage();
-        }
+      if (!reader.classList.contains("open")) {
+        return;
+      }
 
-        if (event.key === "ArrowRight") {
-          showNextImage();
-        }
+      if (event.key === "ArrowLeft") {
+        previousPage();
+      }
+
+      if (event.key === "ArrowRight") {
+        nextPage();
       }
     });
 
-    /* =========================
+    /* ========================================
        スマホのスワイプ操作
-    ========================= */
+    ======================================== */
 
     let touchStartX = 0;
-    let touchEndX = 0;
+    let touchStartY = 0;
 
-    imageModal.addEventListener(
+    reader.addEventListener(
       "touchstart",
       (event) => {
-        touchStartX =
-          event.changedTouches[0].screenX;
+        const touch = event.changedTouches[0];
+
+        touchStartX = touch.screenX;
+        touchStartY = touch.screenY;
       },
       {
         passive: true
       }
     );
 
-    imageModal.addEventListener(
+    reader.addEventListener(
       "touchend",
       (event) => {
-        touchEndX =
-          event.changedTouches[0].screenX;
+        const touch = event.changedTouches[0];
 
-        const swipeDistance =
-          touchEndX - touchStartX;
+        const distanceX =
+          touch.screenX - touchStartX;
 
-        if (Math.abs(swipeDistance) < 45) {
+        const distanceY =
+          touch.screenY - touchStartY;
+
+        if (
+          Math.abs(distanceX) < 45 ||
+          Math.abs(distanceX) < Math.abs(distanceY)
+        ) {
           return;
         }
 
-        if (swipeDistance > 0) {
-          showPreviousImage();
+        if (distanceX < 0) {
+          nextPage();
         } else {
-          showNextImage();
+          previousPage();
         }
       },
       {
         passive: true
       }
     );
+
+    /* ========================================
+       画像の読み込みエラー確認
+    ======================================== */
+
+    readerPage.addEventListener("error", () => {
+      readerPage.alt =
+        "画像を読み込めませんでした。画像名をご確認ください。";
+    });
+
+    updateReader();
   </script>
 
 </body>
