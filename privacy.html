@@ -1,1 +1,1107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>プライバシーポリシー｜Tarot Letter</title>
+
+  <meta
+    name="description"
+    content="Tarot Letterにおける個人情報の取り扱いについてご案内します。"
+  >
+
+  <style>
+    :root {
+      --cream: #f8f2e8;
+      --paper: #fffdf8;
+      --brown: #5f4b3e;
+      --soft: #856f60;
+      --gold: #c8a66a;
+      --line: rgba(200, 166, 106, 0.35);
+      --shadow: rgba(83, 62, 44, 0.16);
+      --teal: #428f91;
+      --teal-deep: #2e7174;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--brown);
+      background:
+        radial-gradient(
+          circle at 50% 0,
+          #fffdf8 0,
+          var(--cream) 52%,
+          #efe5d7 100%
+        );
+      font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+      line-height: 2;
+      letter-spacing: 0.04em;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* =========================
+       ヘッダー
+    ========================= */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      min-height: 64px;
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(248, 242, 232, 0.9);
+      border-bottom: 1px solid rgba(200, 166, 106, 0.22);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .header-name {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+    }
+
+    /* =========================
+       ハンバーガーメニュー
+    ========================= */
+
+    .menu-button {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: var(--brown);
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(200, 166, 106, 0.38);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .menu-lines {
+      position: relative;
+      width: 20px;
+      height: 14px;
+    }
+
+    .menu-lines span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transition: 0.3s ease;
+    }
+
+    .menu-lines span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-lines span:nth-child(2) {
+      top: 6px;
+    }
+
+    .menu-lines span:nth-child(3) {
+      top: 12px;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(1) {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+
+    .menu-button.active .menu-lines span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(3) {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      padding-top: 64px;
+      display: flex;
+      justify-content: flex-end;
+      background: rgba(72, 55, 43, 0.24);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s ease;
+    }
+
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-panel {
+      width: min(88%, 360px);
+      height: calc(100vh - 64px);
+      padding: 34px 28px;
+      overflow-y: auto;
+      background:
+        linear-gradient(
+          rgba(255, 253, 248, 0.99),
+          rgba(246, 238, 225, 0.99)
+        );
+      box-shadow: -12px 18px 40px rgba(78, 58, 42, 0.22);
+      transform: translateX(105%);
+      transition: 0.35s ease;
+    }
+
+    .menu-overlay.open .menu-panel {
+      transform: translateX(0);
+    }
+
+    .menu-title {
+      margin: 0 0 24px;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .menu-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu-list li {
+      border-bottom: 1px solid rgba(200, 166, 106, 0.24);
+    }
+
+    .menu-list a {
+      padding: 17px 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+    }
+
+    .menu-icon {
+      width: 27px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    /* =========================
+       メイン
+    ========================= */
+
+    .page-main {
+      min-height: 100vh;
+      padding: 98px 16px 70px;
+    }
+
+    .page-container {
+      width: min(100%, 820px);
+      margin: 0 auto;
+    }
+
+    .intro {
+      text-align: center;
+    }
+
+    .page-kicker {
+      display: block;
+      color: var(--teal);
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      margin: 8px 0 0;
+      font-size: clamp(29px, 7vw, 48px);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+    }
+
+    .ornament {
+      width: 110px;
+      height: 1px;
+      margin: 22px auto;
+      background:
+        linear-gradient(
+          to right,
+          transparent,
+          var(--gold),
+          transparent
+        );
+    }
+
+    .intro-text {
+      margin: 0;
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    /* =========================
+       ポリシー本文
+    ========================= */
+
+    .policy-card {
+      margin-top: 34px;
+      padding:
+        clamp(34px, 7vw, 58px)
+        clamp(22px, 7vw, 64px);
+      background: rgba(255, 253, 248, 0.95);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: 0 20px 55px var(--shadow);
+    }
+
+    .policy-mark {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 30px;
+      display: grid;
+      place-items: center;
+      color: var(--teal-deep);
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.96),
+          rgba(239, 228, 209, 0.76)
+        );
+      border: 1px solid rgba(200, 166, 106, 0.46);
+      border-radius: 50%;
+      font-size: 24px;
+      box-shadow: 0 10px 28px rgba(83, 62, 44, 0.11);
+    }
+
+    .policy-lead {
+      margin: 0 0 38px;
+      color: var(--soft);
+      font-size: 15px;
+      line-height: 2.2;
+    }
+
+    .policy-section {
+      margin-top: 42px;
+      padding-top: 38px;
+      border-top: 1px solid rgba(200, 166, 106, 0.28);
+    }
+
+    .policy-section:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      color: var(--teal-deep);
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 1.7;
+      letter-spacing: 0.06em;
+    }
+
+    .policy-section p {
+      margin: 0 0 1.2em;
+      font-size: 14px;
+      line-height: 2.15;
+    }
+
+    .policy-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-list {
+      margin: 14px 0 0;
+      padding-left: 1.5em;
+      font-size: 14px;
+      line-height: 2.1;
+    }
+
+    .policy-list li {
+      margin-bottom: 7px;
+      padding-left: 4px;
+    }
+
+    .external-link {
+      color: var(--teal-deep);
+      text-decoration: underline;
+      text-decoration-color: rgba(46, 113, 116, 0.38);
+      text-underline-offset: 4px;
+    }
+
+    .external-link:hover {
+      text-decoration-color: var(--teal-deep);
+    }
+
+    .contact-link {
+      display: inline-block;
+      color: var(--teal-deep);
+      text-decoration: underline;
+      text-decoration-color: rgba(46, 113, 116, 0.38);
+      text-underline-offset: 4px;
+    }
+
+    .closing-message {
+      margin-top: 48px;
+      padding: 28px 22px;
+      text-align: center;
+      color: var(--teal-deep);
+      background: rgba(248, 240, 227, 0.74);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-size: 15px;
+      line-height: 2.1;
+    }
+
+    .effective-date {
+      margin: 34px 0 0;
+      text-align: right;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .back-link {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .back-button {
+      width: min(100%, 300px);
+      margin: 0 auto;
+      padding: 15px 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fffdf8;
+      background:
+        linear-gradient(
+          135deg,
+          var(--teal-deep),
+          var(--teal)
+        );
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(46, 113, 116, 0.24);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 34px rgba(46, 113, 116, 0.31);
+    }
+
+    /* =========================
+       フッター
+    ========================= */
+
+    .site-footer {
+      padding: 42px 20px 36px;
+      text-align: center;
+      color: #f8f0e5;
+      background:
+        linear-gradient(
+          135deg,
+          #5d4c41,
+          #756052
+        );
+    }
+
+    .footer-name {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0.14em;
+    }
+
+    .footer-copy {
+      margin: 12px 0 0;
+      color: rgba(255, 248, 239, 0.72);
+      font-size: 11px;
+    }
+
+    .footer-links {
+      margin: 24px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 14px;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .footer-links a {
+      color: rgba(255, 248, 239, 0.82);
+      border-bottom: 1px solid transparent;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: rgba(255, 248, 239, 0.7);
+    }
+
+    .footer-separator {
+      color: rgba(255, 248, 239, 0.32);
+    }
+
+    .footer-copyright {
+      margin: 20px 0 0;
+      color: rgba(255, 248, 239, 0.5);
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================
+       スマートフォン
+    ========================= */
+
+    @media (max-width: 680px) {
+      .page-main {
+        padding: 88px 12px 50px;
+      }
+
+      .page-title {
+        font-size: 30px;
+      }
+
+      .policy-card {
+        border-radius: 22px;
+      }
+
+      .policy-lead {
+        font-size: 14px;
+      }
+
+      .policy-section {
+        margin-top: 36px;
+        padding-top: 32px;
+      }
+
+      .section-title {
+        font-size: 17px;
+      }
+
+      .policy-section p,
+      .policy-list {
+        font-size: 13px;
+      }
+
+      .closing-message {
+        padding: 24px 16px;
+        font-size: 14px;
+      }
+
+      .footer-links {
+        max-width: 290px;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-separator {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <a
+      class="header-brand"
+      href="index.html"
+      aria-label="ホームへ戻る"
+    >
+      <img
+        class="header-logo"
+        src="images/logo.png"
+        alt="Tarot Letter ロゴ"
+      >
+
+      <span class="header-name">
+        Tarot Letter
+      </span>
+    </a>
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="メニューを開く"
+      aria-expanded="false"
+      aria-controls="mainMenu"
+    >
+      <span class="menu-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+  </header>
+
+  <div
+    class="menu-overlay"
+    id="mainMenu"
+    aria-hidden="true"
+  >
+
+    <nav
+      class="menu-panel"
+      aria-label="メインメニュー"
+    >
+
+      <p class="menu-title">
+        Menu
+      </p>
+
+      <ul class="menu-list">
+
+        <li>
+          <a href="index.html">
+            <span class="menu-icon">⌂</span>
+            ホーム
+          </a>
+        </li>
+
+        <li>
+          <a href="draw.html">
+            <span class="menu-icon">🃏</span>
+            今日の一枚
+          </a>
+        </li>
+
+        <li>
+          <a href="dice.html">
+            <span class="menu-icon">🎲</span>
+            Fortune Dice
+          </a>
+        </li>
+
+        <li>
+          <a href="yesno.html">
+            <span class="menu-icon">✦</span>
+            YES / NO
+          </a>
+        </li>
+
+        <li>
+          <a href="profile.html">
+            <span class="menu-icon">◯</span>
+            Profile
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </div>
+
+  <main class="page-main">
+
+    <div class="page-container">
+
+      <section class="intro">
+
+        <span class="page-kicker">
+          Privacy
+        </span>
+
+        <h1 class="page-title">
+          プライバシーポリシー
+        </h1>
+
+        <div class="ornament"></div>
+
+        <p class="intro-text">
+          個人情報の取り扱いについて
+        </p>
+
+      </section>
+
+      <article class="policy-card">
+
+        <div
+          class="policy-mark"
+          aria-hidden="true"
+        >
+          ✦
+        </div>
+
+        <p class="policy-lead">
+          Tarot Letter（以下「当サイト」といいます。）では、
+          お客様に安心してサービスをご利用いただくため、
+          お預かりする個人情報を適切に取り扱い、
+          その保護に努めます。
+          <br><br>
+          本プライバシーポリシーでは、
+          当サイトにおける個人情報の取り扱いについてご案内します。
+        </p>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            1．取得する情報
+          </h2>
+
+          <p>
+            当サイトでは、個人鑑定のお申し込みやお問い合わせの際に、
+            以下の情報をご提供いただく場合があります。
+          </p>
+
+          <ul class="policy-list">
+            <li>お名前</li>
+            <li>Tarot Letter内でお呼びするお名前</li>
+            <li>メールアドレス</li>
+            <li>ご相談のテーマおよび内容</li>
+            <li>特に聞きたいこと</li>
+            <li>当サイトを知ったきっかけ</li>
+            <li>その他、お客様がフォーム等に入力された情報</li>
+          </ul>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            2．個人情報の利用目的
+          </h2>
+
+          <p>
+            取得した個人情報は、以下の目的に必要な範囲で利用します。
+          </p>
+
+          <ul class="policy-list">
+            <li>個人鑑定のお申し込み内容を確認するため</li>
+            <li>受付、支払い、納品等に関するご案内を行うため</li>
+            <li>タロット鑑定書を作成し、お届けするため</li>
+            <li>お申し込みやお問い合わせに回答するため</li>
+            <li>本人確認および連絡先確認を行うため</li>
+            <li>サービスの運営、改善および品質向上のため</li>
+            <li>不正利用や迷惑行為を防止し、安全な運営を行うため</li>
+            <li>法令または行政機関等の要請に対応するため</li>
+          </ul>
+
+          <p>
+            上記の目的を超えて個人情報を利用する必要が生じた場合は、
+            法令により認められる場合を除き、
+            あらかじめご本人の同意を得ます。
+          </p>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            3．個人情報の第三者提供
+          </h2>
+
+          <p>
+            当サイトでは、次の場合を除き、
+            ご本人の同意なく個人情報を第三者へ提供することはありません。
+          </p>
+
+          <ul class="policy-list">
+            <li>法令に基づく場合</li>
+            <li>人の生命、身体または財産の保護に必要な場合</li>
+            <li>公的機関から法令に基づく要請を受けた場合</li>
+            <li>サービスの提供に必要な範囲で業務を委託する場合</li>
+          </ul>
+
+          <p>
+            業務を委託する場合は、
+            必要な範囲に限って情報を取り扱い、
+            適切な管理が行われるよう努めます。
+          </p>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            4．個人情報の管理
+          </h2>
+
+          <p>
+            当サイトでは、お預かりした個人情報について、
+            漏えい、紛失、改ざん、不正アクセス等を防ぐため、
+            合理的かつ適切な安全管理に努めます。
+          </p>
+
+          <p>
+            個人情報は、鑑定やご連絡などの利用目的に必要な期間、
+            または法令上保存が必要な期間に限って保管し、
+            保管する必要がなくなった情報は、
+            適切な方法で削除または廃棄します。
+          </p>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            5．ご相談内容の取り扱い
+          </h2>
+
+          <p>
+            お申し込み時にお預かりしたご相談内容は、
+            鑑定書の作成および必要なご連絡のためにのみ利用します。
+          </p>
+
+          <p>
+            ご本人の許可なく、個人を特定できる形で、
+            ご相談内容や鑑定内容を当サイト、SNS、
+            その他の媒体に掲載することはありません。
+          </p>
+
+          <p>
+            感想や事例を紹介する場合にも、
+            事前にご本人の同意を得たうえで、
+            必要に応じてお名前や個人を特定できる情報を伏せます。
+          </p>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            6．Googleフォームの利用
+          </h2>
+
+          <p>
+            当サイトのお申し込みフォームには、
+            Google LLCが提供するGoogleフォームを利用しています。
+          </p>
+
+          <p>
+            フォームに入力された情報は、
+            Googleのサービスを経由して送信され、
+            当サイト運営者が管理するGoogleフォームまたは
+            Googleスプレッドシートに保存される場合があります。
+          </p>
+
+          <p>
+            Googleによる情報の取り扱いについては、
+            Googleのプライバシーポリシーをご確認ください。
+          </p>
+
+          <p>
+            <a
+              class="external-link"
+              href="https://policies.google.com/privacy?hl=ja"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google プライバシーポリシー
+            </a>
+          </p>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            7．Cookieおよびアクセス情報
+          </h2>
+
+          <p>
+            当サイトでは、外部サービスの利用やサイトの閲覧に伴い、
+            Cookieその他の技術を通じて、
+            ブラウザや端末に関する情報等が取得される場合があります。
+          </p>
+
+          <p>
+            当サイトが今後アクセス解析サービス等を導入する場合は、
+            利用状況の把握およびサービス改善のために、
+            個人を直接特定しない範囲で閲覧情報を利用することがあります。
+          </p>
+
+          <p>
+            重要な変更や新たなサービスの導入がある場合には、
+            必要に応じて本ページの内容を更新します。
+          </p>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            8．外部サイトへのリンク
+          </h2>
+
+          <p>
+            当サイトには、X、Googleフォームその他の
+            外部サイトへのリンクが含まれる場合があります。
+          </p>
+
+          <p>
+            外部サイトにおける個人情報の取り扱いについては、
+            各サービスが定めるプライバシーポリシー等をご確認ください。
+          </p>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            9．個人情報の開示・訂正・削除等
+          </h2>
+
+          <p>
+            ご本人から、ご自身の個人情報について、
+            開示、訂正、追加、削除、利用停止等のご希望があった場合は、
+            ご本人であることを確認したうえで、
+            法令に従い合理的な範囲で対応します。
+          </p>
+
+          <p>
+            お手続きについては、
+            下記のお問い合わせ先よりご連絡ください。
+          </p>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            10．本ポリシーの変更
+          </h2>
+
+          <p>
+            当サイトは、法令の改正、
+            サービス内容または運営方法の変更等に応じて、
+            本プライバシーポリシーを変更することがあります。
+          </p>
+
+          <p>
+            変更後の内容は、本ページへ掲載した時点から適用されます。
+          </p>
+
+        </section>
+
+        <section class="policy-section">
+
+          <h2 class="section-title">
+            11．お問い合わせ先
+          </h2>
+
+          <p>
+            個人情報の取り扱いに関するお問い合わせは、
+            運営者情報に記載する連絡先よりお願いいたします。
+          </p>
+
+          <p>
+            <a
+              class="contact-link"
+              href="commerce.html"
+            >
+              特定商取引法に基づく表記・運営者情報
+            </a>
+          </p>
+
+        </section>
+
+        <div class="closing-message">
+          Tarot Letterでは、<br>
+          お預かりしたご相談や想いを、<br>
+          一通の大切なお手紙として受け止めています。<br><br>
+          安心してお話しいただける場所であるよう、<br>
+          誠実な運営に努めてまいります。
+        </div>
+
+        <p class="effective-date">
+          制定日：2026年7月22日<br>
+          Tarot Letter　Sono
+        </p>
+
+      </article>
+
+      <div class="back-link">
+
+        <a
+          class="back-button"
+          href="index.html"
+        >
+          ホームへ戻る
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+
+    <p class="footer-name">
+      Tarot Letter
+    </p>
+
+    <p class="footer-copy">
+      カードが綴る、あなたへの一通の手紙。
+    </p>
+
+    <div class="footer-links">
+
+      <a href="privacy.html">
+        プライバシーポリシー
+      </a>
+
+      <span class="footer-separator">
+        ｜
+      </span>
+
+      <a href="terms.html">
+        利用規約
+      </a>
+
+      <span class="footer-separator">
+        ｜
+      </span>
+
+      <a href="commerce.html">
+        特定商取引法に基づく表記
+      </a>
+
+    </div>
+
+    <p class="footer-copyright">
+      © 2026 Tarot Letter
+    </p>
+
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const mainMenu = document.getElementById("mainMenu");
+
+    function openMenu() {
+      menuButton.classList.add("active");
+      mainMenu.classList.add("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを閉じる"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMenu() {
+      menuButton.classList.remove("active");
+      mainMenu.classList.remove("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを開く"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove("menu-open");
+    }
+
+    menuButton.addEventListener("click", () => {
+      if (mainMenu.classList.contains("open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mainMenu.addEventListener("click", (event) => {
+      if (event.target === mainMenu) {
+        closeMenu();
+      }
+    });
+
+    document
+      .querySelectorAll(".menu-list a")
+      .forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+  </script>
+
+</body>
+</html>
