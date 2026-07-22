@@ -1,1 +1,1407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>利用規約｜Tarot Letter</title>
+
+  <meta
+    name="description"
+    content="Tarot Letterの個人鑑定および各種コンテンツをご利用いただく際の規約です。"
+  >
+
+  <style>
+    :root {
+      --cream: #f8f2e8;
+      --paper: #fffdf8;
+      --brown: #5f4b3e;
+      --soft: #856f60;
+      --gold: #c8a66a;
+      --line: rgba(200, 166, 106, 0.35);
+      --shadow: rgba(83, 62, 44, 0.16);
+      --teal: #428f91;
+      --teal-deep: #2e7174;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--brown);
+      background:
+        radial-gradient(
+          circle at 50% 0,
+          #fffdf8 0,
+          var(--cream) 52%,
+          #efe5d7 100%
+        );
+      font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+      line-height: 2;
+      letter-spacing: 0.04em;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* =========================
+       ヘッダー
+    ========================= */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      min-height: 64px;
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(248, 242, 232, 0.9);
+      border-bottom: 1px solid rgba(200, 166, 106, 0.22);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .header-name {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+    }
+
+    /* =========================
+       ハンバーガーメニュー
+    ========================= */
+
+    .menu-button {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: var(--brown);
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(200, 166, 106, 0.38);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .menu-lines {
+      position: relative;
+      width: 20px;
+      height: 14px;
+    }
+
+    .menu-lines span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transition: 0.3s ease;
+    }
+
+    .menu-lines span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-lines span:nth-child(2) {
+      top: 6px;
+    }
+
+    .menu-lines span:nth-child(3) {
+      top: 12px;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(1) {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+
+    .menu-button.active .menu-lines span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button.active .menu-lines span:nth-child(3) {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      padding-top: 64px;
+      display: flex;
+      justify-content: flex-end;
+      background: rgba(72, 55, 43, 0.24);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s ease;
+    }
+
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-panel {
+      width: min(88%, 360px);
+      height: calc(100vh - 64px);
+      padding: 34px 28px;
+      overflow-y: auto;
+      background:
+        linear-gradient(
+          rgba(255, 253, 248, 0.99),
+          rgba(246, 238, 225, 0.99)
+        );
+      box-shadow: -12px 18px 40px rgba(78, 58, 42, 0.22);
+      transform: translateX(105%);
+      transition: 0.35s ease;
+    }
+
+    .menu-overlay.open .menu-panel {
+      transform: translateX(0);
+    }
+
+    .menu-title {
+      margin: 0 0 24px;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .menu-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu-list li {
+      border-bottom: 1px solid rgba(200, 166, 106, 0.24);
+    }
+
+    .menu-list a {
+      padding: 17px 4px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+    }
+
+    .menu-icon {
+      width: 27px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    /* =========================
+       メイン
+    ========================= */
+
+    .page-main {
+      min-height: 100vh;
+      padding: 98px 16px 70px;
+    }
+
+    .page-container {
+      width: min(100%, 820px);
+      margin: 0 auto;
+    }
+
+    .intro {
+      text-align: center;
+    }
+
+    .page-kicker {
+      display: block;
+      color: var(--teal);
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      margin: 8px 0 0;
+      font-size: clamp(32px, 7vw, 50px);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.1em;
+    }
+
+    .ornament {
+      width: 110px;
+      height: 1px;
+      margin: 22px auto;
+      background:
+        linear-gradient(
+          to right,
+          transparent,
+          var(--gold),
+          transparent
+        );
+    }
+
+    .intro-text {
+      margin: 0;
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    /* =========================
+       利用規約本文
+    ========================= */
+
+    .terms-card {
+      margin-top: 34px;
+      padding:
+        clamp(34px, 7vw, 58px)
+        clamp(22px, 7vw, 64px);
+      background: rgba(255, 253, 248, 0.95);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: 0 20px 55px var(--shadow);
+    }
+
+    .terms-mark {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 30px;
+      display: grid;
+      place-items: center;
+      color: var(--teal-deep);
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.96),
+          rgba(239, 228, 209, 0.76)
+        );
+      border: 1px solid rgba(200, 166, 106, 0.46);
+      border-radius: 50%;
+      font-size: 24px;
+      box-shadow: 0 10px 28px rgba(83, 62, 44, 0.11);
+    }
+
+    .terms-lead {
+      margin: 0 0 38px;
+      color: var(--soft);
+      font-size: 15px;
+      line-height: 2.2;
+    }
+
+    .terms-section {
+      margin-top: 42px;
+      padding-top: 38px;
+      border-top: 1px solid rgba(200, 166, 106, 0.28);
+    }
+
+    .terms-section:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      color: var(--teal-deep);
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 1.7;
+      letter-spacing: 0.06em;
+    }
+
+    .terms-section p {
+      margin: 0 0 1.2em;
+      font-size: 14px;
+      line-height: 2.15;
+    }
+
+    .terms-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .terms-list {
+      margin: 14px 0 0;
+      padding-left: 1.5em;
+      font-size: 14px;
+      line-height: 2.1;
+    }
+
+    .terms-list li {
+      margin-bottom: 7px;
+      padding-left: 4px;
+    }
+
+    .notice-box {
+      margin: 22px 0 0;
+      padding: 20px 20px;
+      color: var(--teal-deep);
+      background: rgba(248, 240, 227, 0.7);
+      border-left: 3px solid rgba(66, 143, 145, 0.5);
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .internal-link {
+      color: var(--teal-deep);
+      text-decoration: underline;
+      text-decoration-color: rgba(46, 113, 116, 0.38);
+      text-underline-offset: 4px;
+    }
+
+    .internal-link:hover {
+      text-decoration-color: var(--teal-deep);
+    }
+
+    .closing-message {
+      margin-top: 48px;
+      padding: 28px 22px;
+      text-align: center;
+      color: var(--teal-deep);
+      background: rgba(248, 240, 227, 0.74);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-size: 15px;
+      line-height: 2.1;
+    }
+
+    .effective-date {
+      margin: 34px 0 0;
+      text-align: right;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .back-link {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .back-button {
+      width: min(100%, 300px);
+      margin: 0 auto;
+      padding: 15px 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fffdf8;
+      background:
+        linear-gradient(
+          135deg,
+          var(--teal-deep),
+          var(--teal)
+        );
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(46, 113, 116, 0.24);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 34px rgba(46, 113, 116, 0.31);
+    }
+
+    /* =========================
+       フッター
+    ========================= */
+
+    .site-footer {
+      padding: 42px 20px 36px;
+      text-align: center;
+      color: #f8f0e5;
+      background:
+        linear-gradient(
+          135deg,
+          #5d4c41,
+          #756052
+        );
+    }
+
+    .footer-name {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0.14em;
+    }
+
+    .footer-copy {
+      margin: 12px 0 0;
+      color: rgba(255, 248, 239, 0.72);
+      font-size: 11px;
+    }
+
+    .footer-links {
+      margin: 24px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 14px;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .footer-links a {
+      color: rgba(255, 248, 239, 0.82);
+      border-bottom: 1px solid transparent;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: rgba(255, 248, 239, 0.7);
+    }
+
+    .footer-separator {
+      color: rgba(255, 248, 239, 0.32);
+    }
+
+    .footer-copyright {
+      margin: 20px 0 0;
+      color: rgba(255, 248, 239, 0.5);
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================
+       スマートフォン
+    ========================= */
+
+    @media (max-width: 680px) {
+      .page-main {
+        padding: 88px 12px 50px;
+      }
+
+      .page-title {
+        font-size: 32px;
+      }
+
+      .terms-card {
+        border-radius: 22px;
+      }
+
+      .terms-lead {
+        font-size: 14px;
+      }
+
+      .terms-section {
+        margin-top: 36px;
+        padding-top: 32px;
+      }
+
+      .section-title {
+        font-size: 17px;
+      }
+
+      .terms-section p,
+      .terms-list,
+      .notice-box {
+        font-size: 13px;
+      }
+
+      .closing-message {
+        padding: 24px 16px;
+        font-size: 14px;
+      }
+
+      .footer-links {
+        max-width: 290px;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-separator {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <a
+      class="header-brand"
+      href="index.html"
+      aria-label="ホームへ戻る"
+    >
+      <img
+        class="header-logo"
+        src="images/logo.png"
+        alt="Tarot Letter ロゴ"
+      >
+
+      <span class="header-name">
+        Tarot Letter
+      </span>
+    </a>
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="メニューを開く"
+      aria-expanded="false"
+      aria-controls="mainMenu"
+    >
+      <span class="menu-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+  </header>
+
+  <div
+    class="menu-overlay"
+    id="mainMenu"
+    aria-hidden="true"
+  >
+
+    <nav
+      class="menu-panel"
+      aria-label="メインメニュー"
+    >
+
+      <p class="menu-title">
+        Menu
+      </p>
+
+      <ul class="menu-list">
+
+        <li>
+          <a href="index.html">
+            <span class="menu-icon">⌂</span>
+            ホーム
+          </a>
+        </li>
+
+        <li>
+          <a href="draw.html">
+            <span class="menu-icon">🃏</span>
+            今日の一枚
+          </a>
+        </li>
+
+        <li>
+          <a href="dice.html">
+            <span class="menu-icon">🎲</span>
+            Fortune Dice
+          </a>
+        </li>
+
+        <li>
+          <a href="yesno.html">
+            <span class="menu-icon">✦</span>
+            YES / NO
+          </a>
+        </li>
+
+        <li>
+          <a href="profile.html">
+            <span class="menu-icon">◯</span>
+            Profile
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </div>
+
+  <main class="page-main">
+
+    <div class="page-container">
+
+      <section class="intro">
+
+        <span class="page-kicker">
+          Terms
+        </span>
+
+        <h1 class="page-title">
+          利用規約
+        </h1>
+
+        <div class="ornament"></div>
+
+        <p class="intro-text">
+          サービスをご利用いただく前に
+        </p>
+
+      </section>
+
+      <article class="terms-card">
+
+        <div
+          class="terms-mark"
+          aria-hidden="true"
+        >
+          ✦
+        </div>
+
+        <p class="terms-lead">
+          この利用規約（以下「本規約」といいます。）は、
+          Tarot Letter（以下「当サイト」といいます。）が提供する
+          個人鑑定および各種コンテンツの利用条件を定めるものです。
+          <br><br>
+          当サイトをご利用の際は、
+          本規約の内容をご確認いただき、
+          ご理解・ご同意のうえでお申し込みください。
+        </p>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            1．適用範囲
+          </h2>
+
+          <p>
+            本規約は、当サイトが提供する次のサービスおよび
+            コンテンツをご利用になるすべての方に適用されます。
+          </p>
+
+          <ul class="terms-list">
+            <li>タロットによる個人鑑定</li>
+            <li>鑑定書および関連するメッセージの提供</li>
+            <li>「今日の一枚」などの無料コンテンツ</li>
+            <li>YES／NO占い</li>
+            <li>Fortune Dice</li>
+            <li>当サイトが今後提供する関連サービス</li>
+          </ul>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            2．サービスの性質
+          </h2>
+
+          <p>
+            当サイトが提供する占いおよび鑑定は、
+            カードが示す象徴を通して、
+            ご自身の気持ちや状況を見つめるための
+            一つの参考としてお届けするものです。
+          </p>
+
+          <p>
+            鑑定内容は、特定の未来、出来事、結果、
+            相手の気持ちなどを確実に保証するものではありません。
+          </p>
+
+          <p>
+            鑑定を受けた後の判断および行動については、
+            ご利用者ご自身の意思と責任において行ってください。
+          </p>
+
+          <div class="notice-box">
+            Tarot Letterは、人生の決定を代わりに行うものではなく、
+            ご自身の心と向き合うための一通の手紙として、
+            カードから受け取った言葉をお届けします。
+          </div>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            3．お申し込みと契約の成立
+          </h2>
+
+          <p>
+            個人鑑定のお申し込みは、
+            当サイトのお申し込みフォームから受け付けます。
+          </p>
+
+          <p>
+            フォームの送信のみでは、
+            個人鑑定の契約は成立していません。
+          </p>
+
+          <p>
+            お申し込み内容を運営者が確認した後、
+            鑑定をお受けできる場合には、
+            受付番号、料金、支払方法その他必要事項を記載した
+            ご案内メールをお送りします。
+          </p>
+
+          <p>
+            ご案内した代金のお支払いを確認し、
+            当サイトから正式受付のご連絡を行った時点で、
+            個人鑑定の契約が成立します。
+          </p>
+
+          <p>
+            お申し込み内容によっては、
+            理由を詳しくお伝えすることなく、
+            鑑定をお断りする場合があります。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            4．料金およびお支払い
+          </h2>
+
+          <p>
+            個人鑑定の料金は、
+            当サイトの個人鑑定ページまたは
+            ご案内メールに表示する金額とします。
+          </p>
+
+          <p>
+            お支払い方法、支払先および必要な手続きについては、
+            お申し込み内容の確認後にお送りするメールでご案内します。
+          </p>
+
+          <p>
+            お支払いのご案内メール送信日より
+            7日以内にお手続きをお願いいたします。
+          </p>
+
+          <p>
+            期限を過ぎてもお支払いを確認できない場合は、
+            お申し込みは自動的にキャンセルとなります。
+            ご希望の際は、お手数ですが改めてお申し込みください。
+          </p>
+
+          <p>
+            振込手数料その他、
+            支払いに伴い発生する費用がある場合は、
+            ご利用者の負担となります。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            5．鑑定の開始と納品
+          </h2>
+
+          <p>
+            鑑定は、代金のお支払いを確認し、
+            当サイトから正式受付のご連絡をした後に開始します。
+          </p>
+
+          <p>
+            鑑定書は、原則としてPDFファイル等の
+            電子データをメールに添付する方法でお届けします。
+          </p>
+
+          <p>
+            納品予定日は、個人鑑定ページまたは
+            お申し込み後のご案内メールにてお知らせします。
+          </p>
+
+          <p>
+            お申し込みの集中、体調不良、通信障害、
+            災害その他やむを得ない事情により、
+            納品が予定より遅れる場合があります。
+          </p>
+
+          <p>
+            遅延が見込まれる場合には、
+            可能な限り事前にメールでご連絡します。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            6．キャンセルおよび返金
+          </h2>
+
+          <p>
+            代金のお支払い前であれば、
+            ご連絡いただくことでお申し込みを
+            キャンセルすることができます。
+          </p>
+
+          <p>
+            代金のお支払い後は、
+            ご利用者ごとに個別の鑑定書を作成するサービスの性質上、
+            ご利用者都合によるキャンセルおよび返金は、
+            原則としてお受けしていません。
+          </p>
+
+          <p>
+            ただし、当サイトの都合により
+            鑑定を提供できなくなった場合は、
+            お支払いいただいた代金を返金します。
+          </p>
+
+          <p>
+            法令により契約の取消し、解除または返金が
+            認められる場合には、当該法令に従って対応します。
+          </p>
+
+          <p>
+            鑑定結果がご希望の内容や予想と異なること、
+            または鑑定内容にご満足いただけなかったことのみを理由とする
+            返金には応じていません。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            7．鑑定書の確認と修正
+          </h2>
+
+          <p>
+            納品した鑑定書に、誤字、脱字、
+            お名前の間違い、ファイルの破損その他の
+            明らかな不備がある場合は、納品後7日以内にご連絡ください。
+          </p>
+
+          <p>
+            内容を確認のうえ、
+            必要な範囲で修正または再送します。
+          </p>
+
+          <p>
+            カードの再展開、質問の追加、
+            ご相談内容の変更、鑑定結果の変更を求めるご依頼は、
+            無料修正の対象には含まれません。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            8．お受けできないご相談
+          </h2>
+
+          <p>
+            当サイトでは、以下に該当するご相談について、
+            鑑定をお断りする場合があります。
+          </p>
+
+          <ul class="terms-list">
+            <li>人の生死、寿命、病気の診断または治療に関すること</li>
+            <li>妊娠の有無、妊娠の成立時期または胎児に関する断定</li>
+            <li>法律、税務、投資、金融その他の専門的判断を求めること</li>
+            <li>試験、選考、賭博、くじ等の結果を断定すること</li>
+            <li>犯罪、違法行為または他者への危害に関わること</li>
+            <li>第三者のプライバシーを著しく侵害する内容</li>
+            <li>行方不明者、紛失物等の所在を特定すること</li>
+            <li>同一内容について、短期間に繰り返し鑑定を求めること</li>
+            <li>運営者が適切な鑑定の提供が難しいと判断したこと</li>
+          </ul>
+
+          <p>
+            医療、法律、税務、金融、福祉その他の
+            専門的な支援が必要な場合には、
+            医療機関、行政機関、弁護士、税理士、
+            ファイナンシャルプランナー等の
+            適切な専門家へご相談ください。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            9．心身の状態について
+          </h2>
+
+          <p>
+            当サイトの鑑定は、
+            医療行為、心理療法、カウンセリングその他の
+            専門的治療に代わるものではありません。
+          </p>
+
+          <p>
+            強い不安、心身の不調、日常生活への支障、
+            ご自身や周囲の方の安全に関わる問題がある場合には、
+            占いだけで判断せず、
+            医療機関や公的な相談窓口などへご相談ください。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            10．未成年の方のご利用
+          </h2>
+
+          <p>
+            未成年の方が有料の個人鑑定を申し込む場合は、
+            保護者または法定代理人の同意を得たうえで
+            お申し込みください。
+          </p>
+
+          <p>
+            必要に応じて、
+            保護者の同意を確認させていただく場合があります。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            11．禁止事項
+          </h2>
+
+          <p>
+            当サイトの利用にあたり、
+            以下の行為を禁止します。
+          </p>
+
+          <ul class="terms-list">
+            <li>虚偽の情報を入力して申し込む行為</li>
+            <li>他人になりすまして申し込む行為</li>
+            <li>当サイトまたは第三者の権利や利益を侵害する行為</li>
+            <li>運営を妨害する行為</li>
+            <li>不正アクセスまたはこれを試みる行為</li>
+            <li>当サイトの文章、画像、鑑定書等を無断で転載・販売する行為</li>
+            <li>鑑定書を利用して第三者へ有償鑑定を行う行為</li>
+            <li>運営者への暴言、脅迫、過度な要求、執拗な連絡等の迷惑行為</li>
+            <li>法令または公序良俗に反する行為</li>
+            <li>その他、運営者が不適切と判断する行為</li>
+          </ul>
+
+          <p>
+            禁止事項に該当すると判断した場合は、
+            お申し込みの拒否、サービス提供の中止、
+            今後のご利用のお断りその他必要な対応を
+            行うことがあります。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            12．著作権
+          </h2>
+
+          <p>
+            当サイトに掲載している文章、画像、デザイン、
+            ロゴ、鑑定書その他のコンテンツに関する著作権等は、
+            当サイト運営者または正当な権利者に帰属します。
+          </p>
+
+          <p>
+            私的利用の範囲を超えて、
+            許可なく複製、転載、配布、改変、販売、
+            公衆送信その他の方法で利用することは禁止します。
+          </p>
+
+          <p>
+            ご自身に納品された鑑定書を、
+            個人的な範囲で保存または印刷することは可能です。
+          </p>
+
+          <p>
+            SNS等へ鑑定書の一部を掲載する場合は、
+            ご自身や第三者の個人情報が含まれていないことを確認し、
+            内容を改変して当サイトの正式な見解であるかのように
+            表示しないでください。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            13．無料コンテンツ
+          </h2>
+
+          <p>
+            「今日の一枚」「YES／NO」「Fortune Dice」等の
+            無料コンテンツは、気軽にお楽しみいただくことを
+            目的として提供しています。
+          </p>
+
+          <p>
+            表示される結果は、
+            個別の事情を詳しく確認して行う
+            個人鑑定とは異なります。
+          </p>
+
+          <p>
+            無料コンテンツの結果のみを根拠として、
+            重要な契約、治療、投資、法律上の判断その他
+            重大な決定を行わないでください。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            14．サービスの変更・中断・終了
+          </h2>
+
+          <p>
+            当サイトは、運営上または技術上の理由により、
+            サービス内容の変更、追加、一時中断または終了を
+            行う場合があります。
+          </p>
+
+          <p>
+            すでに正式受付が完了している個人鑑定については、
+            可能な限り予定どおり提供します。
+          </p>
+
+          <p>
+            提供が困難となった場合には、
+            個別にご連絡のうえ、
+            納期の変更または返金等の対応を行います。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            15．免責および責任の範囲
+          </h2>
+
+          <p>
+            当サイトは、鑑定内容および各種コンテンツについて、
+            誠実かつ丁寧な提供に努めます。
+          </p>
+
+          <p>
+            ただし、占いの性質上、
+            鑑定内容の完全性、正確性、
+            特定の結果の実現等を保証するものではありません。
+          </p>
+
+          <p>
+            ご利用者が鑑定内容または無料コンテンツを参考にして
+            行った判断や行動によって生じた損害については、
+            当サイトに故意または重大な過失がある場合、
+            その他法令上責任を負う場合を除き、
+            責任を負いかねます。
+          </p>
+
+          <p>
+            外部サービスの障害、通信環境、
+            ご利用者側の受信設定、端末の不具合等、
+            当サイトの合理的な管理を超える事情により生じた
+            損害についても、法令上責任を負う場合を除き、
+            責任を負いかねます。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            16．メールの受信について
+          </h2>
+
+          <p>
+            お申し込み後のご案内および鑑定書は、
+            お申し込み時に入力されたメールアドレスへ送信します。
+          </p>
+
+          <p>
+            メールアドレスの入力間違い、
+            迷惑メール設定、受信容量の不足等により
+            メールを受信できない場合があります。
+          </p>
+
+          <p>
+            お申し込み後、通常の期間を過ぎても連絡が届かない場合は、
+            迷惑メールフォルダや受信設定をご確認のうえ、
+            当サイトの連絡先までお問い合わせください。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            17．個人情報の取り扱い
+          </h2>
+
+          <p>
+            当サイトにおける個人情報の取り扱いについては、
+            別途定めるプライバシーポリシーをご確認ください。
+          </p>
+
+          <p>
+            <a
+              class="internal-link"
+              href="privacy.html"
+            >
+              プライバシーポリシー
+            </a>
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            18．本規約の変更
+          </h2>
+
+          <p>
+            当サイトは、法令の改正、
+            サービス内容または運営方法の変更等に応じて、
+            本規約を変更する場合があります。
+          </p>
+
+          <p>
+            変更後の利用規約は、
+            本ページに掲載した時点から適用されます。
+          </p>
+
+          <p>
+            すでに成立している契約については、
+            法令または当事者間の合意により認められる場合を除き、
+            契約成立時の条件を基本として取り扱います。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            19．準拠法および協議
+          </h2>
+
+          <p>
+            本規約および当サイトの利用に関しては、
+            日本法を準拠法とします。
+          </p>
+
+          <p>
+            当サイトとご利用者との間で問題が生じた場合は、
+            お互いに誠意をもって話し合い、
+            解決に努めるものとします。
+          </p>
+
+        </section>
+
+        <section class="terms-section">
+
+          <h2 class="section-title">
+            20．お問い合わせ
+          </h2>
+
+          <p>
+            本規約およびサービスに関するお問い合わせは、
+            運営者情報に記載する連絡先よりお願いいたします。
+          </p>
+
+          <p>
+            <a
+              class="internal-link"
+              href="commerce.html"
+            >
+              特定商取引法に基づく表記・運営者情報
+            </a>
+          </p>
+
+        </section>
+
+        <div class="closing-message">
+          Tarot Letterの鑑定は、<br>
+          答えを決めつけるためのものではなく、<br>
+          ご自身の心にある言葉を見つけるためのものです。<br><br>
+          安心して一通の手紙を受け取っていただけるよう、<br>
+          一つひとつ誠実にお届けしてまいります。
+        </div>
+
+        <p class="effective-date">
+          制定日：2026年7月22日<br>
+          Tarot Letter　Sono
+        </p>
+
+      </article>
+
+      <div class="back-link">
+
+        <a
+          class="back-button"
+          href="index.html"
+        >
+          ホームへ戻る
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+
+    <p class="footer-name">
+      Tarot Letter
+    </p>
+
+    <p class="footer-copy">
+      カードが綴る、あなたへの一通の手紙。
+    </p>
+
+    <div class="footer-links">
+
+      <a href="privacy.html">
+        プライバシーポリシー
+      </a>
+
+      <span class="footer-separator">
+        ｜
+      </span>
+
+      <a href="terms.html">
+        利用規約
+      </a>
+
+      <span class="footer-separator">
+        ｜
+      </span>
+
+      <a href="commerce.html">
+        特定商取引法に基づく表記
+      </a>
+
+    </div>
+
+    <p class="footer-copyright">
+      © 2026 Tarot Letter
+    </p>
+
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const mainMenu = document.getElementById("mainMenu");
+
+    function openMenu() {
+      menuButton.classList.add("active");
+      mainMenu.classList.add("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを閉じる"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMenu() {
+      menuButton.classList.remove("active");
+      mainMenu.classList.remove("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを開く"
+      );
+
+      mainMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove("menu-open");
+    }
+
+    menuButton.addEventListener("click", () => {
+      if (mainMenu.classList.contains("open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mainMenu.addEventListener("click", (event) => {
+      if (event.target === mainMenu) {
+        closeMenu();
+      }
+    });
+
+    document
+      .querySelectorAll(".menu-list a")
+      .forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+  </script>
+
+</body>
+</html>
