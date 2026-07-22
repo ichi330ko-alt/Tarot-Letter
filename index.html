@@ -720,15 +720,17 @@
       }
 
       .hero {
-        min-height: 100svh;
+        min-height: 0;
+        height: auto;
+        aspect-ratio: 2 / 1;
         background:
           url("images/home-top.png")
-          center top / cover
+          center center / contain
           no-repeat;
       }
 
       .scroll-guide {
-        bottom: 10px;
+        display: none;
       }
 
       .section {
