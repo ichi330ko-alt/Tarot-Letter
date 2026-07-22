@@ -15,6 +15,12 @@
     content="Tarot Letterは、タロットカードを通して、今のあなたに必要な言葉を届ける場所です。今日の一枚、YES・NO、運命のダイス、個人鑑定をご用意しています。"
   >
 
+  <!-- スマホのホーム画面アイコン -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#f7efe2">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <link rel="icon" type="image/png" href="images/logo.png">
+
   <style>
     :root {
       --ivory: #fbf7ef;
@@ -245,7 +251,7 @@
       overflow: hidden;
       background:
         url("images/home-top.png")
-        center center / cover
+        center top / cover
         no-repeat;
     }
 
@@ -716,7 +722,7 @@
 
       .hero {
         min-height: 100svh;
-        background-position: center center;
+        background-position: center top;
       }
 
       .scroll-guide {
@@ -826,6 +832,13 @@
           <a href="index.html">
             <span class="menu-icon">⌂</span>
             ホーム
+          </a>
+        </li>
+
+        <li>
+          <a href="first.html">
+            <span class="menu-icon">🌿</span>
+            初めての方へ
           </a>
         </li>
 
@@ -1135,7 +1148,9 @@
       カードが綴る、あなたへの一通の手紙。
     </p>
 
-    <nav class="footer-links" aria-label="サイトポリシー">
+    <nav class="footer-links" aria-label="サイト案内">
+      <a href="first.html">初めての方へ</a>
+      <span class="footer-separator" aria-hidden="true">｜</span>
       <a href="privacy.html">プライバシーポリシー</a>
       <span class="footer-separator" aria-hidden="true">｜</span>
       <a href="terms.html">利用規約</a>
