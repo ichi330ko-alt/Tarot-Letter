@@ -241,27 +241,24 @@
 
     .hero {
       position: relative;
-      padding-top: 71px;
+      min-height: 100svh;
       overflow: hidden;
-      background: #f8f1e6;
-    }
-
-    .hero-image {
-      width: 100%;
-      height: auto;
-      display: block;
+      background:
+        url("images/home-top.png")
+        center center / cover
+        no-repeat;
     }
 
     .hero::after {
       content: "";
       position: absolute;
-      inset: 71px 0 0;
+      inset: 0;
       pointer-events: none;
       background:
         linear-gradient(
           to bottom,
-          rgba(255, 250, 242, 0.01) 72%,
-          rgba(251, 247, 239, 0.16) 100%
+          rgba(255, 250, 242, 0.03) 60%,
+          rgba(251, 247, 239, 0.22) 100%
         );
     }
 
@@ -654,6 +651,31 @@
       font-size: 12px;
     }
 
+    .footer-links {
+      margin: 24px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 14px;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .footer-links a {
+      color: rgba(255, 248, 239, 0.82);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.25s ease;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: rgba(255, 248, 239, 0.7);
+    }
+
+    .footer-separator {
+      color: rgba(255, 248, 239, 0.32);
+    }
+
     .copyright {
       margin-top: 30px;
       color: rgba(255, 248, 239, 0.52);
@@ -693,11 +715,8 @@
       }
 
       .hero {
-        padding-top: 62px;
-      }
-
-      .hero::after {
-        inset: 62px 0 0;
+        min-height: 100svh;
+        background-position: center center;
       }
 
       .scroll-guide {
@@ -722,6 +741,16 @@
       .reading-box {
         padding: 42px 24px;
         border-radius: 22px;
+      }
+
+      .footer-links {
+        max-width: 290px;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-separator {
+        display: none;
       }
     }
 
@@ -848,12 +877,6 @@
       HTMLでは重ねて表示していません。
     -->
     <section class="hero">
-
-      <img
-        class="hero-image"
-        src="images/home-top.png"
-        alt="Tarot Letter カードが綴る、あなたへの一通の手紙"
-      >
 
       <a
         class="scroll-guide"
@@ -1111,6 +1134,14 @@
     <p class="footer-copy">
       カードが綴る、あなたへの一通の手紙。
     </p>
+
+    <nav class="footer-links" aria-label="サイトポリシー">
+      <a href="privacy.html">プライバシーポリシー</a>
+      <span class="footer-separator" aria-hidden="true">｜</span>
+      <a href="terms.html">利用規約</a>
+      <span class="footer-separator" aria-hidden="true">｜</span>
+      <a href="commerce.html">特定商取引法に基づく表記</a>
+    </nav>
 
     <p class="copyright">
       © 2026 Tarot Letter
