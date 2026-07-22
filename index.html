@@ -720,17 +720,16 @@
       }
 
       .hero {
-        min-height: 0;
-        height: auto;
-        aspect-ratio: 2 / 1;
+        min-height: calc(100svh - 62px);
+        margin-top: 62px;
         background:
-          url("images/home-top.png")
-          center center / contain
+          url("images/home-top-mobile.png")
+          center top / cover
           no-repeat;
       }
 
       .scroll-guide {
-        display: none;
+        bottom: 10px;
       }
 
       .section {
