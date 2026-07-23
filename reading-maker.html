@@ -1,220 +1,1828 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="robots" content="noindex,nofollow,noarchive">
-<title>園子式 鑑定書メーカー Ver.3｜Tarot Letter</title>
-<style>
-:root{--cream:#f7f0e5;--paper:#fffdf8;--brown:#5e493b;--soft:#806c5e;--gold:#c5a064;--line:rgba(197,160,100,.3);--teal:#3f8a8c;--deep:#2d6f71;--shadow:rgba(79,58,43,.15)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--brown);background:radial-gradient(circle at 50% 0,#fffdf8,var(--cream) 55%,#eadfce);font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;line-height:1.9;letter-spacing:.035em}button,input,select,textarea{font:inherit}.top{position:sticky;top:0;z-index:10;padding:12px 16px;background:rgba(247,240,229,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}.topin{width:min(100%,1220px);margin:auto;display:flex;justify-content:space-between;gap:12px}.tag{font-size:11px;color:var(--deep)}main{width:min(100%,1220px);margin:auto;padding:38px 14px 70px}.hero{text-align:center}.hero small{color:var(--deep);letter-spacing:.22em}.hero h1{margin:6px 0;font-size:clamp(30px,6vw,46px);font-weight:400}.hero p{margin:0;color:var(--soft);font-size:14px}.version{display:inline-block;margin-top:12px;padding:5px 12px;color:var(--deep);background:rgba(63,138,140,.08);border:1px solid rgba(63,138,140,.22);border-radius:999px;font-size:11px}.notice{width:min(100%,860px);margin:24px auto;padding:15px 18px;background:rgba(255,253,248,.82);border:1px solid var(--line);border-radius:15px;color:var(--soft);font-size:12px}.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}.panel{background:rgba(255,253,248,.95);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 44px var(--shadow);overflow:hidden}.head{padding:20px 22px;border-bottom:1px solid var(--line)}.head h2{margin:0;font-size:19px;font-weight:400}.head p{margin:4px 0 0;color:var(--soft);font-size:12px}.body{padding:22px}.field{margin-bottom:15px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;margin-bottom:5px;color:var(--soft);font-size:12px}input,select,textarea{width:100%;padding:10px 12px;color:var(--brown);background:#fff;border:1px solid rgba(197,160,100,.42);border-radius:11px;outline:none}input,select{min-height:44px}textarea{min-height:100px;resize:vertical;line-height:1.8}input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(63,138,140,.1)}h3{margin:28px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line);font-size:16px;font-weight:400}.method{margin:0 0 18px;padding:15px;background:rgba(63,138,140,.06);border:1px solid rgba(63,138,140,.2);border-radius:14px}.method-title{margin:0 0 8px;color:var(--deep);font-size:13px}.method p{margin:0;color:var(--soft);font-size:11px}.card{margin-bottom:12px;padding:14px;background:rgba(247,240,229,.65);border:1px solid rgba(197,160,100,.24);border-radius:15px}.card.important{background:linear-gradient(135deg,rgba(63,138,140,.08),rgba(247,240,229,.72));border-color:rgba(63,138,140,.26)}.cardtop{display:grid;grid-template-columns:42px 1fr;gap:10px}.num{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(63,138,140,.3);border-radius:50%;color:var(--deep);background:#fff}.line{display:grid;grid-template-columns:1.4fr .6fr;gap:8px}.pos{margin-bottom:8px;font-weight:600}.memo{min-height:68px;margin-top:8px;font-size:13px}.card-note{margin:7px 0 0;color:var(--deep);font-size:10px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.btn{padding:10px 17px;border-radius:999px;border:1px solid var(--line);font-size:13px;cursor:pointer}.primary{color:white;background:linear-gradient(135deg,var(--deep),var(--teal))}.secondary{color:var(--brown);background:#fff}.danger{color:#995c57;background:transparent}.output{position:sticky;top:72px}.preview{padding:28px}.preview h2{text-align:center;font-size:27px;font-weight:400;letter-spacing:.12em}.meta{text-align:center;color:var(--soft);font-size:12px}.out{min-height:900px;border:0;background:transparent;font-size:14px;line-height:2}.help,.status{text-align:center;color:var(--soft);font-size:11px}.status{min-height:22px;color:var(--deep)}
+  <meta charset="UTF-8">
 
-.workflow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
-.step{padding:12px 8px;text-align:center;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.65);font-size:11px;color:var(--soft)}
-.step strong{display:block;color:var(--deep);font-size:13px}
-.report-options{margin:20px 0;padding:16px;border:1px solid rgba(63,138,140,.22);border-radius:15px;background:rgba(63,138,140,.05)}
-.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.tone-card{padding:12px 8px;text-align:center;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
-.tone-card input{width:auto;min-height:auto;margin-right:5px}
-.tabs{display:flex;gap:6px;margin:12px 0;overflow:auto}
-.tab{white-space:nowrap;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--brown);cursor:pointer;font-size:12px}
-.tab.active{background:var(--deep);color:white;border-color:var(--deep)}
-.smallnote{margin-top:6px;color:var(--soft);font-size:10px}
-@media(max-width:620px){.workflow,.tone-grid,.option-grid{grid-template-columns:1fr}}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-@media(max-width:900px){.grid{grid-template-columns:1fr}.output{position:static}}@media(max-width:620px){main{padding:28px 9px 50px}.twocol,.line{grid-template-columns:1fr}.body{padding:16px}.actions{display:grid;grid-template-columns:1fr 1fr}.btn{width:100%}}@media print{.top,.hero,.notice,.input,.help,.status,.outactions{display:none!important}main{padding:0}.grid{display:block}.panel{border:0;box-shadow:none}.output{position:static}.out{min-height:0}}
-</style>
+  <meta
+    name="robots"
+    content="noindex, nofollow, noarchive"
+  >
+
+  <title>鑑定書作成｜Tarot Letter</title>
+
+  <style>
+    :root {
+      --navy: #171a38;
+      --deep-blue: #252951;
+      --purple: #625b88;
+      --light-purple: #aaa3c7;
+      --mist: #f4f2f8;
+      --paper: #fffdfb;
+      --line: #ded9e8;
+      --text: #323242;
+      --sub-text: #6c6878;
+      --white: #ffffff;
+      --gold: #b79b68;
+      --shadow: 0 18px 45px rgba(28, 26, 57, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        "Hiragino Mincho Pro",
+        "Noto Serif JP",
+        serif;
+      line-height: 1.8;
+      background:
+        radial-gradient(
+          circle at 15% 10%,
+          rgba(164, 153, 201, 0.18),
+          transparent 31%
+        ),
+        radial-gradient(
+          circle at 84% 20%,
+          rgba(77, 85, 143, 0.15),
+          transparent 33%
+        ),
+        linear-gradient(
+          160deg,
+          #efedf5 0%,
+          #f8f7fa 48%,
+          #ecebf3 100%
+        );
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app-header {
+      position: relative;
+      overflow: hidden;
+      padding: 42px 20px 38px;
+      color: var(--white);
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at 50% -20%,
+          rgba(255, 255, 255, 0.16),
+          transparent 43%
+        ),
+        linear-gradient(
+          140deg,
+          #171a38 0%,
+          #292d59 55%,
+          #514c78 100%
+        );
+    }
+
+    .app-header::before,
+    .app-header::after {
+      position: absolute;
+      content: "✦";
+      color: rgba(255, 255, 255, 0.42);
+      font-size: 20px;
+    }
+
+    .app-header::before {
+      top: 24px;
+      left: 10%;
+    }
+
+    .app-header::after {
+      right: 12%;
+      bottom: 25px;
+      font-size: 14px;
+    }
+
+    .brand {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 6vw, 48px);
+      font-weight: normal;
+      letter-spacing: 0.08em;
+    }
+
+    .header-subtitle {
+      margin: 7px 0 0;
+      font-size: 15px;
+      letter-spacing: 0.18em;
+      opacity: 0.88;
+    }
+
+    .header-note {
+      max-width: 650px;
+      margin: 18px auto 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+      font-size: 13px;
+      line-height: 1.75;
+      opacity: 0.75;
+    }
+
+    .main-container {
+      width: min(1180px, calc(100% - 28px));
+      margin: 34px auto 70px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 23px;
+    }
+
+    .mode-button {
+      min-width: 140px;
+      padding: 12px 20px;
+      border: 1px solid rgba(78, 73, 118, 0.22);
+      border-radius: 999px;
+      color: var(--deep-blue);
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 7px 20px rgba(35, 31, 67, 0.07);
+      transition:
+        transform 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .mode-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .mode-button.active {
+      color: var(--white);
+      border-color: transparent;
+      background: linear-gradient(
+        135deg,
+        var(--deep-blue),
+        var(--purple)
+      );
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 30px;
+    }
+
+    .panel {
+      padding: 30px;
+      border: 1px solid rgba(90, 83, 130, 0.12);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .section {
+      padding: 0 0 30px;
+      margin: 0 0 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-of-type {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 19px;
+      color: var(--deep-blue);
+      font-size: 21px;
+      font-weight: normal;
+      letter-spacing: 0.06em;
+    }
+
+    .section-heading::before {
+      width: 26px;
+      height: 1px;
+      content: "";
+      background: var(--gold);
+    }
+
+    .section-description {
+      margin: -8px 0 20px;
+      color: var(--sub-text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--deep-blue);
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+    }
+
+    .required {
+      margin-left: 5px;
+      color: #8b5271;
+      font-size: 11px;
+    }
+
+    .input,
+    .select,
+    .textarea {
+      display: block;
+      width: 100%;
+      color: var(--text);
+      border: 1px solid #d8d3e2;
+      border-radius: 12px;
+      outline: none;
+      background: #fffefd;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .input,
+    .select {
+      min-height: 48px;
+      padding: 11px 14px;
+    }
+
+    .textarea {
+      min-height: 500px;
+      padding: 17px;
+      resize: vertical;
+      line-height: 2;
+    }
+
+    .input:focus,
+    .select:focus,
+    .textarea:focus {
+      border-color: #8981ad;
+      box-shadow: 0 0 0 4px rgba(118, 108, 159, 0.12);
+    }
+
+    .cards-grid {
+      display: grid;
+      gap: 15px;
+    }
+
+    .card-input-row {
+      display: grid;
+      grid-template-columns:
+        minmax(150px, 0.8fr)
+        minmax(210px, 1.35fr)
+        minmax(130px, 0.65fr);
+      gap: 13px;
+      align-items: end;
+      padding: 16px;
+      border: 1px solid #e2deea;
+      border-radius: 15px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(248, 247, 251, 0.95),
+          rgba(255, 255, 255, 0.95)
+        );
+    }
+
+    .position-name {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 13px;
+      color: var(--deep-blue);
+      border-left: 2px solid var(--gold);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .position-number {
+      display: inline-block;
+      min-width: 25px;
+      margin-right: 5px;
+      color: var(--purple);
+    }
+
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .action-area {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 13px;
+      padding-top: 8px;
+    }
+
+    .action-button {
+      min-width: 175px;
+      min-height: 51px;
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 10px 25px rgba(32, 29, 63, 0.13);
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .action-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 13px 30px rgba(32, 29, 63, 0.18);
+    }
+
+    .action-button:active {
+      transform: translateY(0);
+    }
+
+    .preview-button {
+      color: var(--deep-blue);
+      border: 1px solid #c9c3d8;
+      background: var(--white);
+    }
+
+    .pdf-button {
+      color: var(--white);
+      background:
+        linear-gradient(
+          135deg,
+          var(--deep-blue),
+          var(--purple)
+        );
+    }
+
+    .clear-button {
+      color: #716b7a;
+      border: 1px solid #d7d2df;
+      background: #f5f3f7;
+      box-shadow: none;
+    }
+
+    .button-icon {
+      margin-right: 7px;
+    }
+
+    .help-note {
+      margin: 17px auto 0;
+      color: var(--sub-text);
+      text-align: center;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .preview-panel {
+      display: none;
+    }
+
+    .preview-panel.visible {
+      display: block;
+    }
+
+    .preview-toolbar {
+      position: sticky;
+      top: 10px;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      width: fit-content;
+      margin: 0 auto 22px;
+      padding: 9px;
+      border: 1px solid rgba(72, 67, 109, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 8px 25px rgba(27, 25, 55, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .small-button {
+      padding: 9px 17px;
+      color: var(--deep-blue);
+      border: 0;
+      border-radius: 999px;
+      background: #efedf4;
+    }
+
+    .small-button.primary {
+      color: var(--white);
+      background: var(--deep-blue);
+    }
+
+    .document-preview {
+      width: min(210mm, 100%);
+      margin: 0 auto;
+    }
+
+    .document-section {
+      position: relative;
+      width: 100%;
+      min-height: 297mm;
+      padding: 23mm 20mm;
+      margin: 0 auto 25px;
+      overflow: hidden;
+      color: #292836;
+      background:
+        radial-gradient(
+          circle at 95% 3%,
+          rgba(100, 92, 145, 0.08),
+          transparent 27%
+        ),
+        var(--paper);
+      box-shadow: 0 17px 45px rgba(23, 22, 48, 0.17);
+    }
+
+    .document-section::before {
+      position: absolute;
+      top: 12mm;
+      right: 12mm;
+      bottom: 12mm;
+      left: 12mm;
+      pointer-events: none;
+      content: "";
+      border: 1px solid rgba(145, 129, 97, 0.3);
+    }
+
+    .document-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at 50% 25%,
+          rgba(255, 255, 255, 0.12),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 15% 85%,
+          rgba(153, 142, 193, 0.20),
+          transparent 30%
+        ),
+        linear-gradient(
+          145deg,
+          #171a38 0%,
+          #2a2e59 58%,
+          #504a76 100%
+        );
+      color: var(--white);
+    }
+
+    .cover-page::before {
+      border-color: rgba(220, 205, 167, 0.55);
+    }
+
+    .cover-ornament {
+      margin-bottom: 30px;
+      color: #d5c7a3;
+      font-size: 26px;
+      letter-spacing: 0.8em;
+      transform: translateX(0.4em);
+    }
+
+    .cover-brand {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 35px;
+      font-weight: normal;
+      letter-spacing: 0.12em;
+    }
+
+    .cover-label {
+      margin: 15px 0 0;
+      font-size: 14px;
+      letter-spacing: 0.28em;
+      opacity: 0.82;
+    }
+
+    .cover-divider {
+      width: 58px;
+      height: 1px;
+      margin: 38px auto;
+      background: #cdbb91;
+    }
+
+    .cover-recipient {
+      margin: 0;
+      font-size: 25px;
+      font-weight: normal;
+      letter-spacing: 0.08em;
+    }
+
+    .cover-date {
+      margin: 22px 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      opacity: 0.75;
+    }
+
+    .cover-signature {
+      margin: 58px 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      letter-spacing: 0.16em;
+    }
+
+    .document-title {
+      margin: 0 0 10mm;
+      color: var(--deep-blue);
+      text-align: center;
+      font-size: 25px;
+      font-weight: normal;
+      letter-spacing: 0.13em;
+    }
+
+    .document-title::after {
+      display: block;
+      width: 45px;
+      height: 1px;
+      margin: 15px auto 0;
+      content: "";
+      background: var(--gold);
+    }
+
+    .spread-label {
+      margin: -3mm 0 9mm;
+      color: var(--sub-text);
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+    }
+
+    .cards-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid #ded8e6;
+    }
+
+    .cards-list-item {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 17px;
+      padding: 11px 5px;
+      border-bottom: 1px solid #e5e0e9;
+      font-size: 14px;
+    }
+
+    .cards-list-position {
+      color: var(--sub-text);
+    }
+
+    .cards-list-card {
+      color: var(--deep-blue);
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .reading-page {
+      min-height: auto;
+    }
+
+    .reading-body {
+      font-size: 14px;
+      line-height: 2.15;
+      letter-spacing: 0.025em;
+      white-space: pre-wrap;
+      word-break: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .reading-body p {
+      margin: 0 0 1.35em;
+    }
+
+    .gift-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .gift-heading {
+      margin: 0 0 13mm;
+      color: var(--deep-blue);
+      font-size: 23px;
+      font-weight: normal;
+      letter-spacing: 0.1em;
+    }
+
+    .gift-heading::after {
+      display: block;
+      width: 42px;
+      height: 1px;
+      margin: 15px auto 0;
+      content: "";
+      background: var(--gold);
+    }
+
+    .gift-boxes {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+      max-width: 135mm;
+      margin: 0 auto 17mm;
+    }
+
+    .gift-box {
+      min-height: 38mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 13px;
+      border: 1px solid #ddd6e6;
+      border-radius: 4px;
+      background: rgba(248, 246, 250, 0.78);
+    }
+
+    .gift-box-label {
+      margin-bottom: 7px;
+      color: var(--sub-text);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .gift-box-value {
+      color: var(--deep-blue);
+      font-size: 21px;
+      line-height: 1.5;
+    }
+
+    .thanks-text {
+      max-width: 140mm;
+      margin: 0 auto;
+      font-size: 14px;
+      line-height: 2.15;
+    }
+
+    .thanks-signature {
+      margin-top: 13mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      letter-spacing: 0.13em;
+    }
+
+    .empty-value {
+      color: #9994a1;
+      font-weight: normal;
+    }
+
+    .validation-message {
+      display: none;
+      margin: 0 0 22px;
+      padding: 13px 15px;
+      color: #70435d;
+      border: 1px solid #dbc4d0;
+      border-radius: 12px;
+      background: #fff6fa;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .validation-message.visible {
+      display: block;
+    }
+
+    .app-footer {
+      padding: 0 20px 35px;
+      color: #777280;
+      text-align: center;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+      font-size: 11px;
+    }
+
+    @media (max-width: 760px) {
+      .app-header {
+        padding: 33px 18px 31px;
+      }
+
+      .main-container {
+        width: min(100% - 18px, 1180px);
+        margin-top: 20px;
+      }
+
+      .panel {
+        padding: 21px 16px;
+        border-radius: 17px;
+      }
+
+      .field-grid,
+      .gift-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-input-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .position-name {
+        min-height: auto;
+        padding-top: 3px;
+        padding-bottom: 3px;
+      }
+
+      .textarea {
+        min-height: 430px;
+      }
+
+      .action-button {
+        width: 100%;
+      }
+
+      .preview-toolbar {
+        top: 5px;
+        width: 100%;
+        border-radius: 15px;
+      }
+
+      .small-button {
+        flex: 1;
+        padding: 9px 8px;
+        font-size: 13px;
+      }
+
+      .document-section {
+        min-height: 0;
+        padding: 12% 10%;
+        margin-bottom: 17px;
+      }
+
+      .cover-page {
+        min-height: 135vw;
+      }
+
+      .cover-brand {
+        font-size: clamp(25px, 8vw, 35px);
+      }
+
+      .cover-recipient {
+        font-size: clamp(19px, 6vw, 25px);
+      }
+
+      .cards-list-item {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .cards-list-card {
+        text-align: left;
+      }
+
+      .gift-page {
+        min-height: 135vw;
+      }
+
+      .gift-boxes {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 17mm 17mm 18mm;
+    }
+
+    @media print {
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+      }
+
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .app-header,
+      .main-container > .mode-tabs,
+      .form-panel,
+      .preview-toolbar,
+      .app-footer {
+        display: none !important;
+      }
+
+      .main-container {
+        width: 100% !important;
+        margin: 0 !important;
+      }
+
+      .workspace,
+      .preview-panel,
+      .document-preview {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+      }
+
+      .preview-panel {
+        padding: 0 !important;
+        border: 0 !important;
+        background: none !important;
+        box-shadow: none !important;
+      }
+
+      .document-section {
+        width: auto !important;
+        min-height: auto;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        background: #fffdfb !important;
+        box-shadow: none !important;
+      }
+
+      .document-section::before {
+        position: fixed;
+        top: 7mm;
+        right: 7mm;
+        bottom: 7mm;
+        left: 7mm;
+      }
+
+      .document-inner {
+        width: 100%;
+      }
+
+      .cover-page {
+        min-height: calc(297mm - 35mm);
+        display: flex !important;
+        color: #ffffff !important;
+        background:
+          radial-gradient(
+            circle at 50% 25%,
+            rgba(255, 255, 255, 0.12),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at 15% 85%,
+            rgba(153, 142, 193, 0.2),
+            transparent 30%
+          ),
+          linear-gradient(
+            145deg,
+            #171a38 0%,
+            #2a2e59 58%,
+            #504a76 100%
+          ) !important;
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .cover-page::before {
+        border-color: rgba(220, 205, 167, 0.55);
+      }
+
+      .cards-page {
+        min-height: calc(297mm - 35mm);
+        padding: 8mm 4mm !important;
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .reading-page {
+        padding: 8mm 4mm !important;
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .gift-page {
+        min-height: calc(297mm - 35mm);
+        display: flex !important;
+        padding: 8mm 4mm !important;
+        break-before: page;
+        page-break-before: always;
+      }
+
+      .document-title {
+        margin-top: 0;
+      }
+
+      .reading-body {
+        font-size: 10.5pt;
+        line-height: 2;
+        orphans: 3;
+        widows: 3;
+      }
+
+      .reading-body p {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .cards-list-item,
+      .gift-box {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="top"><div class="topin"><div>Tarot Letter</div><div class="tag">Sono専用・鑑定書メーカー Ver.3</div></div></header>
-<main>
-<section class="hero"><small>TAROT LETTER STUDIO</small><h1>園子式 鑑定書メーカー</h1>
-<p>カードの関係性と園子の気づきを、相談者へ渡せる一通の文章へ整えます。</p>
-<span class="version">Ver.3｜分析 → 園子メモ → 鑑定書3案</span></section>
-<div class="notice">このページは園子のリーディングを鑑定書へ整えるための試作ツールです。分析と文章はすべて下書きです。園子の読みと違う部分は自由に直してください。入力内容は外部へ送信されず、このブラウザ内だけで処理されます。</div>
-<section class="grid">
-<div class="panel input"><div class="head"><h2>入力</h2><p>相談内容と10枚のカードを入力してください。</p></div><div class="body">
-<div class="workflow">
-      <div class="step"><strong>STEP 1</strong>カードを整理</div>
-      <div class="step"><strong>STEP 2</strong>園子の読みを補足</div>
-      <div class="step"><strong>STEP 3</strong>鑑定書を選ぶ</div>
+  <header class="app-header">
+    <h1 class="brand">Tarot Letter</h1>
+    <p class="header-subtitle">鑑定書作成</p>
+
+    <p class="header-note">
+      添削後の完成文を貼り付け、プレビューを確認したあと、
+      ブラウザの印刷機能からPDFとして保存できます。
+    </p>
+  </header>
+
+  <main class="main-container">
+    <div class="mode-tabs">
+      <button
+        type="button"
+        class="mode-button active"
+        id="editModeButton"
+      >
+        入力する
+      </button>
+
+      <button
+        type="button"
+        class="mode-button"
+        id="previewModeButton"
+      >
+        プレビュー
+      </button>
     </div>
-    <div class="method"><p class="method-title">園子式の見方</p><p>②を未来へ介入する鍵として⑨との対応を見る。③と④から頭と心の差を、④と⑧から内面と環境の噛み合わせを見る。⑤・⑥・⑩は過去から着地点までの時間の流れとして読む。</p></div>
-<div class="twocol"><div class="field"><label>お名前・ニックネーム</label><input id="name" placeholder="例：Aさん"></div><div class="field"><label>鑑定日</label><input id="date" type="date"></div></div>
-<div class="field"><label>ご相談内容</label><textarea id="question" placeholder="相談内容を入力"></textarea></div>
-<div class="field"><label>相談者についての補足</label><textarea id="context" placeholder="これまでの経緯や印象に残った言葉"></textarea></div>
-<div class="option-grid">
-  <div class="field">
-    <label>相談者との距離</label>
-    <select id="relation">
-      <option value="known">よく知っている人</option>
-      <option value="somewhat">ある程度知っている人</option>
-      <option value="unknown">ほとんど知らない人</option>
-    </select>
-  </div>
-  <div class="field">
-    <label>伝え方の強さ</label>
-    <select id="directness">
-      <option value="soft">断定を避け、可能性として伝える</option>
-      <option value="middle">柔らかいが、要点は明確に伝える</option>
-      <option value="clear">必要な部分ははっきり伝える</option>
-    </select>
-  </div>
-</div>
 
-<h3>ケルト十字・10枚</h3><div id="cards"></div>
-<div class="field"><label>カードを並べて感じたこと</label><textarea id="overall" placeholder="最初に目に入ったカード、違和感、全体から感じたこと"></textarea></div>
-<h3>鑑定書へ入れたい園子の読み</h3>
-<div class="field">
-  <label>今回の中心テーマ</label>
-  <textarea id="themeMemo" placeholder="例：この人に足りないのは、助けてくれる手。"></textarea>
-</div>
-<div class="field">
-  <label>カードだけでは分からない背景・相手について知っていること</label>
-  <textarea id="knownMemo" placeholder="例：本人の仕事ぶりは信頼されているが、会社全体の方向性には不安がある。"></textarea>
-</div>
-<div class="field">
-  <label>相談者へ最も伝えたいこと</label>
-  <textarea id="messageMemo" placeholder="例：会社任せにせず、自分の立ち位置と今後の選択肢を考えておく必要がある。"></textarea>
-</div>
-<div class="field">
-  <label>現実にできる小さな一手</label>
-  <textarea id="actionMemo" placeholder="例：会社の今後について、役割や方向性を具体的な言葉で話し合う。"></textarea>
-</div>
+    <div class="workspace">
+      <section class="panel form-panel" id="formPanel">
+        <div
+          class="validation-message"
+          id="validationMessage"
+          role="alert"
+        ></div>
 
-<div class="report-options">
-  <label>最初に表示する鑑定書の文体</label>
-  <div class="tone-grid">
-    <label class="tone-card"><input type="radio" name="tone" value="warm" checked>温かく柔らかい</label>
-    <label class="tone-card"><input type="radio" name="tone" value="clear">客観的に整理</label>
-    <label class="tone-card"><input type="radio" name="tone" value="push">背中を押す</label>
-  </div>
-  <p class="smallnote">生成後は3案をタブで切り替えて比較できます。</p>
-</div>
-<div class="actions"><button class="btn primary" id="generate">鑑定書を3案作る</button><button class="btn secondary" id="save">入力を保存</button><button class="btn secondary" id="load">保存内容を開く</button><button class="btn danger" id="clear">全て消す</button></div>
-</div></div>
-<div class="panel output"><div class="head"><h2>鑑定書プレビュー</h2><p>3つの文体から選び、本文を直接書き直せます。</p></div><div class="preview"><h2>Tarot Letter</h2><p class="meta" id="meta">園子式 ケルト十字リーディング</p><div class="tabs" id="tabs"><button class="tab active" data-tone="warm">温かく柔らかい</button><button class="tab" data-tone="clear">客観的に整理</button><button class="tab" data-tone="push">背中を押す</button></div><textarea class="out" id="out" placeholder="カードを入力して「鑑定書を3案作る」を押してください。"></textarea><p class="help">3案は同じ読みを異なる伝え方に整えたものです。園子の言葉へ自由に直してください。</p><div class="actions outactions"><button class="btn primary" id="copy">文章をコピー</button><button class="btn secondary" id="print">印刷・PDF保存</button></div><div class="status" id="status"></div></div></div>
-</section></main><datalist id="tarotList"></datalist>
-<script>
-const positions=[["現状","今置かれている状況と相談の中心"],["障害・交差","表面上の障害であると同時に、未来を動かすための助言"],["顕在意識・目標","本人が頭で意識している望みや完成図"],["潜在意識・土台","心の奥にある本音や、行動を支える土台"],["過去","現在につながった過去の影響"],["近い未来","今の流れを続けた場合に現れやすい展開"],["自分自身","本人の姿勢や、自分をどう扱っているか"],["周囲・環境","本人を取り巻く人や、現実的な支援・妨げ"],["願望と恐れ","心が引き寄せやすく、現実になり得る可能性"],["最終結果","現在の流れを続けた先にある着地点"]];
-const tarot={
-"愚者":{up:"新しい始まり、自由、未知への一歩。心の赴く方向へ進む純粋な力です。",rev:"準備不足、無計画、現実から目をそらす傾向。自由を求める気持ちが落ち着かなさとして現れています。",upAction:"未知を恐れず、まず一歩を踏み出す",revAction:"勢いだけで進まず、一度計画と安全策を整える",themes:["自由","始まり","直感","準備"]},
-"魔術師":{up:"意志、可能性、行動を始める力。すでに持つ能力を使い現実を動かせる状態です。",rev:"力を生かしきれない、自信不足、言葉と行動のずれ。目的を明確にする必要があります。",upAction:"持っている能力や道具を具体的に使い始める",revAction:"できることを整理し、言葉と行動のずれを直す",themes:["能力","行動","開始","自信"]},
-"女教皇":{up:"直感、静かな理解、まだ言葉にならない真実。外の答えより内側を信頼する時です。",rev:"直感を疑う、心を閉ざす、考えすぎる状態。違和感の正体を見る必要があります。",upAction:"静かな時間を取り、内側の答えを確かめる",revAction:"一人で考え込みすぎず、違和感を言葉にして外へ出す",themes:["直感","沈黙","洞察","閉鎖"]},
-"女帝":{up:"豊かさ、愛情、育む力、受け取る喜び。安心できる環境で物事が育ちます。",rev:"与えすぎ、依存、心の余裕不足。誰かのためだけでなく自分へのいたわりも必要です。",upAction:"安心して育てられる環境と余白をつくる",revAction:"与えすぎを止め、自分の回復と受け取ることを優先する",themes:["育成","愛情","豊かさ","余裕"]},
-"皇帝":{up:"安定、責任、秩序、現実的な決断。自分の立場を明確にし土台を整える力です。",rev:"支配、頑固さ、責任への重圧。力で押し切るより柔軟な見直しが必要です。",upAction:"役割・期限・責任範囲を明確にする",revAction:"全部を管理しようとせず、責任を分けて柔軟に組み直す",themes:["責任","秩序","管理","土台"]},
-"法王":{up:"信頼、助言、伝統、常識的な選択。経験ある人の知恵や安心できる価値観が助けになります。",rev:"既存の考えへの違和感、形式への反発。周囲の正解ではなく自分なりの答えを探す時です。",upAction:"経験者や信頼できる人から、現実的な助言を受ける",revAction:"常識や既存の方法をいったん外し、自分に合う形へ作り直す",themes:["助言","伝統","学び","独自性"]},
-"恋人":{up:"心からの選択、調和、結びつき。条件だけでなく本当に望む方向を選ぶことが鍵です。",rev:"迷い、価値観の不一致、選択への不安。周囲に合わせすぎず本音を確かめる必要があります。",upAction:"本音と価値観が一致する選択をする",revAction:"すぐ結論を出さず、誰のための選択なのかを見直す",themes:["選択","関係","価値観","迷い"]},
-"戦車":{up:"前進、意志、勝利、状況を動かす力。異なる気持ちをまとめ目的へ進む時です。",rev:"空回り、焦り、方向性の乱れ。勢いだけで進まず向かう先を再確認する必要があります。",upAction:"目的を一つに絞り、意思を持って前へ進む",revAction:"いったん速度を落とし、方向と優先順位を確認する",themes:["前進","意志","速度","方向"]},
-"力":{up:"内なる強さ、忍耐、優しさによる克服。感情を丁寧に扱うことで乗り越えられます。",rev:"自信低下、感情に振り回される、無理を重ねる状態。弱さを認めることが必要です。",upAction:"力で押さえ込まず、感情を丁寧に扱いながら続ける",revAction:"無理を止め、弱さや限界を認めて助けを求める",themes:["自信","忍耐","感情","無理"]},
-"隠者":{up:"内省、静かな探求、一人で考える時間。距離を置くことで自分の真実が見えてきます。",rev:"孤立、考え込みすぎ、閉じこもる状態。一人で抱えず信頼できる人との対話も必要です。",upAction:"一度距離を置き、自分の答えを静かに探す",revAction:"孤立を深めず、信頼できる相手に考えを話す",themes:["内省","孤立","探求","相談"]},
-"運命の輪":{up:"転機、流れの変化、巡ってきた機会。動かなかった状況が自然に動き始めます。",rev:"停滞、タイミングのずれ、同じ流れの反復。今できる小さな修正が大切です。",upAction:"訪れた機会を見逃さず、流れに乗る",revAction:"同じことの繰り返しを止め、小さなやり方から変える",themes:["転機","流れ","機会","反復"]},
-"正義":{up:"公平、客観性、責任ある判断。事実を整理し誠実に選ぶ必要があります。",rev:"不公平感、偏った判断、責任回避。都合のよい見方だけになっていないか確認する時です。",upAction:"感情と事実を分け、条件を公平に整理する",revAction:"自分に都合のよい解釈を外し、不均衡や負担の偏りを認める",themes:["公平","判断","事実","責任"]},
-"吊るされた男":{up:"一時停止、視点の転換、受け入れる時間。動かないことで新しい意味が見えてきます。",rev:"報われない我慢、停滞への苛立ち、執着。耐えること自体が目的になっていないか見直す時です。",upAction:"急いで動かず、視点が変わるまで待つ",revAction:"意味のない我慢を終え、降りられる場所から降りる",themes:["停止","我慢","視点","執着"]},
-"死神":{up:"終わりと変化、手放し、次の段階への移行。古い形を終えることで新しい流れが生まれます。",rev:"変化への抵抗、終わったものへの執着。失う怖さを認めながら少しずつ手放す時です。",upAction:"終えるべきものを明確に終わらせ、次へ移る",revAction:"一気に変えようとせず、手放せる部分から段階的に変える",themes:["終わり","変化","再生","抵抗"]},
-"節制":{up:"調整、回復、自然なバランス。急がず異なるものを少しずつなじませることが大切です。",rev:"偏り、無理な調整、心身の乱れ。どちらかに寄りすぎていないか見直す必要があります。",upAction:"急がず、無理のない配分とペースに整える",revAction:"その場しのぎの調整を止め、生活や役割の偏りから直す",themes:["調整","回復","配分","偏り"]},
-"悪魔":{up:"執着、誘惑、依存、離れにくい関係。手放せないものが選択を狭めています。",rev:"束縛からの解放、依存への気づき。自由を取り戻す動きが始まっています。",upAction:"何に縛られ、誰が利益を得ているのかを直視する",revAction:"離れられる関係や条件から、実際に距離を取る",themes:["束縛","依存","利害","解放"]},
-"塔":{up:"突然の変化、崩壊、真実の露呈。保てなくなったものが壊れ偽りのない土台へ戻されます。",rev:"変化を避ける、内側での崩壊。大きく壊れる前に無理のある部分を認める必要があります。",upAction:"壊れたものを無理に戻さず、真実に合う土台を作り直す",revAction:"大きく崩れる前に、無理のある部分を自分から止める",themes:["崩壊","真実","急変","再構築"]},
-"星":{up:"希望、癒やし、素直な願い、未来への光。すぐ結果が見えなくても信じられる方向が残っています。",rev:"希望を失う、自信低下、理想と現実の距離。疲れによって光が見えにくい状態です。",upAction:"本当に望む未来を言葉にし、小さな希望を守る",revAction:"高すぎる理想を現実的な段階へ分け、回復を先にする",themes:["希望","理想","回復","自信"]},
-"月":{up:"不安、曖昧さ、無意識。事実と想像が混ざりやすく結論を急がない方がよい時です。",rev:"混乱が薄れる、隠れていたことが見える。不安の正体に気づき始めています。",upAction:"不確かな状態を認め、事実が見えるまで決めつけない",revAction:"見えてきた事実を曖昧にせず、言葉にして確認する",themes:["不安","曖昧","無意識","真相"]},
-"太陽":{up:"喜び、明確さ、成功、素直な自己表現。状況が分かりやすくなり前向きな力が戻ります。",rev:"喜びを受け取りきれない、期待ほどではない成果。小さな良さを見落とさないことが大切です。",upAction:"成果や喜びを隠さず、分かりやすく表現する",revAction:"完璧な成功だけを求めず、すでにある成果を認める",themes:["成功","明確","喜び","成果"]},
-"審判":{up:"目覚め、再出発、過去への答え。経験を受け入れ新しい決断をする時です。",rev:"決断の先延ばし、過去への罪悪感、やり直し。すぐ答えを出さず、一度白紙へ戻す視点も必要です。",upAction:"過去の経験に答えを出し、新しい決断へ進む",revAction:"結論を急がず、一度白紙に戻して最初から問い直す",themes:["再出発","決断","白紙","助言"]},
-"世界":{up:"完成、統合、納得できる到達点。一つの流れがまとまり次の段階へ進めます。",rev:"未完成、あと一歩、終わりきらない課題。仕上げるべき部分が残っています。",upAction:"完成している部分を認め、一区切りつけて次へ進む",revAction:"広げる前に、未完成の部分を一つずつ仕上げる",themes:["完成","統合","到達","未完成"]}
-};
-const cardsBox=document.getElementById("cards"),list=document.getElementById("tarotList"),out=document.getElementById("out"),status=document.getElementById("status");
-positions.forEach((p,i)=>{const important=[1,2,3,4,5,7,8,9].includes(i)?" important":"";let note="";if(i===1)note="最重要：⑨の未来を変えるための鍵";if(i===2)note="④と合わせて、頭と心の差を見る";if(i===3)note="③・⑧と合わせて、土台と環境を見る";if(i===7)note="④と合わせて、本人を支えられる環境かを見る";if(i===8)note="②と対応させ、近づき得る未来として読む";cardsBox.insertAdjacentHTML("beforeend",`<div class="card${important}"><div class="cardtop"><div class="num">${i+1}</div><div><input class="pos" id="pos${i}" value="${p[0]}"><div class="line"><input id="card${i}" list="tarotList" placeholder="例：法王"><select id="ori${i}"><option value="0">正位置</option><option value="1">逆位置</option></select></div>${note?`<p class="card-note">${note}</p>`:""}<textarea class="memo" id="memo${i}" placeholder="この位置で園子が感じたこと"></textarea></div></div></div>`)});Object.keys(tarot).forEach(n=>list.insertAdjacentHTML("beforeend",`<option value="${n}">`));
-const today=new Date(),pad=n=>String(n).padStart(2,"0");document.getElementById("date").value=`${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
-const clean=v=>v.trim().replace(/逆位置|正位置|逆$/g,"");
-function getData(){return{n:document.getElementById("name").value.trim(),d:document.getElementById("date").value,q:document.getElementById("question").value.trim(),c:document.getElementById("context").value.trim(),o:document.getElementById("overall").value.trim(),t:document.getElementById("themeMemo").value.trim(),known:document.getElementById("knownMemo").value.trim(),msg:document.getElementById("messageMemo").value.trim(),act:document.getElementById("actionMemo").value.trim(),relation:document.getElementById("relation").value,directness:document.getElementById("directness").value,tone:(document.querySelector('input[name="tone"]:checked')||{}).value||"warm",reports:reports,cards:positions.map((p,i)=>({pos:document.getElementById("pos"+i).value.trim()||p[0],guide:p[1],name:clean(document.getElementById("card"+i).value),ori:+document.getElementById("ori"+i).value,memo:document.getElementById("memo"+i).value.trim()})),out:out.value}}
-const info=c=>tarot[c.name]||null,orientation=c=>c.ori?"逆位置":"正位置",label=c=>c.name?`${c.name}・${orientation(c)}`:"未入力";
-function meaning(c){const m=info(c);return !c.name?"":m?(c.ori?m.rev:m.up):"このカードはまだ基本意味データに登録されていません。"}function short(c){return meaning(c).split("。")[0]}function action(c){const m=info(c);return m?(c.ori?m.revAction:m.upAction):""}function oppositeAction(c){const m=info(c);return m?(c.ori?m.upAction:m.revAction):""}
-function cardText(c,i){if(!c.name)return`【${i+1}. ${c.pos}】\nカードがまだ入力されていません。`;return`【${i+1}. ${c.pos}｜${label(c)}】\n${c.guide}を表す位置です。${meaning(c)}${c.memo?"\n園子のメモ："+c.memo:""}`}
-function relation29(p){const k=p[1],f=p[8];if(!k.name||!f.name)return"②または⑨が未入力のため、対応関係はまだ作成できません。";return`⑨の${label(f)}は、「${short(f)}」という状態へ近づく可能性を示しています。\nこの可能性へ近づく、または望ましくない表れ方を避けるための鍵が、②の${label(k)}です。\n\nまず、出た向きのまま活かすなら、\n「${action(k)||label(k)+"を現実的な行動へ置き換える"}」\nという一手が考えられます。\n\nさらに、園子式にあえて反対向きの考え方を借りるなら、\n「${oppositeAction(k)||"反対側の性質も検討する"}」\nという方法も突破口になります。\n\n②は単なる障害ではなく、⑨の可能性の表れ方を変えるための介入点として読むことができます。`}
-function relation34(p){const a=p[2],b=p[3];if(!a.name||!b.name)return"③または④が未入力のため、頭と心の比較はまだ作成できません。";const shared=info(a)&&info(b)?info(a).themes.filter(x=>info(b).themes.includes(x)):[];const bridge=shared.length?`二枚には「${shared.join("・")}」という共通テーマもあり、方向そのものは完全に離れていないようです。`:"二枚の性質には差があり、頭で描いている完成図と、実際に心を動かしている力が十分に結びついていない可能性があります。";return`顕在意識の${label(a)}は、「${short(a)}」を意識しています。\n一方、潜在意識の${label(b)}には、「${short(b)}」が流れています。\n\n${bridge}\nそのため、考えている構想だけでなく、なぜそれをしたいのか、何をまだ具体化できていないのかを、もう一段深く落とし込む必要がありそうです。`}
-function relation48(p){const a=p[3],b=p[7];if(!a.name||!b.name)return"④または⑧が未入力のため、内面と環境の比較はまだ作成できません。";const difficult=info(b)&&(b.ori===1||info(b).themes.some(x=>["束縛","依存","孤立","偏り","抵抗"].includes(x)));return`潜在意識の${label(a)}には、「${short(a)}」があります。\nそれに対して周囲・環境の${label(b)}は、「${short(b)}」を示しています。\n\n${difficult?"本人の内面だけで押し切ろうとすると負担が集中しやすく、環境の整理、役割分担、相談相手など、外側から支える手が必要になる可能性があります。":"環境側には活用できる力もあるため、本人の内面だけで進めず、周囲の協力や現実的な仕組みへ結びつけることが大切です。"}`}
-function timeline(p){const a=p[4],b=p[5],c=p[9];if(!a.name||!b.name||!c.name)return"⑤・⑥・⑩のいずれかが未入力のため、時間の流れはまだ作成できません。";return`過去の${label(a)}が示す「${short(a)}」を背景に、\n近い未来では${label(b)}の「${short(b)}」へ流れが移ろうとしています。\nそのまま進んだ場合、最終結果の${label(c)}が示す「${short(c)}」へ着地する可能性があります。\n\n⑤・⑥・⑩に似た重さや停滞が重なる場合は、同じ問題が形を変えながら続いている可能性があります。反対に、⑥で大きな変化が起きても⑩が動きにくいカードなら、出来事だけが変わり、本人の選択や環境が追いつかない可能性も見ておく必要があります。`}
-function hypothesis(p,t){let lines=[];if(t)lines.push(`園子が現時点で感じている中心は、「${t}」です。`);const rev=p.filter(x=>x.name&&x.ori).length;const env=info(p[7])&&(p[7].ori===1||info(p[7]).themes.some(x=>["束縛","依存","孤立","偏り","抵抗"].includes(x)));if(env)lines.push("特に④の内面と⑧の環境を合わせると、本人の努力だけでは解決しにくく、外側の支援や仕組みを整える必要がある可能性があります。");lines.push(rev>=5?"逆位置が多いため、出来事そのものよりも、迷い、疲労、抵抗、抱え込みなど、内側で流れを止めているものを丁寧に見る必要があります。":"動かせる要素も残っているため、②の助言を具体的な行動へ変えることで、⑨や⑩の表れ方が変わる余地があります。");lines.push("これは断定ではなく、園子が最終的な読みを組み立てるための仮説です。");return lines.join("\n")}
-function bigFlow(p){let x=[];if(p[0].name)x.push(`現在の中心には、${label(p[0])}が示す「${short(p[0])}」があります。`);if(p[1].name)x.push(`未来を動かす鍵として、②の${label(p[1])}が置かれています。`);if(p[2].name&&p[3].name)x.push(`表面上の意識は${label(p[2])}ですが、心の土台には${label(p[3])}があります。`);if(p[7].name)x.push(`周囲の状況には、${label(p[7])}の影響が見えます。`);if(p[8].name)x.push(`このまま心が引き寄せやすい可能性として、⑨の${label(p[8])}が示されています。`);if(p[9].name)x.push(`現在の流れの着地点には、${label(p[9])}があります。`);return x.join("")}
+        <form id="readingForm">
+          <section class="section">
+            <h2 class="section-heading">基本情報</h2>
 
-function soften(text,directness){
-  if(!text)return "";
-  if(directness==="clear")return text;
-  if(directness==="middle")return text.replace(/です。/g,"と考えられます。");
-  return text.replace(/です。/g,"ように感じられます。").replace(/必要があります。/g,"必要があるのかもしれません。");
-}
-function relationPhrase(relation){
-  if(relation==="known")return "これまでのお話や、私が知っている状況も重ねながら";
-  if(relation==="somewhat")return "伺っている背景も重ねながら";
-  return "カードから受け取れる範囲を大切にしながら";
-}
-function coreSummary(d,p){
-  const pieces=[];
-  if(p[0].name)pieces.push(`現在には${label(p[0])}があり、${short(p[0])}という感覚が中心にあります`);
-  if(p[1].name&&p[8].name)pieces.push(`②の${label(p[1])}が、⑨の${label(p[8])}の表れ方を変える鍵になっています`);
-  if(p[3].name&&p[7].name)pieces.push(`心の土台にある${label(p[3])}と、周囲の${label(p[7])}の間には、見過ごせない差があります`);
-  if(p[4].name&&p[5].name&&p[9].name)pieces.push(`流れは${label(p[4])}から${label(p[5])}を経て、${label(p[9])}へ向かっています`);
-  return pieces.join("。")+"。";
-}
-function memoParagraph(d){
-  const arr=[];
-  if(d.t)arr.push(`今回の中心として私が感じたのは、「${d.t}」ということです。`);
-  if(d.known)arr.push(`${relationPhrase(d.relation)}、${d.known}`);
-  if(d.msg)arr.push(`そのうえで、最もお伝えしたいのは、${d.msg}`);
-  return arr.join("\n\n");
-}
-function cardFlowParagraph(p){
-  if(!p[4].name||!p[5].name||!p[9].name)return "";
-  return `過去の${label(p[4])}には、${short(p[4])}という勢いがありました。そこから近い未来の${label(p[5])}へ移るため、今はただ前へ進むよりも、いったん立ち止まり、まだ言葉になっていないことを見つめる時間へ入っているように見えます。その先にある${label(p[9])}は、今までの形をそのまま保つというより、何かを終わらせ、次の段階へ移る可能性を示しています。`;
-}
-function adviceParagraph(d,p,tone){
-  const base=d.act || (p[1].name?action(p[1]):"今の状況を具体的な言葉にし、話し合えるところから始める");
-  if(tone==="warm")return `今すぐすべての答えを出す必要はありません。まずは「${base}」という小さな一手からで十分です。そこから、今見えていない選択肢が少しずつ形になっていくでしょう。`;
-  if(tone==="clear")return `現実的な一手は、「${base}」です。考えるだけで終わらせず、誰が・何を・いつまでに行うのかまで具体化することが、流れを変えるために重要です。`;
-  return `今、流れを変えるために必要なのは、「${base}」を実際に始めることです。待つだけではなく、自分たちの意思を言葉と行動に変えることで、⑨や⑩の未来は別の形を取り始めます。`;
-}
-function opening(d,tone){
-  const who=d.n||"ご相談者さま";
-  if(tone==="warm")return `${who}へ\n\n今回のカードを見て、まず感じたのは、「先が見えない不安の中にも、流れを変えるための糸口は残されている」ということでした。`;
-  if(tone==="clear")return `${who}へ\n\n今回のケルト十字からは、現在の問題、内面と環境のずれ、そして今後の転換点が比較的はっきりと示されています。`;
-  return `${who}へ\n\n今回のカードは、「今までと同じやり方のままではなく、ここで流れを変える必要がある」と伝えています。`;
-}
-function closing(tone){
-  if(tone==="warm")return `カードは未来を固定するものではありません。今の状況を知り、より納得できる方向を選ぶための灯りです。\n\n焦らず、けれど大切な違和感を置き去りにせず、これからの一歩を選んでください。\n\nSono`;
-  if(tone==="clear")return `今回の結果は、未来を断定するものではありません。現在の流れを続けた場合の可能性と、そこへ介入するための要点を整理したものです。\n\n状況を言葉にし、役割と選択肢を現実的に確認することが、今後の判断材料になるでしょう。\n\nSono`;
-  return `未来は、今の選択によって変わります。カードが示した転換点を恐れるのではなく、自分たちが望む形へ変えていくための機会として受け取ってください。\n\nSono`;
-}
-function makeReport(d,p,tone){
-  const analysis29=relation29(p).split("\n\n")[0];
-  const analysis34=relation34(p).split("\n\n")[0];
-  const analysis48=relation48(p).split("\n\n")[0];
-  const bodyTone=tone==="warm"
-    ? "カード全体を一つの物語として見ると"
-    : tone==="clear" ? "カードの配置を整理すると" : "カードが最も強く示しているのは";
-  const sections=[
-    opening(d,tone),
-    d.q?`■ ご相談について\n${d.q}`:"",
-    `${bodyTone}、${soften(coreSummary(d,p),d.directness)}`,
-    `■ 今回の中心\n${memoParagraph(d) || hypothesis(p,d.t)}`,
-    `■ 未来を動かす鍵\n${soften(analysis29,d.directness)}`,
-    `■ 心の中と周囲の状況\n${soften(analysis34,d.directness)}\n\n${soften(analysis48,d.directness)}`,
-    `■ これまでと、これからの流れ\n${cardFlowParagraph(p) || timeline(p)}`,
-    `■ これからのための一手\n${adviceParagraph(d,p,tone)}`,
-    closing(tone)
-  ].filter(Boolean);
-  return sections.join("\n\n");
-}
-function showTone(tone){
-  if(!reports[tone])return;
-  out.value=reports[tone];
-  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tone===tone));
-  out.style.height="auto";out.style.height=Math.max(out.scrollHeight,900)+"px";
-}
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="clientName">
+                  お名前
+                  <span class="required">必須</span>
+                </label>
 
-document.getElementById("generate").onclick=()=>{const d=getData(),p=d.cards;if(!p.some(x=>x.name)){status.textContent="カードを1枚以上入力してください。";return}const client=d.n||"ご相談者さま";document.getElementById("meta").textContent=`${client}｜園子式 ケルト十字リーディング`;reports={warm:makeReport(d,p,"warm"),clear:makeReport(d,p,"clear"),push:makeReport(d,p,"push")};showTone(d.tone);status.textContent="3つの鑑定書案を作りました。タブで読み比べられます。"};
-document.getElementById("save").onclick=()=>{const active=document.querySelector(".tab.active");if(active)reports[active.dataset.tone]=out.value;localStorage.setItem("readingMakerV3",JSON.stringify(getData()));status.textContent="この端末に保存しました。"};
-document.getElementById("load").onclick=()=>{const s=localStorage.getItem("readingMakerV3")||localStorage.getItem("readingMakerV2")||localStorage.getItem("readingMaker");if(!s){status.textContent="保存内容がありません。";return}try{const d=JSON.parse(s);document.getElementById("name").value=d.n||"";document.getElementById("date").value=d.d||"";document.getElementById("question").value=d.q||"";document.getElementById("context").value=d.c||"";document.getElementById("overall").value=d.o||"";document.getElementById("themeMemo").value=d.t||"";document.getElementById("knownMemo").value=d.known||"";document.getElementById("messageMemo").value=d.msg||"";document.getElementById("actionMemo").value=d.act||"";document.getElementById("relation").value=d.relation||"known";document.getElementById("directness").value=d.directness||"soft";reports=d.reports||{warm:"",clear:"",push:""};const toneRadio=document.querySelector(`input[name="tone"][value="${d.tone||"warm"}"]`);if(toneRadio)toneRadio.checked=true;(d.cards||[]).forEach((x,i)=>{if(i>=10)return;document.getElementById("pos"+i).value=x.pos||positions[i][0];document.getElementById("card"+i).value=x.name||"";document.getElementById("ori"+i).value=+x.ori||0;document.getElementById("memo"+i).value=x.memo||""});out.value=d.out||reports[d.tone||"warm"]||"";out.style.height="auto";out.style.height=Math.max(out.scrollHeight,900)+"px";status.textContent="保存内容を開きました。"}catch(e){status.textContent="保存内容を読み込めませんでした。"}};
-document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{if(out.value&&document.querySelector(".tab.active")){const active=document.querySelector(".tab.active").dataset.tone;reports[active]=out.value}showTone(btn.dataset.tone)}));document.getElementById("clear").onclick=()=>{if(confirm("入力と下書きを全て消しますか？")){location.reload()}};document.getElementById("copy").onclick=async()=>{if(!out.value){status.textContent="コピーする文章がありません。";return}try{await navigator.clipboard.writeText(out.value)}catch(e){out.select();document.execCommand("copy")}status.textContent="文章をコピーしました。"};document.getElementById("print").onclick=()=>window.print();out.addEventListener("input",()=>{const active=document.querySelector(".tab.active");if(active)reports[active.dataset.tone]=out.value;out.style.height="auto";out.style.height=Math.max(out.scrollHeight,900)+"px"});
-</script>
+                <input
+                  type="text"
+                  class="input"
+                  id="clientName"
+                  autocomplete="off"
+                  placeholder="例：あかり"
+                >
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="readingDate">
+                  鑑定日
+                  <span class="required">必須</span>
+                </label>
+
+                <input
+                  type="date"
+                  class="input"
+                  id="readingDate"
+                >
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-heading">今回出たカード</h2>
+
+            <p class="section-description">
+              使用スプレッドはケルト十字です。
+              各位置のカードと正位置・逆位置を選択してください。
+            </p>
+
+            <div class="cards-grid" id="cardsInputGrid"></div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-heading">鑑定結果</h2>
+
+            <p class="section-description">
+              添削を終えた完成版の文章を、そのまま貼り付けてください。
+              入力した改行は鑑定書にも反映されます。
+            </p>
+
+            <div class="field">
+              <label class="field-label" for="readingText">
+                鑑定文
+                <span class="required">必須</span>
+              </label>
+
+              <textarea
+                class="textarea"
+                id="readingText"
+                placeholder="ここに添削後の鑑定結果を貼り付けてください。"
+              ></textarea>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-heading">小さな贈り物</h2>
+
+            <div class="gift-grid">
+              <div class="field">
+                <label class="field-label" for="luckyColor">
+                  ラッキーカラー
+                  <span class="required">必須</span>
+                </label>
+
+                <input
+                  type="text"
+                  class="input"
+                  id="luckyColor"
+                  autocomplete="off"
+                  placeholder="例：ターコイズブルー"
+                >
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="luckyNumber">
+                  ラッキーナンバー
+                  <span class="required">必須</span>
+                </label>
+
+                <input
+                  type="text"
+                  class="input"
+                  id="luckyNumber"
+                  autocomplete="off"
+                  inputmode="numeric"
+                  placeholder="例：8"
+                >
+              </div>
+            </div>
+          </section>
+
+          <div class="action-area">
+            <button
+              type="button"
+              class="action-button preview-button"
+              id="previewButton"
+            >
+              <span class="button-icon">👁</span>
+              プレビュー
+            </button>
+
+            <button
+              type="button"
+              class="action-button pdf-button"
+              id="pdfButton"
+            >
+              <span class="button-icon">PDF</span>
+              PDFにする
+            </button>
+
+            <button
+              type="button"
+              class="action-button clear-button"
+              id="clearButton"
+            >
+              入力を消去
+            </button>
+          </div>
+
+          <p class="help-note">
+            「PDFにする」を押したあと、Chromeの印刷画面で
+            「送信先」または「プリンタ」を
+            <strong>PDFに保存</strong>
+            にしてください。
+          </p>
+        </form>
+      </section>
+
+      <section class="preview-panel" id="previewPanel">
+        <div class="preview-toolbar">
+          <button
+            type="button"
+            class="small-button"
+            id="backToEditButton"
+          >
+            入力に戻る
+          </button>
+
+          <button
+            type="button"
+            class="small-button primary"
+            id="printFromPreviewButton"
+          >
+            PDFにする
+          </button>
+        </div>
+
+        <div class="document-preview" id="printArea">
+          <section class="document-section cover-page">
+            <div class="document-inner">
+              <div class="cover-ornament">✦ ✧ ✦</div>
+
+              <h2 class="cover-brand">Tarot Letter</h2>
+
+              <p class="cover-label">TAROT READING</p>
+
+              <div class="cover-divider"></div>
+
+              <p
+                class="cover-recipient"
+                id="previewClientName"
+              >
+                お名前 様へ
+              </p>
+
+              <p
+                class="cover-date"
+                id="previewDate"
+              >
+                鑑定日
+              </p>
+
+              <p class="cover-signature">Sono</p>
+            </div>
+          </section>
+
+          <section class="document-section cards-page">
+            <div class="document-inner">
+              <h2 class="document-title">
+                今回出たカード
+              </h2>
+
+              <p class="spread-label">
+                使用スプレッド：ケルト十字
+              </p>
+
+              <ol
+                class="cards-list"
+                id="previewCardsList"
+              ></ol>
+            </div>
+          </section>
+
+          <section class="document-section reading-page">
+            <div class="document-inner">
+              <h2 class="document-title">
+                鑑定結果
+              </h2>
+
+              <div
+                class="reading-body"
+                id="previewReadingText"
+              ></div>
+            </div>
+          </section>
+
+          <section class="document-section gift-page">
+            <div class="document-inner">
+              <h2 class="gift-heading">
+                あなたへの小さな贈り物
+              </h2>
+
+              <div class="gift-boxes">
+                <div class="gift-box">
+                  <div class="gift-box-label">
+                    LUCKY COLOR
+                  </div>
+
+                  <div
+                    class="gift-box-value"
+                    id="previewLuckyColor"
+                  >
+                    ラッキーカラー
+                  </div>
+                </div>
+
+                <div class="gift-box">
+                  <div class="gift-box-label">
+                    LUCKY NUMBER
+                  </div>
+
+                  <div
+                    class="gift-box-value"
+                    id="previewLuckyNumber"
+                  >
+                    ラッキーナンバー
+                  </div>
+                </div>
+              </div>
+
+              <div class="thanks-text">
+                <p>
+                  このたびは Tarot Letter に
+                  大切なお気持ちをお預けくださり、
+                  ありがとうございました。
+                </p>
+
+                <p>
+                  カードは未来を決めるものではなく、
+                  今のあなたへ届けられた一通の手紙です。
+                </p>
+
+                <p>
+                  今すぐすべてを理解しようとせず、
+                  心に残った言葉から、
+                  ご自身のペースで受け取ってください。
+                </p>
+
+                <p>
+                  この鑑定書が、ふと立ち止まった時に
+                  何度でも読み返せるものとなれば幸いです。
+                </p>
+              </div>
+
+              <div class="thanks-signature">
+                Sono
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    Tarot Letter Reading Maker
+  </footer>
+
+  <script>
+    "use strict";
+
+    const tarotCards = [
+      "愚者",
+      "魔術師",
+      "女教皇",
+      "女帝",
+      "皇帝",
+      "教皇",
+      "恋人",
+      "戦車",
+      "力",
+      "隠者",
+      "運命の輪",
+      "正義",
+      "吊るされた男",
+      "死神",
+      "節制",
+      "悪魔",
+      "塔",
+      "星",
+      "月",
+      "太陽",
+      "審判",
+      "世界"
+    ];
+
+    const celticCrossPositions = [
+      "現状",
+      "障害",
+      "顕在意識",
+      "潜在意識",
+      "過去",
+      "近未来",
+      "あなた自身",
+      "周囲・環境",
+      "願望・恐れ",
+      "最終結果"
+    ];
+
+    const formPanel = document.getElementById("formPanel");
+    const previewPanel = document.getElementById("previewPanel");
+
+    const editModeButton =
+      document.getElementById("editModeButton");
+
+    const previewModeButton =
+      document.getElementById("previewModeButton");
+
+    const previewButton =
+      document.getElementById("previewButton");
+
+    const pdfButton =
+      document.getElementById("pdfButton");
+
+    const clearButton =
+      document.getElementById("clearButton");
+
+    const backToEditButton =
+      document.getElementById("backToEditButton");
+
+    const printFromPreviewButton =
+      document.getElementById("printFromPreviewButton");
+
+    const cardsInputGrid =
+      document.getElementById("cardsInputGrid");
+
+    const validationMessage =
+      document.getElementById("validationMessage");
+
+    const clientNameInput =
+      document.getElementById("clientName");
+
+    const readingDateInput =
+      document.getElementById("readingDate");
+
+    const readingTextInput =
+      document.getElementById("readingText");
+
+    const luckyColorInput =
+      document.getElementById("luckyColor");
+
+    const luckyNumberInput =
+      document.getElementById("luckyNumber");
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function setToday() {
+      if (readingDateInput.value) {
+        return;
+      }
+
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, "0");
+      const day = String(today.getDate()).padStart(2, "0");
+
+      readingDateInput.value = `${year}-${month}-${day}`;
+    }
+
+    function createCardOptions() {
+      return tarotCards
+        .map((card) => {
+          return `
+            <option value="${escapeHtml(card)}">
+              ${escapeHtml(card)}
+            </option>
+          `;
+        })
+        .join("");
+    }
+
+    function buildCardsInput() {
+      const cardOptions = createCardOptions();
+
+      cardsInputGrid.innerHTML =
+        celticCrossPositions
+          .map((position, index) => {
+            const number = index + 1;
+
+            return `
+              <div class="card-input-row">
+                <div class="position-name">
+                  <span class="position-number">
+                    ${number}.
+                  </span>
+                  ${escapeHtml(position)}
+                </div>
+
+                <div class="field">
+                  <label
+                    class="field-label"
+                    for="card-${index}"
+                  >
+                    カード
+                  </label>
+
+                  <select
+                    class="select card-select"
+                    id="card-${index}"
+                    data-index="${index}"
+                  >
+                    <option value="">
+                      カードを選択
+                    </option>
+                    ${cardOptions}
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label
+                    class="field-label"
+                    for="direction-${index}"
+                  >
+                    向き
+                  </label>
+
+                  <select
+                    class="select direction-select"
+                    id="direction-${index}"
+                    data-index="${index}"
+                  >
+                    <option value="正位置">
+                      正位置
+                    </option>
+
+                    <option value="逆位置">
+                      逆位置
+                    </option>
+                  </select>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+    }
+
+    function formatDate(dateValue) {
+      if (!dateValue) {
+        return "鑑定日未入力";
+      }
+
+      const dateParts = dateValue.split("-");
+
+      if (dateParts.length !== 3) {
+        return dateValue;
+      }
+
+      const [year, month, day] = dateParts;
+
+      return `${year}年${Number(month)}月${Number(day)}日`;
+    }
+
+    function getCardsData() {
+      const cardSelects =
+        document.querySelectorAll(".card-select");
+
+      const directionSelects =
+        document.querySelectorAll(".direction-select");
+
+      return celticCrossPositions.map((position, index) => {
+        return {
+          position,
+          card: cardSelects[index].value,
+          direction: directionSelects[index].value
+        };
+      });
+    }
+
+    function validateForm() {
+      const messages = [];
+      const cards = getCardsData();
+
+      if (!clientNameInput.value.trim()) {
+        messages.push("お名前を入力してください。");
+      }
+
+      if (!readingDateInput.value) {
+        messages.push("鑑定日を入力してください。");
+      }
+
+      const missingCardPositions = cards
+        .filter((item) => !item.card)
+        .map((item) => item.position);
+
+      if (missingCardPositions.length > 0) {
+        messages.push(
+          `カードが未選択の位置があります：${missingCardPositions.join("、")}`
+        );
+      }
+
+      if (!readingTextInput.value.trim()) {
+        messages.push("鑑定文を入力してください。");
+      }
+
+      if (!luckyColorInput.value.trim()) {
+        messages.push("ラッキーカラーを入力してください。");
+      }
+
+      if (!luckyNumberInput.value.trim()) {
+        messages.push("ラッキーナンバーを入力してください。");
+      }
+
+      if (messages.length > 0) {
+        validationMessage.innerHTML =
+          `<strong>確認してください</strong><br>${messages
+            .map((message) => `・${escapeHtml(message)}`)
+            .join("<br>")}`;
+
+        validationMessage.classList.add("visible");
+        validationMessage.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        return false;
+      }
+
+      validationMessage.textContent = "";
+      validationMessage.classList.remove("visible");
+
+      return true;
+    }
+
+    function createReadingParagraphs(text) {
+      const normalizedText = text
+        .replace(/\r\n/g, "\n")
+        .trim();
+
+      if (!normalizedText) {
+        return `
+          <p class="empty-value">
+            鑑定文が入力されていません。
+          </p>
+        `;
+      }
+
+      const blocks = normalizedText
+        .split(/\n{2,}/)
+        .map((block) => block.trim())
+        .filter(Boolean);
+
+      return blocks
+        .map((block) => {
+          const safeBlock = escapeHtml(block)
+            .replace(/\n/g, "<br>");
+
+          return `<p>${safeBlock}</p>`;
+        })
+        .join("");
+    }
+
+    function updatePreview() {
+      const clientName =
+        clientNameInput.value.trim() || "お名前";
+
+      const luckyColor =
+        luckyColorInput.value.trim() || "未入力";
+
+      const luckyNumber =
+        luckyNumberInput.value.trim() || "未入力";
+
+      const cards = getCardsData();
+
+      document.getElementById(
+        "previewClientName"
+      ).textContent = `${clientName} 様へ`;
+
+      document.getElementById(
+        "previewDate"
+      ).textContent = formatDate(readingDateInput.value);
+
+      document.getElementById(
+        "previewLuckyColor"
+      ).textContent = luckyColor;
+
+      document.getElementById(
+        "previewLuckyNumber"
+      ).textContent = luckyNumber;
+
+      document.getElementById(
+        "previewReadingText"
+      ).innerHTML =
+        createReadingParagraphs(readingTextInput.value);
+
+      document.getElementById(
+        "previewCardsList"
+      ).innerHTML = cards
+        .map((item, index) => {
+          const cardName = item.card
+            ? `${item.card}（${item.direction}）`
+            : "未選択";
+
+          const cardClass = item.card
+            ? ""
+            : " empty-value";
+
+          return `
+            <li class="cards-list-item">
+              <span class="cards-list-position">
+                ${index + 1}. ${escapeHtml(item.position)}
+              </span>
+
+              <span class="cards-list-card${cardClass}">
+                ${escapeHtml(cardName)}
+              </span>
+            </li>
+          `;
+        })
+        .join("");
+    }
+
+    function showEditMode() {
+      formPanel.style.display = "block";
+      previewPanel.classList.remove("visible");
+
+      editModeButton.classList.add("active");
+      previewModeButton.classList.remove("active");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function showPreviewMode(shouldValidate = true) {
+      if (shouldValidate && !validateForm()) {
+        return false;
+      }
+
+      updatePreview();
+
+      formPanel.style.display = "none";
+      previewPanel.classList.add("visible");
+
+      editModeButton.classList.remove("active");
+      previewModeButton.classList.add("active");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      return true;
+    }
+
+    function createPdf() {
+      if (!validateForm()) {
+        return;
+      }
+
+      updatePreview();
+
+      formPanel.style.display = "none";
+      previewPanel.classList.add("visible");
+
+      editModeButton.classList.remove("active");
+      previewModeButton.classList.add("active");
+
+      setTimeout(() => {
+        window.print();
+      }, 250);
+    }
+
+    function clearForm() {
+      const confirmed = window.confirm(
+        "入力した内容をすべて消去しますか？"
+      );
+
+      if (!confirmed) {
+        return;
+      }
+
+      clientNameInput.value = "";
+      readingTextInput.value = "";
+      luckyColorInput.value = "";
+      luckyNumberInput.value = "";
+
+      document
+        .querySelectorAll(".card-select")
+        .forEach((select) => {
+          select.value = "";
+        });
+
+      document
+        .querySelectorAll(".direction-select")
+        .forEach((select) => {
+          select.value = "正位置";
+        });
+
+      readingDateInput.value = "";
+      setToday();
+
+      validationMessage.classList.remove("visible");
+      validationMessage.textContent = "";
+
+      updatePreview();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    editModeButton.addEventListener(
+      "click",
+      showEditMode
+    );
+
+    previewModeButton.addEventListener(
+      "click",
+      () => showPreviewMode(true)
+    );
+
+    previewButton.addEventListener(
+      "click",
+      () => showPreviewMode(true)
+    );
+
+    pdfButton.addEventListener(
+      "click",
+      createPdf
+    );
+
+    clearButton.addEventListener(
+      "click",
+      clearForm
+    );
+
+    backToEditButton.addEventListener(
+      "click",
+      showEditMode
+    );
+
+    printFromPreviewButton.addEventListener(
+      "click",
+      createPdf
+    );
+
+    window.addEventListener("afterprint", () => {
+      previewPanel.classList.add("visible");
+    });
+
+    buildCardsInput();
+    setToday();
+    updatePreview();
+  </script>
 </body>
 </html>
