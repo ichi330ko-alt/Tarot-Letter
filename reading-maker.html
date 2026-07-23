@@ -18,7 +18,7 @@
   <style>
     :root {
       --navy: #171a38;
-      --deep-blue: #252951;
+      --deep-blue: #292d59;
       --purple: #625b88;
       --light-purple: #aaa3c7;
       --mist: #f4f2f8;
@@ -28,6 +28,8 @@
       --sub-text: #6c6878;
       --white: #ffffff;
       --gold: #b79b68;
+      --support-bg: #f4f2f8;
+      --support-border: #dcd6e7;
       --shadow: 0 18px 45px rgba(28, 26, 57, 0.12);
     }
 
@@ -40,6 +42,7 @@
     }
 
     body {
+      min-height: 100vh;
       margin: 0;
       color: var(--text);
       font-family:
@@ -66,7 +69,6 @@
           #f8f7fa 48%,
           #ecebf3 100%
         );
-      min-height: 100vh;
     }
 
     button,
@@ -103,14 +105,14 @@
     .app-header::before,
     .app-header::after {
       position: absolute;
-      content: "✦";
       color: rgba(255, 255, 255, 0.42);
-      font-size: 20px;
+      content: "✦";
     }
 
     .app-header::before {
       top: 24px;
       left: 10%;
+      font-size: 20px;
     }
 
     .app-header::after {
@@ -131,11 +133,10 @@
       margin: 7px 0 0;
       font-size: 15px;
       letter-spacing: 0.18em;
-      opacity: 0.88;
     }
 
     .header-note {
-      max-width: 650px;
+      max-width: 680px;
       margin: 18px auto 0;
       font-family:
         -apple-system,
@@ -145,7 +146,7 @@
         sans-serif;
       font-size: 13px;
       line-height: 1.75;
-      opacity: 0.75;
+      opacity: 0.8;
     }
 
     .main-container {
@@ -163,19 +164,11 @@
     .mode-button {
       min-width: 140px;
       padding: 12px 20px;
+      color: var(--deep-blue);
       border: 1px solid rgba(78, 73, 118, 0.22);
       border-radius: 999px;
-      color: var(--deep-blue);
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.76);
       box-shadow: 0 7px 20px rgba(35, 31, 67, 0.07);
-      transition:
-        transform 0.2s ease,
-        color 0.2s ease,
-        background 0.2s ease;
-    }
-
-    .mode-button:hover {
-      transform: translateY(-1px);
     }
 
     .mode-button.active {
@@ -198,7 +191,7 @@
       padding: 30px;
       border: 1px solid rgba(90, 83, 130, 0.12);
       border-radius: 22px;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       box-shadow: var(--shadow);
     }
 
@@ -242,10 +235,11 @@
         "Yu Gothic",
         sans-serif;
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
-    .field-grid {
+    .field-grid,
+    .gift-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
@@ -253,10 +247,6 @@
 
     .field {
       min-width: 0;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
     }
 
     .field-label {
@@ -284,9 +274,6 @@
       border-radius: 12px;
       outline: none;
       background: #fffefd;
-      transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
     }
 
     .input,
@@ -296,7 +283,7 @@
     }
 
     .textarea {
-      min-height: 500px;
+      min-height: 520px;
       padding: 17px;
       resize: vertical;
       line-height: 2;
@@ -311,26 +298,29 @@
 
     .cards-grid {
       display: grid;
-      gap: 15px;
+      gap: 17px;
     }
 
     .card-input-row {
-      display: grid;
-      grid-template-columns:
-        minmax(150px, 0.8fr)
-        minmax(210px, 1.35fr)
-        minmax(130px, 0.65fr);
-      gap: 13px;
-      align-items: end;
-      padding: 16px;
+      padding: 17px;
       border: 1px solid #e2deea;
       border-radius: 15px;
       background:
         linear-gradient(
           135deg,
-          rgba(248, 247, 251, 0.95),
-          rgba(255, 255, 255, 0.95)
+          rgba(248, 247, 251, 0.97),
+          rgba(255, 255, 255, 0.97)
         );
+    }
+
+    .card-input-main {
+      display: grid;
+      grid-template-columns:
+        minmax(155px, 0.8fr)
+        minmax(210px, 1.35fr)
+        minmax(130px, 0.65fr);
+      gap: 13px;
+      align-items: end;
     }
 
     .position-name {
@@ -351,10 +341,54 @@
       color: var(--purple);
     }
 
-    .gift-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+    .card-support {
+      display: none;
+      margin-top: 15px;
+      padding: 15px 16px;
+      color: #4b4859;
+      border: 1px solid var(--support-border);
+      border-radius: 12px;
+      background: var(--support-bg);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .card-support.visible {
+      display: block;
+    }
+
+    .support-title {
+      margin: 0 0 9px;
+      color: var(--deep-blue);
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .support-row {
+      margin: 5px 0;
+    }
+
+    .support-label {
+      color: var(--purple);
+      font-weight: bold;
+    }
+
+    .support-private-note {
+      margin: 10px 0 0;
+      padding-top: 9px;
+      color: #777180;
+      border-top: 1px dashed #d4cede;
+      font-size: 11px;
     }
 
     .action-area {
@@ -369,23 +403,9 @@
       min-width: 175px;
       min-height: 51px;
       padding: 12px 22px;
-      border: 0;
       border-radius: 999px;
       letter-spacing: 0.04em;
       box-shadow: 0 10px 25px rgba(32, 29, 63, 0.13);
-      transition:
-        transform 0.2s ease,
-        opacity 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .action-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 13px 30px rgba(32, 29, 63, 0.18);
-    }
-
-    .action-button:active {
-      transform: translateY(0);
     }
 
     .preview-button {
@@ -396,6 +416,7 @@
 
     .pdf-button {
       color: var(--white);
+      border: 0;
       background:
         linear-gradient(
           135deg,
@@ -426,7 +447,7 @@
         "Yu Gothic",
         sans-serif;
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
     .preview-panel {
@@ -449,9 +470,8 @@
       padding: 9px;
       border: 1px solid rgba(72, 67, 109, 0.16);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       box-shadow: 0 8px 25px rgba(27, 25, 55, 0.12);
-      backdrop-filter: blur(8px);
     }
 
     .small-button {
@@ -474,9 +494,10 @@
 
     .document-section {
       position: relative;
-      width: 100%;
+      width: 210mm;
+      max-width: 100%;
       min-height: 297mm;
-      padding: 23mm 20mm;
+      padding: 25mm 23mm;
       margin: 0 auto 25px;
       overflow: hidden;
       color: #292836;
@@ -498,18 +519,22 @@
       left: 12mm;
       pointer-events: none;
       content: "";
-      border: 1px solid rgba(145, 129, 97, 0.3);
+      border: 1px solid rgba(145, 129, 97, 0.34);
     }
 
     .document-inner {
       position: relative;
       z-index: 1;
+      width: 100%;
+      max-width: 164mm;
+      margin: 0 auto;
     }
 
     .cover-page {
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--white);
       text-align: center;
       background:
         radial-gradient(
@@ -528,7 +553,6 @@
           #2a2e59 58%,
           #504a76 100%
         );
-      color: var(--white);
     }
 
     .cover-page::before {
@@ -642,14 +666,15 @@
     }
 
     .reading-page {
-      min-height: auto;
+      overflow: visible;
     }
 
     .reading-body {
+      width: 100%;
+      margin: 0 auto;
       font-size: 14px;
       line-height: 2.15;
       letter-spacing: 0.025em;
-      white-space: pre-wrap;
       word-break: normal;
       overflow-wrap: anywhere;
     }
@@ -789,7 +814,7 @@
         grid-template-columns: 1fr;
       }
 
-      .card-input-row {
+      .card-input-main {
         grid-template-columns: 1fr;
         gap: 10px;
       }
@@ -821,13 +846,14 @@
       }
 
       .document-section {
-        min-height: 0;
+        width: 100%;
+        min-height: 135vw;
         padding: 12% 10%;
         margin-bottom: 17px;
       }
 
-      .cover-page {
-        min-height: 135vw;
+      .document-inner {
+        max-width: none;
       }
 
       .cover-brand {
@@ -847,10 +873,6 @@
         text-align: left;
       }
 
-      .gift-page {
-        min-height: 135vw;
-      }
-
       .gift-boxes {
         grid-template-columns: 1fr;
       }
@@ -858,12 +880,13 @@
 
     @page {
       size: A4 portrait;
-      margin: 17mm 17mm 18mm;
+      margin: 0;
     }
 
     @media print {
       html,
       body {
+        width: 210mm;
         margin: 0 !important;
         padding: 0 !important;
         background: #ffffff !important;
@@ -875,58 +898,70 @@
       }
 
       .app-header,
-      .main-container > .mode-tabs,
+      .mode-tabs,
       .form-panel,
       .preview-toolbar,
       .app-footer {
         display: none !important;
       }
 
-      .main-container {
-        width: 100% !important;
-        margin: 0 !important;
-      }
-
+      .main-container,
       .workspace,
       .preview-panel,
       .document-preview {
         display: block !important;
-        width: 100% !important;
+        width: 210mm !important;
+        max-width: none !important;
         margin: 0 !important;
-      }
-
-      .preview-panel {
         padding: 0 !important;
         border: 0 !important;
-        background: none !important;
+        background: transparent !important;
         box-shadow: none !important;
       }
 
       .document-section {
-        width: auto !important;
-        min-height: auto;
-        padding: 0 !important;
+        position: relative;
+        width: 210mm !important;
+        max-width: none !important;
+        min-height: 297mm;
+        padding: 25mm 23mm !important;
         margin: 0 !important;
-        overflow: visible !important;
-        background: #fffdfb !important;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            circle at 95% 3%,
+            rgba(100, 92, 145, 0.08),
+            transparent 27%
+          ),
+          #fffdfb !important;
         box-shadow: none !important;
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .document-section:last-child {
+        break-after: auto;
+        page-break-after: auto;
       }
 
       .document-section::before {
-        position: fixed;
-        top: 7mm;
-        right: 7mm;
-        bottom: 7mm;
-        left: 7mm;
+        position: absolute;
+        top: 12mm;
+        right: 12mm;
+        bottom: 12mm;
+        left: 12mm;
       }
 
       .document-inner {
-        width: 100%;
+        width: 164mm !important;
+        max-width: 164mm !important;
+        margin: 0 auto !important;
       }
 
       .cover-page {
-        min-height: calc(297mm - 35mm);
         display: flex !important;
+        align-items: center;
+        justify-content: center;
         color: #ffffff !important;
         background:
           radial-gradient(
@@ -945,40 +980,20 @@
             #2a2e59 58%,
             #504a76 100%
           ) !important;
-        break-after: page;
-        page-break-after: always;
       }
 
       .cover-page::before {
         border-color: rgba(220, 205, 167, 0.55);
       }
 
-      .cards-page {
-        min-height: calc(297mm - 35mm);
-        padding: 8mm 4mm !important;
-        break-after: page;
-        page-break-after: always;
-      }
-
       .reading-page {
-        padding: 8mm 4mm !important;
-        break-after: page;
-        page-break-after: always;
-      }
-
-      .gift-page {
-        min-height: calc(297mm - 35mm);
-        display: flex !important;
-        padding: 8mm 4mm !important;
-        break-before: page;
-        page-break-before: always;
-      }
-
-      .document-title {
-        margin-top: 0;
+        min-height: 297mm;
+        overflow: visible;
       }
 
       .reading-body {
+        width: 100%;
+        margin: 0 auto;
         font-size: 10.5pt;
         line-height: 2;
         orphans: 3;
@@ -1077,7 +1092,8 @@
 
             <p class="section-description">
               使用スプレッドはケルト十字です。
-              各位置のカードと正位置・逆位置を選択してください。
+              カードと向きを選ぶと、園子用の意味の補助が表示されます。
+              補助内容はお客様用のPDFには入りません。
             </p>
 
             <div class="cards-grid" id="cardsInputGrid"></div>
@@ -1171,10 +1187,10 @@
           </div>
 
           <p class="help-note">
-            「PDFにする」を押したあと、Chromeの印刷画面で
-            「送信先」または「プリンタ」を
-            <strong>PDFに保存</strong>
-            にしてください。
+            印刷画面では、<strong>ヘッダーとフッターをオフ</strong>にし、
+            表紙の色を出す場合は
+            <strong>背景のグラフィックをオン</strong>にしてください。
+            送信先は「PDFに保存」を選びます。
           </p>
         </form>
       </section>
@@ -1332,46 +1348,354 @@
   <script>
     "use strict";
 
-    const tarotCards = [
-      "愚者",
-      "魔術師",
-      "女教皇",
-      "女帝",
-      "皇帝",
-      "教皇",
-      "恋人",
-      "戦車",
-      "力",
-      "隠者",
-      "運命の輪",
-      "正義",
-      "吊るされた男",
-      "死神",
-      "節制",
-      "悪魔",
-      "塔",
-      "星",
-      "月",
-      "太陽",
-      "審判",
-      "世界"
-    ];
+    const tarotData = {
+      "愚者": {
+        upright: {
+          keywords: "自由、始まり、未知への一歩、無邪気さ",
+          meaning:
+            "先のことを決めすぎず、新しい可能性へ踏み出す状態。経験よりも直感や好奇心が動きを生みます。"
+        },
+        reversed: {
+          keywords: "無計画、軽率、不安定、踏み出せない",
+          meaning:
+            "自由さが無責任さへ傾く、または失敗を恐れて一歩を出せない状態。足元の確認が必要です。"
+        }
+      },
+
+      "魔術師": {
+        upright: {
+          keywords: "意志、始動、創造、能力の発揮",
+          meaning:
+            "必要なものはすでに手元にあり、自分の意志で物事を動かし始められる状態です。"
+        },
+        reversed: {
+          keywords: "自信不足、未熟、空回り、意図の乱れ",
+          meaning:
+            "力をうまく使えていない、または言葉と行動が一致していない状態。準備や目的の確認が必要です。"
+        }
+      },
+
+      "女教皇": {
+        upright: {
+          keywords: "直感、静けさ、洞察、内なる知恵",
+          meaning:
+            "表面的な情報に流されず、静かに本質を見極める状態。答えを急がず内側の声を聞きます。"
+        },
+        reversed: {
+          keywords: "閉鎖、神経質、思い込み、直感への不信",
+          meaning:
+            "考えすぎや感情の揺れによって、本来の感覚を受け取りにくくなっている状態です。"
+        }
+      },
+
+      "女帝": {
+        upright: {
+          keywords: "豊かさ、愛情、育む、実り",
+          meaning:
+            "愛情や安心感の中で物事が育ち、豊かさや成果を受け取れる状態です。"
+        },
+        reversed: {
+          keywords: "過保護、依存、停滞、満たされない",
+          meaning:
+            "与えすぎや求めすぎによってバランスが崩れ、成長が止まりやすい状態です。"
+        }
+      },
+
+      "皇帝": {
+        upright: {
+          keywords: "安定、責任、統率、現実的な力",
+          meaning:
+            "責任を引き受け、秩序を整えながら現実を安定させる力が働いています。"
+        },
+        reversed: {
+          keywords: "頑固、支配、未熟な権力、基盤の不安定",
+          meaning:
+            "強くあろうとするほど柔軟さを失う、または責任を担う力が弱まっている状態です。"
+        }
+      },
+
+      "教皇": {
+        upright: {
+          keywords: "信頼、助言、伝統、良識",
+          meaning:
+            "信頼できる教えや助言、社会的な常識を手がかりに進む状態です。"
+        },
+        reversed: {
+          keywords: "形式への反発、独自性、価値観の不一致",
+          meaning:
+            "一般的な常識や既存の枠組みが、今の自分には合わなくなっている可能性があります。"
+        }
+      },
+
+      "恋人": {
+        upright: {
+          keywords: "選択、調和、結びつき、価値観の一致",
+          meaning:
+            "心から納得できる選択や、互いの価値観が響き合う関係を示します。"
+        },
+        reversed: {
+          keywords: "迷い、不一致、誘惑、選択の先延ばし",
+          meaning:
+            "気持ちと行動が一致しない、または選択を決めきれず揺れている状態です。"
+        }
+      },
+
+      "戦車": {
+        upright: {
+          keywords: "前進、勝利、意志、突破力",
+          meaning:
+            "異なる感情をまとめ、強い意志で目標へ進んでいける状態です。"
+        },
+        reversed: {
+          keywords: "暴走、焦り、停滞、方向のずれ",
+          meaning:
+            "勢いを制御できない、または進む方向が定まらず空回りしている状態です。"
+        }
+      },
+
+      "力": {
+        upright: {
+          keywords: "内なる強さ、忍耐、勇気、穏やかな克服",
+          meaning:
+            "力で押さえつけるのではなく、優しさと忍耐によって状況を乗り越える力を示します。"
+        },
+        reversed: {
+          keywords: "自信不足、弱気、感情の抑圧、消耗",
+          meaning:
+            "本来の力を信じられず、感情や不安に振り回されやすくなっている状態です。"
+        }
+      },
+
+      "隠者": {
+        upright: {
+          keywords: "内省、探求、孤独、慎重な判断",
+          meaning:
+            "外の声から距離を置き、自分の中にある答えを静かに探す時間です。"
+        },
+        reversed: {
+          keywords: "閉じこもり、孤立、考えすぎ、迷走",
+          meaning:
+            "必要以上に一人で抱え込み、答えを探すほど視野が狭くなっている状態です。"
+        }
+      },
+
+      "運命の輪": {
+        upright: {
+          keywords: "転機、好機、流れ、変化",
+          meaning:
+            "状況が動き始め、思いがけない流れや転機が訪れることを示します。"
+        },
+        reversed: {
+          keywords: "停滞、タイミングのずれ、不運の循環",
+          meaning:
+            "流れに乗りきれない、または同じ問題を繰り返している状態。無理に動かさない判断も必要です。"
+        }
+      },
+
+      "正義": {
+        upright: {
+          keywords: "公平、判断、責任、均衡",
+          meaning:
+            "感情だけに偏らず、事実と責任を見ながら公正な判断を下す状態です。"
+        },
+        reversed: {
+          keywords: "不公平、偏り、責任回避、判断の混乱",
+          meaning:
+            "感情や都合が判断を曇らせ、バランスを欠いている可能性があります。"
+        }
+      },
+
+      "吊るされた男": {
+        upright: {
+          keywords: "受容、忍耐、視点の転換、意味ある停止",
+          meaning:
+            "すぐに動くよりも、状況を受け入れ、違う角度から見ることで意味が見えてくる状態です。"
+        },
+        reversed: {
+          keywords: "無駄な我慢、停滞、報われない努力、執着",
+          meaning:
+            "我慢を続けても状況が変わらず、手放しや方針転換が必要になっている状態です。"
+        }
+      },
+
+      "死神": {
+        upright: {
+          keywords: "終わり、変容、手放し、再出発",
+          meaning:
+            "一つの段階を終わらせることで、新しい流れへ移るための変化を示します。"
+        },
+        reversed: {
+          keywords: "変化への抵抗、執着、停滞、終わらせられない",
+          meaning:
+            "終わったものを手放せず、次の段階へ進みにくくなっている状態です。"
+        }
+      },
+
+      "節制": {
+        upright: {
+          keywords: "調和、統合、節度、穏やかな回復",
+          meaning:
+            "異なるものを無理なく混ぜ合わせ、時間をかけて自然なバランスを作る状態です。"
+        },
+        reversed: {
+          keywords: "不調和、極端、感情の乱れ、噛み合わない",
+          meaning:
+            "生活や関係性のバランスが崩れ、調整が必要になっている状態です。"
+        }
+      },
+
+      "悪魔": {
+        upright: {
+          keywords: "執着、依存、誘惑、束縛",
+          meaning:
+            "離れたいと思いながらも、欲望や恐れによってつながり続けている状態です。"
+        },
+        reversed: {
+          keywords: "解放、依存からの離脱、気づき、関係の見直し",
+          meaning:
+            "自分を縛っていたものに気づき、そこから抜け出そうとする動きを示します。"
+        }
+      },
+
+      "塔": {
+        upright: {
+          keywords: "崩壊、衝撃、急変、真実の露呈",
+          meaning:
+            "維持できなくなったものが突然崩れ、隠れていた問題や真実が表面化する状態です。"
+        },
+        reversed: {
+          keywords: "崩壊の回避、長引く混乱、内面的な衝撃",
+          meaning:
+            "大きな変化を避けようとして問題が長引く、または表に出ない形で価値観が崩れている状態です。"
+        }
+      },
+
+      "星": {
+        upright: {
+          keywords: "希望、癒し、導き、未来への信頼",
+          meaning:
+            "傷ついた後にも希望が残り、自分らしい未来を信じ直せる状態です。"
+        },
+        reversed: {
+          keywords: "失望、自信喪失、希望を見失う、理想との隔たり",
+          meaning:
+            "未来を信じる力が弱まり、理想と現実の差に落胆している状態です。"
+        }
+      },
+
+      "月": {
+        upright: {
+          keywords: "不安、曖昧さ、無意識、見えないもの",
+          meaning:
+            "状況がはっきりせず、不安や思い込みによって判断が揺れやすい状態です。"
+        },
+        reversed: {
+          keywords: "不安の緩和、真相、混乱が晴れる、現実の把握",
+          meaning:
+            "曖昧だったものが少しずつ明らかになり、不安や混乱から抜け始める状態です。"
+        }
+      },
+
+      "太陽": {
+        upright: {
+          keywords: "喜び、成功、明るさ、成長",
+          meaning:
+            "物事が明るみに出て、素直な喜びや成果を受け取れる状態です。"
+        },
+        reversed: {
+          keywords: "一時的な落胆、自信不足、喜びの遅れ",
+          meaning:
+            "成果はあるものの十分に喜べない、または自信を持ちきれない状態です。"
+        }
+      },
+
+      "審判": {
+        upright: {
+          keywords: "復活、決断、目覚め、再出発",
+          meaning:
+            "過去の経験を受け止めたうえで、呼びかけに応じ、新しい選択をする時です。"
+        },
+        reversed: {
+          keywords: "決断できない、過去への執着、機会を逃す",
+          meaning:
+            "過去への後悔や自己否定によって、再出発の機会を受け取りにくくなっている状態です。"
+        }
+      },
+
+      "世界": {
+        upright: {
+          keywords: "完成、達成、統合、一区切り",
+          meaning:
+            "一つの流れが完成し、努力がまとまりある結果として実る状態です。"
+        },
+        reversed: {
+          keywords: "未完成、あと一歩、停滞、区切りがつかない",
+          meaning:
+            "完成目前で足りないものがあり、終わりきらない状態。最後の調整が必要です。"
+        }
+      }
+    };
 
     const celticCrossPositions = [
-      "現状",
-      "障害",
-      "顕在意識",
-      "潜在意識",
-      "過去",
-      "近未来",
-      "あなた自身",
-      "周囲・環境",
-      "願望・恐れ",
-      "最終結果"
+      {
+        name: "現状",
+        hint:
+          "相談者が今置かれている状況や、問題の中心にある状態として読みます。"
+      },
+      {
+        name: "障害",
+        hint:
+          "現在の流れを妨げているもの、向き合う必要のある課題として読みます。"
+      },
+      {
+        name: "顕在意識",
+        hint:
+          "相談者が自覚している願い、考え、目標や表面的な意識として読みます。"
+      },
+      {
+        name: "潜在意識",
+        hint:
+          "本人がまだ十分に自覚していない本音、根本的な動機や深層心理として読みます。"
+      },
+      {
+        name: "過去",
+        hint:
+          "現在の状況につながった過去の出来事や、すでに弱まりつつある影響として読みます。"
+      },
+      {
+        name: "近未来",
+        hint:
+          "このまま進んだ場合、近い時期に表れやすい流れや出来事として読みます。"
+      },
+      {
+        name: "あなた自身",
+        hint:
+          "相談者の現在の立場、姿勢、自分自身をどう捉えているかとして読みます。"
+      },
+      {
+        name: "周囲・環境",
+        hint:
+          "相手の状態、周囲の反応、環境から受けている影響として読みます。"
+      },
+      {
+        name: "願望・恐れ",
+        hint:
+          "相談者が望んでいることと、同時に恐れていることの両面から読みます。"
+      },
+      {
+        name: "最終結果",
+        hint:
+          "現状の選択や流れを続けた先に到達しやすい結論として読みます。確定した運命ではありません。"
+      }
     ];
 
-    const formPanel = document.getElementById("formPanel");
-    const previewPanel = document.getElementById("previewPanel");
+    const tarotCards = Object.keys(tarotData);
+
+    const formPanel =
+      document.getElementById("formPanel");
+
+    const previewPanel =
+      document.getElementById("previewPanel");
 
     const editModeButton =
       document.getElementById("editModeButton");
@@ -1431,10 +1755,13 @@
 
       const today = new Date();
       const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const day = String(today.getDate()).padStart(2, "0");
+      const month =
+        String(today.getMonth() + 1).padStart(2, "0");
+      const day =
+        String(today.getDate()).padStart(2, "0");
 
-      readingDateInput.value = `${year}-${month}-${day}`;
+      readingDateInput.value =
+        `${year}-${month}-${day}`;
     }
 
     function createCardOptions() {
@@ -1459,59 +1786,158 @@
 
             return `
               <div class="card-input-row">
-                <div class="position-name">
-                  <span class="position-number">
-                    ${number}.
-                  </span>
-                  ${escapeHtml(position)}
+                <div class="card-input-main">
+                  <div class="position-name">
+                    <span class="position-number">
+                      ${number}.
+                    </span>
+                    ${escapeHtml(position.name)}
+                  </div>
+
+                  <div class="field">
+                    <label
+                      class="field-label"
+                      for="card-${index}"
+                    >
+                      カード
+                    </label>
+
+                    <select
+                      class="select card-select"
+                      id="card-${index}"
+                      data-index="${index}"
+                    >
+                      <option value="">
+                        カードを選択
+                      </option>
+
+                      ${cardOptions}
+                    </select>
+                  </div>
+
+                  <div class="field">
+                    <label
+                      class="field-label"
+                      for="direction-${index}"
+                    >
+                      向き
+                    </label>
+
+                    <select
+                      class="select direction-select"
+                      id="direction-${index}"
+                      data-index="${index}"
+                    >
+                      <option value="正位置">
+                        正位置
+                      </option>
+
+                      <option value="逆位置">
+                        逆位置
+                      </option>
+                    </select>
+                  </div>
                 </div>
 
-                <div class="field">
-                  <label
-                    class="field-label"
-                    for="card-${index}"
-                  >
-                    カード
-                  </label>
-
-                  <select
-                    class="select card-select"
-                    id="card-${index}"
-                    data-index="${index}"
-                  >
-                    <option value="">
-                      カードを選択
-                    </option>
-                    ${cardOptions}
-                  </select>
-                </div>
-
-                <div class="field">
-                  <label
-                    class="field-label"
-                    for="direction-${index}"
-                  >
-                    向き
-                  </label>
-
-                  <select
-                    class="select direction-select"
-                    id="direction-${index}"
-                    data-index="${index}"
-                  >
-                    <option value="正位置">
-                      正位置
-                    </option>
-
-                    <option value="逆位置">
-                      逆位置
-                    </option>
-                  </select>
-                </div>
+                <div
+                  class="card-support"
+                  id="support-${index}"
+                ></div>
               </div>
             `;
           })
           .join("");
+
+      document
+        .querySelectorAll(".card-select")
+        .forEach((select) => {
+          select.addEventListener(
+            "change",
+            updateCardSupport
+          );
+        });
+
+      document
+        .querySelectorAll(".direction-select")
+        .forEach((select) => {
+          select.addEventListener(
+            "change",
+            updateCardSupport
+          );
+        });
+    }
+
+    function updateCardSupport(event) {
+      const index =
+        Number(event.target.dataset.index);
+
+      showCardSupport(index);
+    }
+
+    function showCardSupport(index) {
+      const cardSelect =
+        document.getElementById(`card-${index}`);
+
+      const directionSelect =
+        document.getElementById(`direction-${index}`);
+
+      const supportBox =
+        document.getElementById(`support-${index}`);
+
+      const cardName = cardSelect.value;
+
+      if (!cardName) {
+        supportBox.innerHTML = "";
+        supportBox.classList.remove("visible");
+        return;
+      }
+
+      const direction = directionSelect.value;
+
+      const directionKey =
+        direction === "逆位置"
+          ? "reversed"
+          : "upright";
+
+      const cardInfo =
+        tarotData[cardName][directionKey];
+
+      const positionInfo =
+        celticCrossPositions[index];
+
+      supportBox.innerHTML = `
+        <p class="support-title">
+          ${escapeHtml(cardName)}・${escapeHtml(direction)}
+        </p>
+
+        <p class="support-row">
+          <span class="support-label">
+            キーワード：
+          </span>
+          ${escapeHtml(cardInfo.keywords)}
+        </p>
+
+        <p class="support-row">
+          <span class="support-label">
+            基本の意味：
+          </span>
+          ${escapeHtml(cardInfo.meaning)}
+        </p>
+
+        <p class="support-row">
+          <span class="support-label">
+            「${escapeHtml(positionInfo.name)}」で見るポイント：
+          </span>
+          ${escapeHtml(positionInfo.hint)}
+        </p>
+
+        <p class="support-private-note">
+          ※この補助情報は園子用です。
+          プレビューおよびお客様用PDFには表示されません。
+        </p>
+      `;
+
+      supportBox.classList.add("visible");
     }
 
     function formatDate(dateValue) {
@@ -1537,13 +1963,15 @@
       const directionSelects =
         document.querySelectorAll(".direction-select");
 
-      return celticCrossPositions.map((position, index) => {
-        return {
-          position,
-          card: cardSelects[index].value,
-          direction: directionSelects[index].value
-        };
-      });
+      return celticCrossPositions.map(
+        (position, index) => {
+          return {
+            position: position.name,
+            card: cardSelects[index].value,
+            direction: directionSelects[index].value
+          };
+        }
+      );
     }
 
     function validateForm() {
@@ -1573,20 +2001,30 @@
       }
 
       if (!luckyColorInput.value.trim()) {
-        messages.push("ラッキーカラーを入力してください。");
+        messages.push(
+          "ラッキーカラーを入力してください。"
+        );
       }
 
       if (!luckyNumberInput.value.trim()) {
-        messages.push("ラッキーナンバーを入力してください。");
+        messages.push(
+          "ラッキーナンバーを入力してください。"
+        );
       }
 
       if (messages.length > 0) {
         validationMessage.innerHTML =
-          `<strong>確認してください</strong><br>${messages
-            .map((message) => `・${escapeHtml(message)}`)
-            .join("<br>")}`;
+          `<strong>確認してください</strong><br>${
+            messages
+              .map(
+                (message) =>
+                  `・${escapeHtml(message)}`
+              )
+              .join("<br>")
+          }`;
 
         validationMessage.classList.add("visible");
+
         validationMessage.scrollIntoView({
           behavior: "smooth",
           block: "center"
@@ -1647,7 +2085,8 @@
 
       document.getElementById(
         "previewDate"
-      ).textContent = formatDate(readingDateInput.value);
+      ).textContent =
+        formatDate(readingDateInput.value);
 
       document.getElementById(
         "previewLuckyColor"
@@ -1660,7 +2099,9 @@
       document.getElementById(
         "previewReadingText"
       ).innerHTML =
-        createReadingParagraphs(readingTextInput.value);
+        createReadingParagraphs(
+          readingTextInput.value
+        );
 
       document.getElementById(
         "previewCardsList"
@@ -1670,9 +2111,8 @@
             ? `${item.card}（${item.direction}）`
             : "未選択";
 
-          const cardClass = item.card
-            ? ""
-            : " empty-value";
+          const cardClass =
+            item.card ? "" : " empty-value";
 
           return `
             <li class="cards-list-item">
@@ -1767,6 +2207,13 @@
           select.value = "正位置";
         });
 
+      document
+        .querySelectorAll(".card-support")
+        .forEach((support) => {
+          support.innerHTML = "";
+          support.classList.remove("visible");
+        });
+
       readingDateInput.value = "";
       setToday();
 
@@ -1815,10 +2262,6 @@
       "click",
       createPdf
     );
-
-    window.addEventListener("afterprint", () => {
-      previewPanel.classList.add("visible");
-    });
 
     buildCardsInput();
     setToday();
