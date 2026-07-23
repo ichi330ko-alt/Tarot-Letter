@@ -235,7 +235,8 @@
     position:relative;
     z-index:2;
     width:100%;
-    margin-top:3mm;
+    margin-top:1mm;
+    transform:translateY(-2mm);
     text-align:center;
   }
   .signature-image{
@@ -288,7 +289,7 @@ function stripRepeatedSections(text){
   value=value.replace(/\n*Sono\s*$/,'');
   return value.trim();
 }
-function splitReadingPages(text,maxChars=630){
+function splitReadingPages(text,maxChars=690){
   const source=String(text||'').replace(/\r/g,'').trim();
   if(!source)return [''];
 
