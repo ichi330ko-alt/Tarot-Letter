@@ -155,6 +155,9 @@
     letter-spacing:.015em;
     text-align:justify;
   }
+  .print-page:not(.cover):not(.final) .reading:first-child{
+    padding-top:5mm;
+  }
 
   .final{
     display:flex;
@@ -219,8 +222,7 @@
     z-index:2;
     width:100%;
     margin-top:auto;
-    padding-right:12mm;
-    text-align:right;
+    text-align:center;
   }
   .signature-image{
     display:inline-block;
@@ -273,20 +275,59 @@ function stripRepeatedSections(text){
   return value.trim();
 }
 function splitReadingPages(text,maxChars=760){
-  const paragraphs=String(text||'').replace(/\r/g,'').split(/\n{2,}/).map(x=>x.trim()).filter(Boolean);
-  const pages=[];let page='';
+  const source=String(text||'').replace(/
+/g,'').trim();
+  if(!source)return [''];
+
+  const paragraphs=source
+    .split(/
+{2,}/)
+    .map(x=>x.trim())
+    .filter(Boolean);
+
+  const units=[];
+
   paragraphs.forEach(paragraph=>{
-    if(paragraph.length>maxChars){
-      if(page){pages.push(page);page=''}
-      for(let i=0;i<paragraph.length;i+=maxChars){pages.push(paragraph.slice(i,i+maxChars))}
+    if(paragraph.length<=maxChars){
+      units.push(paragraph);
       return;
     }
-    const candidate=page?`${page}\n\n${paragraph}`:paragraph;
-    if(candidate.length>maxChars&&page){pages.push(page);page=paragraph}
-    else{page=candidate}
+
+    const sentences=paragraph
+      .match(/[^。！？!?]+[。！？!?]?/g)
+      ?.map(x=>x.trim())
+      .filter(Boolean) || [paragraph];
+
+    let block='';
+    sentences.forEach(sentence=>{
+      const candidate=block ? block+sentence : sentence;
+      if(candidate.length>maxChars && block){
+        units.push(block);
+        block=sentence;
+      }else{
+        block=candidate;
+      }
+    });
+    if(block)units.push(block);
   });
+
+  const pages=[];
+  let page='';
+
+  units.forEach(unit=>{
+    const candidate=page ? `${page}
+
+${unit}` : unit;
+    if(candidate.length>maxChars && page){
+      pages.push(page);
+      page=unit;
+    }else{
+      page=candidate;
+    }
+  });
+
   if(page)pages.push(page);
-  return pages.length?pages:[''];
+  return pages.length ? pages : [''];
 }
 function buildPrint(){
   const d=getData();
@@ -317,7 +358,7 @@ function buildPrint(){
 
   readingPages.forEach((chunk,index)=>{
     parts.push(decorativeShell(`
-      <h2 class="ornament-title">${index===0?'鑑定結果':'鑑定結果・続き'}</h2>
+      ${index===0?'<h2 class="ornament-title">鑑定結果</h2>':''}
       <div class="reading">${esc(chunk)}</div>
     `,page++,total));
   });
