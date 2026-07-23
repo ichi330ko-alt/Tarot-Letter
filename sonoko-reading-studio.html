@@ -8,94 +8,228 @@
 <style>
 :root{--bg:#f4f1ec;--panel:#fff;--ink:#383838;--muted:#777;--line:#ddd7cf;--accent:#4f7778;--accent2:#345f61;--danger:#a45f5f;--paper:#fffdf8;--navy:#26354c;--gold:#b79a61}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;line-height:1.7}button,input,select,textarea{font:inherit}button{cursor:pointer}.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}.topin{width:min(1180px,100%);margin:auto;padding:12px 16px;display:flex;justify-content:space-between}.brand{font-weight:700}.tag{font-size:12px;color:var(--muted)}main{width:min(1180px,100%);margin:auto;padding:26px 14px 70px}.hero{margin-bottom:18px}.hero h1{margin:0 0 3px;font-size:25px}.hero p{margin:0;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);gap:18px;align-items:start}.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}.head{padding:15px 18px;border-bottom:1px solid var(--line);background:#faf9f7}.head h2{margin:0;font-size:17px}.head p{margin:3px 0 0;font-size:12px;color:var(--muted)}.body{padding:18px}.section-title{margin:27px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line);font-size:15px}.section-title:first-child{margin-top:0}.field{margin-bottom:14px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;margin-bottom:5px;font-size:12px;font-weight:600;color:#606060}input,select,textarea{width:100%;border:1px solid #cbc6bf;border-radius:8px;background:#fff;color:var(--ink);padding:9px 10px;outline:none}input,select{min-height:42px}textarea{min-height:95px;resize:vertical;line-height:1.7}input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,119,120,.1)}.card{margin-bottom:10px;border:1px solid var(--line);border-radius:10px;background:#fcfbf9;overflow:hidden}.card-main{display:grid;grid-template-columns:38px 1fr;gap:9px;padding:11px}.num{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#ece8e2;font-weight:700;font-size:12px}.position{font-weight:700;margin-bottom:7px;font-size:13px}.card-line{display:grid;grid-template-columns:1.45fr .55fr;gap:8px}.card-memo{min-height:64px;margin-top:8px;font-size:13px}.meaning{padding:10px 12px;border-top:1px dashed var(--line);background:#fff;font-size:12px;color:#555}.meaning strong{color:var(--accent2)}.meaning .empty{color:#999}.memo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.memo-box textarea{min-height:145px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.btn{border:0;border-radius:8px;padding:10px 15px;font-size:13px}.primary{background:var(--accent2);color:#fff}.secondary{background:#e9e5df;color:#333}.ghost{background:#fff;border:1px solid #cfc9c0}.danger{background:#fff1f1;color:var(--danger);border:1px solid #e2c5c5}.output{position:sticky;top:68px}.preview-wrap{padding:15px;background:#e9e5df}.preview-page{min-height:760px;padding:44px 42px;background:var(--paper);box-shadow:0 4px 18px rgba(0,0,0,.1)}.preview-title{text-align:center;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:27px;letter-spacing:.12em;color:var(--navy);margin:0}.preview-meta{text-align:center;font-size:11px;color:#887e70;margin:5px 0 24px}.out{width:100%;min-height:620px;padding:0;border:0;background:transparent;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:14px;line-height:2;color:#463f38;resize:vertical;box-shadow:none!important}.status{min-height:22px;margin-top:9px;text-align:center;color:var(--accent2);font-size:12px}.note{font-size:11px;color:var(--muted);margin-top:8px}#printDocument{display:none}@media(max-width:900px){.grid{grid-template-columns:1fr}.output{position:static}}@media(max-width:620px){main{padding:18px 8px 45px}.tag{display:none}.twocol,.card-line,.memo-grid{grid-template-columns:1fr}.body{padding:13px}.actions{display:grid;grid-template-columns:1fr 1fr}.btn{width:100%}.preview-wrap{padding:7px}.preview-page{padding:30px 22px}.out{font-size:13px}}
+
 @page{size:A4;margin:0}
 @media print{
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  body{background:#fff}
+  html,body{margin:0!important;padding:0!important;background:#fff!important}
   .top,.hero,.input-panel,.output,.screen-only{display:none!important}
-  main{width:100%;padding:0}
-  .grid{display:block}
-  #printDocument{display:block}
+  main{width:100%!important;margin:0!important;padding:0!important}
+  .grid{display:block!important}
+  #printDocument{display:block!important}
 
   .print-page{
-    position:relative;width:210mm;height:297mm;overflow:hidden;
-    padding:29mm 27mm 24mm;
-    background:
-      radial-gradient(ellipse at 18% 10%,rgba(203,171,102,.08),transparent 26%),
-      radial-gradient(ellipse at 87% 88%,rgba(57,75,104,.055),transparent 25%),
-      linear-gradient(135deg,rgba(255,255,255,.5),rgba(242,235,220,.22)),
-      #fbf8f1;
-    color:#403a34;page-break-after:always;
+    position:relative;
+    width:210mm;
+    height:297mm;
+    overflow:hidden;
+    padding:28mm 27mm 24mm;
+    background:#fffdf8 url("images/page-frame.png") center/100% 100% no-repeat;
+    color:#403a34;
+    page-break-after:always;
     font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;
   }
   .print-page:last-child{page-break-after:auto}
-  .print-page:before{
-    content:"";position:absolute;inset:8mm;border:.5mm solid #b99a5b;
-    box-shadow:inset 0 0 0 1.8mm #fbf8f1,inset 0 0 0 2.05mm rgba(185,154,91,.54);
-    pointer-events:none;
+
+  .cover{
+    padding:0;
+    background:#fffdf8 url("images/cover.png") center/100% 100% no-repeat;
   }
-  .print-page:after{
-    content:"";position:absolute;inset:12.2mm;border:.12mm solid rgba(41,55,79,.26);pointer-events:none;
+  .cover .cover-date{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:27mm;
+    text-align:center;
+    font-size:11px;
+    letter-spacing:.16em;
+    color:#6d6254;
   }
-  .ornament{position:absolute;width:49mm;height:49mm;z-index:1;pointer-events:none;opacity:.96}
-  .ornament.tl{top:7.4mm;left:7.4mm}
-  .ornament.tr{top:7.4mm;right:7.4mm;transform:scaleX(-1)}
-  .ornament.bl{bottom:7.4mm;left:7.4mm;transform:scaleY(-1)}
-  .ornament.br{bottom:7.4mm;right:7.4mm;transform:scale(-1)}
-  .ornament .stem{fill:none;stroke:#667457;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
-  .ornament .gold{fill:#c5a55e;stroke:#af8d45;stroke-width:.45}
-  .ornament .navy{fill:#34425d;stroke:#27344c;stroke-width:.45}
-  .ornament .leaf{fill:#879078;stroke:#667457;stroke-width:.4}
-  .ornament .soft{fill:#d9c59a;stroke:#b99a5b;stroke-width:.4}
-  .ornament .dot{fill:#c5a55e}
-  .top-emblem{display:block;width:31mm;height:18mm;margin:0 auto 5mm}
-  .top-emblem .gold-line{stroke:#b99a5b;fill:none;stroke-width:1}
-  .top-emblem .navy-fill{fill:#2f3d57}
-  .top-emblem .gold-fill{fill:#c5a55e}
+
   .page-number{
-    position:absolute;z-index:3;left:50%;bottom:11.8mm;transform:translateX(-50%);
-    min-width:40mm;text-align:center;font-family:Georgia,"Times New Roman",serif;
-    font-size:8.5px;letter-spacing:.19em;color:#76664c;
+    position:absolute;
+    z-index:3;
+    left:50%;
+    bottom:11mm;
+    transform:translateX(-50%);
+    min-width:42mm;
+    text-align:center;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:8.5px;
+    letter-spacing:.18em;
+    color:#826f4c;
   }
-  .page-number:before,.page-number:after{content:"";display:inline-block;vertical-align:middle;width:9mm;height:.18mm;margin:0 3mm;background:#b99a5b}
+  .page-number:before,.page-number:after{
+    content:"";
+    display:inline-block;
+    vertical-align:middle;
+    width:9mm;
+    height:.18mm;
+    margin:0 3mm;
+    background:#b99a5b;
+  }
+
   .ornament-title{
-    position:relative;z-index:2;text-align:center;margin:3mm 0 11mm;font-weight:400;
-    font-size:22px;letter-spacing:.16em;color:#29374f;
+    position:relative;
+    z-index:2;
+    text-align:center;
+    margin:1mm 0 10mm;
+    font-weight:400;
+    font-size:22px;
+    letter-spacing:.16em;
+    color:#29374f;
   }
-  .ornament-title:before{content:"";display:block;width:24mm;height:.22mm;margin:0 auto 4mm;background:#b99a5b}
-  .ornament-title:after{content:"◆";display:block;margin:3.5mm auto 0;color:#b99a5b;font-size:7px;line-height:1;letter-spacing:0}
-  .cover{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:20mm;padding-bottom:20mm}
-  .cover .cover-emblem{width:42mm;height:42mm;margin-bottom:12mm}
-  .cover .cover-emblem .ring{fill:none;stroke:#b99a5b;stroke-width:1.2}
-  .cover .cover-emblem .thin{fill:none;stroke:#b99a5b;stroke-width:.55}
-  .cover .cover-emblem .moonfill{fill:#29374f}
-  .cover .cover-emblem .star{fill:#c5a55e}
-  .cover h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:42px;font-weight:400;line-height:1.15;letter-spacing:.07em;color:#af8a3e;text-shadow:0 .2mm 0 rgba(255,255,255,.9)}
-  .cover .jp{margin-top:9mm;font-size:20px;letter-spacing:.34em;color:#29374f}
-  .cover .line{width:56mm;height:.22mm;margin:11mm 0 8mm;background:#b99a5b;position:relative}
-  .cover .line:before,.cover .line:after{content:"◆";position:absolute;top:50%;transform:translateY(-52%);font-size:6px;color:#b99a5b;background:#fbf8f1;padding:0 2mm}
-  .cover .line:before{left:13mm}.cover .line:after{right:13mm}
-  .cover .date{font-size:11px;letter-spacing:.12em;color:#665b4d}
-  .recipient{position:relative;z-index:2;margin:-3mm 0 7mm;text-align:center;font-size:17px;letter-spacing:.1em;color:#29374f}
-  .intro{position:relative;z-index:2;margin:0 7mm 8mm;text-align:center;font-size:11px;line-height:1.9;color:#62594f}
-  .question{position:relative;z-index:2;margin:0 5mm 9mm;padding:5mm 7mm;border-top:.25mm solid rgba(185,154,91,.72);border-bottom:.25mm solid rgba(185,154,91,.72);white-space:pre-wrap;line-height:1.85;font-size:10.5px;background:rgba(255,255,255,.22)}
-  .card-list{position:relative;z-index:2;margin:0 5mm}
-  .card-list div{display:grid;grid-template-columns:11mm 1fr 1.12fr;gap:4mm;align-items:baseline;padding:2.35mm 0;border-bottom:.15mm solid rgba(185,154,91,.38);font-size:11.6px}
-  .card-list div:nth-child(odd){background:linear-gradient(90deg,transparent,rgba(205,189,155,.08),transparent)}
-  .card-list .index{font-family:Georgia,"Times New Roman",serif;color:#af8a3e;text-align:center;font-size:11px}
+  .ornament-title:after{
+    content:"◇";
+    display:block;
+    margin:3.5mm auto 0;
+    color:#b99a5b;
+    font-size:9px;
+    line-height:1;
+    letter-spacing:0;
+  }
+
+  .recipient{
+    position:relative;
+    z-index:2;
+    margin:-2mm 0 7mm;
+    text-align:center;
+    font-size:17px;
+    letter-spacing:.1em;
+    color:#29374f;
+  }
+  .intro{
+    position:relative;
+    z-index:2;
+    margin:0 7mm 8mm;
+    text-align:center;
+    font-size:11px;
+    line-height:1.9;
+    color:#62594f;
+  }
+  .question{
+    position:relative;
+    z-index:2;
+    margin:0 5mm 9mm;
+    padding:5mm 7mm;
+    border-top:.25mm solid rgba(185,154,91,.72);
+    border-bottom:.25mm solid rgba(185,154,91,.72);
+    white-space:pre-wrap;
+    line-height:1.85;
+    font-size:10.5px;
+    background:rgba(255,255,255,.28);
+  }
+  .card-list{
+    position:relative;
+    z-index:2;
+    margin:0 5mm;
+  }
+  .card-list div{
+    display:grid;
+    grid-template-columns:11mm 1fr 1.12fr;
+    gap:4mm;
+    align-items:baseline;
+    padding:2.35mm 0;
+    border-bottom:.15mm dotted rgba(185,154,91,.62);
+    font-size:11.6px;
+  }
+  .card-list .index{
+    font-family:Georgia,"Times New Roman",serif;
+    color:#af8a3e;
+    text-align:center;
+    font-size:11px;
+  }
   .card-list .position-name{color:#51483d}
-  .card-list .card-name{text-align:right;color:#29374f;font-weight:600}
-  .reading{position:relative;z-index:2;white-space:pre-wrap;font-size:11.8px;line-height:2.02;letter-spacing:.015em;text-align:justify}
-  .reading::first-line{color:#29374f}
-  .final{display:flex;flex-direction:column;justify-content:center;text-align:center;padding-top:24mm;padding-bottom:24mm}
-  .final .ornament-title{margin-top:0;margin-bottom:15mm}
-  .gift-block{position:relative;z-index:2;width:102mm;margin:0 auto 8mm;padding:8mm 10mm 7mm;border-top:.25mm solid #b99a5b;border-bottom:.25mm solid #b99a5b;background:rgba(255,255,255,.24)}
-  .gift-label{margin:0 auto 2mm;color:#29374f;font-family:Georgia,"Times New Roman",serif;font-size:8.8px;letter-spacing:.22em}
-  .gift-value{margin:0 0 7mm;font-size:22px;font-weight:400;color:#423a32}
-  .gift-number{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:39px;font-weight:400;color:#af8a3e}
-  .closing{position:relative;z-index:2;margin-top:5mm;font-size:11px;line-height:2.05;color:#554c42}
-  .sign{position:relative;z-index:2;margin-top:11mm;font-family:"Segoe Script","Bradley Hand","Snell Roundhand",cursive;font-size:29px;font-style:italic;letter-spacing:.04em;color:#a9833a;transform:rotate(-4deg)}
+  .card-list .card-name{
+    text-align:right;
+    color:#29374f;
+    font-weight:600;
+  }
+
+  .reading{
+    position:relative;
+    z-index:2;
+    white-space:pre-wrap;
+    font-size:11.8px;
+    line-height:2.02;
+    letter-spacing:.015em;
+    text-align:justify;
+  }
+
+  .final{
+    display:flex;
+    flex-direction:column;
+    padding-top:27mm;
+    padding-bottom:24mm;
+  }
+  .final .ornament-title{
+    margin-top:0;
+    margin-bottom:12mm;
+  }
+  .closing-message{
+    position:relative;
+    z-index:2;
+    width:126mm;
+    margin:0 auto;
+    font-size:11.4px;
+    line-height:2.15;
+    text-align:left;
+    color:#51483f;
+  }
+  .closing-message p{margin:0 0 5mm}
+  .closing-message strong{
+    font-weight:600;
+    color:#29374f;
+  }
+
+  .gift-block{
+    position:relative;
+    z-index:2;
+    width:105mm;
+    margin:10mm auto 0;
+    padding:7mm 10mm 6mm;
+    border-top:.25mm solid #b99a5b;
+    border-bottom:.25mm solid #b99a5b;
+    background:rgba(255,255,255,.28);
+    text-align:center;
+  }
+  .gift-label{
+    margin:0 auto 1.5mm;
+    color:#29374f;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:8.8px;
+    letter-spacing:.2em;
+  }
+  .gift-value{
+    margin:0 0 5mm;
+    font-size:19px;
+    font-weight:400;
+    color:#423a32;
+  }
+  .gift-number{
+    margin:0;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:34px;
+    font-weight:400;
+    color:#af8a3e;
+  }
+
+  .signature-wrap{
+    position:relative;
+    z-index:2;
+    width:100%;
+    margin-top:auto;
+    padding-right:12mm;
+    text-align:right;
+  }
+  .signature-image{
+    display:inline-block;
+    width:42mm;
+    height:auto;
+    object-fit:contain;
+  }
 }
+
 </style>
 </head>
 <body>
@@ -108,7 +242,7 @@
 <h3 class="section-title">2．ケルト十字・10枚</h3><div id="cards"></div>
 <h3 class="section-title">3．読みのメモ</h3><div class="memo-grid"><div class="memo-box"><label>現状</label><textarea id="memoCurrent"></textarea></div><div class="memo-box"><label>意識</label><textarea id="memoMind"></textarea></div><div class="memo-box"><label>過去・近未来</label><textarea id="memoFlow"></textarea></div><div class="memo-box"><label>あなた自身・環境</label><textarea id="memoSelfEnv"></textarea></div><div class="memo-box"><label>未来</label><textarea id="memoFuture"></textarea></div><div class="memo-box"><label>全体（結果）</label><textarea id="memoResult"></textarea></div></div>
 <h3 class="section-title">4．仕上げ情報</h3><div class="twocol"><div class="field"><label>ラッキーカラー</label><input id="luckyColor"></div><div class="field"><label>ラッキーナンバー</label><input id="luckyNumber"></div></div>
-<div class="actions"><button class="btn primary" id="generate">鑑定文を作成</button><button class="btn secondary" id="save">入力を保存</button><button class="btn secondary" id="load">保存内容を開く</button><button class="btn danger" id="clear">全て消す</button></div><p class="note">カードの意味は園子用の補助です。プレビューとPDFには入りません。</p>
+<div class="actions"><button class="btn primary" id="generate">鑑定文を作成</button><button class="btn secondary" id="save">入力を保存</button><button class="btn secondary" id="load">保存内容を開く</button><button class="btn danger" id="clear">全て消す</button></div><p class="note">カードの意味は園子用の補助です。プレビューとPDFには入りません。画像は images/cover.png・images/page-frame.png・images/signature.png を使用します。</p>
 </div></div>
 <div class="panel output"><div class="head"><h2>鑑定文</h2><p>作成後、この欄で自由に修正できます。</p></div><div class="preview-wrap"><div class="preview-page"><h2 class="preview-title">Tarot Letter</h2><p class="preview-meta" id="meta">鑑定書プレビュー</p><textarea class="out" id="out" placeholder="入力後、「鑑定文を作成」を押してください。"></textarea></div><div class="actions screen-only"><button class="btn primary" id="copy">文章をコピー</button><button class="btn ghost" id="print">印刷・PDF保存</button></div><div class="status screen-only" id="status"></div></div></div>
 </section><div id="printDocument"></div></main><datalist id="tarotList"></datalist>
@@ -122,29 +256,10 @@ function clean(v){return v.trim().replace(/・?(正位置|逆位置)$/,'').repla
 function getData(){return{name:$("name").value.trim(),date:$("date").value,question:$("question").value.trim(),context:$("context").value.trim(),cards:positions.map((p,i)=>({position:p[0],name:clean($("card"+i).value),orientation:+$("ori"+i).value,memo:$("cardMemo"+i).value.trim()})),memos:{current:$("memoCurrent").value.trim(),mind:$("memoMind").value.trim(),flow:$("memoFlow").value.trim(),selfEnv:$("memoSelfEnv").value.trim(),future:$("memoFuture").value.trim(),result:$("memoResult").value.trim()},luckyColor:$("luckyColor").value.trim(),luckyNumber:$("luckyNumber").value.trim(),out:out.value}}
 function section(t,x){return x?`【${t}】\n${x}\n\n`:''}function label(c){return c.name?`${c.name}・${c.orientation?'逆位置':'正位置'}`:'未入力'}function formatDate(v){if(!v)return'';const[y,m,d]=v.split('-');return`${y}年${Number(m)}月${Number(d)}日`}function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 $("generate").onclick=()=>{const d=getData();if(!Object.values(d.memos).some(Boolean)){status.textContent='読みのメモを1項目以上入力してください。';return}const client=d.name||'ご相談者さま';$("meta").textContent=`${client}｜${formatDate(d.date)}`;out.value=`${client}へ\n\nこのたびは、Tarot Letterを受け取ってくださりありがとうございます。\n\n${d.question?`【ご相談内容】\n${d.question}\n\n`:''}${section('現状',d.memos.current)}${section('意識',d.memos.mind)}${section('過去・近未来',d.memos.flow)}${section('あなた自身・環境',d.memos.selfEnv)}${section('未来',d.memos.future)}${section('全体',d.memos.result)}今回のカードが示したものを、未来を決めつける答えではなく、これからを選ぶための一通の手紙として受け取っていただければと思います。\n\nSono`;autoHeight();buildPrint();status.textContent='鑑定文の下書きを作成しました。';};
-function ornamentSvg(cls){
-  return `<svg class="ornament ${cls}" viewBox="0 0 160 160" aria-hidden="true">
-    <path class="stem" d="M8 8 C42 16 66 39 77 76 C85 104 102 125 147 148"/>
-    <path class="stem" d="M22 13 C39 28 47 45 47 68"/>
-    <path class="stem" d="M55 43 C78 50 92 66 98 89"/>
-    <path class="stem" d="M86 83 C110 89 126 105 134 128"/>
-    <ellipse class="leaf" cx="30" cy="28" rx="7" ry="15" transform="rotate(-42 30 28)"/>
-    <ellipse class="soft" cx="47" cy="47" rx="7" ry="14" transform="rotate(-14 47 47)"/>
-    <ellipse class="navy" cx="65" cy="58" rx="6" ry="13" transform="rotate(-48 65 58)"/>
-    <ellipse class="leaf" cx="80" cy="75" rx="7" ry="16" transform="rotate(-18 80 75)"/>
-    <ellipse class="gold" cx="101" cy="97" rx="7" ry="15" transform="rotate(-49 101 97)"/>
-    <ellipse class="navy" cx="121" cy="116" rx="6" ry="14" transform="rotate(-20 121 116)"/>
-    <path class="gold" d="M12 7 C19 1 29 1 35 8 C28 9 23 14 21 21 C18 15 15 11 12 7Z"/>
-    <path class="navy" d="M77 67 C85 58 98 58 105 67 C96 69 90 76 88 86 C85 77 82 71 77 67Z"/>
-    <path class="soft" d="M130 132 C138 123 149 125 154 134 C146 134 141 140 140 149 C137 141 134 136 130 132Z"/>
-    <circle class="dot" cx="45" cy="26" r="2.6"/><circle class="dot" cx="55" cy="31" r="1.8"/><circle class="dot" cx="112" cy="91" r="2.3"/><circle class="dot" cx="120" cy="97" r="1.7"/>
-  </svg>`;
-}
 function decorativeShell(content,page,total,extraClass=''){
   return `<section class="print-page ${extraClass}">
-    ${ornamentSvg('tl')}${ornamentSvg('tr')}${ornamentSvg('bl')}${ornamentSvg('br')}
     ${content}
-    <div class="page-number">${page} / ${total}</div>
+    ${extraClass==='cover'?'':`<div class="page-number">${page} / ${total}</div>`}
   </section>`;
 }
 function stripRepeatedSections(text){
@@ -183,16 +298,7 @@ function buildPrint(){
   const parts=[];
 
   parts.push(decorativeShell(`
-    <svg class="cover-emblem" viewBox="0 0 120 120" aria-hidden="true">
-      <circle class="ring" cx="60" cy="60" r="49"/><circle class="thin" cx="60" cy="60" r="42"/>
-      <path class="moonfill" d="M70 28a35 35 0 1 0 21 62A31 31 0 1 1 70 28z"/>
-      <path class="star" d="M85 28l2.5 6 6.5 1-5 4.3 1.5 6.4-5.5-3.4-5.5 3.4 1.5-6.4-5-4.3 6.5-1z"/>
-      <circle class="star" cx="35" cy="35" r="2.4"/><circle class="star" cx="89" cy="70" r="1.8"/>
-    </svg>
-    <h1>Tarot<br>Letter</h1>
-    <div class="jp">鑑定書</div>
-    <div class="line"></div>
-    <div class="date">${esc(formatDate(d.date))}</div>
+    <div class="cover-date">${esc(formatDate(d.date))}</div>
   `,page++,total,'cover'));
 
   parts.push(decorativeShell(`
@@ -217,15 +323,30 @@ function buildPrint(){
   });
 
   parts.push(decorativeShell(`
-    <h2 class="ornament-title">あなたへの贈りもの</h2>
+    <h2 class="ornament-title">最後に</h2>
+
+    <div class="closing-message">
+      <p>この度は、Tarot Letterの鑑定をお受けいただき、誠にありがとうございました。</p>
+
+      <p>この鑑定が、あなたの心を少しでも軽くし、これからの歩みを照らす小さな灯となれたなら幸いです。</p>
+
+      <p>カードは未来を決めるものではなく、今のあなたを映し出し、より良い未来へ向かうための気づきを与えてくれるものだと私は考えています。</p>
+
+      <p><strong>どのような結果であっても、人生の舵を握っているのは、あなた自身です。</strong></p>
+
+      <p><strong>あなたが選ぶ一歩一歩が、幸せな未来へとつながることを、心よりお祈りしております。</strong></p>
+    </div>
+
     <div class="gift-block">
-      <div class="gift-label">LUCKY COLOR</div>
+      <div class="gift-label">RECOMMENDED COLOR</div>
       <div class="gift-value">${esc(d.luckyColor||'—')}</div>
-      <div class="gift-label">LUCKY NUMBER</div>
+      <div class="gift-label">RECOMMENDED NUMBER</div>
       <div class="gift-number">${esc(d.luckyNumber||'—')}</div>
     </div>
-    <div class="closing">あなたに必要な言葉が、<br>これからの日々をそっと照らしますように。</div>
-    <div class="sign">Sono</div>
+
+    <div class="signature-wrap">
+      <img src="images/signature.png" alt="Sono" class="signature-image">
+    </div>
   `,page,total,'final'));
 
   $("printDocument").innerHTML=parts.join('');
