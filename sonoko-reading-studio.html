@@ -217,11 +217,25 @@
     color:#af8a3e;
   }
 
+  .emblem-wrap{
+    position:relative;
+    z-index:2;
+    width:100%;
+    margin:8mm auto 0;
+    text-align:center;
+  }
+  .emblem-image{
+    display:inline-block;
+    width:58mm;
+    max-height:72mm;
+    height:auto;
+    object-fit:contain;
+  }
   .signature-wrap{
     position:relative;
     z-index:2;
     width:100%;
-    margin-top:auto;
+    margin-top:3mm;
     text-align:center;
   }
   .signature-image{
@@ -244,7 +258,7 @@
 <h3 class="section-title">2．ケルト十字・10枚</h3><div id="cards"></div>
 <h3 class="section-title">3．読みのメモ</h3><div class="memo-grid"><div class="memo-box"><label>現状</label><textarea id="memoCurrent"></textarea></div><div class="memo-box"><label>意識</label><textarea id="memoMind"></textarea></div><div class="memo-box"><label>過去・近未来</label><textarea id="memoFlow"></textarea></div><div class="memo-box"><label>あなた自身・環境</label><textarea id="memoSelfEnv"></textarea></div><div class="memo-box"><label>未来</label><textarea id="memoFuture"></textarea></div><div class="memo-box"><label>全体（結果）</label><textarea id="memoResult"></textarea></div></div>
 <h3 class="section-title">4．仕上げ情報</h3><div class="twocol"><div class="field"><label>ラッキーカラー</label><input id="luckyColor"></div><div class="field"><label>ラッキーナンバー</label><input id="luckyNumber"></div></div>
-<div class="actions"><button class="btn primary" id="generate">鑑定文を作成</button><button class="btn secondary" id="save">入力を保存</button><button class="btn secondary" id="load">保存内容を開く</button><button class="btn danger" id="clear">全て消す</button></div><p class="note">カードの意味は園子用の補助です。プレビューとPDFには入りません。画像は images/cover.png・images/page-frame.png・images/signature.png を使用します。</p>
+<div class="actions"><button class="btn primary" id="generate">鑑定文を作成</button><button class="btn secondary" id="save">入力を保存</button><button class="btn secondary" id="load">保存内容を開く</button><button class="btn danger" id="clear">全て消す</button></div><p class="note">カードの意味は園子用の補助です。プレビューとPDFには入りません。画像は images/cover.png・images/page-frame.png・images/emblem.png・images/signature.png を使用します。</p>
 </div></div>
 <div class="panel output"><div class="head"><h2>鑑定文</h2><p>作成後、この欄で自由に修正できます。</p></div><div class="preview-wrap"><div class="preview-page"><h2 class="preview-title">Tarot Letter</h2><p class="preview-meta" id="meta">鑑定書プレビュー</p><textarea class="out" id="out" placeholder="入力後、「鑑定文を作成」を押してください。"></textarea></div><div class="actions screen-only"><button class="btn primary" id="copy">文章をコピー</button><button class="btn ghost" id="print">印刷・PDF保存</button></div><div class="status screen-only" id="status"></div></div></div>
 </section><div id="printDocument"></div></main><datalist id="tarotList"></datalist>
@@ -274,7 +288,7 @@ function stripRepeatedSections(text){
   value=value.replace(/\n*Sono\s*$/,'');
   return value.trim();
 }
-function splitReadingPages(text,maxChars=760){
+function splitReadingPages(text,maxChars=630){
   const source=String(text||'').replace(/\r/g,'').trim();
   if(!source)return [''];
 
@@ -382,6 +396,10 @@ function buildPrint(){
       <div class="gift-value">${esc(d.luckyColor||'—')}</div>
       <div class="gift-label">RECOMMENDED NUMBER</div>
       <div class="gift-number">${esc(d.luckyNumber||'—')}</div>
+    </div>
+
+    <div class="emblem-wrap">
+      <img src="images/emblem.png" alt="" class="emblem-image">
     </div>
 
     <div class="signature-wrap">
