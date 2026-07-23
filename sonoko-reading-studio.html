@@ -155,8 +155,8 @@
     letter-spacing:.015em;
     text-align:justify;
   }
-  .print-page:not(.cover):not(.final) .reading:first-child{
-    padding-top:5mm;
+  .reading-continuation{
+    padding-top:7mm;
   }
 
   .final{
@@ -275,13 +275,11 @@ function stripRepeatedSections(text){
   return value.trim();
 }
 function splitReadingPages(text,maxChars=760){
-  const source=String(text||'').replace(/
-/g,'').trim();
+  const source=String(text||'').replace(/\r/g,'').trim();
   if(!source)return [''];
 
   const paragraphs=source
-    .split(/
-{2,}/)
+    .split(/\n{2,}/)
     .map(x=>x.trim())
     .filter(Boolean);
 
@@ -293,21 +291,23 @@ function splitReadingPages(text,maxChars=760){
       return;
     }
 
-    const sentences=paragraph
-      .match(/[^。！？!?]+[。！？!?]?/g)
-      ?.map(x=>x.trim())
-      .filter(Boolean) || [paragraph];
+    const sentences=(paragraph.match(/[^。！？!?]+[。！？!?]?/g)||[paragraph])
+      .map(x=>x.trim())
+      .filter(Boolean);
 
     let block='';
+
     sentences.forEach(sentence=>{
-      const candidate=block ? block+sentence : sentence;
-      if(candidate.length>maxChars && block){
+      const candidate=block?block+sentence:sentence;
+
+      if(candidate.length>maxChars&&block){
         units.push(block);
         block=sentence;
       }else{
         block=candidate;
       }
     });
+
     if(block)units.push(block);
   });
 
@@ -315,10 +315,9 @@ function splitReadingPages(text,maxChars=760){
   let page='';
 
   units.forEach(unit=>{
-    const candidate=page ? `${page}
+    const candidate=page?`${page}\n\n${unit}`:unit;
 
-${unit}` : unit;
-    if(candidate.length>maxChars && page){
+    if(candidate.length>maxChars&&page){
       pages.push(page);
       page=unit;
     }else{
@@ -327,7 +326,7 @@ ${unit}` : unit;
   });
 
   if(page)pages.push(page);
-  return pages.length ? pages : [''];
+  return pages.length?pages:[''];
 }
 function buildPrint(){
   const d=getData();
@@ -359,7 +358,7 @@ function buildPrint(){
   readingPages.forEach((chunk,index)=>{
     parts.push(decorativeShell(`
       ${index===0?'<h2 class="ornament-title">鑑定結果</h2>':''}
-      <div class="reading">${esc(chunk)}</div>
+      <div class="reading ${index===0?'':'reading-continuation'}">${esc(chunk)}</div>
     `,page++,total));
   });
 
