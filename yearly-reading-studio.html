@@ -67,6 +67,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 
 @media(max-width:700px){.month-grid,.reading-grid,.twocol,.threecol,.card-line{grid-template-columns:1fr}}
 @media(max-width:620px){main{padding:18px 8px 45px}.tag{display:none}.body{padding:13px}.actions{display:grid;grid-template-columns:1fr 1fr}.btn{width:100%}.preview-wrap{padding:7px}.preview-page{padding:30px 22px}.out{font-size:13px}}
 
+#measureRoot{position:fixed;left:-10000px;top:0;visibility:hidden;pointer-events:none;width:156mm;font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;color:#403a34}
+#measureRoot .measure-reading{width:156mm;font-size:12.4px;line-height:1.92;letter-spacing:.015em;text-align:justify}
+#measureRoot h3{margin:0 0 5mm;text-align:left;font-size:14.6px;line-height:1.92;font-weight:600;color:#29374f}
+#measureRoot p{margin:0 0 4.6mm;white-space:pre-wrap}
 @page{size:A4;margin:0}
 @media print{
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
@@ -106,10 +110,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 
   .extra-list{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 8mm}
   .extra-item{font-size:10.3px;line-height:1.7;break-inside:avoid}
   .extra-item strong{color:#29374f}
-  .reading{position:relative;z-index:2;white-space:pre-wrap;font-size:11.6px;line-height:2.0;letter-spacing:.015em;text-align:justify}
-  .reading h3{margin:0 0 5mm;text-align:left;font-size:14px;font-weight:600;color:#29374f;break-after:avoid}
-  .reading p{margin:0 0 4.8mm;break-inside:avoid}
-  .reading-continuation{padding-top:3mm}
+  .reading{position:relative;z-index:2;white-space:normal;font-size:12.4px;line-height:1.92;letter-spacing:.015em;text-align:justify}
+  .reading h3{margin:0 0 5mm;text-align:left;font-size:14.6px;font-weight:600;color:#29374f;break-after:avoid}
+  .reading p{margin:0 0 4.6mm;break-inside:avoid}
+  .reading-continuation{padding-top:1mm}
   .final{display:flex;flex-direction:column;padding-top:27mm;padding-bottom:24mm}
   .final .ornament-title{margin-top:0;margin-bottom:12mm}
   .closing-message{position:relative;z-index:2;width:126mm;margin:0 auto;font-size:11.4px;line-height:2.15;text-align:left;color:#51483f}
@@ -195,6 +199,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 
 </div>
 </section>
 <div id="printDocument"></div>
+<div id="measureRoot" aria-hidden="true"></div>
 </main>
 <datalist id="tarotList"></datalist>
 <script>
@@ -290,30 +295,89 @@ function parseSections(text){
   flushSection();
   return sections;
 }
-function splitLongParagraph(paragraph,maxChars){
-  if(paragraph.length<=maxChars)return[paragraph];
+function measureUnit(type,text){
+  const root=$("measureRoot");
+  root.innerHTML=`<div class="measure-reading">${type==='heading'?`<h3>${escapeHtml(text)}</h3>`:`<p>${escapeHtml(text)}</p>`}</div>`;
+  return root.firstElementChild.firstElementChild.getBoundingClientRect().height;
+}
+function measureUnits(units){
+  const root=$("measureRoot");
+  root.innerHTML=`<div class="measure-reading">${units.map(u=>u.type==='heading'?`<h3>${escapeHtml(u.text)}</h3>`:`<p>${escapeHtml(u.text)}</p>`).join('')}</div>`;
+  return root.firstElementChild.getBoundingClientRect().height;
+}
+function splitParagraphByHeight(paragraph,maxHeight){
+  if(measureUnit('paragraph',paragraph)<=maxHeight)return[paragraph];
   const sentences=(paragraph.match(/[^。！？!?]+[。！？!?]?/g)||[paragraph]).map(x=>x.trim()).filter(Boolean);
   const parts=[];let block='';
-  sentences.forEach(sentence=>{const cand=block?block+sentence:sentence;if(cand.length>maxChars&&block){parts.push(block);block=sentence}else block=cand});
-  if(block)parts.push(block);return parts;
-}
-function paginateReading(text,maxChars=850){
-  const sections=parseSections(text);const pages=[];let page=[];let count=0;
-  const pushPage=()=>{if(page.length){pages.push(page);page=[];count=0}};
-  sections.forEach(section=>{
-    const headingCost=section.heading?28:0;
-    if(section.heading&&count>0&&count+headingCost>maxChars-120)pushPage();
-    const sectionStart={type:'heading',text:section.heading};
-    if(section.heading){page.push(sectionStart);count+=headingCost}
-    section.paragraphs.forEach(p=>{
-      splitLongParagraph(p,maxChars-80).forEach(part=>{
-        const cost=part.length+22;
-        if(count>0&&count+cost>maxChars){pushPage()}
-        page.push({type:'paragraph',text:part});count+=cost;
-      });
-    });
+  sentences.forEach(sentence=>{
+    const candidate=block?block+sentence:sentence;
+    if(block&&measureUnit('paragraph',candidate)>maxHeight){parts.push(block);block=sentence}else{block=candidate}
   });
-  pushPage();return pages.length?pages:[[]];
+  if(block)parts.push(block);
+  return parts;
+}
+function paginateReading(text){
+  const sections=parseSections(text);
+  const mm=96/25.4;
+  const firstCapacity=214*mm;
+  const nextCapacity=239*mm;
+  const pages=[];
+  let page={units:[],height:0,capacity:firstCapacity};
+  const pushPage=()=>{if(page.units.length)pages.push(page);page={units:[],height:0,capacity:nextCapacity}};
+  const addUnit=u=>{page.units.push(u);page.height=measureUnits(page.units)};
+
+  sections.forEach(section=>{
+    const heading=section.heading?{type:'heading',text:section.heading}:null;
+    const paragraphs=[];
+    section.paragraphs.forEach(p=>splitParagraphByHeight(p,nextCapacity-12*mm).forEach(part=>paragraphs.push({type:'paragraph',text:part})));
+    const whole=[...(heading?[heading]:[]),...paragraphs];
+    if(!whole.length)return;
+
+    const wholeHeight=measureUnits(whole);
+    const remaining=page.capacity-page.height;
+
+    // セクション全体が新しいページに収まるなら、中途半端な位置から始めない。
+    if(page.units.length&&wholeHeight<=nextCapacity&&wholeHeight>remaining){pushPage()}
+
+    // 見出しだけがページ末尾に残らないよう、見出し＋最初の段落をひとまとまりにする。
+    let index=0;
+    if(heading){
+      const firstPair=[heading,...(paragraphs[0]?[paragraphs[0]]:[])];
+      if(page.units.length&&measureUnits([...page.units,...firstPair])>page.capacity)pushPage();
+      addUnit(heading);
+    }
+
+    while(index<paragraphs.length){
+      const unit=paragraphs[index];
+      const candidate=[...page.units,unit];
+      if(page.units.length&&measureUnits(candidate)>page.capacity){
+        pushPage();
+      }
+      addUnit(unit);
+      index++;
+    }
+  });
+  pushPage();
+
+  // 最後のページが数行だけになった場合、前ページの末尾段落を移して見た目を整える。
+  if(pages.length>1){
+    const last=pages[pages.length-1];
+    const prev=pages[pages.length-2];
+    const minLastHeight=42*mm;
+    while(last.height<minLastHeight&&prev.units.length>1){
+      const moveIndex=prev.units.length-1;
+      const moving=prev.units[moveIndex];
+      if(moving.type==='heading')break;
+      const newLast=[moving,...last.units];
+      if(measureUnits(newLast)>last.capacity)break;
+      prev.units.pop();
+      prev.height=measureUnits(prev.units);
+      last.units=newLast;
+      last.height=measureUnits(last.units);
+    }
+  }
+
+  return pages.length?pages.map(p=>p.units):[[]];
 }
 function decorativeShell(content,page,total,extraClass=''){
   return `<section class="print-page ${extraClass}">${content}${extraClass==='cover'?'':`<div class="page-number">${page} / ${total}</div>`}</section>`;
