@@ -109,7 +109,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 
   .reading{position:relative;z-index:2;white-space:pre-wrap;font-size:11.6px;line-height:2.0;letter-spacing:.015em;text-align:justify}
   .reading h3{margin:0 0 5mm;text-align:left;font-size:14px;font-weight:600;color:#29374f;break-after:avoid}
   .reading p{margin:0 0 4.8mm;break-inside:avoid}
-  .reading-continuation{padding-top:6mm}
+  .reading-continuation{padding-top:3mm}
   .final{display:flex;flex-direction:column;padding-top:27mm;padding-bottom:24mm}
   .final .ornament-title{margin-top:0;margin-bottom:12mm}
   .closing-message{position:relative;z-index:2;width:126mm;margin:0 auto;font-size:11.4px;line-height:2.15;text-align:left;color:#51483f}
@@ -297,7 +297,7 @@ function splitLongParagraph(paragraph,maxChars){
   sentences.forEach(sentence=>{const cand=block?block+sentence:sentence;if(cand.length>maxChars&&block){parts.push(block);block=sentence}else block=cand});
   if(block)parts.push(block);return parts;
 }
-function paginateReading(text,maxChars=660){
+function paginateReading(text,maxChars=850){
   const sections=parseSections(text);const pages=[];let page=[];let count=0;
   const pushPage=()=>{if(page.length){pages.push(page);page=[];count=0}};
   sections.forEach(section=>{
@@ -308,7 +308,7 @@ function paginateReading(text,maxChars=660){
     section.paragraphs.forEach(p=>{
       splitLongParagraph(p,maxChars-80).forEach(part=>{
         const cost=part.length+22;
-        if(count>0&&count+cost>maxChars){pushPage();if(section.heading)page.push({type:'heading',text:section.heading+'（続き）'}),count+=36}
+        if(count>0&&count+cost>maxChars){pushPage()}
         page.push({type:'paragraph',text:part});count+=cost;
       });
     });
