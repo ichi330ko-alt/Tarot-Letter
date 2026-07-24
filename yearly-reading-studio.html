@@ -1,1 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Tarot Letter Studio｜12か月鑑定</title>
+<style>
+:root{--bg:#f4f1ec;--panel:#fff;--ink:#383838;--muted:#777;--line:#ddd7cf;--accent:#4f7778;--accent2:#345f61;--danger:#a45f5f;--paper:#fffdf8;--navy:#26354c;--gold:#b79a61}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;line-height:1.7}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.topin{width:min(1220px,100%);margin:auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:700}
+.tag{font-size:12px;color:var(--muted)}
+main{width:min(1220px,100%);margin:auto;padding:26px 14px 70px}
+.hero{margin-bottom:18px}
+.hero h1{margin:0 0 3px;font-size:25px}
+.hero p{margin:0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(360px,.88fr);gap:18px;align-items:start}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.head{padding:15px 18px;border-bottom:1px solid var(--line);background:#faf9f7}
+.head h2{margin:0;font-size:17px}
+.head p{margin:3px 0 0;font-size:12px;color:var(--muted)}
+.body{padding:18px}
+.section-title{margin:27px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line);font-size:15px}
+.section-title:first-child{margin-top:0}
+.field{margin-bottom:14px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+label{display:block;margin-bottom:5px;font-size:12px;font-weight:600;color:#606060}
+input,select,textarea{width:100%;border:1px solid #cbc6bf;border-radius:8px;background:#fff;color:var(--ink);padding:9px 10px;outline:none}
+input,select{min-height:42px}
+textarea{min-height:105px;resize:vertical;line-height:1.7}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,119,120,.1)}
+.month-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.month-card{border:1px solid var(--line);border-radius:10px;background:#fcfbf9;overflow:hidden}
+.month-main{padding:11px}
+.month-label{font-weight:700;margin-bottom:7px;font-size:13px;color:var(--accent2)}
+.card-line{display:grid;grid-template-columns:1.45fr .55fr;gap:8px}
+.month-memo{min-height:62px;margin-top:8px;font-size:13px}
+.meaning{padding:9px 11px;border-top:1px dashed var(--line);background:#fff;font-size:12px;color:#555}
+.meaning strong{color:var(--accent2)}
+.meaning .empty{color:#999}
+.extra-box{margin-bottom:12px;border:1px solid var(--line);border-radius:10px;background:#fcfbf9;padding:12px}
+.extra-box h4{margin:0 0 10px;font-size:13px;color:var(--accent2)}
+.reading-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.reading-box textarea{min-height:170px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.btn{border:0;border-radius:8px;padding:10px 15px;font-size:13px}
+.primary{background:var(--accent2);color:#fff}
+.secondary{background:#e9e5df;color:#333}
+.ghost{background:#fff;border:1px solid #cfc9c0}
+.danger{background:#fff1f1;color:var(--danger);border:1px solid #e2c5c5}
+.output{position:sticky;top:68px}
+.preview-wrap{padding:15px;background:#e9e5df}
+.preview-page{min-height:760px;padding:44px 42px;background:var(--paper);box-shadow:0 4px 18px rgba(0,0,0,.1)}
+.preview-title{text-align:center;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:27px;letter-spacing:.12em;color:var(--navy);margin:0}
+.preview-meta{text-align:center;font-size:11px;color:#887e70;margin:5px 0 24px}
+.out{width:100%;min-height:620px;padding:0;border:0;background:transparent;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:14px;line-height:2;color:#463f38;resize:vertical;box-shadow:none!important}
+.status{min-height:22px;margin-top:9px;text-align:center;color:var(--accent2);font-size:12px}
+.note{font-size:11px;color:var(--muted);margin-top:8px}
+#printDocument{display:none}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.output{position:static}}
+@media(max-width:700px){.month-grid,.reading-grid,.twocol,.threecol,.card-line{grid-template-columns:1fr}}
+@media(max-width:620px){main{padding:18px 8px 45px}.tag{display:none}.body{padding:13px}.actions{display:grid;grid-template-columns:1fr 1fr}.btn{width:100%}.preview-wrap{padding:7px}.preview-page{padding:30px 22px}.out{font-size:13px}}
 
+@page{size:A4;margin:0}
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  html,body{margin:0!important;padding:0!important;background:#fff!important}
+  .top,.hero,.input-panel,.output,.screen-only{display:none!important}
+  main{width:100%!important;margin:0!important;padding:0!important}
+  .grid{display:block!important}
+  #printDocument{display:block!important}
+
+  .print-page{
+    position:relative;
+    width:210mm;
+    height:297mm;
+    overflow:hidden;
+    padding:28mm 27mm 25mm;
+    background:#fffdf8 url("images/page-frame.png") center/100% 100% no-repeat;
+    color:#403a34;
+    page-break-after:always;
+    font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;
+  }
+  .print-page:last-child{page-break-after:auto}
+  .cover{padding:0;background:#fffdf8 url("images/cover.png") center/100% 100% no-repeat}
+  .cover .cover-date{position:absolute;left:0;right:0;bottom:27mm;text-align:center;font-size:11px;letter-spacing:.16em;color:#6d6254}
+  .page-number{position:absolute;z-index:3;left:50%;bottom:11mm;transform:translateX(-50%);min-width:42mm;text-align:center;font-family:Georgia,"Times New Roman",serif;font-size:8.5px;letter-spacing:.18em;color:#826f4c}
+  .page-number:before,.page-number:after{content:"";display:inline-block;vertical-align:middle;width:9mm;height:.18mm;margin:0 3mm;background:#b99a5b}
+  .ornament-title{position:relative;z-index:2;text-align:center;margin:1mm 0 9mm;font-weight:400;font-size:22px;letter-spacing:.16em;color:#29374f}
+  .ornament-title:after{content:"◇";display:block;margin:3.5mm auto 0;color:#b99a5b;font-size:9px;line-height:1;letter-spacing:0}
+  .recipient{position:relative;z-index:2;margin:-2mm 0 7mm;text-align:center;font-size:17px;letter-spacing:.1em;color:#29374f}
+  .intro{position:relative;z-index:2;margin:0 7mm 7mm;text-align:center;font-size:11px;line-height:1.9;color:#62594f}
+  .question{position:relative;z-index:2;margin:0 5mm 7mm;padding:4.5mm 7mm;border-top:.25mm solid rgba(185,154,91,.72);border-bottom:.25mm solid rgba(185,154,91,.72);white-space:pre-wrap;line-height:1.8;font-size:10.3px;background:rgba(255,255,255,.28)}
+  .yearly-list{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;column-gap:10mm;row-gap:0;margin:0 4mm}
+  .yearly-item{display:grid;grid-template-columns:22mm 1fr;gap:3mm;align-items:baseline;padding:2.25mm 0;border-bottom:.15mm dotted rgba(185,154,91,.62);font-size:10.8px;break-inside:avoid}
+  .yearly-month{color:#51483d;white-space:nowrap}
+  .yearly-card{text-align:right;color:#29374f;font-weight:600}
+  .extra-reading{position:relative;z-index:2;margin:8mm 5mm 0;padding-top:5mm;border-top:.2mm solid rgba(185,154,91,.55)}
+  .extra-reading h3{margin:0 0 3mm;text-align:center;font-size:12px;font-weight:500;letter-spacing:.08em;color:#29374f}
+  .extra-list{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm 8mm}
+  .extra-item{font-size:10.3px;line-height:1.7;break-inside:avoid}
+  .extra-item strong{color:#29374f}
+  .reading{position:relative;z-index:2;white-space:pre-wrap;font-size:11.6px;line-height:2.0;letter-spacing:.015em;text-align:justify}
+  .reading h3{margin:0 0 5mm;text-align:left;font-size:14px;font-weight:600;color:#29374f;break-after:avoid}
+  .reading p{margin:0 0 4.8mm;break-inside:avoid}
+  .reading-continuation{padding-top:6mm}
+  .final{display:flex;flex-direction:column;padding-top:27mm;padding-bottom:24mm}
+  .final .ornament-title{margin-top:0;margin-bottom:12mm}
+  .closing-message{position:relative;z-index:2;width:126mm;margin:0 auto;font-size:11.4px;line-height:2.15;text-align:left;color:#51483f}
+  .closing-message p{margin:0 0 5mm}
+  .closing-message strong{font-weight:600;color:#29374f}
+  .gift-block{position:relative;z-index:2;width:105mm;margin:10mm auto 0;padding:7mm 10mm 6mm;border-top:.25mm solid #b99a5b;border-bottom:.25mm solid #b99a5b;background:rgba(255,255,255,.28);text-align:center}
+  .gift-label{margin:0 auto 1.5mm;color:#29374f;font-family:Georgia,"Times New Roman",serif;font-size:8.8px;letter-spacing:.2em}
+  .gift-value{margin:0 0 5mm;font-size:19px;font-weight:400;color:#423a32}
+  .gift-number{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:34px;font-weight:400;color:#af8a3e}
+  .emblem-wrap{position:relative;z-index:2;width:100%;margin:8mm auto 0;text-align:center}
+  .emblem-image{display:inline-block;width:58mm;max-height:72mm;height:auto;object-fit:contain}
+  .signature-wrap{position:relative;z-index:2;width:100%;margin-top:1mm;transform:translateY(-2mm);text-align:center}
+  .signature-image{display:inline-block;width:42mm;height:auto;object-fit:contain}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin"><div class="brand">Tarot Letter Studio</div><div class="tag">Sono専用・12か月鑑定書作成</div></div></header>
+<main>
+<section class="hero"><h1>12か月鑑定書づくり</h1><p>開始月から12か月分のカードを入力し、テーマ別の鑑定文とPDFを作成します。</p></section>
+<section class="grid">
+<div class="panel input-panel">
+  <div class="head"><h2>入力</h2><p>上から順に埋めてください。</p></div>
+  <div class="body">
+    <h3 class="section-title">1．基本情報</h3>
+    <div class="twocol">
+      <div class="field"><label>お名前・ニックネーム</label><input id="name" placeholder="例：姫林檎様"></div>
+      <div class="field"><label>鑑定日</label><input id="date" type="date"></div>
+    </div>
+    <div class="field"><label>ご相談内容</label><textarea id="question"></textarea></div>
+    <div class="field"><label>相談者についての補足（PDFには表示しません）</label><textarea id="context"></textarea></div>
+
+    <h3 class="section-title">2．12か月のカード</h3>
+    <div class="threecol">
+      <div class="field"><label>開始年</label><input id="startYear" type="number" min="2000" max="2100"></div>
+      <div class="field"><label>開始月</label><select id="startMonth"></select></div>
+      <div class="field"><label>&nbsp;</label><button class="btn secondary" id="refreshMonths" style="width:100%">月表示を更新</button></div>
+    </div>
+    <div id="months" class="month-grid"></div>
+
+    <h3 class="section-title">3．追加で見たカード</h3>
+    <p class="note">恋愛の年間カード、YES・NO、補足カードなどがある場合だけ入力してください。空欄はPDFに表示されません。</p>
+    <div id="extras"></div>
+
+    <h3 class="section-title">4．鑑定文</h3>
+    <div class="reading-grid">
+      <div class="reading-box"><label>第1見出し</label><input id="heading1" value="仕事について"><label style="margin-top:8px">本文</label><textarea id="reading1"></textarea></div>
+      <div class="reading-box"><label>第2見出し</label><input id="heading2" value="恋愛について"><label style="margin-top:8px">本文</label><textarea id="reading2"></textarea></div>
+      <div class="reading-box"><label>第3見出し</label><input id="heading3" value="全体を通して"><label style="margin-top:8px">本文</label><textarea id="reading3"></textarea></div>
+      <div class="reading-box"><label>第4見出し（任意）</label><input id="heading4"><label style="margin-top:8px">本文</label><textarea id="reading4"></textarea></div>
+    </div>
+
+    <h3 class="section-title">5．仕上げ情報</h3>
+    <div class="twocol">
+      <div class="field"><label>ラッキーカラー</label><input id="luckyColor"></div>
+      <div class="field"><label>ラッキーナンバー</label><input id="luckyNumber"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" id="generate">鑑定文を作成</button>
+      <button class="btn secondary" id="save">入力を保存</button>
+      <button class="btn secondary" id="load">保存内容を開く</button>
+      <button class="btn danger" id="clear">全て消す</button>
+    </div>
+    <p class="note">画像は images/cover.png・images/page-frame.png・images/emblem.png・images/signature.png を使用します。</p>
+  </div>
+</div>
+
+<div class="panel output">
+  <div class="head"><h2>鑑定文</h2><p>作成後、この欄で自由に修正できます。</p></div>
+  <div class="preview-wrap">
+    <div class="preview-page">
+      <h2 class="preview-title">Tarot Letter</h2>
+      <p class="preview-meta" id="meta">12か月鑑定書プレビュー</p>
+      <textarea class="out" id="out" placeholder="入力後、「鑑定文を作成」を押してください。"></textarea>
+    </div>
+    <div class="actions screen-only">
+      <button class="btn primary" id="copy">文章をコピー</button>
+      <button class="btn ghost" id="print">印刷・PDF保存</button>
+    </div>
+    <div class="status screen-only" id="status"></div>
+  </div>
+</div>
+</section>
+<div id="printDocument"></div>
+</main>
+<datalist id="tarotList"></datalist>
+<script>
+const tarot={"愚者":["新しい始まり、自由、未知への一歩。","準備不足、無計画、現実から目をそらす傾向。"],"魔術師":["意志、可能性、行動を始める力。","力を生かしきれない、自信不足、言葉と行動のずれ。"],"女教皇":["直感、静かな理解、まだ言葉にならない真実。","直感を疑う、心を閉ざす、考えすぎる状態。"],"女帝":["豊かさ、愛情、育む力、受け取る喜び。","与えすぎ、依存、心の余裕不足。"],"皇帝":["安定、責任、秩序、現実的な決断。","支配、頑固さ、責任への重圧。"],"法王":["信頼、助言、伝統、常識的な選択。","既存の考えへの違和感、形式への反発。"],"恋人":["心からの選択、調和、結びつき。","迷い、価値観の不一致、選択への不安。"],"戦車":["前進、意志、勝利、状況を動かす力。","空回り、焦り、方向性の乱れ。"],"力":["内なる強さ、忍耐、優しさによる克服。","自信低下、感情に振り回される状態。"],"隠者":["内省、静かな探求、一人で考える時間。","孤立、考え込みすぎ、閉じこもる状態。"],"運命の輪":["転機、流れの変化、巡ってきた機会。","停滞、タイミングのずれ、同じ流れの反復。"],"正義":["公平、客観性、責任ある判断。","不公平感、偏った判断、責任回避。"],"吊るされた男":["一時停止、視点の転換、受け入れる時間。","報われない我慢、停滞への苛立ち。"],"死神":["終わりと変化、手放し、次の段階への移行。","変化への抵抗、終わったものへの執着。"],"節制":["調整、回復、自然なバランス。","偏り、無理な調整、心身の乱れ。"],"悪魔":["執着、誘惑、依存、離れにくい関係。","束縛からの解放、依存への気づき。"],"塔":["突然の変化、崩壊、真実の露呈。","変化を避ける、内側での崩壊。"],"星":["希望、癒やし、素直な願い、未来への光。","希望を失う、自信低下、理想と現実の距離。"],"月":["不安、曖昧さ、無意識。","混乱が薄れる、隠れていたことが見える。"],"太陽":["喜び、明確さ、成功、素直な自己表現。","喜びを受け取りきれない、期待ほどではない成果。"],"審判":["目覚め、再出発、過去への答え。","決断の先延ばし、過去への罪悪感。"],"世界":["完成、統合、納得できる到達点。","未完成、あと一歩、終わりきらない課題。"]};
+const $=id=>document.getElementById(id);
+const out=$("out"),status=$("status"),monthContainer=$("months"),extraContainer=$("extras"),list=$("tarotList");
+Object.keys(tarot).forEach(n=>list.insertAdjacentHTML("beforeend",`<option value="${n}">`));
+for(let m=1;m<=12;m++)$("startMonth").insertAdjacentHTML("beforeend",`<option value="${m}">${m}月</option>`);
+const now=new Date(),pad=n=>String(n).padStart(2,"0");
+$("date").value=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+$("startYear").value=now.getFullYear();
+$("startMonth").value=now.getMonth()+1;
+
+function clean(v){return String(v||'').trim().replace(/・?(正位置|逆位置)$/,'').replace(/逆$/,'').trim()}
+function monthData(index){
+  const startY=Number($("startYear").value)||now.getFullYear();
+  const startM=Number($("startMonth").value)||1;
+  const d=new Date(startY,startM-1+index,1);
+  return {year:d.getFullYear(),month:d.getMonth()+1,label:`${d.getFullYear()}年${d.getMonth()+1}月`};
+}
+function buildMonthInputs(preserve=true){
+  const old=preserve?[...Array(12)].map((_,i)=>({name:$("monthCard"+i)?.value||'',ori:$("monthOri"+i)?.value||'0',memo:$("monthMemo"+i)?.value||''})):[];
+  monthContainer.innerHTML='';
+  for(let i=0;i<12;i++){
+    const md=monthData(i),o=old[i]||{};
+    monthContainer.insertAdjacentHTML("beforeend",`<div class="month-card"><div class="month-main"><div class="month-label">${md.label}</div><div class="card-line"><input id="monthCard${i}" list="tarotList" placeholder="カード名" value="${escapeAttr(o.name||'')}"><select id="monthOri${i}"><option value="0" ${String(o.ori)==='0'?'selected':''}>正位置</option><option value="1" ${String(o.ori)==='1'?'selected':''}>逆位置</option></select></div><textarea class="month-memo" id="monthMemo${i}" placeholder="この月に感じたこと">${escapeHtml(o.memo||'')}</textarea></div><div class="meaning" id="monthMeaning${i}"><span class="empty">カードを選ぶと、園子用の意味補助が表示されます。</span></div></div>`);
+    $("monthCard"+i).addEventListener("input",()=>updateMonthMeaning(i));
+    $("monthOri"+i).addEventListener("change",()=>updateMonthMeaning(i));
+    updateMonthMeaning(i);
+  }
+}
+function buildExtraInputs(){
+  extraContainer.innerHTML='';
+  for(let i=0;i<4;i++){
+    extraContainer.insertAdjacentHTML("beforeend",`<div class="extra-box"><h4>追加リーディング ${i+1}</h4><div class="twocol"><div class="field"><label>質問・項目名</label><input id="extraTitle${i}" placeholder="例：真剣交際につながる方が現れるか"></div><div class="field"><label>見方・方法</label><input id="extraMethod${i}" placeholder="例：YES・NO／年間リーディング"></div></div><div class="card-line"><input id="extraCard${i}" list="tarotList" placeholder="カード名"><select id="extraOri${i}"><option value="0">正位置</option><option value="1">逆位置</option></select></div><textarea id="extraMemo${i}" style="margin-top:8px;min-height:80px" placeholder="補足メモ（PDFのカード一覧には表示しません）"></textarea><div class="meaning" id="extraMeaning${i}"><span class="empty">カードを選ぶと、園子用の意味補助が表示されます。</span></div></div>`);
+    $("extraCard"+i).addEventListener("input",()=>updateExtraMeaning(i));
+    $("extraOri"+i).addEventListener("change",()=>updateExtraMeaning(i));
+  }
+}
+function updateMonthMeaning(i){
+  const name=clean($("monthCard"+i).value),ori=+$("monthOri"+i).value,box=$("monthMeaning"+i);
+  if(!name){box.innerHTML='<span class="empty">カードを選ぶと、園子用の意味補助が表示されます。</span>';return}
+  const m=tarot[name];box.innerHTML=m?`<strong>${name}・${ori?'逆位置':'正位置'}</strong><br>${m[ori]}`:`<strong>${name}</strong><br><span class="empty">意味辞典に未登録です。</span>`;
+}
+function updateExtraMeaning(i){
+  const name=clean($("extraCard"+i).value),ori=+$("extraOri"+i).value,box=$("extraMeaning"+i);
+  if(!name){box.innerHTML='<span class="empty">カードを選ぶと、園子用の意味補助が表示されます。</span>';return}
+  const m=tarot[name];box.innerHTML=m?`<strong>${name}・${ori?'逆位置':'正位置'}</strong><br>${m[ori]}`:`<strong>${name}</strong><br><span class="empty">意味辞典に未登録です。</span>`;
+}
+function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function escapeAttr(s){return escapeHtml(s).replace(/`/g,'&#096;')}
+function formatDate(v){if(!v)return'';const[y,m,d]=v.split('-');return`${y}年${Number(m)}月${Number(d)}日`}
+function label(name,ori){return name?`${name}・${Number(ori)?'逆位置':'正位置'}`:'未入力'}
+function getData(){
+  return {
+    name:$("name").value.trim(),date:$("date").value,question:$("question").value.trim(),context:$("context").value.trim(),
+    startYear:Number($("startYear").value),startMonth:Number($("startMonth").value),
+    months:[...Array(12)].map((_,i)=>{const md=monthData(i);return{...md,name:clean($("monthCard"+i).value),orientation:+$("monthOri"+i).value,memo:$("monthMemo"+i).value.trim()}}),
+    extras:[...Array(4)].map((_,i)=>({title:$("extraTitle"+i).value.trim(),method:$("extraMethod"+i).value.trim(),name:clean($("extraCard"+i).value),orientation:+$("extraOri"+i).value,memo:$("extraMemo"+i).value.trim()})),
+    sections:[1,2,3,4].map(i=>({heading:$("heading"+i).value.trim(),text:$("reading"+i).value.trim()})),
+    luckyColor:$("luckyColor").value.trim(),luckyNumber:$("luckyNumber").value.trim(),out:out.value
+  };
+}
+function buildGeneratedText(d){
+  const client=d.name||'ご相談者さま';
+  let text=`${client}へ\n\nこのたびは、Tarot Letterを受け取ってくださりありがとうございます。\n\n`;
+  if(d.question)text+=`【ご相談内容】\n${d.question}\n\n`;
+  d.sections.forEach(s=>{if(s.text)text+=`【${s.heading||'鑑定結果'}】\n${s.text}\n\n`});
+  text+=`今回のカードが示したものを、未来を決めつける答えではなく、これからを選ぶための一通の手紙として受け取っていただければと思います。\n\nSono`;
+  return text;
+}
+function stripRepeatedSections(text){
+  let value=String(text||'').trim();
+  value=value.replace(/^.+?へ\s*\n+/, '');
+  value=value.replace(/^このたびは、Tarot Letterを受け取ってくださりありがとうございます。\s*/, '');
+  value=value.replace(/【ご相談内容】[\s\S]*?(?=【[^】]+】|$)/, '');
+  value=value.replace(/\n*Sono\s*$/, '');
+  return value.trim();
+}
+function parseSections(text){
+  const source=String(text||'').replace(/\r/g,'').trim();
+  if(!source)return[];
+  const lines=source.split('\n');
+  const sections=[];let current={heading:'',paragraphs:[]};let buffer=[];
+  function flushParagraph(){const p=buffer.join('\n').trim();if(p)current.paragraphs.push(p);buffer=[]}
+  function flushSection(){flushParagraph();if(current.heading||current.paragraphs.length)sections.push(current);current={heading:'',paragraphs:[]}}
+  lines.forEach(line=>{
+    const m=line.trim().match(/^【(.+?)】$/);
+    if(m){flushSection();current.heading=m[1].trim();return}
+    if(line.trim()===''){flushParagraph();return}
+    buffer.push(line);
+  });
+  flushSection();
+  return sections;
+}
+function splitLongParagraph(paragraph,maxChars){
+  if(paragraph.length<=maxChars)return[paragraph];
+  const sentences=(paragraph.match(/[^。！？!?]+[。！？!?]?/g)||[paragraph]).map(x=>x.trim()).filter(Boolean);
+  const parts=[];let block='';
+  sentences.forEach(sentence=>{const cand=block?block+sentence:sentence;if(cand.length>maxChars&&block){parts.push(block);block=sentence}else block=cand});
+  if(block)parts.push(block);return parts;
+}
+function paginateReading(text,maxChars=660){
+  const sections=parseSections(text);const pages=[];let page=[];let count=0;
+  const pushPage=()=>{if(page.length){pages.push(page);page=[];count=0}};
+  sections.forEach(section=>{
+    const headingCost=section.heading?28:0;
+    if(section.heading&&count>0&&count+headingCost>maxChars-120)pushPage();
+    const sectionStart={type:'heading',text:section.heading};
+    if(section.heading){page.push(sectionStart);count+=headingCost}
+    section.paragraphs.forEach(p=>{
+      splitLongParagraph(p,maxChars-80).forEach(part=>{
+        const cost=part.length+22;
+        if(count>0&&count+cost>maxChars){pushPage();if(section.heading)page.push({type:'heading',text:section.heading+'（続き）'}),count+=36}
+        page.push({type:'paragraph',text:part});count+=cost;
+      });
+    });
+  });
+  pushPage();return pages.length?pages:[[]];
+}
+function decorativeShell(content,page,total,extraClass=''){
+  return `<section class="print-page ${extraClass}">${content}${extraClass==='cover'?'':`<div class="page-number">${page} / ${total}</div>`}</section>`;
+}
+function renderReadingPage(units,isFirst){
+  return `${isFirst?'<h2 class="ornament-title">鑑定結果</h2>':''}<div class="reading ${isFirst?'':'reading-continuation'}">${units.map(u=>u.type==='heading'?`<h3>${escapeHtml(u.text)}</h3>`:`<p>${escapeHtml(u.text)}</p>`).join('')}</div>`;
+}
+function buildPrint(){
+  const d=getData(),client=d.name||'ご相談者さま',readingText=stripRepeatedSections(out.value),readingPages=paginateReading(readingText),filledExtras=d.extras.filter(e=>e.title||e.name||e.method);
+  const total=3+readingPages.length;let page=1;const parts=[];
+  parts.push(decorativeShell(`<div class="cover-date">${escapeHtml(formatDate(d.date))}</div>`,page++,total,'cover'));
+  parts.push(decorativeShell(`
+    <h2 class="ornament-title">今回のリーディング</h2>
+    <div class="recipient">${escapeHtml(client)}へ</div>
+    <div class="intro">12か月の流れと、ご相談に合わせて追加で展開したカードです。</div>
+    ${d.question?`<div class="question">${escapeHtml(d.question)}</div>`:''}
+    <div class="yearly-list">${d.months.map(m=>`<div class="yearly-item"><span class="yearly-month">${m.year}年${m.month}月</span><span class="yearly-card">${escapeHtml(label(m.name,m.orientation))}</span></div>`).join('')}</div>
+    ${filledExtras.length?`<div class="extra-reading"><h3>追加で見たカード</h3><div class="extra-list">${filledExtras.map(e=>`<div class="extra-item"><strong>${escapeHtml(e.title||'追加リーディング')}</strong>${e.method?`（${escapeHtml(e.method)}）`:''}<br>${escapeHtml(label(e.name,e.orientation))}</div>`).join('')}</div></div>`:''}
+  `,page++,total));
+  readingPages.forEach((units,index)=>parts.push(decorativeShell(renderReadingPage(units,index===0),page++,total)));
+  parts.push(decorativeShell(`
+    <h2 class="ornament-title">最後に</h2>
+    <div class="closing-message">
+      <p>この度は、Tarot Letterの鑑定をお受けいただき、誠にありがとうございました。</p>
+      <p>この鑑定が、あなたの心を少しでも軽くし、これからの歩みを照らす小さな灯となれたなら幸いです。</p>
+      <p>カードは未来を決めるものではなく、今のあなたを映し出し、より良い未来へ向かうための気づきを与えてくれるものだと私は考えています。</p>
+      <p><strong>どのような結果であっても、人生の舵を握っているのは、あなた自身です。</strong></p>
+      <p><strong>あなたが選ぶ一歩一歩が、幸せな未来へとつながることを、心よりお祈りしております。</strong></p>
+    </div>
+    <div class="gift-block"><div class="gift-label">RECOMMENDED COLOR</div><div class="gift-value">${escapeHtml(d.luckyColor||'—')}</div><div class="gift-label">RECOMMENDED NUMBER</div><div class="gift-number">${escapeHtml(d.luckyNumber||'—')}</div></div>
+    <div class="emblem-wrap"><img src="images/emblem.png" alt="" class="emblem-image"></div>
+    <div class="signature-wrap"><img src="images/signature.png" alt="Sono" class="signature-image"></div>
+  `,page,total,'final'));
+  $("printDocument").innerHTML=parts.join('');
+}
+function autoHeight(){out.style.height='auto';out.style.height=Math.max(out.scrollHeight,620)+'px'}
+function fillData(d){
+  $("name").value=d.name||'';$("date").value=d.date||'';$("question").value=d.question||'';$("context").value=d.context||'';$("startYear").value=d.startYear||now.getFullYear();$("startMonth").value=d.startMonth||1;buildMonthInputs(false);
+  (d.months||[]).forEach((m,i)=>{if(i>11)return;$("monthCard"+i).value=m.name||'';$("monthOri"+i).value=m.orientation||0;$("monthMemo"+i).value=m.memo||'';updateMonthMeaning(i)});
+  (d.extras||[]).forEach((e,i)=>{if(i>3)return;$("extraTitle"+i).value=e.title||'';$("extraMethod"+i).value=e.method||'';$("extraCard"+i).value=e.name||'';$("extraOri"+i).value=e.orientation||0;$("extraMemo"+i).value=e.memo||'';updateExtraMeaning(i)});
+  (d.sections||[]).forEach((s,i)=>{if(i>3)return;$("heading"+(i+1)).value=s.heading||'';$("reading"+(i+1)).value=s.text||''});
+  $("luckyColor").value=d.luckyColor||'';$("luckyNumber").value=d.luckyNumber||'';out.value=d.out||'';$("meta").textContent=`${d.name||'ご相談者さま'}｜${formatDate(d.date)}`;autoHeight();buildPrint();
+}
+$("refreshMonths").onclick=()=>{buildMonthInputs(true);buildPrint();status.textContent='12か月の表示を更新しました。'};
+$("generate").onclick=()=>{const d=getData();if(!d.sections.some(s=>s.text)){status.textContent='鑑定文を1項目以上入力してください。';return}out.value=buildGeneratedText(d);$("meta").textContent=`${d.name||'ご相談者さま'}｜${formatDate(d.date)}`;autoHeight();buildPrint();status.textContent='鑑定文の下書きを作成しました。'};
+out.addEventListener('input',()=>{autoHeight();buildPrint()});
+$("save").onclick=()=>{localStorage.setItem('tarotLetterYearlyStudioV1',JSON.stringify(getData()));status.textContent='この端末に保存しました。'};
+$("load").onclick=()=>{const s=localStorage.getItem('tarotLetterYearlyStudioV1');if(!s){status.textContent='保存内容がありません。';return}fillData(JSON.parse(s));status.textContent='保存内容を開きました。'};
+$("clear").onclick=()=>{if(confirm('入力内容をすべて消しますか？')){localStorage.removeItem('tarotLetterYearlyStudioV1');location.reload()}};
+$("copy").onclick=async()=>{if(!out.value)return;try{await navigator.clipboard.writeText(out.value)}catch(e){out.select();document.execCommand('copy')}status.textContent='鑑定文をコピーしました。'};
+$("print").onclick=()=>{if(!out.value){status.textContent='先に鑑定文を作成してください。';return}buildPrint();window.print()};
+buildExtraInputs();buildMonthInputs(false);buildPrint();
+</script>
+</body>
+</html>
