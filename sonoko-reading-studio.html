@@ -290,28 +290,47 @@ function stripRepeatedSections(text){
   return value.trim();
 }
 function splitReadingPages(text,maxChars=950){
-  const source=String(text||'').replace(/
-/g,'').trim();
+  const source=String(text||'').replace(/\r/g,'').trim();
   if(!source)return [''];
-  const sections=source.split(/(?=【)/).map(s=>s.trim()).filter(Boolean);
-  const pages=[]; let current='';
+
+  const sections=source
+    .split(/(?=【)/)
+    .map(s=>s.trim())
+    .filter(Boolean);
+
+  const pages=[];
+  let current='';
+
   sections.forEach(sec=>{
-    const candidate=current?current+'
+    const candidate=current ? current+'\n\n'+sec : sec;
 
-'+sec:sec;
-    if(sec.length<420 && candidate.length<=maxChars){current=candidate;return;}
-    if(current){pages.push(current);current='';}
-    const paras=sec.split(/
-{2,}/).filter(Boolean);
+    if(sec.length<420 && candidate.length<=maxChars){
+      current=candidate;
+      return;
+    }
+
+    if(current){
+      pages.push(current);
+      current='';
+    }
+
+    const paras=sec.split(/\n{2,}/).filter(Boolean);
     let page='';
-    paras.forEach(pa=>{
-      const c=page?page+'
 
-'+pa:pa;
-      if(c.length>maxChars && page){pages.push(page);page=pa;} else page=c;
+    paras.forEach(pa=>{
+      const candidatePage=page ? page+'\n\n'+pa : pa;
+
+      if(candidatePage.length>maxChars && page){
+        pages.push(page);
+        page=pa;
+      }else{
+        page=candidatePage;
+      }
     });
+
     if(page)pages.push(page);
   });
+
   if(current)pages.push(current);
   return pages;
 }
