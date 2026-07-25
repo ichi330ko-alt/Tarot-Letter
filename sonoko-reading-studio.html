@@ -150,13 +150,13 @@
     position:relative;
     z-index:2;
     white-space:pre-wrap;
-    font-size:11.8px;
-    line-height:2.02;
+    font-size:12.4px;
+    line-height:1.9;
     letter-spacing:.015em;
     text-align:justify;
   }
   .reading-continuation{
-    padding-top:7mm;
+    padding-top:3mm;
   }
 
   .final{
@@ -289,59 +289,31 @@ function stripRepeatedSections(text){
   value=value.replace(/\n*Sono\s*$/,'');
   return value.trim();
 }
-function splitReadingPages(text,maxChars=690){
-  const source=String(text||'').replace(/\r/g,'').trim();
+function splitReadingPages(text,maxChars=950){
+  const source=String(text||'').replace(/
+/g,'').trim();
   if(!source)return [''];
+  const sections=source.split(/(?=【)/).map(s=>s.trim()).filter(Boolean);
+  const pages=[]; let current='';
+  sections.forEach(sec=>{
+    const candidate=current?current+'
 
-  const paragraphs=source
-    .split(/\n{2,}/)
-    .map(x=>x.trim())
-    .filter(Boolean);
+'+sec:sec;
+    if(sec.length<420 && candidate.length<=maxChars){current=candidate;return;}
+    if(current){pages.push(current);current='';}
+    const paras=sec.split(/
+{2,}/).filter(Boolean);
+    let page='';
+    paras.forEach(pa=>{
+      const c=page?page+'
 
-  const units=[];
-
-  paragraphs.forEach(paragraph=>{
-    if(paragraph.length<=maxChars){
-      units.push(paragraph);
-      return;
-    }
-
-    const sentences=(paragraph.match(/[^。！？!?]+[。！？!?]?/g)||[paragraph])
-      .map(x=>x.trim())
-      .filter(Boolean);
-
-    let block='';
-
-    sentences.forEach(sentence=>{
-      const candidate=block?block+sentence:sentence;
-
-      if(candidate.length>maxChars&&block){
-        units.push(block);
-        block=sentence;
-      }else{
-        block=candidate;
-      }
+'+pa:pa;
+      if(c.length>maxChars && page){pages.push(page);page=pa;} else page=c;
     });
-
-    if(block)units.push(block);
+    if(page)pages.push(page);
   });
-
-  const pages=[];
-  let page='';
-
-  units.forEach(unit=>{
-    const candidate=page?`${page}\n\n${unit}`:unit;
-
-    if(candidate.length>maxChars&&page){
-      pages.push(page);
-      page=unit;
-    }else{
-      page=candidate;
-    }
-  });
-
-  if(page)pages.push(page);
-  return pages.length?pages:[''];
+  if(current)pages.push(current);
+  return pages;
 }
 function buildPrint(){
   const d=getData();
