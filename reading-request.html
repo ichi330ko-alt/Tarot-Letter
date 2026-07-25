@@ -614,6 +614,80 @@
       line-height: 2.2;
     }
 
+
+    /* ========================================
+       Tarot Letterのリーディングについて
+    ======================================== */
+
+    .reading-info-section {
+      padding: 84px 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(250, 246, 238, 0.76),
+          rgba(239, 231, 218, 0.57)
+        );
+    }
+
+    .reading-info-box {
+      max-width: 790px;
+      margin: 45px auto 0;
+      padding: 39px 38px;
+
+      background: rgba(255, 253, 248, 0.86);
+
+      border: 1px solid rgba(197, 161, 93, 0.28);
+      border-radius: 24px;
+
+      box-shadow: 0 14px 34px rgba(75, 54, 39, 0.07);
+    }
+
+    .reading-info-text {
+      margin: 0;
+
+      color: var(--brown-light);
+      font-size: 13px;
+      line-height: 2.1;
+    }
+
+    .reading-info-subtitle {
+      margin: 30px 0 13px;
+
+      color: var(--navy);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.09em;
+    }
+
+    .reading-info-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .reading-info-list li {
+      position: relative;
+
+      margin: 0;
+      padding: 9px 0 9px 25px;
+
+      color: var(--brown-light);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .reading-info-list li::before {
+      content: "✦";
+
+      position: absolute;
+      top: 10px;
+      left: 2px;
+
+      color: var(--gold);
+      font-size: 9px;
+    }
+
     /* ========================================
        Googleフォーム
     ======================================== */
@@ -968,7 +1042,8 @@
       }
 
       .message-section,
-      .items-section {
+      .items-section,
+      .reading-info-section {
         padding: 66px 0;
       }
 
@@ -998,7 +1073,8 @@
       }
 
       .items-list,
-      .notice-box {
+      .notice-box,
+      .reading-info-box {
         padding: 24px 20px;
       }
     }
@@ -1274,6 +1350,70 @@
             <br><br>
             書いていただいた言葉を手がかりに、
             カードを通して今の状況を丁寧に読み解いていきます。
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Tarot Letterのリーディングについて -->
+    <section class="reading-info-section">
+
+      <div class="page-container">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            About the Reading
+          </span>
+
+          <h2 class="section-title">
+            Tarot Letterのリーディングについて
+          </h2>
+
+          <div class="ornament" aria-hidden="true">
+            <span>✦</span>
+          </div>
+
+        </div>
+
+        <div class="reading-info-box">
+
+          <p class="reading-info-text">
+            Tarot Letterでは、タロットカードを通して「今の流れ」や「これから向かいやすい可能性」を大切に読み解いています。
+            <br><br>
+            カードは、未来を決めるものではなく、今この瞬間の流れを映し出す鏡です。
+            そのため、あなたの選択や行動、周囲の環境によって、未来の流れは少しずつ変化していきます。
+          </p>
+
+          <h3 class="reading-info-subtitle">
+            タロットが得意なこと
+          </h3>
+
+          <ul class="reading-info-list">
+            <li>今の状況や心の状態を読み解くこと</li>
+            <li>これからの流れや可能性をみること</li>
+            <li>迷いや選択に対するヒントを受け取ること</li>
+            <li>一定期間（数か月〜1年程度）の流れをみること</li>
+          </ul>
+
+          <h3 class="reading-info-subtitle">
+            タロットが苦手なこと
+          </h3>
+
+          <ul class="reading-info-list">
+            <li>人物の年齢や職業などを具体的に断定すること</li>
+            <li>出会う場所や日時などを正確に特定すること</li>
+            <li>未来を絶対的なものとして保証すること</li>
+          </ul>
+
+          <p class="reading-info-text" style="margin-top: 28px;">
+            Tarot Letterでは、カードが示したメッセージを大切に受け取り、その範囲で誠実にお伝えしています。
+            <br><br>
+            この鑑定が、あなたにとって新しい気づきや、これからの一歩を選ぶための小さな道しるべとなれば幸いです。
           </p>
 
         </div>
