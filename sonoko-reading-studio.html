@@ -289,50 +289,140 @@ function stripRepeatedSections(text){
   value=value.replace(/\n*Sono\s*$/,'');
   return value.trim();
 }
-function splitReadingPages(text,maxChars=950){
+function splitReadingPages(text){
   const source=String(text||'').replace(/\r/g,'').trim();
   if(!source)return [''];
 
-  const sections=source
-    .split(/(?=【)/)
-    .map(s=>s.trim())
-    .filter(Boolean);
+  const measure=document.createElement('div');
+  measure.style.position='fixed';
+  measure.style.left='-99999px';
+  measure.style.top='0';
+  measure.style.visibility='hidden';
+  measure.style.pointerEvents='none';
+  measure.style.width='156mm';
+  measure.style.whiteSpace='pre-wrap';
+  measure.style.fontFamily='"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif';
+  measure.style.fontSize='12.4px';
+  measure.style.lineHeight='1.9';
+  measure.style.letterSpacing='.015em';
+  measure.style.textAlign='justify';
+  measure.style.boxSizing='border-box';
+  document.body.appendChild(measure);
 
+  const firstPageMax=760;
+  const continuationMax=860;
   const pages=[];
   let current='';
+  let pageIndex=0;
 
-  sections.forEach(sec=>{
-    const candidate=current ? current+'\n\n'+sec : sec;
+  function currentLimit(){
+    return pageIndex===0 ? firstPageMax : continuationMax;
+  }
 
-    if(sec.length<420 && candidate.length<=maxChars){
+  function fits(value){
+    measure.textContent=value;
+    return measure.scrollHeight<=currentLimit();
+  }
+
+  function pushCurrent(){
+    if(!current.trim())return;
+    pages.push(current.trim());
+    current='';
+    pageIndex++;
+  }
+
+  function appendBlock(block){
+    const candidate=current ? current+'\n\n'+block : block;
+
+    if(fits(candidate)){
       current=candidate;
       return;
     }
 
-    if(current){
-      pages.push(current);
-      current='';
+    if(current)pushCurrent();
+
+    if(fits(block)){
+      current=block;
+      return;
     }
 
-    const paras=sec.split(/\n{2,}/).filter(Boolean);
-    let page='';
+    splitOversizedBlock(block);
+  }
 
-    paras.forEach(pa=>{
-      const candidatePage=page ? page+'\n\n'+pa : pa;
+  function splitOversizedBlock(block){
+    const sentences=block
+      .split(/(?<=[。！？\n])/)
+      .map(s=>s.trim())
+      .filter(Boolean);
 
-      if(candidatePage.length>maxChars && page){
-        pages.push(page);
-        page=pa;
+    if(sentences.length<=1){
+      splitByCharacters(block);
+      return;
+    }
+
+    let piece='';
+    sentences.forEach(sentence=>{
+      const candidate=piece ? piece+sentence : sentence;
+
+      if(fits(candidate)){
+        piece=candidate;
       }else{
-        page=candidatePage;
+        if(piece){
+          current=piece;
+          pushCurrent();
+          piece='';
+        }
+
+        if(fits(sentence)){
+          piece=sentence;
+        }else{
+          splitByCharacters(sentence);
+        }
       }
     });
 
-    if(page)pages.push(page);
-  });
+    if(piece)current=piece;
+  }
 
-  if(current)pages.push(current);
-  return pages;
+  function splitByCharacters(value){
+    let rest=value;
+
+    while(rest){
+      let low=1;
+      let high=rest.length;
+      let best=0;
+
+      while(low<=high){
+        const mid=Math.floor((low+high)/2);
+        const part=rest.slice(0,mid);
+
+        if(fits(part)){
+          best=mid;
+          low=mid+1;
+        }else{
+          high=mid-1;
+        }
+      }
+
+      if(best<=0)best=1;
+
+      current=rest.slice(0,best);
+      rest=rest.slice(best);
+
+      if(rest)pushCurrent();
+    }
+  }
+
+  const blocks=source
+    .split(/\n{2,}/)
+    .map(s=>s.trim())
+    .filter(Boolean);
+
+  blocks.forEach(appendBlock);
+  pushCurrent();
+
+  measure.remove();
+  return pages.length ? pages : [''];
 }
 function buildPrint(){
   const d=getData();
