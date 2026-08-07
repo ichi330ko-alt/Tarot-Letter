@@ -774,6 +774,74 @@
         min-width: 0;
       }
     }
+  
+
+    /* =========================
+       あなたに合ったコンテンツ
+    ========================= */
+
+    .sister-section {
+      padding: 78px 22px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 16%, rgba(255,255,255,.72), transparent 40%),
+        #f8f1e6;
+    }
+
+    .sister-inner {
+      width: min(100%, 720px);
+      margin: 0 auto;
+      padding: 42px 30px;
+      border: 1px solid rgba(199, 161, 92, 0.28);
+      border-radius: 24px;
+      background: rgba(255, 252, 247, 0.78);
+      box-shadow: 0 18px 44px rgba(90, 67, 46, 0.11);
+    }
+
+    .sister-kicker {
+      margin: 0 0 9px;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+    }
+
+    .sister-title {
+      margin: 0 0 18px;
+      font-size: clamp(25px, 4vw, 36px);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+
+    .sister-text {
+      margin: 0;
+      color: var(--brown-light);
+      font-size: 14px;
+      line-height: 2.1;
+    }
+
+    .sister-link {
+      margin-top: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 230px;
+      padding: 13px 27px;
+      color: #fffdf8;
+      background: linear-gradient(135deg, #b88d48, #d3b16f);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 999px;
+      box-shadow: 0 12px 28px rgba(148,107,50,.22);
+      font-size: 14px;
+      letter-spacing: .1em;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .sister-link:hover,
+    .sister-link:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(148,107,50,.3);
+    }
+
   </style>
 </head>
 
@@ -1120,22 +1188,20 @@
 
     </section>
 
-    <!-- 姉妹サイト -->
+    <!-- あなたに合ったコンテンツ -->
     <section class="sister-section">
-
-      <p class="sister-text">
-        心を整え、静かな祈りを受け取りたい日に。
-      </p>
-
-      <a
-        class="sister-link"
-        href="https://ichi330ko-alt.github.io/Chant-of-Light/index.html"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        姉妹サイト「光の詠唱」へ
-      </a>
-
+      <div class="sister-inner">
+        <p class="sister-kicker">YOUR NEXT STEP</p>
+        <h2 class="sister-title">あなたに合ったコンテンツ</h2>
+        <p class="sister-text">
+          生まれ持った性質を知ること。今の流れに気づくこと。<br>
+          心を静かに整えること。<br>
+          今のあなたに必要な入り口をお選びください。
+        </p>
+        <a class="sister-link" href="contents.html">
+          コンテンツを見る
+        </a>
+      </div>
     </section>
 
   </main>
