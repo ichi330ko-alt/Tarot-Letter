@@ -1102,7 +1102,16 @@
         animation-duration: 0.01ms !important;
       }
     }
-  </style>
+  
+    /* Square決済 */
+    .payment-section { padding: 76px 24px 96px; text-align: center; }
+    .payment-box { width: min(680px,100%); margin: 0 auto; padding: 42px 28px; border: 1px solid rgba(132,104,74,.24); background: rgba(255,255,255,.62); }
+    .payment-title { margin-bottom: 16px; font-size: 1.35rem; font-weight: 400; letter-spacing: .12em; }
+    .payment-text { color: #665d62; line-height: 2; font-size: .92rem; }
+    .payment-button { display:inline-block; margin-top:28px; padding:14px 28px; border:1px solid rgba(132,104,74,.55); border-radius:999px; background:#fff; color:#594a50; letter-spacing:.12em; }
+    .payment-note { margin-top:14px; color:#8b8186; font-size:.75rem; line-height:1.8; }
+
+</style>
 </head>
 
 <body>
@@ -1237,8 +1246,8 @@
         </p>
 
         <p class="hero-note">
-          ご相談内容を確認後、Sonoよりメールでご案内します。<br>
-          フォームを送信した時点では、鑑定の受付およびお支払いは確定しません。
+          相談テーマを選び、内容をご記入ください。<br>
+          フォーム送信後、そのままお支払いへお進みいただけます。
         </p>
 
       </div>
@@ -1275,12 +1284,12 @@
             </div>
 
             <h3 class="guide-title">
-              内容を確認します
+              テーマを選びます
             </h3>
 
             <p class="guide-text">
-              Sonoがご相談内容と
-              お申し込み事項を確認します。
+              恋愛・仕事・人間関係・健康・今年の運勢から
+              ご相談テーマを一つお選びください。
             </p>
 
           </article>
@@ -1292,12 +1301,12 @@
             </div>
 
             <h3 class="guide-title">
-              メールをお送りします
+              相談を書きます
             </h3>
 
             <p class="guide-text">
-              鑑定をお受けできるかどうかと、
-              今後のご案内をメールでお送りします。
+              選んだテーマについて、
+              今気になっていることを自由にお書きください。
             </p>
 
           </article>
@@ -1309,12 +1318,12 @@
             </div>
 
             <h3 class="guide-title">
-              受付確定
+              お支払いへ進みます
             </h3>
 
             <p class="guide-text">
-              内容とお支払い方法をご確認いただき、
-              お支払いの確認後に正式受付となります。
+              フォームを送信したら、
+              Squareから鑑定料金をお支払いください。
             </p>
 
           </article>
@@ -1444,8 +1453,9 @@
           <p class="form-intro">
             下記のフォームに必要事項をご記入ください。
             <br>
-            ご入力後、フォーム下部の「送信」ボタンを押すと、
-            お申し込み内容が送信されます。
+            ご入力後、フォーム下部の「送信」ボタンを押してください。
+            <br>
+            送信が完了したら、このページ下部のお支払いへお進みください。
           </p>
 
         </div>
@@ -1511,6 +1521,21 @@
 
     </section>
 
+    <!-- お支払い -->
+    <section class="payment-section" id="payment">
+      <div class="payment-box">
+        <h2 class="payment-title">お支払い</h2>
+        <p class="payment-text">
+          お申し込みフォームを送信した方は、<br>
+          続けてSquareより鑑定料金をお支払いください。
+        </p>
+        <a class="payment-button" href="https://square.link/u/dw1H7SFn" target="_blank" rel="noopener">
+          Squareでお支払いへ進む
+        </a>
+        <p class="payment-note">Tarot Letter 個人鑑定　3,000円</p>
+      </div>
+    </section>
+
     <!-- 入力内容の目安 -->
     <section class="items-section">
 
@@ -1534,35 +1559,15 @@
 
         <div class="items-list">
 
-          <p>
-            <strong>お名前・ニックネーム</strong><br>
-            本名でなくても構いません。
-          </p>
+          <p><strong>お名前・ニックネーム</strong><br>本名でなくても構いません。</p>
 
-          <p>
-            <strong>メールアドレス</strong><br>
-            ご案内と鑑定書を受け取れるアドレスをご記入ください。
-          </p>
+          <p><strong>メールアドレス</strong><br>ご案内と鑑定書を受け取れるアドレスをご記入ください。</p>
 
-          <p>
-            <strong>Tarot Letter内で呼ばれたいお名前</strong><br>
-            鑑定書の文章内でお呼びするお名前です。
-          </p>
+          <p><strong>Tarot Letterでお呼びするお名前</strong><br>鑑定書の文章内でお呼びするお名前です。</p>
 
-          <p>
-            <strong>ご相談のテーマ</strong><br>
-            恋愛・人間関係、家族、仕事、自分自身、今後の方向性などからお選びください。
-          </p>
+          <p><strong>ご相談のテーマ</strong><br>恋愛・仕事・人間関係・健康・今年の運勢から、一つお選びください。</p>
 
-          <p>
-            <strong>ご相談内容</strong><br>
-            今気になっていることや、これまでの経緯を自由にお書きください。
-          </p>
-
-          <p>
-            <strong>特にカードに尋ねたいこと</strong><br>
-            はっきりした質問がある場合のみ、ご記入ください。
-          </p>
+          <p><strong>ご相談内容</strong><br>選んだテーマについて、今気になっていることやカードに尋ねたいことを自由にお書きください。</p>
 
         </div>
 
@@ -1596,11 +1601,11 @@
           <ul class="notice-list">
 
             <li>
-              フォーム送信の時点では、鑑定の受付およびお支払いは確定しません。
+              フォーム送信後、続けてSquareより鑑定料金をお支払いください。
             </li>
 
             <li>
-              ご相談内容を確認後、Sonoよりメールでご連絡します。
+              お支払いの確認後、鑑定を開始します。
             </li>
 
             <li>
@@ -1608,8 +1613,8 @@
             </li>
 
             <li>
-              医療・法律・投資・生死・犯罪に関する内容は、
-              お受けできない場合があります。
+              健康については心身の流れや過ごし方を読むもので、診断・治療の判断は行いません。
+              医療・法律・投資・生死・犯罪に関する判断や断定はお受けできません。
             </li>
 
             <li>
